@@ -28,7 +28,7 @@ import {
 import { FooterComponent, HeaderComponent } from './index';
 import { MenuService } from './menu.service';
 import { INavData } from '@coreui/angular';
-import {navCommonItems, navJpjCounter, navJpjPartner, navJpjPublic} from './_nav';
+import { navCommonItemsChildrens, navJpjCounter, navJpjPartner, navJpjPublic} from './_nav';
 import {finalize} from "rxjs";
 import {SessionUtil} from "../../utils/SessionUtil";
 
@@ -95,14 +95,17 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
     SessionUtil.setItem("showSidebar", true);
 
-    this.navItems = [{name: 'Sistem Menu', title: true}];
+    // this.navItems = [{name: 'Sistem Menu', title: true}];
     const menuData = SessionUtil.getItem<INavData[]>("menuData");
-    if (menuData) {
-      this.navItems.push(...menuData);
-    }
-    if(!this.navItems || this.navItems.length < 1){
-      this.navItems.push({name: 'Unable to fetch menu', title: true});
-    }
+    // if (menuData) {
+    //   this.navItems.push(...menuData);
+    // }
+    // if(!this.navItems || this.navItems.length < 1){
+    //   this.navItems.push({name: 'Unable to fetch menu', title: true});
+    // }
+
+    // this.navItems.push(...);
+    this.navItems.push(...navCommonItemsChildrens);
   }
 
   ngAfterViewInit(): void {

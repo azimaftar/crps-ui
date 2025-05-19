@@ -28,8 +28,8 @@ import {
 import { ChartjsComponent } from '@coreui/angular-chartjs';
 import { IconDirective } from '@coreui/icons-angular';
 
-import { WidgetsBrandComponent } from '../../../others/views/widgets/widgets-brand/widgets-brand.component';
-import { WidgetsDropdownComponent } from '../../../others/views/widgets/widgets-dropdown/widgets-dropdown.component';
+import { WidgetsBrandComponent } from '../../../others/views/dev-references/widgets/widgets-brand/widgets-brand.component';
+import { WidgetsDropdownComponent } from '../../../others/views/dev-references/widgets/widgets-dropdown/widgets-dropdown.component';
 // import { DashboardChartsData, IChartProps } from './dashboard-charts-data';
 
 // import {ActivatedRoute, Router, RouterLink} from '@angular/router';
@@ -57,15 +57,6 @@ interface IUser {
     templateUrl: 'niise-employee.component.html',
     styleUrls: ['niise-employee.component.scss'],
   imports: [ButtonDirective, ReactiveFormsModule, CardComponent, CardBodyComponent, LeftContentComponent, EmployeeNotificationsComponent, CenterContentComponent,
-    // DropdownComponent, DropdownDividerDirective, DropdownItemDirective, DropdownMenuDirective,
-    // DropdownToggleDirective, IconDirective, TemplateIdDirective, WidgetStatAComponent, RouterLink,
-    // WidgetsDropdownComponent, TextColorDirective,
-    // RowComponent, ColComponent, IconDirective,
-    // ButtonGroupComponent, FormCheckLabelDirective, ChartjsComponent, NgStyle, CardFooterComponent,
-    // GutterDirective,
-    // ProgressBarDirective,
-    // ProgressComponent, WidgetsBrandComponent,
-    // CardHeaderComponent, TableDirective, AvatarComponent, CardGroupComponent
   ]
 })
 export class NiiseEmployeeComponent implements OnInit {

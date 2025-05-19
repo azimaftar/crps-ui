@@ -4,7 +4,11 @@ import { LayoutComponent } from './layout';
 export const childRoutes = [
   {
     path: 'dashboard',
-    loadChildren: () => import('../others/views/dashboard/routes').then(m => m.routes)
+    loadChildren: () => import('../view/dashboard/routes').then(m => m.routes)
+  },
+  {
+    path: 'niise-employee',
+    loadChildren: () => import('../app/NiiseModules/NiiseEmployee/routes').then(m => m.routes)
   },
   {
     path: 'employee',
@@ -16,39 +20,39 @@ export const childRoutes = [
   },
   {
     path: 'theme',
-    loadChildren: () => import('../others/views/theme/routes').then((m) => m.routes)
+    loadChildren: () => import('../others/views/dev-references/theme/routes').then((m) => m.routes)
   },
   {
     path: 'base',
-    loadChildren: () => import('../others/views/base/routes').then((m) => m.routes)
+    loadChildren: () => import('../others/views/dev-references/base/routes').then((m) => m.routes)
   },
   {
     path: 'buttons',
-    loadChildren: () => import('../others/views/buttons/routes').then((m) => m.routes)
+    loadChildren: () => import('../others/views/dev-references/buttons/routes').then((m) => m.routes)
   },
   {
     path: 'forms',
-    loadChildren: () => import('../others/views/forms/routes').then((m) => m.routes)
+    loadChildren: () => import('../others/views/dev-references/forms/routes').then((m) => m.routes)
   },
   {
     path: 'icons',
-    loadChildren: () => import('../others/views/icons/routes').then((m) => m.routes)
+    loadChildren: () => import('../others/views/dev-references/icons/routes').then((m) => m.routes)
   },
   {
     path: 'notifications',
-    loadChildren: () => import('../others/views/notifications/routes').then((m) => m.routes)
+    loadChildren: () => import('../others/views/dev-references/notifications/routes').then((m) => m.routes)
   },
   {
     path: 'widgets',
-    loadChildren: () => import('../others/views/widgets/routes').then((m) => m.routes)
+    loadChildren: () => import('../others/views/dev-references/widgets/routes').then((m) => m.routes)
   },
   {
     path: 'charts',
-    loadChildren: () => import('../others/views/charts/routes').then((m) => m.routes)
+    loadChildren: () => import('../others/views/dev-references/charts/routes').then((m) => m.routes)
   },
   {
     path: 'pages',
-    loadChildren: () => import('../others/views/pages/routes').then((m) => m.routes)
+    loadChildren: () => import('../others/views/dev-references/pages/routes').then((m) => m.routes)
   }
 ];
 
@@ -68,14 +72,14 @@ export const routes: Routes = [
   },
   {
     path: '404',
-    loadComponent: () => import('../others/views/pages/page404/page404.component').then(m => m.Page404Component),
+    loadComponent: () => import('../others/views/dev-references/pages/page404/page404.component').then(m => m.Page404Component),
     data: {
       title: 'Page 404'
     }
   },
   {
     path: '500',
-    loadComponent: () => import('../others/views/pages/page500/page500.component').then(m => m.Page500Component),
+    loadComponent: () => import('../others/views/dev-references/pages/page500/page500.component').then(m => m.Page500Component),
     data: {
       title: 'Page 500'
     }

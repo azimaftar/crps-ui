@@ -1,12 +1,12 @@
-import {PerlesenanKenderaanComponent} from "../../../app/_jpj-modules/portal-awam/perlesenan-kenderaan/perlesenan-kenderaan.component";
-import {EmployeeComponent} from "../../../app/_jpj-modules/employee/employee.component";
-import {SessionUtil} from "../../../app/_jpj-modules/core/utils/SessionUtil";
-import {Dashboard2Component} from "../../../app/_jpj-modules/dashboard2/dashboard2.component";
+import {PerlesenanKenderaanComponent} from "../../app/_jpj-modules/portal-awam/perlesenan-kenderaan/perlesenan-kenderaan.component";
+import {EmployeeComponent} from "../../app/_jpj-modules/employee/employee.component";
+import {SessionUtil} from "../../app/_jpj-modules/core/utils/SessionUtil";
+import {Dashboard2Component} from "../../app/_jpj-modules/dashboard2/dashboard2.component";
 import {DropdownComponent, SidebarComponent} from "@coreui/angular";
-import {LoginComponent} from "../../../app/_jpj-modules/login/login.component";
-import {RegisterComponent} from "../../../app/_jpj-modules/register/register.component";
-import {NiiseEmployeeComponent} from "../../../app/NiiseModules/NiiseEmployee/niise-employee.component";
-import {PassportComponent} from "../../../app/NiiseModules/portal-awam/passport/passport.component";
+import {LoginComponent} from "../../app/_jpj-modules/login/login.component";
+import {RegisterComponent} from "../../app/_jpj-modules/register/register.component";
+import {NiiseEmployeeComponent} from "../../app/NiiseModules/NiiseEmployee/niise-employee.component";
+import {PassportComponent} from "../../app/NiiseModules/portal-awam/passport/passport.component";
 
 function getScreens(): any[] {
 
@@ -22,7 +22,7 @@ function getScreens(): any[] {
       // screens.push(PerlesenanKenderaanComponent);
       // screens.push(EmployeeComponent);
       screens.push(Dashboard2Component);
-      screens.push(NiiseEmployeeComponent);
+      // screens.push(NiiseEmployeeComponent);
       // screens.push(SidebarComponent);
 
       break;
@@ -35,15 +35,15 @@ function getScreens(): any[] {
     case 'employee':
       // screens.push(EmployeeComponent);
       screens.push(NiiseEmployeeComponent);
-      screens.push(Dashboard2Component);
+      // screens.push(Dashboard2Component);
       break;
     case 'partner':
       screens.push(Dashboard2Component);
-      screens.push(NiiseEmployeeComponent);
+      // screens.push(NiiseEmployeeComponent);
       break;
     default:
       screens.push(Dashboard2Component);
-      screens.push(NiiseEmployeeComponent);
+      // screens.push(NiiseEmployeeComponent);
       break;
   }
 

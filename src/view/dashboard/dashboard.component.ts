@@ -35,13 +35,13 @@ import {
 import { ChartjsComponent } from '@coreui/angular-chartjs';
 import { IconDirective } from '@coreui/icons-angular';
 
-import { WidgetsBrandComponent } from '../widgets/widgets-brand/widgets-brand.component';
-import { WidgetsDropdownComponent } from '../widgets/widgets-dropdown/widgets-dropdown.component';
+import { WidgetsBrandComponent } from '../../others/views/dev-references/widgets/widgets-brand/widgets-brand.component';
+import { WidgetsDropdownComponent } from '../../others/views/dev-references/widgets/widgets-dropdown/widgets-dropdown.component';
 import { DashboardChartsData, IChartProps } from './dashboard-charts-data';
 
 import {ActivatedRoute, Router} from '@angular/router';
-import {AuthService} from "../../../app/_jpj-modules/core/services/auth.service";
-import {SessionUtil} from "../../../app/_jpj-modules/core/utils/SessionUtil";
+import {AuthService} from "../../app/_jpj-modules/core/services/auth.service";
+import {SessionUtil} from "../../app/_jpj-modules/core/utils/SessionUtil";
 import {getAllScreens} from "./screen-list";
 
 interface IUser {
