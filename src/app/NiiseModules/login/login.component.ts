@@ -6,7 +6,7 @@ import {RouterLink, Router } from "@angular/router";
 import {AuthService} from "../core/services/auth.service";
 import {FormsModule} from "@angular/forms";
 import {AuthResponse} from "../core/models/AuthResponse";
-import {FeedComponent} from "../../../others/views/dev-references/feed/feed.component";
+import {FeedComponent} from "../../../others/views/feed/feed.component";
 import {SessionUtil} from "../core/utils/SessionUtil";
 import {LocalStorageUtil} from "../core/utils/LocalStorageUtil";
 import {config} from "../../../config/uiConfig";

@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { LayoutComponent } from './layout';
+import {LayoutComponent} from "./NiiseModules/core/components/layout";
 
 export const childRoutes = [
   {
@@ -9,14 +9,6 @@ export const childRoutes = [
   {
     path: 'niise-employee',
     loadChildren: () => import('../app/NiiseModules/NiiseEmployee/routes').then(m => m.routes)
-  },
-  {
-    path: 'employee',
-    loadChildren: () => import('./_jpj-modules/employee/routes').then(m => m.routes)
-  },
-  {
-    path: 'perlesenanKenderaan',
-    loadChildren: () => import('./_jpj-modules/employee/routes').then(m => m.routes)
   },
   {
     path: 'theme',
@@ -86,21 +78,21 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    loadComponent: () => import('./_jpj-modules/login/login.component').then(m => m.LoginComponent),
+    loadComponent: () => import('./NiiseModules/login/login.component').then(m => m.LoginComponent),
     data: {
       title: 'Login Page'
     }
   },
   {
     path: 'landing',
-    loadComponent: () => import('./_jpj-modules/landing/landing.component').then(m => m.LandingComponent),
+    loadComponent: () => import('./NiiseModules/landing/landing.component').then(m => m.LandingComponent),
     data: {
       title: 'Landing Page'
     }
   },
   {
     path: 'register',
-    loadComponent: () => import('./_jpj-modules/register/register.component').then(m => m.RegisterComponent),
+    loadComponent: () => import('./NiiseModules/register/register.component').then(m => m.RegisterComponent),
     data: {
       title: 'Register Page'
     }

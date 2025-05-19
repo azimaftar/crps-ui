@@ -28,8 +28,8 @@ import {
 import { ChartjsComponent } from '@coreui/angular-chartjs';
 import { IconDirective } from '@coreui/icons-angular';
 
-import { WidgetsBrandComponent } from '../../../others/views/dev-references/widgets/widgets-brand/widgets-brand.component';
-import { WidgetsDropdownComponent } from '../../../others/views/dev-references/widgets/widgets-dropdown/widgets-dropdown.component';
+import { WidgetsBrandComponent } from '../../../others/views/widgets/widgets-brand/widgets-brand.component';
+import { WidgetsDropdownComponent } from '../../../others/views/widgets/widgets-dropdown/widgets-dropdown.component';
 // import { DashboardChartsData, IChartProps } from './dashboard-charts-data';
 
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';

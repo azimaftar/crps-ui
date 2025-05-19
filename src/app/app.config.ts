@@ -14,7 +14,7 @@ import {provideHttpClient, withInterceptors} from '@angular/common/http';
 import { DropdownModule, SidebarModule } from '@coreui/angular';
 import { IconSetService } from '@coreui/icons-angular';
 import { routes } from './app.routes';
-import {JwtInterceptor} from "./_jpj-modules/core/interceptors/jwt.interceptor";
+import {JwtInterceptor} from "./NiiseModules/core/interceptors/jwt.interceptor";
 // import {JwtInterceptor} from "@auth0/angular-jwt";
 // import {JwtInterceptor} from "@auth0/angular-jwt";
 // import { JwtInterceptor } from './app/interceptors/jwt.interceptor';

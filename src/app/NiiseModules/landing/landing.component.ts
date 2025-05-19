@@ -21,7 +21,7 @@ import {AuthService} from "../core/services/auth.service";
 import {FormsModule} from "@angular/forms";
 import {AuthResponse} from "../core/models/AuthResponse";
 import {SessionUtil} from "../core/utils/SessionUtil";
-import {FeedComponent} from "../../../others/views/dev-references/feed/feed.component";
+import {FeedComponent} from "../../../others/views/feed/feed.component";
 import {MenuContentComponent} from "./menu-content/menu-content.component";
 import {
   navCommonItemsChildrens,

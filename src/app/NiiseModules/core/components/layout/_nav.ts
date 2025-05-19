@@ -1,9 +1,10 @@
 import { INavData } from '@coreui/angular';
 
+
 export const navCommonItemsChildrens: INavData[] = [
   {
     title: true,
-    name: 'SISTEM MENU'
+    name: 'Common'
   },
   {
     name: 'Dashboard',
@@ -11,15 +12,6 @@ export const navCommonItemsChildrens: INavData[] = [
     iconComponent: { name: 'cil-speedometer' },
     badge: {
       color: 'info',
-      text: 'NEW'
-    }
-  },
-  {
-    name: 'Niise Employee',
-    url: '/niise-employee',
-    iconComponent: { name: 'cil-speedometer' },
-    badge: {
-      color: 'warning',
       text: 'NEW'
     }
   },
@@ -309,6 +301,22 @@ export const navCommonItemsChildrens: INavData[] = [
   }
 ];
 
+export const navCommonItems: INavData[] = [
+  {
+    title: true,
+    name: 'Core UI'
+  },
+  {
+    name: 'DEV References',
+    iconComponent: { name: 'cil-puzzle' },
+    badge: {
+      color: 'info',
+      text: 'DEV'
+    },
+    children: navCommonItemsChildrens
+  }
+];
+
 export const navJpjCounter: INavData[] = [
   {
     name: 'Cop Semula No Casis',
@@ -515,6 +523,7 @@ export const navImigresenPartner: INavData[] = [
   }
 ];
 
+
 export const navJpjPartner: INavData[] = [
   {
     name: 'Pengurusan Hasil',
@@ -676,19 +685,3 @@ export const navJpjPublic: INavData[] = [
     ]
   }
 ]
-
-// export const navCommonItems: INavData[] = [
-//   {
-//     title: true,
-//     name: 'Core UI'
-//   },
-//   {
-//     name: 'DEV References',
-//     iconComponent: { name: 'cil-puzzle' },
-//     badge: {
-//       color: 'info',
-//       text: 'DEV'
-//     },
-//     children: navCommonItemsChildrens
-//   }
-// ];

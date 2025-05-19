@@ -1,1 +1,1 @@
-export * from '../_jpj-modules/core/components/layout';
+export * from '../NiiseModules/core/components/layout';

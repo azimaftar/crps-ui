@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ButtonDirective, CardBodyComponent, CardComponent } from "@coreui/angular";
 import { CommonModule } from '@angular/common';
-import { SessionUtil } from "../../../_jpj-modules/core/utils/SessionUtil";
-import {employeeContent} from "../../../_jpj-modules/employee/center-content/center-content.component";
+import { SessionUtil } from "../../../NiiseModules/core/utils/SessionUtil";
+import {employeeContent} from "../../../NiiseModules/employee/center-content/center-content.component";
 
 @Component({
   selector: 'app-left-content',
