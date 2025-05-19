@@ -40,8 +40,8 @@ import { WidgetsDropdownComponent } from '../../others/views/dev-references/widg
 import { DashboardChartsData, IChartProps } from './dashboard-charts-data';
 
 import {ActivatedRoute, Router} from '@angular/router';
-import {AuthService} from "../../app/_jpj-modules/core/services/auth.service";
-import {SessionUtil} from "../../app/_jpj-modules/core/utils/SessionUtil";
+import {AuthService} from "../../app/NiiseModules/core/services/auth.service";
+import {SessionUtil} from "../../app/NiiseModules/core/utils/SessionUtil";
 import {getAllScreens} from "./screen-list";
 
 interface IUser {

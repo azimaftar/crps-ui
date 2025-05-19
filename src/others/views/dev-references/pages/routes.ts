@@ -17,21 +17,21 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    loadComponent: () => import('../../../../app/_jpj-modules/login/login.component').then(m => m.LoginComponent),
+    loadComponent: () => import('../../../../app/NiiseModules/login/login.component').then(m => m.LoginComponent),
     data: {
       title: 'Login Page'
     }
   },
   {
     path: 'landing',
-    loadComponent: () => import('../../../../app/_jpj-modules/landing/landing.component').then(m => m.LandingComponent),
+    loadComponent: () => import('../../../../app/NiiseModules/landing/landing.component').then(m => m.LandingComponent),
     data: {
       title: 'Landing Page'
     }
   },
   {
     path: 'register',
-    loadComponent: () => import('../../../../app/_jpj-modules/register/register.component').then(m => m.RegisterComponent),
+    loadComponent: () => import('../../../../app/NiiseModules/register/register.component').then(m => m.RegisterComponent),
     data: {
       title: 'Register Page'
     }
