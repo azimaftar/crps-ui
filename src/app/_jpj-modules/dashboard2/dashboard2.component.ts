@@ -38,9 +38,9 @@ import { IconDirective } from '@coreui/icons-angular';
 import { DashboardChartsData, IChartProps } from './dashboard-charts-data';
 
 import {ActivatedRoute, Router} from '@angular/router';
-import {AuthService} from "../../../app/NiiseModules/core/services/auth.service";
-import {WidgetsDropdownComponent} from "../../../others/views/widgets/widgets-dropdown/widgets-dropdown.component";
-import {WidgetsBrandComponent} from "../../../others/views/widgets/widgets-brand/widgets-brand.component";
+import {AuthService} from "../../../app/_jpj-modules/core/services/auth.service";
+import {WidgetsDropdownComponent} from "../../../others/views/dev-references/widgets/widgets-dropdown/widgets-dropdown.component";
+import {WidgetsBrandComponent} from "../../../others/views/dev-references/widgets/widgets-brand/widgets-brand.component";
 
 interface IUser {
   name: string;

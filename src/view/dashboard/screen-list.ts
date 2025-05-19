@@ -1,10 +1,10 @@
-import {PerlesenanKenderaanComponent} from "../../app/NiiseModules/portal-awam/perlesenan-kenderaan/perlesenan-kenderaan.component";
-import {EmployeeComponent} from "../../app/NiiseModules/employee/employee.component";
-import {SessionUtil} from "../../app/NiiseModules/core/utils/SessionUtil";
-import {Dashboard2Component} from "../../app/NiiseModules/dashboard2/dashboard2.component";
+import {PerlesenanKenderaanComponent} from "../../app/_jpj-modules/portal-awam/perlesenan-kenderaan/perlesenan-kenderaan.component";
+import {EmployeeComponent} from "../../app/_jpj-modules/employee/employee.component";
+import {SessionUtil} from "../../app/_jpj-modules/core/utils/SessionUtil";
+import {Dashboard2Component} from "../../app/_jpj-modules/dashboard2/dashboard2.component";
 import {DropdownComponent, SidebarComponent} from "@coreui/angular";
-import {LoginComponent} from "../../app/NiiseModules/login/login.component";
-import {RegisterComponent} from "../../app/NiiseModules/register/register.component";
+import {LoginComponent} from "../../app/_jpj-modules/login/login.component";
+import {RegisterComponent} from "../../app/_jpj-modules/register/register.component";
 import {NiiseEmployeeComponent} from "../../app/NiiseModules/NiiseEmployee/niise-employee.component";
 import {PassportComponent} from "../../app/NiiseModules/portal-awam/passport/passport.component";
 

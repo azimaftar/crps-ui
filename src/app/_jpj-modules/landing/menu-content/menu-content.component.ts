@@ -31,8 +31,8 @@ import { IconDirective } from '@coreui/icons-angular';
 
 
 import {ActivatedRoute, Router} from '@angular/router';
-import {WidgetsDropdownComponent} from "../../../../others/views/widgets/widgets-dropdown/widgets-dropdown.component";
-import {WidgetsBrandComponent} from "../../../../others/views/widgets/widgets-brand/widgets-brand.component";
+import {WidgetsDropdownComponent} from "../../../../others/views/dev-references/widgets/widgets-dropdown/widgets-dropdown.component";
+import {WidgetsBrandComponent} from "../../../../others/views/dev-references/widgets/widgets-brand/widgets-brand.component";
 // import {color} from "chart.js/helpers";
 // import {AuthService} from "../../../../core/services/auth.service";
 // import {SessionUtil} from "../../../../core/utils/SessionUtil";
