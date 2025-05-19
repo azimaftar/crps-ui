@@ -1,42 +1,42 @@
-import { ApplicationConfig, provideZoneChangeDetection, inject, provideAppInitializer } from '@angular/core';
-import { provideRouter } from '@angular/router';
-
-import { routes } from './app.routes';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {
-  KeycloakService,
-  provideKeycloak,
-} from 'keycloak-angular';
-import { keycloakConfig } from './keycloak-config/keycloak-config';
+  provideRouter,
+  withEnabledBlockingInitialNavigation,
+  withHashLocation,
+  withInMemoryScrolling,
+  withRouterConfig,
+  withViewTransitions
+} from '@angular/router';
 
-// Keycloak initialization function
-export function initializeKeycloak(keycloak: KeycloakService) {
-  return () =>
-    keycloak.init({
-      config: keycloakConfig,
-      initOptions: {
-        onLoad: 'login-required', // or 'check-sso'
-        checkLoginIframe: false,
-      },
-      enableBearerInterceptor: true, // Automatically add the token to requests
-      bearerPrefix: 'Bearer',
-    });
-}
+import {provideHttpClient, withInterceptors} from '@angular/common/http';
 
+import { DropdownModule, SidebarModule } from '@coreui/angular';
+import { IconSetService } from '@coreui/icons-angular';
+import { routes } from './app.routes';
+import {JwtInterceptor} from "./_jpj-modules/core/interceptors/jwt.interceptor";
+// import {JwtInterceptor} from "@auth0/angular-jwt";
+// import {JwtInterceptor} from "@auth0/angular-jwt";
+// import { JwtInterceptor } from './app/interceptors/jwt.interceptor';
+// import { JwtInterceptor } from './app/interceptors/jwt.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
-    provideKeycloak({
-      config: keycloakConfig,
-      initOptions: {
-        onLoad: 'login-required',
-        checkLoginIframe: false,
-      },
-    }), // Provide Keycloak service with options
-    provideAppInitializer(() => {
-        const initializerFn = (initializeKeycloak)(inject(KeycloakService));
-        return initializerFn();
+    provideRouter(routes,
+      withRouterConfig({
+        onSameUrlNavigation: 'reload'
       }),
+      withInMemoryScrolling({
+        scrollPositionRestoration: 'top',
+        anchorScrolling: 'enabled'
+      }),
+      withEnabledBlockingInitialNavigation(),
+      withViewTransitions(),
+      withHashLocation()
+    ),
+    provideHttpClient(withInterceptors([JwtInterceptor])),
+    importProvidersFrom(SidebarModule, DropdownModule),
+    IconSetService,
+    provideAnimationsAsync()
   ]
 };

@@ -1,0 +1,39 @@
+/* Sidebar Word Wrap */
+.sword-wrap {
+  white-space: normal !important;   /* Allow text to wrap */
+  word-wrap: break-word;            /* Break long words if needed */
+  overflow-wrap: break-word;        /* Ensure compatibility with modern browsers */
+  line-height: 1.4;                 /* Adjust line height for better readability */
+  padding: 4px 8px;                 /* Optional: Add some padding for spacing */
+}
+
+.sidebar-end{
+  width: 1000px;
+}
+
+c-sidebar-nav-link-content{
+  text-wrap: wrap;
+  width: 30px;
+}
+
+.sidebar-nav .nav-link {
+  /* Basic Wrapping Behavior */
+  white-space: normal;            /* Allows text to wrap normally */
+  overflow-wrap: break-word;      /* Breaks long words to prevent overflow */
+  word-break: break-word;         /* Ensures breaking of long words when needed */
+  hyphens: auto;                  /* Automatically adds hyphens when breaking words */
+
+  /* Flexbox Support (if needed) */
+  display: flex;                  /* Enables flex properties */
+  flex-wrap: wrap;                /* Allows flex items (like text) to wrap */
+  width: 100%;
+
+  /* Overflow Handling */
+  overflow: hidden;               /* Hides overflowing content */
+  text-overflow: ellipsis;        /* Shows "..." for clipped text (optional) */
+
+  /* Additional Styling */
+  cursor: pointer;                /* Changes the mouse cursor to a pointer */
+  max-width: 200px;               /* Controls the width to trigger wrapping */
+  line-break: auto;               /* Manages line breaks for East Asian languages */
+}

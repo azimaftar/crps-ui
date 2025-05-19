@@ -1,0 +1,12 @@
+<div *ngFor="let item of immigrationContent">
+  <c-card class="item-card" (click)="handleClick(item.url)">
+    <img cCardImg="top" [src]="'./assets/images/' + item.img" style="width: 40px; height: 40px;">
+    <c-card-body>
+      <h5 cCardTitle>{{ item.name }}</h5>
+      <p cCardText>{{ item.desc }}</p>
+      <span *ngIf="item.badge" class="badge" [ngClass]="'badge-' + item.badge.color">
+        {{ item.badge.text }}
+      </span>
+    </c-card-body>
+  </c-card>
+</div>

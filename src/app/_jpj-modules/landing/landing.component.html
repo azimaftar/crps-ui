@@ -1,0 +1,25 @@
+<div class="bg-light dark:bg-transparent min-vh-100 d-flex flex-row align-items-center">
+  <c-container breakpoint="md" >
+    <c-row class="justify-content-center">
+      <c-col lg="10">
+        <c-card-group>
+            <c-card-body class="text-center align-content-center" content>
+              <div class="container">
+              <div class="menu-grid" style="
+                justify-content: center;
+                align-items: center;
+              ">
+                <app-menu-content [menuData]="navJpjPublic" type="kaunter" url="dashboard" bgColor="#0B496CFF"  ftColor="white" title="Kaunter Imigresen"></app-menu-content>
+<!--                <app-menu-content [menuData]="navCommonItemsChildrens" type="kaunter" url="dashboard" bgColor="#0B496CFF"  ftColor="white" title="Kaunter Imigresen"></app-menu-content>-->
+                <app-menu-content [menuData]="navJpjPublic" type="awam" url="dashboard" bgColor="#FD6500FF" ftColor="black" title="Portal Awam"></app-menu-content>
+                <app-menu-content [menuData]="navImigresenPartner" type="partner"  url="dashboard" bgColor="#620000" ftColor="white"  title="Agensi"></app-menu-content>
+<!--                <app-menu-content [menuData]="navJpjPartner" type="partner"  url="dashboard" bgColor="#620000" ftColor="white"  title="Business Partner"></app-menu-content>-->
+                <app-menu-content [menuData]="" type="employee"  url="dashboard" bgColor="#0B496CFF"  ftColor="white"  title="Employee"></app-menu-content>
+              </div>
+            </div>
+            </c-card-body>
+        </c-card-group>
+      </c-col>
+    </c-row>
+  </c-container>
+</div>

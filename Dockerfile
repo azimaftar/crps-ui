@@ -1,25 +1,38 @@
-# Use Node.js 20 with Alpine as the base image
-FROM node:20-alpine
+# Step 1: Build Stage
+FROM node:20-alpine AS build
 
-# Set the working directory in the container
-WORKDIR /fe-angular
+# Set working directory inside the container
+WORKDIR /app
 
-# Copy all project files to the container's working directory
-COPY . /fe-angular
+# Copy package.json and package-lock.json first (better for caching)
+COPY package*.json ./
 
 # Install dependencies
-RUN npm install --legacy-peer-deps
+RUN npm install
 
-# Generate SSL certificates for HTTPS (for development only)
-# RUN apk add --no-cache openssl && \
-#    openssl req -nodes -new -x509 -keyout server.key -out server.crt -subj "/CN=localhost"
+# Copy the entire project
+COPY . .
 
-# Remove .git hidden folder if it exists
-RUN rm -rf ./.git
+# Build the Angular application
+RUN npm run build -- --configuration=production
 
-# Expose the application port
-EXPOSE 4200
+# Step 2: Serve Stage
+FROM nginx:alpine AS serve
 
-# Start the application
-# CMD ["npm", "start"]
-CMD ["npm", "run", "start", "--", "--host", "0.0.0.0"]
+# Set working directory
+WORKDIR /usr/share/nginx/html
+
+# Remove default Nginx static assets
+RUN rm -rf ./*
+
+# Copy built Angular app from build stage
+COPY --from=build /app/dist/coreui-free-angular-admin-template/browser .
+
+# Copy a default Nginx configuration file
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]

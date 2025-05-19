@@ -3,7 +3,7 @@ stages:
   - Build image
 
 variables:
-  IMAGE_VERSION: $CI_BUILD_TAG
+  TAG_IMAGE_VERSION: "NIISe_Demo_v1.0.0"
 
 app build:
   stage: Build app
@@ -16,7 +16,7 @@ app build:
     paths:
       - dist/
   only:
-    - main
+    - Project_UI_Demo
 
 docker build:
   stage: Build image
@@ -27,7 +27,7 @@ docker build:
     - echo $CI_REGISTRY_IMAGE
     - echo $CI_BUILD_TAG
     - docker info
-    - docker build -t $CI_REGISTRY_IMAGE:$IMAGE_VERSION .
-    - docker push $CI_REGISTRY_IMAGE:$IMAGE_VERSION
+    - docker build -t $CI_REGISTRY_IMAGE:$TAG_IMAGE_VERSION .
+    - docker push $CI_REGISTRY_IMAGE:$TAG_IMAGE_VERSION
   only:
-    - main
+    - Project_UI_Demo
