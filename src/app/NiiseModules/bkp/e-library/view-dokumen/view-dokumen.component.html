@@ -1,0 +1,127 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<c-card>
+  <c-container>
+    <c-row>
+      <c-col md="12" class="p-4">
+        <div class="horizontal-stepper">
+          <ul class="stepper-list d-flex align-items-center flex-wrap">
+            <li class="stepper-item active">
+              <button type="button" class="step-btn">
+                <span class="step-number">1</span>
+                <span class="step-title">Lihat Dokumen</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+        <br>
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3>Maklumat Dokumen</h3>
+          <button cButton color="secondary" (click)="goBack()">
+            <i class="fa fa-arrow-left" style="margin-right: 8px;"></i>Kembali
+          </button>
+        </div>
+
+        <!-- Loading indicator -->
+        <div *ngIf="isLoading" class="text-center p-4">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <p class="mt-2">Memuatkan maklumat dokumen...</p>
+        </div>
+
+        <!-- Error message -->
+        <div *ngIf="error && !isLoading" class="alert alert-danger">
+          <i class="fa fa-exclamation-triangle"></i>
+          {{ error }}
+        </div>
+
+        <!-- Document information (only show when data is loaded) -->
+        <div *ngIf="dokumenData && !isLoading && !error">
+          
+          <!-- UID -->
+          <div class="mb-3">
+            <label class="form-label"><strong>ID Dokumen</strong></label>
+            <input type="text" class="form-control" [value]="dokumenData.uid" readonly>
+          </div>
+
+          <!-- Staff ID -->
+          <div class="mb-3">
+            <label class="form-label"><strong>ID Pegawai</strong></label>
+            <input type="text" class="form-control" [value]="dokumenData.staffId || 'Tiada maklumat'" readonly>
+          </div>
+
+          <!-- Folder Name -->
+          <div class="mb-3">
+            <label class="form-label"><strong>Nama Folder</strong></label>
+            <input type="text" class="form-control" [value]="dokumenData.folderName || 'Tiada maklumat'" readonly>
+          </div>
+
+          <!-- File Name -->
+          <div class="mb-3">
+            <label class="form-label"><strong>Nama Fail</strong></label>
+            <input type="text" class="form-control" [value]="dokumenData.fileName || 'Tiada maklumat'" readonly>
+          </div>
+
+          <!-- Upload Date -->
+          <div class="mb-3" *ngIf="dokumenData.uploadDate">
+            <label class="form-label"><strong>Tarikh Upload</strong></label>
+            <input type="text" class="form-control" [value]="dokumenData.uploadDate | date: 'dd/MM/yyyy'" readonly>
+          </div>
+
+          <!-- Approval Status -->
+          <div class="mb-3" *ngIf="dokumenData.approvalStatus">
+            <label class="form-label"><strong>Status Kelulusan</strong></label>
+            <input type="text" class="form-control" [value]="getApprovalStatusText(dokumenData.approvalStatus)" readonly>
+          </div>
+
+          <!-- Record Status -->
+          <div class="mb-3" *ngIf="dokumenData.recordStatus">
+            <label class="form-label"><strong>Status Rekod</strong></label>
+            <input type="text" class="form-control" [value]="getRecordStatusText(dokumenData.recordStatus)" readonly>
+          </div>
+
+          <!-- Create Date -->
+          <div class="mb-3" *ngIf="dokumenData.createDate">
+            <label class="form-label"><strong>Tarikh Dicipta</strong></label>
+            <input type="text" class="form-control" [value]="dokumenData.createDate | date: 'dd/MM/yyyy'" readonly>
+          </div>
+
+          <!-- File Path/Link -->
+          <div class="mb-3" *ngIf="dokumenData.filePath">
+            <label class="form-label"><strong>Lokasi Fail</strong></label><br>
+            <div class="border p-3 rounded bg-light">
+              <i class="icon-doc me-2 text-primary"></i>
+              <a [href]="dokumenData.filePath" target="_blank" class="text-decoration-none">
+                {{ dokumenData.fileName || 'Dokumen' }}
+              </a>
+            </div>
+          </div>
+
+          <!-- Action buttons -->
+          <div class="d-flex gap-2 mt-4">
+            <button cButton color="primary" (click)="cetakDokumen()" 
+                    *ngIf="dokumenData.filePath" 
+                    title="Cetak dokumen">
+              <i class="fa fa-print" style="margin-right: 8px;"></i>Cetak
+            </button>
+            <button cButton color="success" (click)="downloadFile()" 
+                    *ngIf="dokumenData.filePath" 
+                    title="Muat turun dokumen">
+              <i class="fa fa-download" style="margin-right: 8px;"></i>Muat Turun
+            </button>
+          </div>
+        </div>
+
+        <!-- No data message -->
+        <div *ngIf="!dokumenData && !isLoading && !error" class="alert alert-info text-center">
+          <i class="icon-info me-2"></i>
+          Tiada maklumat dokumen dijumpai
+        </div>
+      </c-col>
+    </c-row>
+  </c-container>
+</c-card>

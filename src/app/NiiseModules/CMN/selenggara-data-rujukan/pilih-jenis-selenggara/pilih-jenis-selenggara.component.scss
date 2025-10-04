@@ -1,0 +1,22 @@
+c-card {
+    margin: 10px;
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .btn {
+        white-space: nowrap;
+    }
+
+    table {
+        thead {
+            background-color: #0d6efd;
+            color: white;
+
+            th {
+                border-color: 1px solid #dee2e6;
+            }
+        }
+    }
+}

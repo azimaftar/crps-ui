@@ -1,0 +1,189 @@
+<c-card class="mb-3">
+    <c-card-body>
+        <div class="p-2">
+            <c-card class="mb-3 shadow-sm">
+                <c-card-body>
+                    <c-row>
+                        <c-col md="9">
+                            <h5 class="mb-4">
+                                {{ pageTitle }}
+                            </h5>
+                            <div class="form-group mb-4">
+                            <c-row class="align-items-start">
+                            <!-- Left Column -->
+                            <c-col md="6">
+                                <!-- Status Permohonan -->
+                                <label class="form-label">Status Permohonan</label>
+
+                                <c-form-check class="mb-2 ms-2">
+                                <input
+                                    cFormCheckInput
+                                    type="radio"
+                                    value="Lulus"
+                                    name="flexRadioDefault"
+                                    id="radioLulus"
+                                    [(ngModel)]="statusPermohonan"
+                                />
+                                <label cFormCheckLabel for="radioLulus">Lulus</label>
+                                </c-form-check>
+
+                                <c-form-check class="mb-2 ms-2">
+                                <input
+                                    cFormCheckInput
+                                    type="radio"
+                                    value="Tidak Lulus"
+                                    name="flexRadioDefault"
+                                    id="radioTidakLulus"
+                                    [(ngModel)]="statusPermohonan"
+                                />
+                                <label cFormCheckLabel for="radioTidak Lulus">Tidak Lulus</label>
+                                </c-form-check>
+
+                                <!-- Catatan -->
+                                <label class="form-label mt-2">Catatan (Jika tidak lulus)</label>
+                                <textarea
+                                class="form-control"
+                                rows="3"
+                                [(ngModel)]="catatan"
+                                placeholder="Catatan (Jika tidak lulus)"
+                                ></textarea>
+
+                                <!-- Nama Pengguna -->
+                                <div class="mt-3">
+                                <label class="form-label">Nama Pengguna</label>
+                                <input type="text" class="form-control" disabled />
+                                </div>
+
+                                <!-- ID Pengguna -->
+                                <div class="mt-3">
+                                <label class="form-label">ID Pengguna</label>
+                                <input type="text" class="form-control" disabled />
+                                </div>
+                            </c-col>
+
+                            <!-- Right Column -->
+                            <c-col md="6">
+                                <!-- Tarikh Kelulusan -->
+                                <div>
+                                <label class="form-label">ID Notis</label>
+                                <input type="text" class="form-control mb-3" [ngModel]="submissionData?.notisID" disabled />
+                                </div>
+                                
+                                <!-- Peranan Pengguna: aligned with ID Pengguna -->
+                                <!-- Need to review this later -->
+                                <div class="tarikh-kelulusan-section">
+                                <label class="form-label">Tarikh Kelulusan Permohonan</label> 
+                                <input type="text" class="form-control" [value]="tarikhKeputusanPermohonan + ' ' + waktuKeputusanPermohonan" disabled />
+                                </div>
+                            </c-col>
+                            </c-row>
+                            </div>
+                        </c-col>
+
+                        <!-- Right Stepper Column -->
+                        <c-col md="3" class="px-4 py-3 mt-3 stepper-container">
+                        <ul class="stepper-list">
+                            <li
+                            class="stepper-item"
+                            *ngFor="let step of steps; let i = index"
+                            [class.active]="isStepActive(step.number)"
+                            >
+                            <div class="stepper-content">
+                                <ng-container *ngIf="step.number === 1; else nonClickableStep">
+                                <span
+                                    (click)="navigateToStep1()"
+                                    class="step-number step-link"
+                                    [class.active]="isStepActive(step.number)"
+                                >
+                                    {{ step.number }}
+                                </span>
+                                <span
+                                    (click)="navigateToStep1()"
+                                    class="step-title step-link"
+                                    [class.active]="isStepActive(step.number)"
+                                >
+                                    {{ step.title }}
+                                </span>
+                                </ng-container>
+
+                                <ng-template #nonClickableStep>
+                                <span
+                                    class="step-number"
+                                    [class.active]="isStepActive(step.number)"
+                                >
+                                    {{ step.number }}
+                                </span>
+                                <span
+                                    class="step-title"
+                                    [class.active]="isStepActive(step.number)"
+                                >
+                                    {{ step.title }}
+                                </span>
+                                </ng-template>
+                            </div>
+
+                            <div *ngIf="i < steps.length - 1" class="stepper-line"></div>
+                            </li>
+                        </ul>
+                        </c-col>
+
+                    </c-row>
+                </c-card-body>
+            </c-card>
+        </div>
+        <!-- Action Buttons -->
+        <c-row>
+        <c-col md="3" class="offset-md-7">dasdd
+            <button cButton 
+            color="primary" 
+            class="me-2" 
+            (click)="resetForm()">
+            Set Semula
+            </button>
+            <button cButton color="primary" (click)="submit()">
+            Hantar
+            </button>
+        </c-col>
+        </c-row>
+            <div class="d-flex justify-content-end pe-md-5">
+            <button
+                cButton
+                color="primary"
+                class="btn-search"
+                (click)="prevPage()"
+            >
+                <svg cIcon name="cilCaretLeft" size="sm"></svg>
+            </button>
+            </div>      
+    </c-card-body>
+</c-card>
+
+<!-- Pop up screen -->
+<c-modal [visible]="showSuccessModal" (visibleChange)="showSuccessModal = $event">
+  <c-modal-body>
+    <h5 class="text-center">Rekod telah berjaya dikemas kini</h5>
+  </c-modal-body>
+  <c-modal-footer class="justify-content-center">
+    <button cButton color="primary" (click)="closeSuccessModal()">Ok</button>
+  </c-modal-footer>
+</c-modal>
+
+<!-- Pop up screen -->
+<c-modal [visible]="showErrorModal" (visibleChange)="showErrorModal = $event">
+  <c-modal-body>
+    <h5 class="text-center">Maklumat yang dimasukkan tidak sah</h5>
+  </c-modal-body>
+  <c-modal-footer class="justify-content-center">
+    <button cButton color="primary" (click)="closeErrorModal()">Ok</button>
+  </c-modal-footer>
+</c-modal>
+
+<!-- Pop up screen -->
+<c-modal [visible]="showWarningModal" (visibleChange)="showWarningModal = $event">
+  <c-modal-body>
+    <h5 class="text-center">Medan mandatori diperlukan</h5>
+  </c-modal-body>
+  <c-modal-footer class="justify-content-center">
+    <button cButton color="primary" (click)="closeWarningModal()">Ok</button>
+  </c-modal-footer>
+</c-modal>

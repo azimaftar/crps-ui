@@ -1,0 +1,131 @@
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9" style="padding-right: 0">
+                <div class="form-section">
+                    <h2 class="section-title">Maklumat Peribadi Subjek</h2>
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label class="form-label required">Nama*</label>
+                                <input type="text" class="form-control" value="Aiman Bin Kasim"
+                                    placeholder="Masukkan nama penuh">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label required">No. Kad Pengenalan/ MyPR</label>
+                                <input type="text" class="form-control" value="890211049901"
+                                    placeholder="Contoh: 123456789012">
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <label class="form-label">No. Dokumen</label>
+                                <input type="text" class="form-control" value="A8032111"
+                                    placeholder="Masukkan nombor dokumen">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Tarikh Lahir*</label>
+                                <input type="date" class="form-control" value="1989-02-11">
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-6">
+                                <label class="form-label">Jantina</label>
+                                <select class="form-select">
+                                    <option value="passport_malaysia">Lelaki</option>
+                                    <option value="passport_sabah">Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-5">
+                                <label class="form-label required">Warganegara*</label>
+                                <select class="form-select">
+                                    <option value="malaysia">Malaysia</option>
+                                    <option value="singapore">Singapura</option>
+                                    <option value="indonesia">Indonesia</option>
+                                    <option value="thailand">Thailand</option>
+                                    <option value="other">Lain-lain</option>
+                                </select>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-3">
+                                <label class="form-label">Status Perkahwinan</label>
+                                <select class="form-select">
+                                    <option value="melayu">Berkahwin</option>
+                                    <option value="cina">Bujang</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Alamat</label>
+                                <input type="text" class="form-control" value="No.51, Jalan 6 nino, taman ninonino"
+                                    placeholder="Contoh: 123456789012">
+                                    <input type="text" class="form-control" value="rawang"
+                                    placeholder="Contoh: 123456789012">
+                                    <input type="text" class="form-control" value="">
+                            </div>
+                            <!-- <div class="col-md-3"></div> -->
+                            <div class="col-md-5">
+                                <label class="form-label">Poskod</label>
+                                <input type="text" class="form-control" value="48000" readonly>
+                                <label class="form-label">Bandar</label>
+                                <select class="form-select" readonly>
+                                    <option value="malaysia">Putrajaya</option>
+                                    <option value="singapore">Selangor</option>
+                                </select>
+                                <label class="form-label">Negeri</label>
+                                <select class="form-select">
+                                    <option value="malaysia">Putrajaya</option>
+                                    <option value="singapore">Selangor</option>
+                                </select>
+                            </div>
+                            
+                            <div class="3"></div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">No. Telefon Bimbit</label>
+                               <input type="text" class="form-control" value="0182221111" readonly>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Emel</label>
+                                <input type="text" class="form-control" value="test@heitech.com.my" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-3 mb-3">
+                            <label class="form-label">Status</label>
+                            <input type="text" class="form-control" value="Baru" readonly>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- Bottom Navigation -->
+<div class="bottom-navigation  d-flex justify-content-end p-3">
+  <div class="nav-buttons d-flex align-items-center ">
+    <button class="btn btn-reset btn-dark m-2 " (click)="null">Set Semula</button>
+    <div class="right-buttons">
+      <button class="btn btn-back btn-dark m-2" (click)="null">Kembali</button>
+      <button class="btn btn-next btn-dark m-2" (click)="null">
+        < </button>
+          <button class="btn btn-next btn-dark m-2" (click)="null">
+            >
+          </button>
+    </div>
+  </div>

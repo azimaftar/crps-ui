@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <h4>Senarai Semakan dan Pengesahan Kelompok</h4>
+
+  <table class="table table-bordered">
+    <thead class="table-secondary">
+      <tr>
+        <th>Bil.</th>
+        <th>No Rujukan</th>
+        <th>Nama Agensi</th>
+        <th>Tujuan Kemasukan</th>
+        <th>Jumlah Ahli</th>
+        <th>Tarikh Jangka Ketibaan</th>
+        <th>Tindakan</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of kelompokList; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ item.refNum }}</td>
+        <td>{{ item.agencyName }}</td>
+        <td>{{ item.purposeVisit }}</td>
+        <td>{{ item.totalMember }}</td>
+        <td>{{ item.expDateArrival | date: 'dd/MM/yyyy' }}</td>
+        <td>
+          <button class="btn btn-dark btn-sm" (click)="semak(item)">Semak</button>
+        </td>
+      </tr>
+      <tr *ngIf="kelompokList.length === 0">
+        <td colspan="7" class="text-center">Tiada data ditemui</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Pagination buttons (optional) -->
+  <div class="d-flex justify-content-center">
+    <button class="btn btn-outline-secondary me-2">&lt;</button>
+    <button class="btn btn-outline-secondary">&gt;</button>
+  </div>
+</div>

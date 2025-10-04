@@ -1,0 +1,23 @@
+.action-button{
+  color: var(--color-text-brand, #1461BA);
+  background-color: #D9E9FF;
+  border: 1px solid var(--color-text-brand, #D9E9FF);
+}
+
+.action-button:disabled{
+  color: var(--color-text-brand, #15803D);
+  background-color: #F0FDF4;
+  border: 1px solid var(--color-text-brand, #F0FDF4);
+}
+
+.btn-submit {
+  background-color: #1461BA;
+  border-color: #1461BA;
+  color: white;
+}
+
+.btn-submit:hover {
+  background-color: #1461BA;
+  border-color: #1461BA;
+}
+

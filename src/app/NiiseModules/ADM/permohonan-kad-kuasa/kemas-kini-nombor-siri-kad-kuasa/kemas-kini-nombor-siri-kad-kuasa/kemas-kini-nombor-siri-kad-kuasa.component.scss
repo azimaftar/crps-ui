@@ -1,0 +1,31 @@
+/* Step circles for main steps (1, 2, 3, etc.) */
+.step-circle {
+  width: 45px;
+  height: 45px;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  background-color: #e9ecef;
+  color: #6c757d;
+  border: 2px solid #e9ecef;
+  flex-shrink: 0;
+}
+
+.step-circle.active-step {
+  background-color: #000;
+  border-color: #000;
+  color: #fff;
+}
+
+/* Vertical line connecting sub-steps */
+.vertical-line {
+  position: absolute;
+  left: 22px;
+  top: 0;
+  bottom: 1px;
+  width: 2px;
+  background-color: #e9ecef;
+}

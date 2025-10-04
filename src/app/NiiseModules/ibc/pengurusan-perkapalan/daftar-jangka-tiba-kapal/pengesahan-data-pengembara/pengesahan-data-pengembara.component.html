@@ -1,0 +1,137 @@
+<!-- <p>maklumat-profil-ibc works!</p> -->
+ <c-card class="mb-3">  
+    <!-- HEADER PROFIL -->
+    <c-card-header class="card-header">
+      <h4 class="card-header-title">Penumpang</h4>
+    </c-card-header>
+
+    <!-- CONTENT CARD BODY -->
+    <c-card-body>
+        <c-row>
+            <!-- FORMS -->
+            <c-col md="8">
+                    <!-- FORMS START -->
+                    <form [formGroup]="profilForm" class="form" (ngSubmit)="onSubmit()">
+                        <!-- Form Title -->
+                        <!-- Replace your current h5 heading with this: -->
+            <h5 class="mb-4">
+            Maklumat Penumpang - <i>(IMO FAL Form 6)</i>
+            </h5>
+                        
+                        <!-- Photo Placeholder -->
+                        <div class="photo-placeholder mb-4">
+                          <img [src]="photoUrl || 'assets/placeholder-image.png'" alt="Gambar Kapal" />
+                        </div>
+                       
+                        <c-row class="g-3 mb-3">
+                          <c-col md="6">
+                            <label cLabel for="namaKapal" class="mb-2">Nama Kapal</label>
+                            <input
+                              cFormControl
+                              id="namaKapal"
+                              type="text"
+                              formControlName="namaKapal"
+                              class="form-control"
+                            />
+                          </c-col>
+                        </c-row>
+                        <c-row class="g-3 mb-3">
+                          <c-col md="6">
+                            <label cLabel for="IMONo" class="mb-2">IMO No.</label>
+                            <input
+                              cFormControl
+                              id="IMONo"
+                              type="text"
+                              formControlName="IMONo"
+                              class="form-control"
+                            />
+                          </c-col>
+                          <c-col md="2"></c-col>
+                          <c-col class="d-flex align-items-center justify-content-end gap-2">
+                              <button
+                              cButton
+                              color="primary"
+                              class="biometric-btn"
+                              style="width: auto; height: 38px; padding: 0.25rem 0.5rem;">
+                              Hantar
+                            </button>
+                        </c-col>
+                        </c-row><br><br>
+
+                        <!-- SHIP INFORMATION TABLE -->
+        <div class="table-section">
+            <h6 class="section-title mb-3 text-center">Maklumat Kapal</h6>
+            
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width: 60px;">Bil.</th>
+                            <th>Nama Kapal</th>
+                            <th style="width: 150px;">No. IMO</th>
+                            <th style="width: 150px;">No. Rasmi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ship of shipList; let i = index">
+                            <td class="text-center">{{ i + 1 }}.</td>
+                            <td>{{ ship.namaKapal }}</td>
+                            <td>{{ ship.noImo }}</td>
+                            <td>{{ ship.noRasmi }}</td>
+                        </tr>
+                        <!-- Default rows if no data -->
+                        <tr *ngIf="shipList.length === 0">
+                            <td class="text-center">1.</td>
+                            <td>BAHAGIA RAYA</td>
+                            <td>9814275</td>
+                            <td>326737</td>
+                        </tr>
+                        <tr *ngIf="shipList.length <= 1">
+                            <td class="text-center">2.</td>
+                            <td>Tun Walju</td>
+                            <td>7625911</td>
+                            <td>645231</td>
+                        </tr>
+                        <tr *ngIf="shipList.length <= 2">
+                            <td class="text-center">3.</td>
+                            <td>S.Oliver</td>
+                            <td>9310465</td>
+                            <td>756324</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+                        
+            </form>
+            </c-col>       
+        </c-row>
+        <!-- END OF CONTENT -->
+
+        <!-- FOOTER CONTENT FOR BUTTONS -->
+        <c-row class="mt-4 mb-3 footer-row">
+            <c-col class="d-flex justify-content-end align-items-center gap-2">
+            <!-- Action Buttons -->
+            <!-- <c-row class="g-3 mb-3 mt-3 justify-content-end">
+    <c-col class="d-flex justify-content-end gap-2">
+        <button
+            cButton 
+            color="primary"
+            class="biometric-btn">
+            Kembali
+        </button>
+        <button 
+            cButton 
+            color="primary"
+            class="biometric-btn">
+            Simpan
+        </button>
+    </c-col>
+</c-row> -->
+
+            
+            </c-col>
+        </c-row>
+    </c-card-body>
+</c-card>
+

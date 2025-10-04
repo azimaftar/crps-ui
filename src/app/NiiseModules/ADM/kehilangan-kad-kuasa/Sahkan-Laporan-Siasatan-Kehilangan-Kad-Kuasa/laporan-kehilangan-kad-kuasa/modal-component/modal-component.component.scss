@@ -1,0 +1,28 @@
+.primary-custom-btn {
+    width: auto;
+    display: flex;
+    height: 40px;
+    padding: 10px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  
+    border-radius: 4px;
+    border: 1px solid #1461BA;
+    background-color: #1461BA;
+    color: #FFF;
+  }
+
+  .secondary-custom-btn {
+    width: auto;
+    display: flex;
+    height: 40px;
+    padding: 10px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  
+    border-radius: 4px;
+    border: 1px solid #CAD5E2;
+    background: #FFF;
+  }

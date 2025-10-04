@@ -1,0 +1,22 @@
+<c-modal [visible]="visible" (visibleChange)="handleClose($event)">
+  <c-modal-header>
+    <h5 class="modal-title">PENGECUALIAN BIOMETRIK</h5>
+    <button class="btn-close" (click)="close()"></button>
+  </c-modal-header>
+
+  <c-modal-body>
+    <label for="pengecualian" class="form-label">Sebab</label>
+    <select id="pengecualian" class="form-select" [(ngModel)]="selectedReason">
+      <option value="Imbasan Wajah Gagal">Imbasan Wajah Gagal</option>
+      <option value="Tisu Jari Rosak">Tisu Jari Rosak</option>
+      <option value="OKU Tiada Jari">OKU Tiada Jari</option>
+      <option value="Wajah Tidak Sempurna">Wajah Tidak Sempurna</option>
+      <option value="OKU Tiada Penglihatan">OKU Tiada Penglihatan</option>
+      <option value="VVIP">VVIP</option>
+    </select>
+  </c-modal-body>
+
+  <c-modal-footer>
+    <button class="btn btn-dark" (click)="confirm()">Ok</button>
+  </c-modal-footer>
+</c-modal>

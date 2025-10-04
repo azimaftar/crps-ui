@@ -1,0 +1,96 @@
+<c-card>
+    <h4 class="fw-bold m-3 mt-5">
+        LAPORAN KEHILANGAN KAD KUASA
+    </h4>
+    <div class="m-3">
+        <app-stepper
+        [currentMainStep]="currentMainStep"
+        ></app-stepper>
+    </div>
+
+    <c-card-body>
+        <form cForm>
+            <h6 class="mb-3 fw-bold mt-3">Maklumat Bayaran</h6>
+        
+                <c-row>
+                <c-row [xs]="2">
+                <c-col class="mb-3">
+                    <label for="JenisDokumen" cLabel>Jenis Dokumen</label>
+                    <input type="text" class="form-control" id="JenisDokumen" placeholder="Jenis Dokumen" disabled value="{{maklumatBayaran.jenisDokumen}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="NoDokumen" cLabel>No Dokumen/ ID</label>
+                    <input type="text" class="form-control" id="NoDokumen" placeholder="No Dokumen/ ID" disabled value="{{maklumatBayaran.noDokumen}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="KodAkaun" cLabel>Kod Akaun</label>
+                    <input type="text" class="form-control" id="KodAkaun" placeholder="Kod Akaun" disabled value="{{maklumatBayaran.kodAkaun}}">
+                </c-col>
+                 <c-col class="mb-3">
+                    <label for="KodIMM" cLabel>Kod IMM</label>
+                    <input type="text" class="form-control" id="KodIMM" placeholder="Kod IMM" disabled value="{{maklumatBayaran.kodIMM}}">
+                </c-col>
+                </c-row>
+            </c-row>
+            <c-row [xs]="1">
+            </c-row>
+
+               <c-row [xs]="1">
+                <c-col class="mb-3">
+                    <br>
+                    <label for="KeteranganKodIMM" cLabel>Keterangan Kod IMM</label>
+                    <textarea class="form-control" id="KeteranganKodIMM" placeholder="Keterangan Kod IMM" disabled value="{{maklumatBayaran.keteranganKodIMM}}"> </textarea>
+                </c-col>
+            </c-row>
+
+                <c-row>
+                <c-row [xs]="2">
+                <c-col class="mb-3">
+                    <label for="AmaunBayaran" cLabel>Amaun Bayaran (RM)</label>
+                    <input type="text" class="form-control" id="AmaunBayaran" placeholder="Amaun Bayaran (RM)" disabled value="{{maklumatBayaran.amaunBayaran}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="Kuantiti" cLabel>Kuantiti</label>
+                    <input type="text" class="form-control" id="Kuantiti" placeholder="Kuantiti" disabled value="{{maklumatBayaran.kuantiti}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="JumlahAmaunBayaran" cLabel>Jumlah Amaun Bayaran (RM)</label>
+                    <input type="text" class="form-control" id="JumlahAmaunBayaran" placeholder="Jumlah Amaun Bayaran (RM)" disabled value="{{maklumatBayaran.jumlahAmaunBayaran}}">
+                </c-col>
+                 <c-col class="mb-3">
+                    <label for="IndikatorGratis" cLabel>Indikator Gratis</label>
+                    <input type="text" class="form-control" id="IndikatorGratis" placeholder="Indikator Gratis" disabled value="{{maklumatBayaran.indikatorGratis}}">
+                <br>
+                </c-col>
+                </c-row>
+            </c-row>
+                <br>
+                <hr>
+                <br>
+
+                <h6 class="mb-3 fw-bold mt-3">Status Bayaran</h6>
+                <c-row>
+                <c-row [xs]="2">
+                <c-col class="mb-3">
+                    <label for="StatusBayaran" cLabel>Status Bayaran</label>
+                    <input type="text" class="form-control" id="StatusBayaran" placeholder="Status Bayaran" disabled value="{{maklumatBayaran.statusBayaran}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="NomborResit" cLabel>Nombor Resit</label>
+                    <input type="text" class="form-control" id="NomborResit" placeholder="Nombor Resit" disabled value="{{maklumatBayaran.nomborResit}}">
+                <br>
+                </c-col>
+                </c-row>
+                </c-row>
+
+        </form>
+    </c-card-body>
+    <c-card-footer>
+        <c-row>
+            <div class="d-flex justify-content-end">
+              <button class="l-custom-btn" color="secondary" (click)="navigatePreviousPage()">&lsaquo;</button>
+              <button class="r-custom-btn" color="primary" (click)="navigateNextPage()">&rsaquo;</button>
+            </div>
+        </c-row>          
+    </c-card-footer>
+</c-card>

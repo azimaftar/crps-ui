@@ -1,0 +1,236 @@
+<div class="container-fluid">
+    <div class="card">
+        <div class="ms-4 me-4">
+            <div class="mt-2 mb-2">
+                <h3 class="mb-2 mt-4"><b>PERMOHONAN PERTUKARAN CAWANGAN, UNIT, GRED DAN TUGASAN BAHARU</b></h3>
+            </div>
+            <div class="mt-4">
+                <!-- Left Side: Step Info -->
+                <reusable-tab [currentStep]="currentStep" [steps]="steps"></reusable-tab>
+                <div class="col-md-6 mb-4">
+                    <p class="mb-0">2. Maklumat Profil Pegawai</p>
+                    <small class="text-muted">Langkah 2 daripada 2</small>
+                </div>
+                <!-- Main Content Area -->
+                <div class="row flex-column flex-lg-row">
+                    <div class="col-md-2 mb-3 mb-md-0">
+                        <div class="d-flex flex-column align-items-center">
+                            <img src="assets/images/avatars/9.jpg" alt="Profile Image" class="img-fluid"
+                                style="width: 150px; height: 150px; object-fit: cover; border: 1px solid #000;">
+                        </div>
+                    </div>
+                    <div class="col-10">
+                        <h6 class="mb-3">Maklumat Profil Pegawai</h6>
+                        <div class="row ps-3">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Kategori Pegawai</label>
+                                    <select class="form-select" [(ngModel)]="formData.kategoriPegawai"
+                                        name="kategoriPegawai" disabled>
+                                        <option value="Pegawai JIM">Pegawai JIM</option>
+                                        <option value="Pegawai Kanan">Pegawai Kanan</option>
+                                        <option value="Pegawai Biasa">Pegawai Biasa</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ps-3">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Jenis Dokumen</label>
+                                    <select class="form-select" [(ngModel)]="formData.jenisDokumen" name="jenisDokumen" disabled>
+                                        <option value="MyKad">MyKad</option>
+                                        <option value="Passport">Passport</option>
+                                        <option value="Lain-lain">Lain-lain</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Warganegara</label>
+                                    <select class="form-select" [(ngModel)]="formData.warganegara" name="warganegara" disabled>
+                                        <option value="Warganegara">Warganegara</option>
+                                        <option value="Bukan Warganegara">Bukan Warganegara</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Tarikh Lahir</label>
+                                    <input type="text" class="form-control" [(ngModel)]="formData.tarikhLahir"
+                                        name="tarikhLahir" placeholder="DD/MM/YYYY" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">No. Pengenalan</label>
+                                    <input type="text" class="form-control" [(ngModel)]="formData.noPengenalan"
+                                        name="noPengenalan" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">E-mel</label>
+                                    <input type="email" class="form-control" [(ngModel)]="formData.email" name="email" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mt-2">
+                                <div class="mb-3">
+                                    <label class="form-label">No Dokumen /ID</label>
+                                    <input type="text" class="form-control" [(ngModel)]="formData.noDokumen"
+                                        name="noDokumen" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Nama</label>
+                                    <input type="text" class="form-control" [(ngModel)]="formData.nama" name="nama" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Jantina</label>
+                                    <select class="form-select" [(ngModel)]="formData.jantina" name="jantina" disabled>
+                                        <option value="Lelaki">Lelaki</option>
+                                        <option value="Perempuan">Perempuan</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">No Telefon</label>
+                                    <input type="text" class="form-control" [(ngModel)]="formData.noTelefon"
+                                        name="noTelefon" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Lokasi/Negeri</label>
+                                    <select class="form-select" [(ngModel)]="formData.lokasi" name="lokasi" disabled>
+                                        <option value="Putrajaya">Putrajaya</option>
+                                        <option value="Kuala Lumpur">Kuala Lumpur</option>
+                                        <option value="Selangor">Selangor</option>
+                                        <option value="Johor">Johor</option>
+                                        <option value="Perak">Perak</option>
+                                        <option value="Pulau Pinang">Pulau Pinang</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row ps-3">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Tempat Bertugas/Cawangan</label>
+                                        <select class="form-select" [(ngModel)]="formData.tempatBertugas"
+                                            name="tempatBertugas" disabled>
+                                            <option value="Putrajaya">Putrajaya</option>
+                                            <option value="Kuala Lumpur">Kuala Lumpur</option>
+                                            <option value="Johor Bahru">Johor Bahru</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Unit</label>
+                                        <select class="form-select" [(ngModel)]="formData.unit" name="unit" disabled>
+                                            <option value="VPP">VPP</option>
+                                            <option value="ICT">ICT</option>
+                                            <option value="HR">HR</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Gred</label>
+                                        <select class="form-select" [(ngModel)]="formData.gred" name="gred" disabled>
+                                            <option value="KP19">KP19</option>
+                                            <option value="KP17">KP17</option>
+                                            <option value="KP15">KP15</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Bahagian</label>
+                                        <select class="form-select" [(ngModel)]="formData.bahagian" name="bahagian" disabled>
+                                            <option value="Visa, Pas dan Permit">Visa, Pas dan Permit</option>
+                                            <option value="Pengurusan Sumber Manusia">Pengurusan Sumber Manusia</option>
+                                            <option value="Teknologi Maklumat">Teknologi Maklumat</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Jawatan</label>
+                                        <select class="form-select" [(ngModel)]="formData.jawatan" name="jawatan" disabled>
+                                            <option value="Pembantu Tadbir">Pembantu Tadbir</option>
+                                            <option value="Penolong Pegawai">Penolong Pegawai</option>
+                                            <option value="Pegawai">Pegawai</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Gred (Melebihi) Gred Sedia Ada</label>
+                                        <select class="form-select" [(ngModel)]="formData.gradMelebihiAda"
+                                            name="gradMelebihiAda" disabled>
+                                            <option value="Sila Pilih-">Sila Pilih-</option>
+                                            <option value="KP22">KP22</option>
+                                            <option value="KP21">KP21</option>
+                                            <option value="KP20">KP20</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 mb-2">
+                            <div class="row align-items-end">
+                                <!-- Col 1: Keperluan Biometrik -->
+                                <div class="col-md-4">
+                                    <label class="form-label">Keperluan Biometrik</label>
+                                    <div class="d-flex gap-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="keperluanBiometrik" disabled
+                                                value="Ya" [(ngModel)]="formData.keperluanBiometrik">
+                                            <label class="form-check-label">Ya</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="keperluanBiometrik" disabled
+                                                value="Tidak" [(ngModel)]="formData.keperluanBiometrik">
+                                            <label class="form-check-label">Tidak</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Col 2: Jenis Biometrik -->
+                                <div class="col-md-4">
+                                    <label class="form-label">Jenis Biometrik</label>
+                                    <div class="d-flex gap-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                [(ngModel)]="formData.jenisBiometrik.capJari" name="capJari" disabled>
+                                            <label class="form-check-label">Cap Jari</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                [(ngModel)]="formData.jenisBiometrik.wajah" name="wajah" disabled>
+                                            <label class="form-check-label">Wajah</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Kaedah Log Masuk</label>
+                            <div class="d-flex gap-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox"
+                                        [(ngModel)]="formData.kaedahLog.capJari" name="capJari" disabled>
+                                    <label class="form-check-label">Cap Jari</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox"
+                                        [(ngModel)]="formData.kaedahLog.wajah" name="wajah" disabled>
+                                    <label class="form-check-label">Wajah</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" [(ngModel)]="formData.kaedahLog.otp"
+                                        name="otp" disabled>
+                                    <label class="form-check-label">OTP</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Navigation -->
+            <div class="pagination-wrapper row mt-4 pb-2 pt-2">
+                <div class="col-12">
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-all" (click)="goToPrevious()">&lt;</button>
+                        <button class="btn btn-all" (click)="goToNext()">&gt;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

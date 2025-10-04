@@ -1,0 +1,23 @@
+:host {
+  .item-card{
+    padding: 10px 20px 20px 20px;
+    width: 400px;
+    height: 300px;
+    border: 10px solid #ccc;
+    text-align: left;
+    align-self: center;
+  }
+
+  .clickable {
+    //color: blue;
+    cursor: pointer;
+    margin-bottom: 2px;
+    //text-decoration: underline;
+  }
+
+  .clickable:hover {
+    //color: darkblue;
+    font-weight: bold;
+  }
+
+}

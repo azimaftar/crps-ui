@@ -1,0 +1,110 @@
+<c-container fluid>
+    <div class="form-section">
+        <h2 class="section-title">Maklumat Kekunci Carian</h2>
+
+        <!-- Error Message -->
+        <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+        </div>
+
+        <form (ngSubmit)="onSearch(searchForm)" #searchForm="ngForm">
+            <!-- Nama Pegawai -->
+            <div class="mb-3">
+                <label for="namaPegawai" class="form-label">Nama Pegawai*</label>
+                <input 
+                    type="text" 
+                    class="form-control field-full" 
+                    id="namaPegawai" 
+                    name="namaPegawai" 
+                    [(ngModel)]="filters.namaPegawai"
+                    required>
+            </div>
+
+            <!-- Nombor Perkhidmatan -->
+            <div class="mb-3">
+                <label for="nomborPerkhidmatan" class="form-label">Nombor Perkhidmatan *</label>
+                <input 
+                    type="text" 
+                    class="form-control field-short" 
+                    id="nomborPerkhidmatan" 
+                    name="nomborPerkhidmatan" 
+                    required
+                    [(ngModel)]="filters.nomborPerkhidmatan">
+                </div>
+
+            <!-- Submit Button -->
+            <div class="d-flex justify-content-end mt-4">
+                <button type="submit" class="btn btn-dark px-4 me-2">Cari</button>
+                <button type="button" class="btn btn-dark px-4" (click)="onDaftar()">Daftar</button>
+            </div>
+        </form>
+
+    <!-- Results Table Section - Only show after search -->
+    <div class="results-section mt-4" *ngIf="hasSearched && searchResults.length > 0">
+        <h3 class="results-title">Maklumat Surat Pertukaran</h3>
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="col-bil">Bil</th>
+                        <th class="col-nama">Nama Pegawai</th>
+                        <th class="col-kad">Nombor Perkhidmatan</th>
+                        <th class="col-gred">Gred Jawatan</th>
+                        <th class="col-action"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pegawai of searchResults">
+                        <td class="text-center">{{ pegawai.bil }}</td>
+                        <td>{{ pegawai.namaPegawai }}</td>
+                        <td>{{ pegawai.nomborPerkhidmatan }}</td>
+                       <td>{{ (pegawai.jawatan || '') + ' - ' + (pegawai.gredJawatan || '') }}</td>
+                        <td class="text-center">
+                            <button class="btn-edit" title="Jana" (click)="onJana(pegawai)">
+                                <span class="action-text">Jana</span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal for No Data Found -->
+    <c-modal 
+        [visible]="isModalVisible" 
+        (visibleChange)="isModalVisible = $event"
+        id="noDataModal"
+        size="lg"
+        centered="true"
+        [backdrop]="true">
+        
+        <c-modal-header class="modal-header-custom">
+            <div class="modal-icon-container">
+                <div class="modal-square-icon">
+                    <div class="modal-x-line-1"></div>
+                    <div class="modal-x-line-2"></div>
+                </div>
+            </div>
+        </c-modal-header>
+        
+        <c-modal-body class="modal-body-custom">
+            <p class="modal-message">
+                Maklumat carian tidak wujud. Sila masukkan kunci<br>
+                carian lain.
+            </p>
+        </c-modal-body>
+        
+        <c-modal-footer class="modal-footer-custom">
+            <div class="modal-button-container">
+                <button 
+                    type="button" 
+                    class="modal-ok-button"
+                    (click)="onModalOk()">
+                    OK
+                </button>
+            </div>
+        </c-modal-footer>
+    </c-modal>
+    </div>
+</c-container>

@@ -1,0 +1,49 @@
+<c-modal [(visible)]="visible" (visibleChange)="onVisibleChange($event)">
+  <c-modal-header>
+    <h5>Tambah / Kemaskini Cuti</h5>
+  </c-modal-header>
+
+  <c-modal-body>
+    <div class="form-group mb-3">
+      <label for="startDate">Tarikh Mula:</label>
+      <input
+        type="date"
+        id="startDate"
+        class="form-control"
+        [(ngModel)]="eventData.startDate"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="endDate">Tarikh Tamat:</label>
+      <input
+        type="date"
+        id="endDate"
+        class="form-control"
+        [(ngModel)]="eventData.endDate"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="eventName">Nama Cuti:</label>
+      <input
+        type="text"
+        id="eventName"
+        class="form-control"
+        [(ngModel)]="eventData.eventName"
+      />
+    </div>
+  </c-modal-body>
+
+  <c-modal-footer>
+    <button cButton color="secondary" (click)="onCancel()">BATAL</button>
+    <button
+      cButton
+      color="primary"
+      (click)="onSave()"
+      [disabled]="
+        !eventData.eventName || !eventData.startDate || !eventData.endDate
+      "
+    >
+      SIMPAN
+    </button>
+  </c-modal-footer>
+</c-modal>

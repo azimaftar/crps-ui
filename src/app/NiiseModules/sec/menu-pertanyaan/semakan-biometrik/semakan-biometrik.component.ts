@@ -1,0 +1,195 @@
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SubjectService, Subject } from '../../../../services/subject.service';
+
+// CoreUI Imports
+import {
+  CardComponent,
+  CardBodyComponent,
+  RowComponent,
+  ColComponent,
+  ButtonDirective,
+  TableDirective,
+  FormCheckComponent,
+  FormCheckInputDirective,
+  FormCheckLabelDirective,
+  CardModule,
+  GridModule,
+  ModalComponent,
+  ModalBodyComponent,
+  ModalFooterComponent,
+} from '@coreui/angular';
+import { MenuContentComponent } from '../../../landing/menu-content/menu-content.component';
+
+@Component({
+  selector: 'app-semakan-biometrik',
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    RouterModule,
+
+    // CoreUI
+    CardComponent,
+    CardBodyComponent,
+    RowComponent,
+    ColComponent,
+    CardModule,
+    GridModule,
+    ButtonDirective,
+  ],
+  templateUrl: './semakan-biometrik.component.html',
+  styleUrls: ['../menu-pertanyaan.component.scss']
+})
+
+
+
+export class SemakanBiometrikComponent implements OnInit {
+  private _selectedCategory: string = '';
+  confirmedCategory: string = '';
+  isLoading: boolean = false;
+  nationality: string = '';
+  currentStep: number = 1; // default fallback
+  birthDate: string = '';
+  passportNumber: string = '';
+  gender: string = '';
+  searchResults: Subject[] = [];
+  noResultsFound: boolean = false;
+  pageTitle = 'Senarai Permohonan Semakan Biometrik';
+  
+
+  steps = [
+    { number: 1, title: 'Kategori Carian', route: '/sec/menu-pertanyaan' },
+    { number: 2, title: 'Menu Carian', route: '' },
+  ];
+
+
+  isStepActive(stepNumber: number): boolean {
+    return this.currentStep === stepNumber;
+  }
+
+  isStepCompleted(stepNumber: number): boolean {
+    return this.currentStep > stepNumber;
+  }
+
+    get selectedCategory(): string {
+    return this._selectedCategory;
+  }
+
+  set selectedCategory(value: string) {
+    this._selectedCategory = value;
+    this.resetFormFields(); // Resets all inputs when category changes
+  }
+
+  resetFormFields(): void {
+    this.birthDate = '';
+    this.passportNumber = '';
+    this.nationality = '';
+    this.confirmedCategory = '';
+    this.gender = '';
+    this.searchResults = [];
+    this.isLoading = false;
+  }
+
+  constructor(
+    private router: Router, 
+    private route: ActivatedRoute,
+    private subjectService: SubjectService
+  ) {}
+
+  nationalities: string[] = [
+    'Malaysia',
+    'Bangladesh',
+    'Brunei',
+    'Cambodia',
+    'Filipina',
+    'India',
+    'Indonesia',
+    'Laos',
+    'Maldives',
+    'Myanmar',
+    'Nepal',
+    'Pakistan',
+    'Singapura',
+    'Sri Lanka',
+    'Thailand',
+    'Vietnam',
+  ];
+
+  genders: string[] = [
+    'Lelaki',
+    'Perempuan',
+    'Lain-Lain'
+  ]
+
+  ngOnInit(): void {
+    // Access currentStep from navigation state
+    const stepFromState = history.state.currentStep;
+    if (stepFromState && typeof stepFromState === 'number') {
+      this.currentStep = stepFromState;
+    }
+
+    console.log('Received currentStep:', this.currentStep);
+  }
+
+  navigateToStep1() {
+    const step1 = this.steps.find(step => step.number === 1);
+    if (step1) {
+      this.router.navigate([step1.route]);
+    }
+  }
+
+  onSubmit(): void {
+    this.searchResults = [];
+    this.noResultsFound = false;
+
+    const targetJenisPermohonan = this.pageTitle.replace('Senarai Permohonan ', '').trim();
+    const formatDate = (isoDate: string): string => {
+      const [year, month, day] = isoDate.split('-');
+      return `${day}-${month}-${year}`;
+    };
+    console.log('Jenis Permohonan:', targetJenisPermohonan)
+
+    const formattedBirthDate = this.birthDate ? formatDate(this.birthDate) : '';
+
+    this.subjectService.getGroupedSubjects().subscribe((groupedData) => {
+      const data: Subject[] = groupedData[targetJenisPermohonan] || [];
+      let filtered: Subject[] = [];
+
+      if (!this.nationality || !this.birthDate || !this.gender || !this.passportNumber) {
+        alert('Sila isi semua maklumat yang diperlukan.');
+        return;
+      }
+
+      filtered = data.filter(
+        item =>
+          item.wn === this.nationality &&
+          item.birthDate === formattedBirthDate &&
+          // item.jantina === this.gender &&
+          item.noPasport === this.passportNumber
+      );
+
+      if (filtered.length === 0) {
+        this.noResultsFound = true;
+      }
+
+      this.searchResults = filtered;
+      console.log("Filtered Data:", filtered);
+    });
+  }
+
+  onRowAction(item: any) {
+    console.log("Data:", item)
+    this.router.navigate(['papar'], {
+      relativeTo: this.route,
+      state: { 
+        data: item,
+        currentStep: this.currentStep, 
+        pageTitle: this.pageTitle
+      }
+    });
+    console.log("Current Step:", this.currentStep)
+  }
+}

@@ -1,0 +1,106 @@
+<div class="container-fluid">
+  <!-- Main Row -->
+  <div class="row">
+    <!-- Left Column: Main Form (9 columns) -->
+    <div class=" pe-0">
+      <c-card>
+        <c-card-body class="page-content">
+          <h5 class="card-title">Maklumat Carian</h5>
+          <form>
+
+            <!-- nama -->
+            <c-row class="mb-3">
+              <c-col md="3">
+                <label class="form-label">Nama Pegawai<span class="text-danger">*</span></label>
+              </c-col>
+              <c-col md="6">
+                <input type="text" class="form-control" disabled/>
+              </c-col>
+            </c-row>
+            <!-- Nkp -->
+            <c-row class="mb-3">
+              <c-col md="3">
+                <label class="form-label">No Kad Pengenalan<span class="text-danger">*</span></label>
+              </c-col>
+              <c-col md="6">
+                <input type="text" class="form-control" disabled/>
+              </c-col>
+            </c-row>
+            <!-- gred -->
+            <c-row class="mb-3">
+              <c-col md="3">
+                <label class="form-label">Gred Jawatan<span class="text-danger">*</span></label>
+              </c-col>
+              <c-col md="3">
+                <input type="text" class="form-control" disabled/>
+              </c-col>
+            </c-row>
+
+            <!--  Bahagian -->
+            <c-row class="mb-3">
+              <c-col md="3"><label>Bahagian</label></c-col>
+              <c-col md="6">
+                <select class="form-select" [(ngModel)]="kumpulan" name="kumpulan" disabled>
+                  <option value="" disabled selected>Sila Pilih</option>
+                  <option value="Bahagian Dasar & Perancangan">Bahagian Dasar & Perancangan</option>
+                  <option value="Bahagian Dasar & laporan">Bahagian Dasar & laporan</option>
+                  <option value="Bahagian Asas & estrak">Bahagian Asas & ais</option>
+                  <option value="Bahagian Dasar & Perancangan">Bahagian Dasar & Udara</option>
+                </select>
+              </c-col>
+            </c-row>
+            <!-- Unit -->
+            <c-row class="mb-3">
+              <c-col md="3"><label>Unit</label></c-col>
+              <c-col md="6">
+                <select class="form-select" [(ngModel)]="kumpulan" name="kumpulan" disabled>
+                  <option value="" disabled selected>Sila Pilih</option>
+                  <option value="Bahagian Dasar & Perancangan">Unit Pengurusan Aset</option>
+                  <option value="Bahagian Dasar & laporan">Unit emergency</option>
+                </select>
+              </c-col>
+            </c-row>
+            <!-- Kumpulan -->
+            <c-row class="mb-3">
+              <c-col md="3">
+                <label class="form-label">Kumpulan<span class="text-danger">*</span></label>
+              </c-col>
+              <c-col md="3">
+                <select class="form-select" [(ngModel)]="kumpulan" name="kumpulan" disabled>
+                  <option value="" disabled selected>Sila Pilih</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                </select>
+              </c-col>
+            </c-row>
+            <div class="table-container table-responsive">
+              <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="col-2">Bil</th>
+          <th class="col-2">Tarikh lewat</th>
+          <th class="col-2">Masa Lewat</th>
+          <th class="col-2">Catatan Lewat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of kelewatanList; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ record.TarikhLewat }}</td>
+          <td>{{ record.masaLewat }}</td>
+          <td>{{ record.Catatan }}</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+            </div>
+          </form>
+        </c-card-body>
+        <div class="action-footer d-flex justify-content-end">
+              <button class="btn btn-back btn-dark m-2" (click)="null">Cetak</button>
+            </div>
+      </c-card>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,245 @@
+<div class="d-flex" style="width: 100%;">
+    <!-- Main Content (left side) -->
+    <div class="flex-grow-1" [style.marginRight.px]="isBreadcrumbOpen ? 260 : 0">
+
+        <!-- Single Card for All Content (excluding buttons) -->
+        <c-card>
+            <c-card-header class="bg-primary text-white">
+                PENDAFTARAN ID BAHARU PENGGUNA
+            </c-card-header>
+
+            <c-card-body>
+                <!-- Step Title -->
+                <div class="text-start mb-3">
+                    <h5 class="mb-0"><strong>1. Maklumat Profil Pegawai</strong></h5>
+                    <small class="text-muted">Langkah 1 daripada 4</small>
+                </div>
+
+                <!-- Profile Image -->
+                <div class="d-flex justify-content-center mt-2 flex-column align-items-center">
+                    <img src="assets/images/avatars/9.jpg" alt="Profile Image" class="img-fluid"
+                        style="width: 150px; height: 150px; object-fit: cover; border: 1px solid #000;">
+                    <div class="mt-2" style="font-size: 14px;">
+                        Penilaian Risiko: <strong>Rendah</strong>
+                    </div>
+                </div>
+
+                <!-- Profil Fields -->
+                <hr class="my-4" />
+                <h6><strong>Maklumat Profil Pegawai</strong></h6>
+                <c-row class="mt-4">
+                    <c-col md="6">
+                        <label class="mt-3"><strong>Kategori Pegawai</strong></label>
+                        <select class="form-select">
+                            <option selected disabled>-Sila Pilih-</option>
+                            <option>Pegawai JIM</option>
+                        </select>
+
+                        <label class="mt-3"><strong>Jenis Dokumen</strong></label>
+                        <select class="form-select">
+                            <option selected disabled>-Sila Pilih-</option>
+                            <option>MyKad</option>
+                        </select>
+
+                        <label class="mt-3"><strong>Warganegara</strong></label>
+                        <select class="form-select">
+                            <option selected disabled>-Sila Pilih-</option>
+                            <option>Warganegara</option>
+                        </select>
+
+                        <label class="mt-3"><strong>Tarikh Lahir</strong></label>
+                        <input type="date" class="form-control">
+
+                        <label class="mt-3"><strong>No. Perkhidmatan</strong></label>
+                        <input type="text" class="form-control" placeholder="ABC123456">
+
+                        <label class="mt-3"><strong>E-mel</strong></label>
+                        <input type="text" class="form-control" placeholder="pbh.imi@gov.my">
+                    </c-col>
+
+                    <c-col md="6">
+                        <div class="d-flex align-items-end justify-content-end mt-3" style="height: 62px;">
+                            <button class="btn btn-dark black-btn mt-3">Semak</button>
+                        </div>
+
+                        <label class="mt-3"><strong>No. Dokumen/ID</strong></label>
+                        <input type="text" class="form-control" placeholder="980330025489">
+
+                        <label class="mt-3"><strong>Nama</strong></label>
+                        <input type="text" class="form-control" placeholder="Mohd Russaini Bin Idrus">
+
+                        <label class="mt-3"><strong>Jantina</strong></label>
+                        <select class="form-select">
+                            <option selected disabled>-Sila Pilih-</option>
+                            <option>Lelaki</option>
+                            <option>Perempuan</option>
+                        </select>
+
+                        <label class="mt-3"><strong>No. Telefon</strong></label>
+                        <input type="text" class="form-control" placeholder="0112345678">
+
+                        <label class="mt-3"><strong>Lokasi/Negeri</strong></label>
+                        <select class="form-select">
+                            <option selected disabled>-Sila Pilih-</option>
+                            <option>Putrajaya</option>
+                        </select>
+                    </c-col>
+                </c-row>
+
+                <!-- Maklumat Penempatan -->
+                <hr class="my-4" />
+                <h6><strong>Maklumat Penempatan</strong></h6>
+                <c-row class="mt-4">
+                    <c-col md="6">
+                        <label class="mt-3"><strong>Tempat Bertugas/Cawangan</strong></label>
+                        <select class="form-select">
+                            <option selected disabled>-Sila Pilih-</option>
+                            <option>Putrajaya</option>
+                        </select>
+
+                        <label class="mt-3"><strong>Unit</strong></label>
+                        <select class="form-select">
+                            <option selected disabled>-Sila Pilih-</option>
+                            <option>VPP</option>
+                        </select>
+
+                        <label class="mt-3"><strong>Gred</strong></label>
+                        <select class="form-select">
+                            <option selected disabled>-Sila Pilih-</option>
+                            <option>KP19</option>
+                        </select>
+
+                        <div class="mt-3">
+                            <label><strong>Keperluan Biometrik:</strong></label><br>
+                            <label class="me-5">
+                                <input type="radio" name="biometrik" checked> Ya
+                            </label>
+                            <label>
+                                <input type="radio" name="biometrik"> Tidak
+                            </label>
+                        </div>
+
+                        <div class="mt-3">
+                            <label><strong>Kaedah Log Masuk:</strong></label><br>
+                            <label class="me-4">
+                                <input type="checkbox" checked> Cap Jari
+                            </label>
+                            <label class="me-4">
+                                <input type="checkbox"> Wajah
+                            </label>
+                            <label>
+                                <input type="checkbox"> OTP
+                            </label>
+                        </div>
+                    </c-col>
+
+                    <c-col md="6">
+                        <label class="mt-3"><strong>Bahagian</strong></label>
+                        <select class="form-select">
+                            <option selected disabled>-Sila Pilih-</option>
+                            <option>Visa, Pas dan Permit</option>
+                        </select>
+
+                        <label class="mt-3"><strong>Jawatan</strong></label>
+                        <select class="form-select">
+                            <option selected disabled>-Sila Pilih-</option>
+                            <option>Pemandu Tadbir</option>
+                        </select>
+
+                        <label class="mt-3"><strong>Gred (Melebihi Gred Sedia Ada)</strong></label>
+                        <select class="form-select">
+                            <option selected disabled>-Sila Pilih-</option>
+                        </select>
+
+                        <div class="d-flex align-items-end justify-content mt-3" style="height: 62px;">
+                            <button class="btn btn-dark black-btn mt-3" (click)="openFingerprintModal()">
+                                Imbas Cap Jari
+                            </button>
+                        </div>
+                    </c-col>
+                </c-row>
+            </c-card-body>
+        </c-card>
+
+        <!-- Action Buttons -->
+        <div class="d-flex justify-content-end mt-3 mb-4">
+            <div class="d-flex gap-3">
+                <button class="btn btn-dark black-btn">Set Semula</button>
+                <button class="btn btn-dark black-btn">Hantar</button>
+                <button class="btn btn-dark action-btn" (click)="openBreadcrumb()" [disabled]="isBreadcrumbOpen">
+                    &lt;
+                </button>
+                <button class="btn btn-dark action-btn" (click)="closeBreadcrumb()" [disabled]="!isBreadcrumbOpen">
+                    &gt;
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breadcrumb Drawer -->
+    <div class="breadcrumb-drawer" [class.open]="isBreadcrumbOpen" [class.closed]="!isBreadcrumbOpen">
+        <app-breadcrumb-agensi [activeStep]="activeStep"></app-breadcrumb-agensi>
+    </div>
+</div>
+
+<c-modal
+  [visible]="showFingerprintModal"
+  (visibleChange)="showFingerprintModal = $event"
+  backdrop="static"
+>
+  <c-modal-header>
+    <h5 class="modal-title">IMBAS CAP JARI</h5>
+  </c-modal-header>
+
+  <c-modal-body>
+    <div class="mb-3">
+      <label for="fingerprint1" class="form-label">Cap Jari 1 (Kanan)</label>
+      <div class="input-group">
+        <input
+          id="fingerprint1"
+          type="text"
+          class="form-control"
+          placeholder="Text Here"
+          [(ngModel)]="rightFingerprint"
+        />
+        <button
+          class="btn btn-dark"
+          type="button"
+          (click)="scanFingerprint('right')"
+        >
+          Imbas
+        </button>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="fingerprint2" class="form-label">Cap Jari 2 (Kiri)</label>
+      <div class="input-group">
+        <input
+          id="fingerprint2"
+          type="text"
+          class="form-control"
+          placeholder="Text Here"
+          [(ngModel)]="leftFingerprint"
+        />
+        <button
+          class="btn btn-dark"
+          type="button"
+          (click)="scanFingerprint('left')"
+        >
+          Imbas
+        </button>
+      </div>
+    </div>
+  </c-modal-body>
+
+  <c-modal-footer class="d-flex justify-content-end">
+    <button
+      class="btn btn-dark"
+      type="button"
+      (click)="saveFingerprints()"
+    >
+      Selesai
+    </button>
+  </c-modal-footer>
+</c-modal>

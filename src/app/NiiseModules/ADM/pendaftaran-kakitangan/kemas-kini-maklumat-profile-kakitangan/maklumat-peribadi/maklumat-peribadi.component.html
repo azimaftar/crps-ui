@@ -1,0 +1,410 @@
+<c-card>
+  <c-card-body>
+    <c-row class="my-2">
+      <h4 class="fw-bold">KEMAS KINI MAKLUMAT PROFILE KAT</h4>
+    </c-row>
+
+    <app-stepper
+      [currentMainStep]="currentMainStep"
+      [currentSubStep]="currentSubStep"
+    ></app-stepper>
+
+    <c-row class="my-5">
+      <c-row class="mb-3">
+        <c-col xs="12" md="6">
+          <h5>Maklumat Peribadi</h5>
+        </c-col>
+        <c-col xs="12" md="6" class="d-flex justify-content-end">
+          <button type="button" class="btn btn-primary">Kemas Kini</button>
+        </c-col>
+      </c-row>
+
+      <c-col xs="12" md="3" class="mb-3">
+        <img
+          src="assets/images/avatars/1.jpg"
+          alt="Avatar"
+          width="100%"
+          style="border-radius: 8px"
+        />
+      </c-col>
+
+      <c-col xs="12" md="8">
+        <c-row>
+          <c-col xs="12" md="12" class="mb-3">
+            <label>Nama Penuh</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.namaPenuh"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+        </c-row>
+
+        <c-row>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Jenis Dokumen</label>
+            <select
+              class="form-select"
+              [(ngModel)]="maklumatPeribadi.jenisDokumen"
+              [disabled]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            >
+              <option value="" disabled hidden>Sila Pilih</option>
+              <option value="MyKAD">MyKAD</option>
+              <option value="Passport">Passport</option>
+            </select>
+          </c-col>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>No. Dokumen / ID</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.noDokumenID"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+        </c-row>
+
+        <c-row>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Tarkih Lahir</label>
+            <input
+              class="form-control"
+              type="date"
+              [(ngModel)]="maklumatPeribadi.tarikhLahir"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Umur</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.umur"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+        </c-row>
+
+        <c-row>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Jantina</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.jantina"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Nombor Sijil Lahir</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.nomborSijilLahir"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+        </c-row>
+
+        <c-row>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Negeri Lahir</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.negeriLahir"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Status Warganegara</label>
+            <select
+              class="form-select"
+              [(ngModel)]="maklumatPeribadi.statusWargaNegara"
+              [disabled]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            >
+              <option value="" disabled hidden>Sila Pilih</option>
+              <option value="Malaysia">Malaysia</option>
+              <option value="Australia">Australia</option>
+            </select>
+          </c-col>
+        </c-row>
+
+        <c-row>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Negara</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.negara"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Bangsa</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.bangsa"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+        </c-row>
+
+        <c-row>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Etnik</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.etnik"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Status Bumiputera</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.statusBumipuera"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+        </c-row>
+
+        <c-row>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Agama</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.agama"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Status Perkahwinan</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.statusPerkahwinan"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+        </c-row>
+
+        <c-row>
+          <c-col xs="12" md="12" class="mb-3">
+            <label>Alamat Tetap</label>
+            <input
+              class="form-control mb-3"
+              [(ngModel)]="maklumatPeribadi.alamatTetap1"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+            <input
+              class="form-control mb-3"
+              [(ngModel)]="maklumatPeribadi.alamatTetap2"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.alamatTetap3"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+        </c-row>
+
+        <c-row>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Poskod</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.poskodTetap"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Bandar</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.bandarTetap"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+        </c-row>
+
+        <c-row>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Negeri</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.negeriTetap"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Nombor Telefon Rumah</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.nomborTelefonRumahTetap"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+        </c-row>
+
+        <c-row>
+          <c-col xs="12" md="12" class="mb-3">
+            <label>Alamat Semasa</label>
+            <input
+              class="form-control mb-3"
+              [(ngModel)]="maklumatPeribadi.alamatSemasa1"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+            <input
+              class="form-control mb-3"
+              [(ngModel)]="maklumatPeribadi.alamatSemasa2"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.alamatSemasa3"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+        </c-row>
+
+        <c-row>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Poskod</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.poskodSemasa"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Bandar</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.bandarSemasa"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+        </c-row>
+
+        <c-row>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Negeri</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.negeriSemasa"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Nombor Telefon Rumah</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.nomborTelefonRumahSemasa"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+        </c-row>
+
+        <c-row>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Nombor Telefon Pejabat</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.nomborTelefonPejabat"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Sambungan</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.sambungan"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+        </c-row>
+
+        <c-row>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Nombor Telefon Bimbit</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.nomborTelefonBimbit"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Alamat Email</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatPeribadi.alamatEmail"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+        </c-row>
+      </c-col>
+    </c-row>
+
+    <c-row>
+      <c-row style="border-top: 1px solid rgba(0, 0, 0, 0.1)">
+        <c-col class="d-flex gap-5 flex-shrink-0 justify-content-end py-3">
+          <div class="d-flex gap-2">
+            <button
+              type="button"
+              class="btn-custom-normalBlue fw-semibold btn btn-primary"
+              (click)="navigateClosePage()"
+            >
+              Tutup
+            </button>
+          </div>
+
+          <div class="d-flex">
+            <button
+              type="button"
+              class="btn-custom-normalWhite fw-semibold btn btn-light"
+              (click)="navigatePreviousPage()"
+              disabled
+            >
+              &lt;
+            </button>
+            <button
+              type="button"
+              class="btn-custom-normalWhite fw-semibold btn btn-light"
+              (click)="navigateNextPage()"
+            >
+              &gt;
+            </button>
+          </div>
+        </c-col>
+      </c-row>
+    </c-row>
+  </c-card-body>
+</c-card>

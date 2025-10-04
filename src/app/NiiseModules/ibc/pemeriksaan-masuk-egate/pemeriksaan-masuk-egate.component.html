@@ -1,0 +1,423 @@
+
+<c-container>
+  <c-row >
+    <c-col style="border: 1px;">
+      <h4>Pemeriksaan Masuk eGate</h4>
+    </c-col>
+  </c-row>
+  <c-row>
+    <c-col md="4" class=" text-center align-items-start" style="margin-top: auto; margin-bottom: auto;">
+      <div style="width: 100%; border: 1px solid #ccc; border-radius: 6px; padding: 1rem;">
+        <c-tabs [activeItemKey]="'white'" (activeItemKeyChange)="handleChange($event)">
+          <c-tabs-list variant="tabs">
+            <button cTab itemKey="white">WHITE</button>
+            <button cTab itemKey="ir">IR</button>
+            <button cTab itemKey="uv">UV</button>
+          </c-tabs-list>
+          <c-tabs-content>
+            <c-tab-panel class="p-3" itemKey="white">
+              <div
+                style="border: 1px solid #ccc; border-radius: 6px; padding:60px 30px; width: 100%;">
+                Passport Image WHITE
+              </div>
+            </c-tab-panel>
+            <c-tab-panel class="p-3" itemKey="ir">
+              <div
+                style="border: 1px solid #ccc; border-radius: 6px; padding:60px 30px; width: 100%;">
+                Passport Image IR
+              </div>
+            </c-tab-panel>
+            <c-tab-panel class="p-3" itemKey="uv">
+              <div
+                style="border: 1px solid #ccc; border-radius: 6px; padding:60px 30px; width: 100%;">
+                Passport Image UV
+              </div>
+            </c-tab-panel>
+          </c-tabs-content>
+        </c-tabs>
+      </div>
+    </c-col>
+
+    <!-- Divider Column -->
+    <c-col md="1" class="d-flex justify-content-center">
+      <div style="border-left: 1px solid #aaa; height: 100%;"></div>
+    </c-col>
+
+    <!-- Right Column: Blank Form -->
+    <c-col md="5">
+
+        <!-- Flex container for two equal divs -->
+        <div style="display: flex; gap: 3rem;">
+            <!-- Left div -->
+            <div
+                style=" border: 1px solid #ccc; border-radius: 6px; padding: 1rem; min-width: 180px; max-width: 180px;">
+                <div style=" border: 1px solid #ccc; border-radius: 6px; padding:60px 30px;  height: 150px;">
+                    Passport Image
+                </div>
+            </div>
+            <!-- Right div -->
+            <div
+                style=" border: 1px solid #ccc; border-radius: 6px; padding: 1rem;min-width: 180px; max-width: 180px">
+                <div style=" border: 1px solid #ccc; border-radius: 6px; padding:60px 30px; height: 150px;">
+                    Passport Image
+                </div>
+            </div>
+        </div>
+
+        <div id="input" style="margin-top: 1rem;">
+            <!-- Row 1: 3 equal input fields -->
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+                <div style="flex: 1 1 30%;">
+                    <label for="jenisDokumen">Jenis Dokumen</label><br />
+                    <input type="text" id="jenisDokumen" style="width: 100%;" disabled />
+                </div>
+                <div style="flex: 1 1 30%;">
+                    <label for="jantina">Jantina</label><br />
+                    <input type="text" id="jantina" style="width: 100%;" disabled />
+                </div>
+                <div style="flex: 1 1 30%;">
+                    <label for="umur">Umur</label><br />
+                    <input type="text" id="umur" style="width: 100%;" disabled />
+                </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+                <div style="flex: 1 1 30%;">
+                    <label for="noDokumen">No Dokumen</label><br />
+                    <input type="text" id="noDokumen" style="width: 100%;" disabled />
+                </div>
+                <div style="flex: 1 1 30%;">
+                    <label for="noPengenalan">No Pengenalan</label><br />
+                    <input type="text" id="noPengenalan" style="width: 100%;" disabled />
+                </div>
+                <div style="flex: 1 1 30%;">
+                    <label for="tarikhTamat">Tarikh Tamat</label><br />
+                    <input type="text" id="tarikhTamat" style="width: 100%;" disabled />
+                </div>
+            </div>
+
+            <!-- Row 3: 2/3 + 1/3 split -->
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+                <div style="flex: 2 1 60%;">
+                    <label for="nama">Nama</label><br />
+                    <input type="text" id="nama" style="width: 100%;" disabled />
+                </div>
+                <div style="flex: 1 1 30%;">
+                    <label for="warganegara">Warganegara</label><br />
+                    <input type="text" id="warganegara" style="width: 100%;" disabled />
+                </div>
+            </div>
+
+            <!-- Row 4: skip middle field (field 5) -->
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                <div style="flex: 1 1 30%;">
+                    <label for="tarikhDikeluarkan">Tarikh Dikeluarkan</label><br />
+                    <input type="text" id="tarikhDikeluarkan" style="width: 100%;" disabled />
+                </div>
+
+                <!-- Invisible placeholder for Field 5 spacing -->
+                <div style="flex: 1 1 26%; visibility: hidden;">
+                    <label>&nbsp;</label><br />
+                    <input type="text" style="width: 100%;" />
+                </div>
+
+                <div style="flex: 1 1 30%;">
+                    <label for="negaraPengeluar">Negara Pengeluar</label><br />
+                    <input type="text" id="negaraPengeluar" style="width: 100%;" disabled />
+                </div>
+            </div>
+        </div>
+    </c-col>
+  </c-row>
+
+  <c-row>
+    <c-col style="border:1px solid #ccc">
+      FOR DEVELOPMENT PURPOSES ONLY
+    </c-col>
+  </c-row>
+
+<!-- Modal Trigger Button -->
+  <button [cModalToggle]="modal1.id" cButton>IBC-N001</button>
+  <c-modal #modal1 alignment="center" id="IBC-N001">
+    <c-modal-header>
+      <button [cModalToggle]="modal1.id" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body class="text-center">
+      <c-row class="mb-3">
+        <c-col>
+          <img 
+                  src="/assets/images/egate.png" 
+                  alt="Back Side" 
+                >
+        </c-col>
+      </c-row>
+      Sila Letak Pasport
+    </c-modal-body>
+    <c-modal-footer>
+    </c-modal-footer>
+  </c-modal>
+
+  <button [cModalToggle]="modal2.id" cButton>IBC-W011</button>
+  <c-modal #modal2 alignment="center" id="IBC-W011">
+    <c-modal-header>
+      <button [cModalToggle]="modal2.id" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body class="text-center">
+      <c-row class="mb-3">
+        <c-col>
+          <img 
+                  src="/assets/images/egate.png" 
+                  alt="Back Side" 
+                >
+        </c-col>
+      </c-row>
+      Sila Keluar Dari Laluan eGate
+    </c-modal-body>
+    <c-modal-footer>
+    </c-modal-footer>
+  </c-modal>
+
+  <button [cModalToggle]="modal10.id" cButton>IBC-N007</button>
+  <c-modal #modal10 alignment="center" id="IBC-N007">
+    <c-modal-header>
+      <button [cModalToggle]="modal10.id" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body class="text-center">
+      <c-row class="mb-3">
+        <c-col>
+          <img 
+                  src="/assets/images/egate.png" 
+                  alt="Back Side" 
+                >
+        </c-col>
+      </c-row>
+      Sila Masuk Ke Dlam eGate
+    </c-modal-body>
+    <c-modal-footer>
+    </c-modal-footer>
+  </c-modal>
+
+  <button [cModalToggle]="modal3.id" cButton>IBC-N008</button>
+  <c-modal #modal3 alignment="center" id="IBC-N008">
+    <c-modal-header>
+      <button [cModalToggle]="modal3.id" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body class="text-center">
+      <c-row class="mb-3">
+        <c-col>
+          <img 
+                  src="/assets/images/egate.png" 
+                  alt="Back Side" 
+                >
+        </c-col>
+      </c-row>
+      Sila Imbas Semula Pasport
+    </c-modal-body>
+    <c-modal-footer>
+    </c-modal-footer>
+  </c-modal>
+
+  <button [cModalToggle]="modal4.id" cButton>IBC-N006</button>
+  <c-modal #modal4 alignment="center" id="IBC-N006">
+    <c-modal-header>
+      <button [cModalToggle]="modal4.id" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body class="text-center">
+      <c-row class="mb-3">
+        <c-col>
+          <img 
+                  src="/assets/images/egate.png" 
+                  alt="Back Side" 
+                >
+        </c-col>
+      </c-row>  
+      Sila Ke Kaunter Manual
+    </c-modal-body>
+    <c-modal-footer class="text-center">
+      <button [cModalToggle]="modal4.id" cButton color="secondary"
+      style="margin-left: auto; margin-right: auto;">
+        OK
+      </button>
+    </c-modal-footer>
+  </c-modal>
+
+  <button [cModalToggle]="modal5.id" cButton>IBC-S038</button>
+  <c-modal #modal5 alignment="center" id="IBC-S038">
+    <c-modal-header>
+      <button [cModalToggle]="modal5.id" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body class="text-center">
+      <c-row class="mb-3">
+        <c-col>
+          <img 
+                  src="/assets/images/egate.png" 
+                  alt="Back Side" 
+                >
+        </c-col>
+      </c-row>
+      Sila Lengkapkan e-IMM.26.
+    </c-modal-body>
+    <c-modal-footer>
+    </c-modal-footer>
+  </c-modal>
+
+  <button [cModalToggle]="modal6.id" cButton>IBC-N015</button>
+  <c-modal #modal6 alignment="center" id="IBC-N015">
+    <c-modal-header>
+      <button [cModalToggle]="modal6.id" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body class="text-center">
+      <c-row class="mb-3">
+        <c-col>
+          <img 
+                  src="/assets/images/egate.png" 
+                  alt="Back Side" 
+                >
+        </c-col>
+      </c-row>
+      Sila Lihat Ke Arah Kamera Untuk Imbasan Biometrik
+    </c-modal-body>
+    <c-modal-footer>
+    </c-modal-footer>
+  </c-modal>
+
+<button [cModalToggle]="modal7.id" cButton>IBC-N009</button>
+  <c-modal #modal7 alignment="center" id="IBC-N009">
+    <c-modal-header>
+      <button [cModalToggle]="modal7.id" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body class="text-center">
+      <c-row class="mb-3">
+        <c-col>
+          <img 
+                  src="/assets/images/egate.png" 
+                  alt="Back Side" 
+                >
+        </c-col>
+      </c-row>
+      Pengesahan Berjaya!
+      Sila Keluar dari Laluan eGate.
+    </c-modal-body>
+    <c-modal-footer>
+    </c-modal-footer>
+  </c-modal>
+
+    <button [cModalToggle]="modal11.id" cButton>SM-IBC-02.1.7.-3</button>
+  <c-modal #modal11 alignment="center" id="SM-IBC-02.1.7.-3">
+    <c-modal-header>
+      <button [cModalToggle]="modal11.id" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body class="text-center">
+      <c-row class="mb-3">
+        <c-col>
+          <img 
+                  src="/assets/images/egate.png" 
+                  alt="Back Side" 
+                >
+        </c-col>
+      </c-row>
+      Pemeriksaan Masuk Berjaya!
+      <c-row class="mb-3" style="margin-left: 4rem;">
+        <c-col md="12">
+          <c-row class="align-items-center">
+            <!-- Label Column -->
+            <c-col md="5" class="text-centerpe-3">
+              <c-label cLabel>Jenis Pas</c-label>
+            </c-col>
+            
+            <!-- Input Column -->
+            <c-col md="6">  
+              <input 
+                type="text" 
+                cFormControl 
+                style="width: 100%; max-width: 250px;"  
+                placeholder="Visa Transmit" 
+                disabled>
+            </c-col>
+          </c-row>
+        </c-col>
+      </c-row>
+
+      <c-row class="mb-3" style="margin-left: 4rem;">
+        <c-col md="12">
+          <c-row class="align-items-center">
+            <!-- Label Column -->
+            <c-col md="5" >
+              <c-label cLabel>Tarikh Tamat Pas</c-label>
+            </c-col>
+            
+            <!-- Input Column -->
+            <c-col md="6">  
+              <input 
+                type="calendar" 
+                cFormControl 
+                style="width: 100%; max-width: 250px;"  
+                placeholder="21 Mac 2025" 
+                disabled>
+            </c-col>
+          </c-row>
+        </c-col>
+      </c-row>
+      Sila Keluar Dari Laluan eGate.
+      <c-col>
+      </c-col>
+      KodQR e-Digital Stamping akan dihantar ke e-mel anda.
+    </c-modal-body>
+    <c-modal-footer>
+    </c-modal-footer>
+  </c-modal>
+
+  <button [cModalToggle]="modal8.id" cButton>IBC-S031</button>
+  <c-modal #modal8 alignment="center" id="IBC-S031">
+    <c-modal-header>
+      <button [cModalToggle]="modal8.id" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body class="text-center">
+      <c-row class="mb-3">
+        <c-col>
+          <img 
+                  src="/assets/images/egate.png" 
+                  alt="Back Side" 
+                >
+        </c-col>
+      </c-row>
+      Imbasan Wajah dan Iris Gagal!
+      <c-col></c-col>
+      Sila Letakkan Dua (2) Jari Telunjuk di Pengimbas Cap Jari. 
+    </c-modal-body>
+    <c-modal-footer>
+    </c-modal-footer>
+  </c-modal>
+
+  <button [cModalToggle]="modal9.id" cButton>IBC-S036</button>
+  <c-modal #modal9 alignment="center" id="IBC-S036">
+    <c-modal-header>
+      <button [cModalToggle]="modal9.id" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body class="text-center">
+      <c-row class="mb-3">
+        <c-col>
+          <img 
+                  src="/assets/images/egate.png" 
+                  alt="Back Side" 
+                >
+        </c-col>
+      </c-row>
+      Verifikasi Biometrik Gagal!
+    </c-modal-body>
+    <c-modal-footer>
+    </c-modal-footer>
+  </c-modal>
+
+  <c-modal #verticallyCenteredModal alignment="center" id="verticallyCenteredModal">
+    <div
+        style="display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 6px; width: 300px; margin: auto; background-color: white;">
+        <div style="width: 100px; height: 90px; border: 1px solid #999; margin: 20px 0;"></div>
+        <h5 cModalTitle style="margin-top: 25px;" >halo</h5>
+    </div>
+  </c-modal>
+</c-container>
+
+
+

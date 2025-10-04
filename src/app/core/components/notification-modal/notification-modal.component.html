@@ -1,0 +1,35 @@
+<!-- modal notification warning -->
+<c-modal alignment="center" [visible]="visible" keyboard="false" backdrop="static" *ngIf="showModalAlert">
+  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 6px; width: 300px; margin: auto; background-color: white;">
+    <div style="width: 100px; height: 90px; border: 1px solid #999; margin: 20px 0;"></div>
+    <h5 *ngIf="modalTitle" cModalTitle style="margin-top: 25px;" class="text-center">{{ modalTitle }}</h5>
+    <button cButton color="primary" style="margin: 50px; padding: 10px 40px;" (click)="confirm()">OK</button>
+  </div>
+</c-modal>
+
+<!-- Biometric Exception Modal -->
+<c-modal alignment="center" id="biometricModal" *ngIf="showBiometricModal" keyboard="false" backdrop="static" visible>
+  <c-modal-header>
+    <h5 cModalTitle>Pengecualian Biometrik</h5>
+  </c-modal-header>
+  <c-modal-body>
+    <div class="mb-3">
+      <label class="mb-3">Senarai Pengecualian</label>
+      <select cFormSelect [(ngModel)]="exceptionReason" class="form-control">
+        <option value="">-- Sila Pilih --</option>
+        <option value="imbasan_wajah_gagal">Imbasan Wajah Gagal</option>
+        <option value="tisu_jari_rosak">Tisu Jari Rosak</option>
+        <option value="oku_tiada_jari">OKU Tiada Jari</option>
+        <option value="wajah_tidak_sempurna">Wajah Tidak Sempurna</option>
+        <option value="oku_tiada_penglihatan">OKU Tiada Penglihatan</option>
+        <option value="VVIP">VVIP</option>
+        <option value="penumpang_singgahan">Penumpang Singgahan</option>
+        <option value="anak_kapal_kargo/penumpang_pemeriksaan_diatas_kapal">Anak Kapal Kargo / Penumpang Pemeriksaan Di Atas Kapal</option>
+        <option value="tentera_asing_bertugas">Tentera Asing Bertugas</option>
+      </select>
+    </div>
+  </c-modal-body>
+  <c-modal-footer class="justify-content-end">
+    <button cButton color="primary" (click)="confirm()">OK</button>
+  </c-modal-footer>
+</c-modal>

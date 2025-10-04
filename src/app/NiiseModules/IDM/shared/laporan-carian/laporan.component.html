@@ -1,0 +1,68 @@
+<c-container fluid class="mt-4" id="report-content">
+    <div class="card">
+        <div class="m-4">
+        <div class="report-container" #reportContent #printContent>
+                <!-- Header Logo -->
+                <div class="header d-flex flex-column align-content-center pt-4">
+                    <img src="assets/logo/login_logo.png" alt="Logo" class="logo">
+                    <p class="mt-2" ><b>JABATAN IMIGRESEN MALAYSIA</b></p>
+                </div>
+
+                <!-- Report Title -->
+                <h5 class="title"><b>{{ reportTitle }}</b></h5>
+
+                <!-- Filter Summary -->
+                 <div class="filters">
+                    <div *ngFor="let field of activeReportFilters" >
+
+                        <!-- special case for tarikh -->
+                        <ng-container *ngIf="field === 'tarikhMula'">
+                            <span>
+                            <strong>{{ labels['tarikh'] }}</strong> : {{ tarikhDisplay }}
+                            </span>
+                        </ng-container>
+
+                        <!-- skip tarikhHingga since already shown -->
+                        <ng-container *ngIf="field !== 'tarikhMula' && field !== 'tarikhHingga'">
+                            <span style="text-transform:uppercase;">
+                            <strong>{{ labels[field] || field }}</strong> : {{ searchFilters[field] && searchFilters[field].trim() !== '' ? searchFilters[field] : '-' }}
+                            </span>
+                        </ng-container>
+                    </div>
+                </div>
+
+                <!-- Dynamic Table -->
+                <div class="table-container">
+                    <!-- Table for Jumlah Pegawai yang Telah Didaftarkan -->
+                    <table class="report-table">
+                    <thead>
+                        <th style="width: 5%;">
+                            <div class="d-flex align-items-center table-header gap-2" *ngIf="selectedTable !== 'Senarai ID Pengguna Semasa'">
+                                Bil.
+                            </div>
+                        </th>
+                        <th *ngFor="let header of tableData.headers">
+                            <div class="d-flex align-items-center table-header gap-1">
+                                {{ header.label }}
+                            </div>
+                        </th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of tableData.data; let i = index">
+                            <td *ngIf="selectedTable !== 'Senarai ID Pengguna Semasa'">{{ i + 1 }}</td>
+                            <td *ngFor="let header of tableData.headers">
+                            {{ row[header.field] }}
+                            </td>
+                        </tr>
+                        <tr *ngIf="tableData.data.length === 0">
+                            <td colspan="6" class="text-center text-muted py-4">
+                                Tiada rekod.
+                            </td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</c-container>

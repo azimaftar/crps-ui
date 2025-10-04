@@ -1,0 +1,242 @@
+<div class="container card">
+  <div class="card-header">
+    <h4>Pengurusan NTL</h4>
+  </div>
+
+  <div class="card-body row">
+    <!-- Left: Form Section -->
+    <div class="col-12 col-md-8 border-end mb-4 mb-md-0">
+      <form Cform class="row mb-3 align-items-end">
+        <!-- No Passport Field -->
+        <c-col class="col-12 col-md-6">
+          <label cLabel for="noPassport">No Passport *</label>
+          <input
+            cFormControl
+            id="noPassport"
+            type="text"
+            name="noPassport"
+            #noPassport
+          />
+        </c-col>
+
+        <!-- Button Group -->
+        <c-col class="col-12 col-md-6">
+          <div class="d-flex gap-2">
+            <button cButton color="dark" type="submit">Carian</button>
+            <button cButton color="dark" type="button" (click) = "gotoImbasPassportNtl()">
+              Imbas Passport
+            </button>
+          </div>
+        </c-col>
+      </form>
+
+      <h5>Maklumat Profil Pengembara</h5>
+      <img
+        cImg
+        class="img-fluid rounded mb-3"
+        src="../../../../assets/images/avatars/9.jpg"
+        alt="Profil"
+        style="max-width: 200px"
+      />
+
+      <form cForm class="row g-3">
+        <!-- Input Fields (Use col-12 col-md-6 for responsiveness) -->
+        <c-col class="col-12 col-md-6">
+          <label cLabel for="jenispelawat">Jenis Pelawat *</label>
+          <input
+            cFormControl
+            id="jenispelawat"
+            type="text"
+            name="jenispelawat"
+            #jenispelawat
+            disabled
+          /> </c-col
+        ><c-col class="col-12 col-md-6"></c-col>
+        <c-col class="col-12 col-md-6">
+          <label cLabel for="jenisDokumen">Jenis Dokumen</label>
+          <input
+            cFormControl
+            id="jenisDokumen"
+            type="text"
+            name="jenisDokumen"
+            #jenisDokumen
+            disabled
+          />
+        </c-col>
+        <c-col class="col-12 col-md-6">
+          <label cLabel for="jantina">Jantina</label>
+          <select id="jantina" name="jantina" class="form-control" disabled>
+            <option value="M">M - Male</option>
+            <option value="F">F - Female</option>
+          </select>
+        </c-col>
+        <c-col class="col-12 col-md-6">
+          <label cLabel for="noDokumen">No Dokumen</label>
+          <input
+            cFormControl
+            id="noDokumen"
+            type="text"
+            name="noDokumen"
+            #noDokumen
+            disabled
+          />
+        </c-col>
+        <c-col class="col-12 col-md-6">
+          <label cLabel for="noPengenalan">No Pengenalan</label>
+          <input
+            type="text"
+            id="noPengenalan"
+            name="noPengenalan"
+            class="form-control"
+            [(ngModel)]="noPengenalan"
+            (ngModelChange)="onNoPengenalanChange($event)"
+            disabled
+          />
+          <p *ngIf="noPengenalanError" class="text-danger mb-1">
+            {{ noPengenalanError }}
+          </p>
+        </c-col>
+        <c-col class="col-12">
+          <label cLabel for="Nama">Nama</label>
+          <input cFormControl id="nama" name="nama" type="text" disabled />
+        </c-col>
+        <c-col class="col-12 col-md-6">
+          <label cLabel for="tarikhdikeluarkan">Tarikh Dikeluarkan</label>
+          <input
+            cFormControl
+            id="tarikhdikeluarkan"
+            name="tarikhdikeluarkan"
+            type="date"
+            disabled
+          />
+        </c-col>
+        <c-col class="col-12 col-md-6">
+          <label cLabel for="tarikhtamatdokumen"
+            >Tarikh Tamat Dokumen Perjalanan</label
+          >
+          <input
+            cFormControl
+            id="tarikhtamatdokumen"
+            type="date"
+            name="tarikhtamatdokumen"
+            #tarikhtamatdokumen
+            disabled
+          />
+        </c-col>
+        <c-col class="col-12 col-md-6">
+          <label cLabel for="umur">Umur</label>
+          <input
+            type="text"
+            id="umur"
+            name="umur"
+            class="form-control"
+            [(ngModel)]="umur"
+            (ngModelChange)="onUmurChange($event)"
+            disabled
+          />
+          <p *ngIf="umurError" class="text-danger mb-1">{{ umurError }}</p>
+        </c-col>
+        <c-col class="col-12 col-md-6">
+          <label cLabel for="warganegara">Warganegara</label>
+          <input
+            cFormControl
+            id="warganegara"
+            type="text"
+            name="warganegara"
+            disabled
+          />
+        </c-col>
+        <c-col class="col-12 col-md-6">
+          <label cLabel for="negaraPengeluar">Negara Pengeluar</label>
+          <input
+            cFormControl
+            id="negaraPengeluar"
+            type="text"
+            name="negaraPengeluar"
+            disabled
+          />
+        </c-col>
+        <c-col class="col-12 col-md-6">
+          <label cLabel for="status">Status</label>
+          <input cFormControl id="status" type="text" name="status" disabled />
+        </c-col>
+      </form>
+      <c-col class="text-end" style="margin-top: 100px;">
+        <button class="btn btn-back btn-dark m-2" disabled>
+                &lt;
+            </button>
+            <button class="btn btn-next btn-dark m-2" (click)="nextSection()">
+                &gt;
+            </button>
+      </c-col>
+    </div>
+
+    <!-- Right: Stepper Section -->
+    <div class="col-12 col-md-4">
+      <div
+        class="p-3 rounded h-100"
+        style="overflow-y: auto; padding-top: 20px"
+      >
+        <div class="d-flex flex-column gap-3 position-relative">
+          <!-- Vertical Line -->
+          <div
+            style="
+              position: absolute;
+              left: 12px;
+              top: 12px;
+              bottom: 12px;
+              width: 2px;
+              background-color: #dee2e6;
+              z-index: 0;
+            "
+          ></div>
+
+          <!-- Steps -->
+          <div
+            class="d-flex align-items-start cursor-pointer"
+            *ngFor="let step of steps; let i = index"
+            (click)="goToStep(step)"
+            style="z-index: 1"
+          >
+            <!-- Step number circle -->
+            <div style="position: relative; margin-right: 8px">
+              <div
+                class="rounded-circle d-flex align-items-center justify-content-center mt-1"
+                [ngClass]="{
+                  'bg-primary text-white': i + 1 === activeStep,
+                  'bg-light border border-secondary text-secondary':
+                    i + 1 !== activeStep
+                }"
+                style="width: 24px; height: 24px; font-size: 0.75rem"
+              >
+                {{ i + 1 }}
+              </div>
+            </div>
+
+            <!-- Step label -->
+            <div class="d-flex flex-column">
+              <small class="text-muted">Langkah {{ i + 1 }}</small>
+              <span
+                [ngClass]="{
+                  'text-primary fw-bold': i + 1 === activeStep,
+                  'text-secondary': i + 1 !== activeStep
+                }"
+              >
+                {{ step.label }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Notification Modal -->
+<app-notification-modal
+  [modalTitle]="modalTitle"
+  [visible]="showModal"
+  [showBiometricModal]="showBiometricModal"
+  [showModalAlert]="showModalAlert"
+  (close)="closeModal()"
+></app-notification-modal>

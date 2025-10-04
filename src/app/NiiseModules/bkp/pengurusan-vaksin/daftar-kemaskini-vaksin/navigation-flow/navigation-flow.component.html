@@ -1,0 +1,24 @@
+        <!-- Horizontal Stepper -->
+        <div class="horizontal-stepper">
+            <ul class="horizontal-stepper stepper-list">
+            <li
+                class="stepper-item"
+                *ngFor="let step of steps"
+                [class.active]="isStepActive(step.number)">
+                <button type="button" class="horizontal-stepper step-btn" (click)="navigateTo(step)">
+                <span class="horizontal-stepper step-number">{{ step.number }}</span>
+                <span class="step-title">{{ step.title }}</span>
+                
+                </button>
+            </li>
+            </ul>
+            
+        </div>
+
+        <!-- <div *ngIf = "step === 1">
+            <app-carian-vaksin (onSelectVaksin)="selectedVaksin = $event"></app-carian-vaksin>
+        </div>
+
+        <div *ngIf = "step === 2">
+            
+        </div> -->

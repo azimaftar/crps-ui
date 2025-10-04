@@ -1,0 +1,169 @@
+<c-card>
+    <c-card-header class="bg-primary text-white">
+        <h5 class="mb-0">KALENDAR TAKWIM</h5>
+    </c-card-header>
+    <c-card-body class="p-0">
+
+        <div class="search-section bg-light p-3">
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <div class="d-flex align-items-center flex-nowrap gap-3">
+                    <label for="negeri-pejabat" class="mb-0 flex-shrink-0">Negeri/Pejabat Atase:</label>
+                    <select id="negeri-pejabat" name="negeri-pejabat" [(ngModel)]="selectedRegion"
+                        class="form-select flex-grow-1">
+                        <option value="">Wilayah Persekutuan Putrajaya, Malaysia</option>
+                        <option value="selangor">Selangor, Malaysia</option>
+                        <option value="jakarta">Jakarta, Indonesia</option>
+                    </select>
+                </div>
+                <button class="btn btn-dark" (click)="search()">CARI</button>
+            </div>
+        </div>
+
+        <div class="calendar-container">
+            <div class="header">
+                <button (click)="previousMonth()">◄</button>
+                <h1>{{ getMonthName() }}</h1>
+                <button (click)="nextMonth()">►</button>
+                <button (click)="eLibrary()">e-LIBRARY</button>
+            </div>
+            <div class="calendar-grid">
+                <div class="day-header" *ngFor="let day of daysOfWeek">{{ day }}</div>
+                <div class="day" *ngFor="let day of daysInMonth" [ngClass]="{
+                    'empty': day.date.getMonth() !== currentDate.getMonth(),
+                    'holiday': day.isHoliday,
+                    'selected': selectedDate === day.date,
+                    'has-event': day.events && day.events.length > 0,
+                    'view-only': isViewOnly
+                    }" (click)="!isViewOnly && openModal(day)">
+                    <span *ngIf="day.date.getMonth() === currentDate.getMonth()">{{ day.date.getDate() }}</span>
+                    <span *ngIf="day.holidayNames" class="holiday-name">
+                        {{ day.holidayNames.join(', ') }}
+                    </span>
+                    <span *ngIf="day.events && day.events.length > 0" class="event-name">
+                        {{ day.events[0].eventName }}
+                    </span>
+                </div>
+            </div>
+            <div class="details">
+                <h3>Holiday Details</h3>
+                <p>{{ getHolidayDetails() }}</p>
+            </div>
+        </div>
+    </c-card-body>
+</c-card>
+
+<!-- Modal for Displaying Holidays -->
+<c-modal [visible]="showModal" (visibleChange)="showModal = $event" size="lg">
+    <c-modal-header class="bg-primary text-white">
+        <h5>TAKWIM - {{getModalTitle()}}</h5>
+    </c-modal-header>
+    <c-modal-body>
+
+        <div class="date-section p-3 mb-4">
+            <div class="d-flex justify-content-center">
+                <div class="d-flex align-items-center gap-3">
+                    <label for="selected-date" class="mb-0 flex-shrink-0">Tarikh:</label>
+                    <input type="text" id="selected-date" class="form-control"
+                        [value]="selectedDate | date:'dd/MM/yyyy'" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end mb-3">
+            <button class="btn btn-dark" (click)="tambahCuti()">TAMBAH</button>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="table-light">
+                    <tr>
+                        <th>No.</th>
+                        <th>Jenis Cuti</th>
+                        <th>Keterangan Cuti</th>
+                        <th>Tindakan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let holiday of getHolidaysForSelectedDate(); let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{holiday.type}}</td>
+                        <td>{{holiday.name}}</td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-dark">KEMASKINI</button>
+                                <button class="btn btn-dark">NYAHAKTIF</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr *ngIf="getHolidaysForSelectedDate().length === 0">
+                        <td colspan="4" class="text-center">Tiada Rekod</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </c-modal-body>
+    <c-modal-footer>
+        <button class="btn btn-dark" (click)="closeModal()">BATAL</button>
+    </c-modal-footer>
+</c-modal>
+
+<!-- Modal for Add Holidays -->
+<c-modal [visible]="showAddModal" (visibleChange)="showAddModal = $event" size="lg">
+    <c-modal-header class="bg-primary text-white">
+        <h5>TAKWIM - {{getModalTitle()}}</h5>
+    </c-modal-header>
+    <c-modal-body>
+        <div class="centered-form-section p-3">
+            <!-- Tarikh Field -->
+            <div class="date-section mb-4">
+                <div class="d-flex justify-content-center">
+                    <div class="field-group">
+                        <label for="selected-date" class="field-label">Tarikh:</label>
+                        <input type="text" id="selected-date" class="form-control field-input"
+                            [value]="selectedDate | date:'dd/MM/yyyy'" disabled>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jenis Cuti Field -->
+            <div class="date-section mb-4">
+                <div class="d-flex justify-content-center">
+                    <div class="field-group">
+                        <label for="jenis-cuti" class="field-label">Jenis Cuti:</label>
+                        <select id="jenis-cuti" class="form-select field-input" [(ngModel)]="newHoliday.type">
+                            <option value="Cuti Umum">Cuti Umum</option>
+                            <option value="Cuti Negeri">Cuti Negeri</option>
+                            <option value="Cuti Peristiwa">Cuti Peristiwa</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Keterangan Field -->
+            <div class="date-section mb-4">
+                <div class="d-flex justify-content-center">
+                    <div class="field-group">
+                        <label for="keterangan-cuti" class="field-label">Keterangan Cuti:</label>
+                        <input type="text" id="keterangan-cuti" class="form-control field-input"
+                            [(ngModel)]="newHoliday.name" placeholder="Masukkan nama cuti">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </c-modal-body>
+    <c-modal-footer>
+        <button class="btn btn-dark" (click)="cancelAddHoliday()">BATAL</button>
+        <button class="btn btn-dark" (click)="saveHoliday()">SIMPAN</button>
+    </c-modal-footer>
+</c-modal>
+
+<!-- Modal for Cofirmation -->
+<c-modal [visible]="showConfirmationModal" (visibleChange)="showConfirmationModal = $event" size="sm">
+    <c-modal-body class="text-center">
+        <p class="mt-5 mb-3">Adakah anda pasti?</p>
+    </c-modal-body>
+    <c-modal-footer>
+        <button class="btn btn-dark" (click)="confirmSaveHoliday()">YA</button>
+        <button class="btn btn-dark" (click)="cancelSaveHoliday()">TIDAK</button>
+    </c-modal-footer>
+</c-modal>

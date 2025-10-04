@@ -1,0 +1,271 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<div class="custom-content-wrapper">
+  <c-card>
+    <c-card-body>
+      <!-- PAGE TITLE -->
+      <c-row>
+        <h3>Rekod Pengembara</h3>
+      </c-row>
+
+      <!-- STEPPER -->
+      <c-row>
+        <reusable-tab [currentStep]="currentStep" [steps]="steps"></reusable-tab>
+      </c-row>
+
+      <!-- FORM -->
+      <c-row>
+        <form [formGroup]="anakKapalForm">
+          <c-row>
+            <!-- LEFT -->
+            <c-col xs="12" md="3" class="d-flex flex-column align-items-center">
+              <!-- PHOTO -->
+              <img src="assets/images/avatars/9.jpg" alt="Profile Image" class="img-fluid mb-3"
+                style="width: 200px; height: 200px; object-fit: cover; border-radius: 10px;" />
+
+              <!-- ACTION BUTTONS -->
+              <div style="width: 200px;">
+                <button cButton type="button" class="action-button mb-2 w-100" (click)="captureFaceAndIris()"
+                  [disabled]="isMaklumatLengkap">
+                  <i class="bi bi-check-circle" [class.d-none]="!isMaklumatLengkap"></i> Ambil Wajah &
+                  Iris
+                </button>
+
+                <button cButton type="button" class="action-button mb-2  w-100" (click)="captureFingerprint()"
+                  [disabled]="isMaklumatLengkap">
+                  <i class="bi bi-check-circle" [class.d-none]="!isMaklumatLengkap"></i> Ambil Cap
+                  Jari
+                </button>
+              </div>
+            </c-col>
+
+            <!-- RIGHT -->
+            <c-col>
+              <!-- Maklumat Anak Kapal -->
+              <h6 class="mb-4" style="font-weight: bold;">Maklumat Anak Kapal</h6>
+
+              <!-- Jenis Dokumen dan Jantina -->
+              <c-row class="g-3 mb-3 ms-1">
+                <c-col>
+                  <label cLabel>Jenis Dokumen</label>
+                  <input cFormControl formControlName="docType" type="text" class="form-control" />
+                </c-col>
+                <c-col>
+                  <label cLabel>Jantina</label>
+                  <input cFormControl formControlName="gender" type="text" class="form-control" />
+                </c-col>
+              </c-row>
+
+              <!-- No Dokumen dan No Pengenalan -->
+              <c-row class="g-3 mb-3 ms-1">
+                <c-col>
+                  <label cLabel>No. Dokumen</label>
+                  <input cFormControl formControlName="docNo" type="text" class="form-control" />
+                </c-col>
+                <c-col>
+                  <label cLabel>No. Pengenalan</label>
+                  <input cFormControl formControlName="kpNo" type="text" class="form-control" />
+                </c-col>
+              </c-row>
+
+              <!-- Nama -->
+              <c-row class="g-3 mb-3 ms-1">
+                <c-col md="12">
+                  <label cLabel for="name" class="mb-2">Nama</label>
+                  <input cFormControl id="name" type="text" formControlName="name" class="form-control" />
+                </c-col>
+              </c-row>
+
+              <!-- Tarikh Lahir dan Warganegara -->
+              <c-row class="g-3 mb-3 ms-1">
+                <c-col>
+                  <label cLabel>Tarikh Lahir</label>
+                  <input cFormControl formControlName="dob" type="text" class="form-control" />
+                </c-col>
+                <c-col>
+                  <label cLabel>Warganegara</label>
+                  <input cFormControl formControlName="nationality" type="text" class="form-control" />
+                </c-col>
+              </c-row>
+
+              <!-- Maklumat Visa  -->
+              <h6 class="mb-4 mt-5" style="font-weight: bold;">Maklumat Visa</h6>
+
+              <!-- No Visa dan No QR -->
+              <c-row class="g-3 mb-3 ms-1">
+                <!-- No Visa -->
+                <c-col>
+                  <label cLabel for="visaNo" class="mb-2">No Visa</label>
+                  <input cFormControl id="visaNo" type="text" formControlName="visaNo" class="form-control" />
+                </c-col>
+                <!-- No Rujukan QR VDS -->
+                <c-col>
+                  <label cLabel for="visaQrVds" class="mb-2">No Rujukan QR VDS</label>
+                  <input cFormControl id="visaQrVds" type="text" formControlName="visaQrVds" class="form-control" />
+                </c-col>
+              </c-row>
+
+              <!-- Jenis Visa -->
+              <c-row class="g-3 mb-3 ms-1">
+                <c-col>
+                  <label cLabel for="visaType" class="mb-2">Jenis Visa</label>
+                  <input cFormControl id="visaType" type="text" formControlName="visaType" class="form-control" />
+                </c-col>
+                <c-col>
+                  <!-- Empty right column -->
+                </c-col>
+              </c-row>
+
+              <!-- Tarikh Dikeluarkan dan Tarikh Tamat Visa -->
+              <c-row class="g-3 mb-3 ms-1">
+                <!-- Tarikh Dikeluarkan -->
+                <c-col>
+                  <label cLabel for="visaIssueDate" class="mb-2">Tarikh Dikeluarkan</label>
+                  <input cFormControl id="visaIssueDate" type="text" formControlName="visaIssueDate"
+                    class="form-control" />
+                </c-col>
+                <!-- Tarikh Tamat Visa -->
+                <c-col>
+                  <label cLabel for="visaExpiryDate" class="mb-2">Tarikh Tamat Visa</label>
+                  <input cFormControl id="visaExpiryDate" type="text" formControlName="visaExpiryDate"
+                    class="form-control" />
+                </c-col>
+              </c-row>
+
+              <!-- Maklumat Kapal -->
+              <h6 class="mb-4 mt-5" style="font-weight: bold;">Maklumat Kapal</h6>
+
+              <!-- Nama Kapal dan Jenis Kapal -->
+              <c-row class="g-3 mb-3 ms-1">
+                <!-- Nama Kapal -->
+                <c-col>
+                  <label cLabel for="shipName" class="mb-2">Nama Kapal</label>
+                  <input cFormControl id="shipName" type="text" formControlName="shipName" class="form-control" />
+                </c-col>
+                <!-- Jenis Kapal -->
+                <c-col>
+                  <label cLabel for="shipType" class="mb-2">Jenis Kapal</label>
+                  <input cFormControl id="shipType" type="text" formControlName="shipType" class="form-control" />
+                </c-col>
+              </c-row>
+
+              <!-- No IMO -->
+              <c-row class="g-3 mb-3 ms-1">
+                <!-- Nama Kapal -->
+                <c-col>
+                  <label cLabel for="noIMO" class="mb-2">IMO No.</label>
+                  <input cFormControl id="noIMO" type="text" formControlName="noIMO" class="form-control" />
+                </c-col>
+                <!-- Jenis Kapal -->
+                <c-col>
+                  <!-- Empty -->
+                </c-col>
+              </c-row>
+
+              <!-- Call Sign and Voyage No -->
+              <c-row class="g-3 mb-3 ms-1">
+                <!-- Call Sign -->
+                <c-col>
+                  <label cLabel for="callSign" class="mb-2">Call Sign</label>
+                  <input cFormControl id="callSign" type="text" formControlName="callSign" class="form-control" />
+                </c-col>
+                <!-- Voyage No. -->
+                <c-col>
+                  <label cLabel for="voyageNo" class="mb-2">Voyage No.</label>
+                  <input cFormControl id="voyageNo" type="text" formControlName="voyageNo" class="form-control" />
+                </c-col>
+              </c-row>
+
+              <!-- Nama Ejen Perkapalan -->
+              <c-row class="g-3 mb-3 ms-1">
+                <c-col md="12">
+                  <label cLabel for="companyName" class="mb-2">Nama Ejen Perkapalan</label>
+                  <input cFormControl id="companyName" type="text" formControlName="companyName" class="form-control" />
+                </c-col>
+              </c-row>
+
+              <!-- Maklumat Jangka Tiba dan Berlayar Kapal -->
+              <h6 class="mb-4 mt-5" style="font-weight: bold;">Maklumat Jangka Tiba dan Berlayar Kapal</h6>
+
+              <!-- Tarikh dan Masa Jangka Tiba -->
+              <c-row class="g-3 mb-3 ms-1">
+                <!-- Tarikh Jangka Tiba-->
+                <c-col>
+                  <label cLabel for="expArrDate" class="mb-2">Tarikh Jangka Tiba</label>
+                  <input cFormControl id="expArrDate" type="text" formControlName="expArrDate" class="form-control" />
+                </c-col>
+                <!-- Masa Jangka Tiba -->
+                <c-col>
+                  <label cLabel for="expArrTime" class="mb-2">Masa Jangka Tiba</label>
+                  <input cFormControl id="expArrTime" type="text" formControlName="expArrTime" class="form-control" />
+                </c-col>
+              </c-row>
+
+              <!-- Tarikh Jangka dan Masa Berlayar -->
+              <c-row class="g-3 mb-3 ms-1">
+                <!-- Tarikh Jangka Berlayar-->
+                <c-col>
+                  <label cLabel for="expDepDate" class="mb-2">Tarikh Jangka Berlayar</label>
+                  <input cFormControl id="expDepDate" type="text" formControlName="expDepDate" class="form-control" />
+                </c-col>
+                <!-- Masa Jangka Berlayar -->
+                <c-col>
+                  <label cLabel for="expDepTime" class="mb-2">Masa Jangka Berlayar</label>
+                  <input cFormControl id="expDepTime" type="text" formControlName="expDepTime" class="form-control" />
+                </c-col>
+              </c-row>
+
+              <!-- Jangka Rapat dan Dermaga -->
+              <c-row class="g-3 mb-3 ms-1">
+                <!-- Jangka Rapat dan Dermaga -->
+                <c-col>
+                  <label cLabel for="nextPort" class="mb-2">Jangka Rapat dan Dermaga</label>
+                  <input cFormControl id="nextPort" type="text" formControlName="nextPort" class="form-control" />
+                </c-col>
+                <c-col>
+                  <!-- Empty -->
+                </c-col>
+              </c-row>
+
+            </c-col>
+
+          </c-row>
+
+          <c-row>
+            <!-- Bottom Navigation -->
+            <div class="row mt-4">
+              <div class="col-12">
+                <div class="d-flex justify-content-end gap-2 mb-4">
+                  <!-- Reset Button -->
+                  <button class="btn btn-outline-secondary d-flex align-items-center gap-1" type="reset"
+                    (click)="resetForm()">
+                    <i class="bi bi-arrow-clockwise"></i>
+                    Set Semula
+                  </button>
+
+                  <!-- Save Button -->
+                  <button class="btn btn-submit d-flex align-items-center gap-1 me-4" (click)="saveForm()"
+                    [disabled]="!canSave">
+                    <i class="bi bi-check-circle"></i>
+                    Simpan
+                  </button>
+
+                  <!-- Navigation Button -->
+                  <c-button-group aria-label="navigation buttons" role="group">
+                    <button cButton variant="outline" color="secondary" (click)="goBack()">
+                      &lt;
+                    </button>
+                    <button cButton variant="outline" color="secondary" (click)="goNext()" disabled>
+                      &gt;
+                    </button>
+                  </c-button-group>
+                </div>
+              </div>
+            </div>
+          </c-row>
+
+        </form>
+      </c-row>
+    </c-card-body>
+  </c-card>
+</div>

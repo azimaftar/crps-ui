@@ -1,0 +1,118 @@
+<c-container class="p-3">
+    <c-card>
+        <c-card-header>
+            PEMERIKSAAN MASUK (EGATE) - BAHAGIAN DATA BIOMETRIK [WAJAH & IRIS]
+        </c-card-header>
+        <c-card-body>
+            <c-row>
+                <!-- LEFT SIDE -->
+                <c-col class="col-12 col-md-8 p-3 border-end" style="border-right: 1px solid #ccc;">
+
+                    <!-- WAJAH -->
+                    <c-row class="p-3">
+                        <!-- Pengecaman Wajah -->
+                        <c-col class="d-flex align-items-center">
+                            <div
+                                style="border: 1px solid #ccc; border-radius: 6px; padding: 1rem; width: 200px; min-width: 200px; max-width: 200px;">
+                                <div
+                                    style="border: 1px solid #ccc; border-radius: 6px; padding:60px 30px; text-align: center;">
+                                    <img src="" alt="WAJAH">
+                                </div>
+                            </div>
+                        </c-col>
+
+                        <!-- Percentage -->
+                        <c-col class="d-flex align-items-center">
+                            <div class="w-100">
+                                <label cLabel for="pengecamanWajah" class="mb-2">% Pengecaman Wajah</label>
+                                <c-progress [value]="75">
+                                    <span class="text-white px-2">75%</span>
+                                </c-progress>
+                                <!-- <input cFormControl id="pengecamanWajah" type="text" class="form-control" /> -->
+                            </div>
+                        </c-col>
+                    </c-row>
+
+                    <!-- IRIS -->
+                    <c-row class="p-3">
+                        <!-- Pengecaman Iris -->
+                        <c-col class="d-flex align-items-center">
+                            <div
+                                style="border: 1px solid #ccc; border-radius: 6px; padding: 1rem; width: 200px; min-width: 200px; max-width: 200px;">
+                                <div
+                                    style="border: 1px solid #ccc; border-radius: 6px; padding:60px 30px; text-align: center;">
+                                    <img src="" alt="IRIS">
+                                </div>
+                            </div>
+                        </c-col>
+
+                        <!-- Percentage -->
+                        <c-col class="d-flex align-items-center">
+                            <div class="w-100">
+                                <label cLabel for="pengecamanIris" class="mb-2">% Pengecaman Iris</label>
+                                <c-progress [value]="75">
+                                    <span class="text-white px-2">75%</span>
+                                </c-progress>
+                                <!-- <input cFormControl id="pengecamanIris" type="text" class="form-control" /> -->
+                            </div>
+                        </c-col>
+
+                    </c-row>
+                </c-col>
+
+                <!-- RIGHT SIDE -->
+                <c-col class="col-12 col-md-4 d-flex justify-content-center align-items-center p-3">
+                    <!-- <button cButton color="primary" (click)="onStatusImbasanClick()">STATUS IMBASAN</button> -->
+                    <button cButton color="primary" disabled>STATUS IMBASAN</button>
+                </c-col>
+            </c-row>
+        </c-card-body>
+    </c-card>
+</c-container>
+
+<!-- MODAL -->
+
+<!-- Modal -->
+<!-- Modal 1 -->
+<app-coreui-modal
+  [title]="'Makluman'"
+  [show]="openModal === 'modal-rujuk-kaunter'"
+  (close)="close()"
+>
+  <div class="text-center">
+    <img src="assets/images/camera-guide.png" alt="" class="img-fluid" style="max-height: 200px;">
+    <p class="mb-3">Sila rujuk ke kaunter manual</p>
+  </div>
+</app-coreui-modal>
+
+<!-- Trigger -->
+<button (click)="open('modal-rujuk-kaunter')" cButton color="primary">
+  MODAL IBC-N015
+</button>
+
+<br /> 
+
+<!-- Modal 2 -->
+<app-coreui-modal
+  [title]="'Makluman'"
+  [show]="openModal === 'modal-masuk-berjaya'"
+  (close)="close()"
+>
+  <div class="text-center">
+    <img src="assets/images/camera-guide.png" alt="" class="img-fluid" style="max-height: 200px;">
+    <p class="mb-3"><strong>Pemeriksaan Masuk Berjaya</strong></p>
+    <p class="mb-3"><strong>Bilangan Pembonceng: 2</strong></p>
+    <!-- Footer Text -->
+      <p style="margin-top: 30px;">
+        Sila Keluar dari Laluan eGate.<br>
+        Kod QR e-Digital Stamping akan dihantar ke e-mel anda.
+      </p>
+  </div>
+</app-coreui-modal>
+
+<!-- Trigger -->
+<button (click)="open('modal-masuk-berjaya')" cButton color="primary">
+  People counting masuk
+</button>
+
+<br /> 

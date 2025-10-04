@@ -1,0 +1,156 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<c-card>
+    <c-container>
+        <c-row>
+            <c-col md="12" class="p-4">
+                <!-- Horizontal Stepper -->
+                <div class="horizontal-stepper">
+                    <ul class="stepper-list d-flex align-items-center justify-content-start flex-wrap">
+                    <li
+                        class="stepper-item"
+                        *ngFor="let step of steps"
+                        (click)="navigateTo(step)"
+                        [class.active]="isStepActive(step.number)">
+                        <button type="button" class="step-btn">
+                        <span class="step-number">{{ step.number }}</span>
+                        <span class="step-title">{{ step.title }}</span>
+                        </button>
+                    </li>
+                    </ul>
+                </div><br>
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3>Kemas Kini Dokumen</h3>
+                    <button cButton color="secondary" (click)="goBack()"><i class="fa fa-arrow-left"></i>Kembali</button>
+                </div>
+
+                <!-- Loading indicator -->
+                <div *ngIf="isLoading" class="text-center p-4">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">Memuatkan maklumat dokumen...</p>
+                </div>
+
+                <!-- Form (only show when data is loaded) -->
+                <div *ngIf="!isLoading">
+                    <form [formGroup]="kemaskiniForm"> 
+
+                        <!-- Document ID (readonly) -->
+                        <div class="mb-3" *ngIf="documentId">
+                            <label class="form-label"><strong>ID Dokumen</strong></label>
+                            <input type="text" class="form-control" [value]="documentId" readonly>
+                        </div>
+
+                        <!-- Staff ID / Nama Pegawai -->
+                        <div class="mb-3">
+                            <label class="form-label"><strong>ID Pegawai <span class="text-danger">*</span></strong></label>
+                            <input 
+                                type="text" 
+                                class="form-control"
+                                formControlName="Staff_name"
+                                [class.is-invalid]="isFormFieldInvalid('Staff_name')"
+                                placeholder="Masukkan ID pegawai">
+                            <div *ngIf="isFormFieldInvalid('Staff_name')" class="invalid-feedback">
+                                ID Pegawai diperlukan
+                            </div>
+                        </div>
+
+                        <!-- Folder Name -->
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Nama Folder <span class="text-danger">*</span></strong></label>
+                            <input 
+                                type="text" 
+                                class="form-control"
+                                formControlName="doc_Name"
+                                [class.is-invalid]="isFormFieldInvalid('doc_Name')"
+                                placeholder="Masukkan nama folder">
+                            <div *ngIf="isFormFieldInvalid('doc_Name')" class="invalid-feedback">
+                                Nama folder diperlukan
+                            </div>
+                        </div>
+
+                        <!-- File Name -->
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Nama Fail <span class="text-danger">*</span></strong></label>
+                            <input 
+                                type="text" 
+                                class="form-control"
+                                formControlName="fileName"
+                                [class.is-invalid]="isFormFieldInvalid('fileName')"
+                                placeholder="Masukkan nama fail">
+                            <div *ngIf="isFormFieldInvalid('fileName')" class="invalid-feedback">
+                                Nama fail diperlukan
+                            </div>
+                        </div>
+
+                         <!-- Upload Date - EDITABLE DATE INPUT -->
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Tarikh Upload <span class="text-danger">*</span></strong></label>
+                            <input 
+                                type="date" 
+                                class="form-control"
+                                formControlName="Upload_date"
+                                [class.is-invalid]="isFormFieldInvalid('Upload_date')">
+                            <div *ngIf="isFormFieldInvalid('Upload_date')" class="invalid-feedback">
+                                Tarikh upload diperlukan
+                            </div>
+                        </div>
+
+                        <!-- Upload Time - EDITABLE TIME INPUT -->
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Masa Upload <span class="text-danger">*</span></strong></label>
+                            <input 
+                                type="time" 
+                                class="form-control"
+                                formControlName="Upload_time"
+                                [class.is-invalid]="isFormFieldInvalid('Upload_time')">
+                            <div *ngIf="isFormFieldInvalid('Upload_time')" class="invalid-feedback">
+                                Masa upload diperlukan
+                            </div>
+                        </div>
+
+                        <!-- Original File Path (readonly, if exists) -->
+                        <div class="mb-3" *ngIf="originalData?.filePath">
+                            <label class="form-label"><strong>Lokasi Fail Asal</strong></label>
+                            <div class="border p-2 rounded bg-light">
+                                <i class="icon-doc me-2"></i>
+                                <a [href]="originalData.filePath" target="_blank" class="text-decoration-none">
+                                    {{ originalData.fileName }}
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </c-col>
+        </c-row>
+    </c-container>
+     
+    <!-- Navigation Footer -->
+    <div class="p-3">
+        <div class="d-grid gap-2 d-md-flex justify-content-center">
+            <button 
+                cButton 
+                color="primary" 
+                class="me-md-2 text-wrap" 
+                (click)="kemaskini()" 
+                [disabled]="isSubmitting || isLoading || kemaskiniForm.invalid"
+                style="white-space: normal;">
+                <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-1"></span>
+                <i class="fa fa-pencil-square-o"></i>{{ isSubmitting ? 'Mengkemaskini...' : 'Kemaskini' }}
+            </button>
+            <button 
+                cButton 
+                color="secondary" 
+                class="me-md-2 text-wrap" 
+                (click)="goBack()"
+                [disabled]="isSubmitting"
+                style="white-space: normal;">
+                <i class="fa fa-ban"></i> Batal
+            </button>
+        </div>
+    </div>
+</c-card>

@@ -1,0 +1,103 @@
+<div
+  style="background-color: black; max-height:100%"
+>
+  <div style="background-color: red">
+    <app-dev-mode/>
+  </div>  
+  <div
+    class="bg-light dark:bg-transparent min-vh-100 d-flex flex-row align-items-center"
+    style="
+      background-image: url('../../../assets/images/login_background.png');
+      /width: 1440px;/
+      /height: 1024px;/
+      /background-color: black;/
+      background-position: center;
+      /background-repeat: no-repeat;/
+    "
+  >
+
+  <c-container breakpoint="md">
+    <c-row>
+      <c-col lg="16" xl="8" style="align-content: center; color:white;">
+        <h1>Welcome to NIISe System</h1>
+        <h5>The Immigration Department of Malaysia is under the Ministry of Home Affairs, which provides services to Malaysian Citizens, Permanent Residents and Foreign Visitors.</h5>
+        <br/>
+      </c-col>
+      <c-col lg="8" xl="4">
+        <c-card-group>
+          <c-card class="p-4" style="border-radius: 20px">
+            <img
+              [src]="'../../../../assets/logo/' + config.logo"
+              alt="mySIKAP Logo"
+              style="width: 200px; display: block; margin: 0 auto;"
+            />
+            <c-card-body class="align-content-center">
+              <form cForm >
+                <br />
+                <h4 style="margin:auto; width:100%;" [align]="'center'">Login to your account</h4>
+                <br />
+            
+                <div class="mb-3">
+                  <label cLabel for="userId">ID User</label>
+                  <input
+                    id="userId"
+                    autoComplete="username"
+                    cFormControl
+                    placeholder="Enter your ID"
+                    [(ngModel)]="username"
+                    name="username"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label cLabel for="password">Password</label>
+                  <input
+                    id="password"
+                    autoComplete="password"
+                    type="password"
+                    cFormControl
+                    placeholder="Enter your password"
+                    [(ngModel)]="username"
+                    name="password"
+                  />
+                </div>
+                <c-row class="align-middle">
+                  <c-col xs="7">
+                    <c-form-check class="align-middle">
+                      <input [checked]="true" cFormCheckInput id="checkTwo" type="checkbox" />
+                      <label cFormCheckLabel for="checkTwo">&nbsp;Remember for 30 days</label>
+                    </c-form-check>
+                  </c-col>
+                  <c-col class="text-right" xs="5">
+                    <button cButton class="px-0" color="link" style="text-decoration: none;">
+                      Forgot password?
+                    </button>
+                  </c-col>
+                </c-row>
+
+                <c-row>
+                  <c-col>
+                    <button  style="width: 100%;"
+                             cButton
+                             color="primary"
+                             (click)="login()"
+                    >
+                      Sign in
+                    </button>
+                  </c-col>
+                </c-row>
+
+                <p
+                  *ngIf="errorMessage"
+                  class="text-danger mt-3 text-center"
+                >
+                  {{ errorMessage }}
+                </p>
+              </form>
+            </c-card-body>
+          </c-card>
+        </c-card-group>
+      </c-col>
+    </c-row>
+  </c-container>
+  </div>
+</div>

@@ -1,0 +1,183 @@
+<c-row>
+    <!-- MAIN CONTENT -->
+    <c-col md="9" class="pe-0">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Maklumat Peribadi Subjek</h5>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <label class="form-label">Nama<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" value="Aiman Bin Kasim"
+                                            placeholder="Masukkan nama penuh" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">No. Kad Pengenalan<span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" value="890211049901"
+                                            placeholder="Contoh: 123456789012" readonly>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Jenis Pengenalan<span
+                                                class="text-danger">*</span></label>
+                                        <select class="form-select" disabled>
+                                            <option value="ic">Kad Pengenalan Malaysia</option>
+                                            <option value="passport">Pasport</option>
+                                            <option value="police_id">Kad Pengenalan Polis</option>
+                                            <option value="military_id">Kad Pengenalan Tentera</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">No. Dokumen</label>
+                                        <input type="text" class="form-control" value="A8032111"
+                                            placeholder="Masukkan nombor dokumen" readonly>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Jenis Dokumen</label>
+                                        <select class="form-select" disabled>
+                                            <option value="passport_malaysia">Pasport Malaysia - Semenanjung</option>
+                                            <option value="passport_sabah">Pasport Malaysia - Sabah</option>
+                                            <option value="passport_sarawak">Pasport Malaysia - Sarawak</option>
+                                            <option value="travel_document">Dokumen Perjalanan</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-5">
+                                        <label class="form-label">Warganegara<span class="text-danger">*</span></label>
+                                        <select class="form-select" disabled>
+                                            <option value="malaysia">Malaysia</option>
+                                            <option value="singapore">Singapura</option>
+                                            <option value="indonesia">Indonesia</option>
+                                            <option value="thailand">Thailand</option>
+                                            <option value="other">Lain-lain</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Bangsa</label>
+                                        <select class="form-select" disabled>
+                                            <option value="melayu">Melayu</option>
+                                            <option value="cina">Cina</option>
+                                            <option value="india">India</option>
+                                            <option value="kadazan">Kadazan</option>
+                                            <option value="iban">Iban</option>
+                                            <option value="other">Lain-lain</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <label class="form-label">Tarikh Lahir<span class="text-danger">*</span></label>
+                                        <input type="date" class="form-control" value="1989-02-11" readonly>
+                                    </div>
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Jantina</label>
+                                        <select class="form-select" disabled>
+                                            <option value="lelaki">Lelaki</option>
+                                            <option value="perempuan">Perempuan</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Negara Lahir</label>
+                                        <select class="form-select" disabled>
+                                            <option value="malaysia">Malaysia</option>
+                                            <option value="singapore">Singapura</option>
+                                            <option value="indonesia">Indonesia</option>
+                                            <option value="thailand">Thailand</option>
+                                            <option value="other">Lain-lain</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Tempat Lahir<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" value="Pahang"
+                                            placeholder="Masukkan tempat lahir" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Unik ID</label>
+                                        <input type="text" class="form-control" readonly>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Data Biometrik</label>
+                                        <input type="text" class="form-control" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Catatan Fizikal (Jika Ada)</label>
+                                    <textarea class="form-control" rows="4" readonly></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Catatan Tambahan</label>
+                                    <textarea class="form-control" rows="4" readonly></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- footer -->
+       <div class="bottom-navigation d-flex justify-content-end p-3">
+  <div class="nav-buttons d-flex align-items-center gap-2">
+    <!-- Action Buttons -->
+    <button class="btn btn-dark px-4 py-2 text-nowrap m-0" disabled>
+      Set Semula
+    </button>
+    <button class="btn btn-dark px-4 py-2 text-nowrap m-0" disabled>
+      Hantar
+    </button>
+    
+    <!-- Navigation Buttons -->
+    <button class="btn btn-dark px-3 py-2 m-0" (click)="goToPreviousSection()" title="Previous Section">
+      &lt;
+    </button>
+    <button class="btn btn-dark px-3 py-2 m-0" (click)="goToNextSection()" title="Next Section">
+      &gt;
+    </button>
+  </div>
+</div>
+    </c-col>
+
+    <!-- STEPPER -->
+    <c-col md="3" class="px-4 py-3 mt-3 stepper-container">
+        <ul class="stepper-list">
+            <li class="stepper-item" [class.active]="currentStep === step.number"
+                *ngFor="let step of steps; let i = index">
+                <div class="stepper-content">
+                    <span class="step-number" [class.active]="currentStep === step.number">
+                        {{ step.number }}
+                    </span>
+                    <span class="step-title" [class.active]="currentStep === step.number">
+                        {{ step.title }}
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </c-col>
+</c-row>

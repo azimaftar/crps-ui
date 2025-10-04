@@ -1,0 +1,28 @@
+c-card {
+  padding: 20px;
+}
+
+.btn-custom-normalWhite {
+  border: 1px solid #cad5e2;
+  background-color: #ffffff;
+  font-size: 14px;
+}
+
+.btn-custom-normalBlue {
+  border: 1px solid #cad5e2;
+  font-size: 14px;
+  padding: 10px 16px;
+}
+
+.btn-custom-lightBlue {
+  border-radius: var(--global-layout-radius-sm, 4px);
+  border: 1px solid var(--color-surface-brand-secondary, #d9e9ff);
+  background: var(--color-surface-brand-secondary, #d9e9ff);
+  color: var(--color-text-brand, #1461ba);
+}
+
+.btn-custom-lightBlue:hover {
+  border: 1px solid #1461ba;
+  background: #1461ba;
+  color: white;
+}

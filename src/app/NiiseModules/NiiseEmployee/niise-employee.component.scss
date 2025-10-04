@@ -1,0 +1,62 @@
+:host {
+  .legend {
+    small {
+      font-size: x-small;
+    }
+  }
+  .top-button{
+    width: 120px;
+    height: 90px;
+    margin: 3px;
+  }
+  .item-card{
+    margin-top: 10px;
+    width: 240px;
+    height: 240px;
+    border: 0px solid #ccc;
+  }
+  .main-column{
+    margin-top: 20px;
+    //background-color: #cf2f4c;
+    display: flex;
+    flex-direction: row; /* Change to column if needed */
+  }
+  .main-row{
+    //margin-right: 20px;
+    //background-color: aqua;
+    //margin-left: 20px;
+    display: flex;
+    flex-direction: column; /* Change to column if needed */
+  }
+
+  .right_content {
+    margin-left: auto; /* Pushes to the right */
+    width: 100%; /* Ensures it fills the entire width */
+    min-height: 1000px;
+    //max-width: 400px; /* Adjust as needed */
+  }
+
+  table {
+    width: 100%;
+  }
+
+  td {
+    vertical-align: top; /* Ensures content aligns at the top */
+    padding: 10px; /* Adds spacing between columns */
+  }
+
+  .left-column{
+    width: 25%;
+    color: #e797a5;
+  }
+
+  .center-column{
+    width: 25%;
+    color: #e797a5;
+  }
+
+  .right-column{
+    width: 50%;
+    color: #e797a5;
+  }
+}

@@ -1,0 +1,164 @@
+<!-- Outer Card -->
+<c-card class="mb-3">
+  <!-- Outer Card Body -->
+  <c-card-body>
+    <!-- Inner Card Wrapper -->
+    <div class="p-2">
+      <c-card class="mb-3 shadow-sm">
+        <c-card-body>
+          <c-row>
+            <c-col md="9">
+              <h5 class="mb-4">{{ pageTitle }}</h5>
+
+              <div class="form-group mb-3">
+                <label for="maklumatKesInput">Maklumat Kes</label>
+                <textarea
+                  id="maklumatKesInput"
+                  class="form-control"
+                  placeholder="Contoh: Kes Jenayah 123/2025"
+                  rows="4"
+                  [(ngModel)]="maklumatKes"
+                  name="maklumatKes"
+                  style="resize: vertical; white-space: pre-wrap;"
+                ></textarea>
+              </div>
+
+              <!-- Table -->
+              <br />
+              <h6 class="mb-4">Dokumen Kes</h6>
+              <div
+                class="table-responsive mt-4"
+                style="max-width: 100%; overflow-x: auto;"
+              >
+                <table
+                  cTable
+                  class="table search-results-table mb-0"
+                  style="min-width: 1000px;"
+                >
+                  <thead>
+                    <tr>
+                      <th>Bil.</th>
+                      <th>Keterangan</th>
+                      <th>Nama Dokumen</th>
+                      <th>Format</th>
+                      <th>Tindakan</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let doc of dokumenList; let i = index">
+                      <td>{{ i + 1 }}.</td>
+                      <td>{{ doc.keterangan }}</td>
+                      <td>{{ doc.selectedFile?.name || '-' }}</td>
+                      <td>{{ getFileExtension(doc.selectedFile?.name) || '-' }}</td>
+                      <td>
+
+                        <!-- Hidden File Input -->
+                        <input
+                          type="file"
+                          #fileInput
+                          style="display: none"
+                          (change)="onFileSelected($event, i)" />
+
+                        <!-- Pilih Button -->
+                        <button
+                          cButton
+                          color="primary"
+                          size="sm"
+                          class="me-2"
+                          (click)="fileInput.click()"
+                        >
+                          Pilih
+                        </button>
+
+                        <!-- Muat Naik Button -->
+                        <button
+                          cButton
+                          color="primary"
+                          size="sm"
+                          [disabled]="!dokumenList[i].selectedFile || dokumenList[i].uploadDisabled"
+                          (click)="uploadFile(i)">
+                          Muat Naik
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </c-col>
+
+            <!-- Stepper Column -->
+            <c-col md="3" class="px-4 py-3 mt-3 stepper-container">
+              <ul class="stepper-list">
+                <li
+                  class="stepper-item"
+                  *ngFor="let step of steps; let i = index"
+                  [class.active]="isStepActive(step.number)"
+                >
+                  <div class="stepper-content">
+                    <ng-container *ngIf="step.number === 1">
+                      <span
+                        (click)="navigateToStep1()"
+                        class="step-number step-link"
+                        [class.active]="isStepActive(step.number)"
+                      >
+                        {{ step.number }}
+                      </span>
+                      <span
+                        (click)="navigateToStep1()"
+                        class="step-title step-link"
+                        [class.active]="isStepActive(step.number)"
+                      >
+                        {{ step.title }}
+                      </span>
+                    </ng-container>
+                  </div>
+                </li>
+              </ul>
+            </c-col>
+          </c-row>
+
+          <!-- Checkbox Section -->
+          <div class="form-check mt-4">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="sahkanCheckbox"
+              [(ngModel)]="sahkanChecked"
+            />
+            <label class="form-check-label" for="sahkanCheckbox">
+              Saya mengesahkan maklumat yang diberikan adalah sah dan benar.
+            </label>
+          </div>
+        </c-card-body>
+      </c-card>
+    </div>
+
+    <!-- Action Buttons -->
+    <c-row>
+      <c-col>
+        <button cButton color="primary" class="ms-2" (click)="goBack()">
+          Kembali
+        </button>
+      </c-col>
+
+      <c-col>
+        <button cButton color="primary" class="me-2" (click)="resetForm()">
+          Set Semula
+        </button>
+        <button cButton color="primary" [disabled]="!sahkanChecked" (click)="submitAll()">
+          Hantar
+        </button>
+      </c-col>
+    </c-row>
+  </c-card-body>
+</c-card>
+
+<!-- Pop up screen -->
+<c-modal [visible]="showSuccessModal" (visibleChange)="showSuccessModal = $event">
+  <c-modal-body>
+    <h5 class="text-center">Permohonan Telah Berjaya</h5>
+  </c-modal-body>
+  <c-modal-footer class="justify-content-center">
+    <button cButton color="primary" (click)="closeSuccessModal()">Tutup</button>
+  </c-modal-footer>
+</c-modal>

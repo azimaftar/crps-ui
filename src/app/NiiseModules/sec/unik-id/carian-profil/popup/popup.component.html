@@ -1,0 +1,56 @@
+<c-modal [visible]="HantarPengecualian" (close)="closeModal()">
+  <c-modal-body class="d-flex justify-content-center align-items-center flex-column" style="min-height: 150px;">
+    <div class="mb-3">
+      <label for="rekodStatus" class="form-label">Pengecualian Biometrik</label>
+      <select
+        id="rekodStatus"
+        class="form-select">
+        <option value="facefail">Imbasan Wajah Gagal</option>
+        <option value="fingerfail">Tisu Jari Rosak</option>
+        <option value="okufinger">OKU Tiada Jari</option>
+        <option value="facenotperfect">Wajah Tidak Sempurna</option>
+        <option value="okueyes">OKU Tiada Penglihatan</option>
+        <option value="vvip">VVIP</option>
+      </select>
+    </div>
+  </c-modal-body>
+  <c-modal-footer class="d-flex justify-content-center">
+    <button class="btn btn-secondary" (click)="closeModal()">Submit</button>
+  </c-modal-footer>
+</c-modal>
+
+<c-modal [visible]="Hantarsubmit" (close)="closeModal()">
+  <c-modal-body class="d-flex justify-content-center align-items-center flex-column" style="min-height: 150px;">
+    <div class="text-center mb-3">
+      <img src="assets/images/success.png" alt="Success" class="img-fluid rounded shadow" style="width: 100px; height: 100px;" />
+    </div>
+    <h5 class="text-center m-0">Rekod Telah Berjaya Dihantar</h5>
+  </c-modal-body>
+  <c-modal-footer class="d-flex justify-content-center">
+    <button class="btn btn-secondary" (click)="closeModal()">OK</button>
+  </c-modal-footer>
+</c-modal>
+
+<c-modal [visible]="Hantarsimpan" (close)="closeModal()">
+  <c-modal-body class="d-flex justify-content-center align-items-center flex-column" style="min-height: 150px;">
+    <div class="text-center mb-3">
+      <img src="assets/images/success.png" alt="Success" class="img-fluid rounded shadow" style="width: 100px; height: 100px;" />
+    </div>
+    <h5 class="text-center m-0">Rekod Telah Berjaya Disimpan</h5>
+  </c-modal-body>
+  <c-modal-footer class="d-flex justify-content-center">
+    <button class="btn btn-secondary" (click)="closeModal()">OK</button>
+  </c-modal-footer>
+</c-modal>
+
+<c-modal [visible]="Hantarreset" (close)="closeModal()">
+  <c-modal-body class="d-flex justify-content-center align-items-center flex-column" style="min-height: 150px;">
+    <div class="text-center mb-3">
+      <img src="assets/images/success.png" alt="Success" class="img-fluid rounded shadow" style="width: 100px; height: 100px;" />
+    </div>
+    <h5 class="text-center m-0">Rekod Telah Diset Semula</h5>
+  </c-modal-body>
+  <c-modal-footer class="d-flex justify-content-center">
+    <button class="btn btn-secondary" (click)="closeModal()">OK</button>
+  </c-modal-footer>
+</c-modal>

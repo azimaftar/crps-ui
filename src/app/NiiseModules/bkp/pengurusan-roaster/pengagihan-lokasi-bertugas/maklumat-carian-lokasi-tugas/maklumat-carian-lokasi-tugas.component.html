@@ -1,0 +1,129 @@
+<c-container fluid>
+    <div class="form-section h-100">
+        <h2 class="section-title2">Maklumat Kekunci Carian</h2>
+
+        <!-- Error Message -->
+        <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+        </div>
+
+        <!-- Loading Spinner -->
+        <div *ngIf="isLoading" class="text-center my-4">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-2">Sedang mencari...</p>
+        </div>
+
+        <form (ngSubmit)="onSearch(searchForm)" #searchForm="ngForm">
+            <!-- Bahagian -->
+            <div class="mb-3">
+                <label for="bahagian" class="form-label">Bahagian*</label>
+                <select class="form-select field-full" id="bahagian" name="bahagian"
+                        [(ngModel)]="filters.bahagian" required>
+                    <option value="">Pilih Bahagian</option>
+                    <option value="D">DV01</option> <!-- FIX TYPO: DVO1 → DV01 -->
+                </select>
+            </div>
+
+            <!-- Unit -->
+            <div class="mb-3">
+                <label for="unit" class="form-label">Unit*</label>
+                <select class="form-select field-full" id="unit" name="unit"
+                        [(ngModel)]="filters.unit" required>
+                    <option value="">Pilih Unit</option>
+                    <option value="U01">U01</option>
+                </select>
+            </div>
+
+            <!-- Kumpulan -->
+            <div class="mb-3">
+                <label for="kumpulan" class="form-label">Kumpulan*</label>
+                <select class="form-select field-short" id="kumpulan" name="kumpulan"
+                        [(ngModel)]="filters.kumpulan" required>
+                    <option value="">Pilih Kumpulan</option>
+                    <option value="01">G1</option> <!-- VALUE HARUS "G1" BUKAN "A" -->
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-flex justify-content-end mt-4">
+                <button type="submit" class="blue-btn btn-dark px-4 me-2" [disabled]="isLoading">
+                    {{ isLoading ? 'Sedang Mencari...' : 'Cari' }}
+                </button>
+                 <button type="button" class="btn btn-dark px-4" (click)="onDaftar()">Daftar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Results Table Section -->
+    <div class="results-section" *ngIf="hasSearched && searchResults.length > 0">
+        <h3 class="results-title">Maklumat Lokasi</h3>
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="col-bil">Bil</th>
+                        <th class="col-nama">Nama Pegawai</th>
+                        <th class="col-kad">Nombor Perkhidmatan</th>
+                        <th class="col-gred">Gred Jawatan</th>
+                        <th class="col-gred">Tarikh</th>
+                        <th class="col-action"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pegawai of searchResults; let i = index">
+                        <td class="text-center">{{ i + 1 }}</td>
+                        <td>{{ pegawai.Name }}</td>
+                        <td>{{ pegawai.NOSERV || 'N/A' }}</td>
+                        <td>{{ pegawai.Gred }}</td>
+                        <td>{{ pegawai.Duty_Date }}</td>
+                        <td class="text-center">
+                            <button class="btn-edit" title="Edit">
+                                <span class="edit-icon">✏️</span>
+                                <span class="edit-text" (click)="onView()">VIEW</span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <c-modal
+        [visible]="isModalVisible"
+        (visibleChange)="isModalVisible = $event"
+        id="noDataModal"
+        size="lg"
+        centered="true"
+        [backdrop]="true">
+
+        <c-modal-header class="modal-header-custom">
+            <div class="modal-icon-container">
+                <div class="modal-square-icon">
+                    <div class="modal-x-line-1"></div>
+                    <div class="modal-x-line-2"></div>
+                </div>
+            </div>
+        </c-modal-header>
+
+        <c-modal-body class="modal-body-custom">
+            <p class="modal-message">
+                Maklumat carian tidak wujud. Sila masukkan kunci<br>
+                carian lain.
+            </p>
+        </c-modal-body>
+
+        <c-modal-footer class="modal-footer-custom">
+            <div class="modal-button-container">
+                <button
+                    type="button"
+                    class="modal-ok-button"
+                    (click)="onModalOk()">
+                    OK
+                </button>
+            </div>
+        </c-modal-footer>
+    </c-modal>
+</c-container>

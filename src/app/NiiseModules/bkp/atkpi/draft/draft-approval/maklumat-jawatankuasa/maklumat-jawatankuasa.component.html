@@ -1,0 +1,120 @@
+<div class="container-fluid">
+    <div class="form-section">
+      <div class="row">
+        <!-- Left Side: Officer Info -->
+        <div class="col-md-8 border-end pe-4">
+          <h5>Maklumat Pegawai</h5>
+  
+          <!-- Image Placeholder -->
+          <div
+            style="
+              width: 150px;
+              height: 150px;
+              border: 1px solid #ccc;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <span>Gambar Pegawai</span>
+          </div>
+  
+          <form class="mt-3">
+            <div class="mb-2">
+              <label>Nama Pegawai</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="pegawai.nama"
+                name="nama"
+                readonly
+              />
+            </div>
+  
+            <div class="mb-2">
+              <label>Nombor Perkhidmatan</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="pegawai.noPerkhidmatan"
+                name="noPerkhidmatan"
+                readonly
+              />
+            </div>
+  
+            <div class="mb-2">
+              <label>Gred Jawatan</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="pegawai.gredJawatan"
+                name="gredJawatan"
+                readonly
+              />
+            </div>
+  
+            <div class="mb-2">
+              <label>E-mail</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="pegawai.email"
+                name="email"
+                readonly
+              />
+            </div>
+  
+            <div class="mb-2">
+              <label>Unit</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="pegawai.unit"
+                name="unit"
+                readonly
+              />
+            </div>
+          </form>
+        </div>
+  
+        <!-- Right Side: Steps with vertical line -->
+        <div class="col-md-4 ps-4 border-start">
+          <div
+            class="step"
+            [class.active]="isStepActive(1)"
+            [class.completed]="isStepCompleted(1)"
+          >
+            <div class="circle">1</div>
+            <div class="label">Maklumat Pegawai</div>
+          </div>
+          <div
+            class="step"
+            [class.active]="isStepActive(2)"
+            [class.completed]="isStepCompleted(2)"
+          >
+            <div class="circle">2</div>
+            <div class="label">Maklumat Draf Cadangan</div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Navigation Buttons -->
+      <div class="d-flex justify-content-end mt-4">
+        <button
+          class="btn btn-secondary me-2"
+          (click)="goToPreviousStep()"
+          [disabled]="currentStep === 1"
+        >
+          &lt;
+        </button>
+        <button
+          class="btn btn-dark"
+          (click)="goToMaklumatDraf()"
+          [disabled]="currentStep === maxStep"
+        >
+          &gt;
+        </button>
+      </div>
+    </div>
+  </div>
+  

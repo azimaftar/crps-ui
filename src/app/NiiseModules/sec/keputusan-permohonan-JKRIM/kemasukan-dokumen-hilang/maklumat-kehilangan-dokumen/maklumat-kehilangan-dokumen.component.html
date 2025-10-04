@@ -1,0 +1,110 @@
+<c-container fluid>
+    <div class="row g-0">
+        <div class="col-md-9">
+            <div class="form-section h-100">
+                <h2 class="section-title">Maklumat Kehilangan Dokumen</h2>
+                <form cForm [formGroup]="documentForm">
+                    <c-row class="mb-3">
+                        <c-col md="6">
+                            <label cFormLabel for="jenisdokumen">Jenis Dokumen</label>
+                            <select cFormSelect id="jenisdokumen" formControlName="jenisdokumen" class="form-control">
+                                <option value="101 - PASPORT MALAYSIA SEMENANJUNG">101 - PASPORT MALAYSIA SEMENANJUNG
+                                </option>
+                            </select>
+                        </c-col>
+                        <c-col md="6">
+                            <label cFormLabel for="noDokumen">No Dokumen</label>
+                            <input cFormControl type="text" id="noDokumen" formControlName="noDokumen" value="AB280960"
+                                class="form-control">
+                        </c-col>
+                    </c-row>
+
+                    <c-row class="mb-3">
+                        <c-col md="6">
+                            <label cFormLabel for="noFailJim">No Fail JIM</label>
+                            <input cFormControl type="text" id="noFailJim" formControlName="noFailJim"
+                                class="form-control">
+                        </c-col>
+                        <c-col md="6">
+                            <label cFormLabel for="tarikhHilang">Tarikh Hilang</label>
+                            <div class="input-group">
+                                <input cFormControl type="date" id="tarikhHilang" formControlName="tarikhHilang"
+                                    class="form-control">
+                            </div>
+                        </c-col>
+                    </c-row>
+
+                    <c-row class="mb-3">
+                        <c-col md="12">
+                            <label cFormLabel for="sebabHilang">Sebab Hilang</label>
+                            <input cFormControl type="text" id="sebabHilang" formControlName="sebabHilang"
+                                class="form-control full-width">
+                        </c-col>
+                    </c-row>
+
+                    <c-row class="mb-3">
+                        <c-col md="6">
+                            <label cFormLabel for="tarikhTamatDokumen">Tarikh Tamat Dokumen</label>
+                            <div class="input-group">
+                                <input cFormControl type="date" id="tarikhTamatDokumen"
+                                    formControlName="tarikhTamatDokumen" class="form-control">
+                            </div>
+                        </c-col>
+                        <c-col md="6">
+                            <label cFormLabel for="agensiPelapor">Agensi Pelapor</label>
+                            <input cFormControl type="text" id="agensiPelapor" formControlName="agensiPelapor"
+                                class="form-control">
+                        </c-col>
+                    </c-row>
+
+                    <c-row class="mb-3">
+                        <c-col md="6">
+                            <label cFormLabel for="kodNap">Kod NAP</label>
+                            <input cFormControl type="text" id="kodNap" formControlName="kodNap" class="form-control">
+                        </c-col>
+                        <c-col md="6">
+                            <label cFormLabel for="nomborNap">Nombor NAP</label>
+                            <input cFormControl type="text" id="nomborNap" formControlName="nomborNap"
+                                class="form-control">
+                        </c-col>
+                    </c-row>
+
+                    <c-row class="mb-4">
+                        <c-col md="6">
+                            <label cFormLabel for="kodTindakan">Kod Tindakan</label>
+                            <input cFormControl type="text" id="kodTindakan" formControlName="kodTindakan"
+                                class="form-control">
+                        </c-col>
+                    </c-row>
+
+                    <c-row>
+                        <c-col md="12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="confirmation"
+                                    formControlName="confirmation">
+                                <label class="form-check-label" for="confirmation">
+                                    Saya mengesahkan maklumat yang diberikan adalah sah dan benar.
+                                </label>
+                            </div>
+                        </c-col>
+                    </c-row>
+                </form>
+            </div>
+        </div>
+        <!-- Right section - Steps -->
+        <div class="col-md-3">
+            <div class="form-section h-100">
+                <app-progress-flow [currentStep]="step" (stepChange)="onStepChange($event)"></app-progress-flow>
+            </div>
+        </div>
+    </div>
+    <!-- Navigation Footer -->
+    <div class="bg-light border-top p-3">
+        <div class="d-flex justify-content-end align-items-center flex-wrap gap-2">
+            <button class="btn btn-back btn-dark" (click)="resetForm()">Set Semula</button>
+            <button class="btn btn-back btn-dark" (click)="previousStep()">Kembali</button>
+            <button class="btn btn-back btn-dark" (click)="previousStep()">&lt;</button>
+            <button class="btn btn-back btn-dark    " (click)="nextStep()">&gt;</button>
+        </div>
+    </div>
+</c-container>

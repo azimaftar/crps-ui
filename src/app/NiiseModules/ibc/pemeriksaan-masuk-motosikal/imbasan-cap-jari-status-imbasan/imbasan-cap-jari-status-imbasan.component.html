@@ -1,0 +1,128 @@
+<!-- <p>imbasan-cap-jari works!</p> -->
+<c-container class="p-3">
+    <c-card>
+        <c-card-header>
+            PEMERIKSAAN MASUK (EGATE) - BAHAGIAN DATA BIOMETRIK [CAP JARI]
+        </c-card-header>
+        <c-card-body>
+            <c-row>
+                <!-- LEFT SIDE -->
+                <c-col class="col-12 col-md-8 p-3 border-end" style="border-right: 1px solid #ccc;">
+
+                    <!-- CAP JARI  -->
+                    <c-row>
+                        <!-- KANAN -->
+                        <c-col>
+                            <h6 class="mb-3">Jari Telunjuk Kanan</h6>
+                            <div
+                                style="border: 1px solid #ccc; border-radius: 6px; padding: 1rem; width: 200px; min-width: 200px; max-width: 200px;">
+                                <div
+                                    style="border: 1px solid #ccc; border-radius: 6px; padding:60px 30px; text-align: center;">
+                                    <img src="" alt="CAP JARI KANAN">
+                                </div>
+                            </div>
+                        </c-col>
+
+                        <!-- KIRI -->
+                        <c-col>
+                            <h6 class="mb-3">Jari Telunjuk Kiri</h6>
+                            <div
+                                style="border: 1px solid #ccc; border-radius: 6px; padding: 1rem; width: 200px; min-width: 200px; max-width: 200px;">
+                                <div
+                                    style="border: 1px solid #ccc; border-radius: 6px; padding:60px 30px; text-align: center;">
+                                    <img src="" alt="CAP JARI KIRI">
+                                </div>
+                            </div>
+                        </c-col>
+
+                    </c-row>
+                </c-col>
+
+                <!-- RIGHT SIDE -->
+                <c-col class="col-12 col-md-4 d-flex justify-content-center align-items-center p-3">
+                    <button cButton color="primary" disabled>STATUS IMBASAN</button>
+                </c-col>
+            </c-row>
+        </c-card-body>
+    </c-card>
+</c-container>
+
+<!-- MODAL -->
+<!-- Modal 1 -->
+<app-coreui-modal
+  [title]="'Kawalan eGate'"
+  [show]="openModal === 'modal-people-counting'"
+  (close)="close()"
+>
+  <div class="text-center">
+  <div style="text-align: center;">
+
+      <!-- Image Placeholder -->
+      <div style="width: 60px; height: 60px; border: 1px solid black; margin: 0 auto 20px;"></div>
+
+      <!-- Success Message -->
+      <h5>Pemeriksaan Keluar Berjaya!</h5>
+      <p>People Counting: 1</p>
+
+      <!-- Info Rows -->
+      <!-- <div style="display: flex; justify-content: center; align-items: center; margin: 10px 0;">
+        <div style="width: 150px; text-align: right; margin-right: 10px;">Jenis Pas</div>
+        <input type="text" value="Visa Transit" disabled style="text-align: center; padding: 5px; width: 200px; border: 1px solid gray; border-radius: 4px;">
+      </div>
+
+      <div style="display: flex; justify-content: center; align-items: center; margin: 10px 0;">
+        <div style="width: 150px; text-align: right; margin-right: 10px;">Tarikh Tamat Pas</div>
+        <input type="text" value="21 Mac 2025" disabled style="text-align: center; padding: 5px; width: 200px; border: 1px solid gray; border-radius: 4px;">
+      </div> -->
+      <div class="row align-items-center mb-3">
+        <div class="col-4 text-end">
+          <label cLabel for="jenisPas">Jenis Pas</label>
+        </div>
+        <div class="col-6">
+          <input cFormControl id="jenisPas" type="text" readonly value="Visa Transit" class="form-control-plaintext bg-light border rounded px-2">
+        </div>
+      </div>
+
+      <div class="row align-items-center mb-3">
+        <div class="col-4 text-end">
+          <label cLabel for="tamatPas">Tarikh Tamat Pas</label>
+        </div>
+        <div class="col-6">
+          <input cFormControl id="tamatPas" type="text" readonly value="21 Mac 2025" class="form-control-plaintext bg-light border rounded px-2">
+        </div>
+      </div>
+      <!-- Footer Text -->
+      <p style="margin-top: 30px;">
+        Sila Keluar dari Laluan eGate.<br>
+        Kod QR e-Digital Stamping akan dihantar ke e-mel anda.
+      </p>
+    </div>
+    </div>
+    
+</app-coreui-modal>
+
+<!-- Trigger -->
+<button (click)="open('modal-people-counting')" cButton color="secondary">
+  MODAL People Counting
+</button>
+
+<br />
+
+<!-- Modal 2 -->
+<app-coreui-modal
+  [title]="'Makluman'"
+  [show]="openModal === 'modal-imbasan-cap-jari-gagal'"
+  (close)="close()"
+>
+  <div class="text-center">
+    <img src="assets/images/camera-guide.png" alt="" class="" style="max-height: 200px;">
+    <p class="mb-3">Imbasan Cap Jari gagal!</p>
+  </div>
+</app-coreui-modal>
+
+<!-- Trigger -->
+<button (click)="open('modal-imbasan-cap-jari-gagal')" cButton color="secondary">
+  MODAL IBC-S037
+</button>
+
+

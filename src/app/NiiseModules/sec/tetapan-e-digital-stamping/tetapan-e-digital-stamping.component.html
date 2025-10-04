@@ -1,0 +1,164 @@
+<c-card>
+    <c-container>
+        <c-row>
+            <c-col md="9" class="p-4" style="border-right: 1px solid #ddd;">
+                <h3 class="mb-4">Tetapan e-Digital Stamping</h3>
+                <form cForm class="row g-3" [formGroup]="qrForm">
+                    <c-col md="12">
+                        <div class="d-flex gap-2">
+                            <button cButton color="secondary" style="min-width: 100px;">OK</button>
+                            <button cButton color="dark" style="min-width: 100px;" class="ms-2">Cancel</button>
+                        </div>
+                    </c-col>
+
+                    <c-col md="12">
+                        <div class="mt-2">
+                            <label cLabel class="form-label fw-bold">1.0 Stail</label>
+                        </div>
+                    </c-col>
+
+                    <c-col md="6">
+
+                        <!-- <div class="mb-2">
+                            <label cLabel class="form-label" for="inputSize">Saiz (dpi)</label>
+                        </div>
+                        <select cSelect formControlName="inputSize" class="form-select">
+                            <option value="70">70</option>
+                            <option value="100">100</option>
+                            <option value="150">150</option>
+                            <option value="200">200</option>
+                            <option value="256">256</option>
+                        </select> -->
+                        <div class="mb-2">
+                            <label cLabel class="form-label" for="JenisFail">Jenis Fail</label>
+                            <select cSelect formControlName="JenisFail" class="form-select mb-1">
+                                <option value="pdf">pdf</option>
+                            </select>
+
+                            <label cLabel class="form-label" for="JenisFail">Error Correction</label>
+                            <select cSelect formControlName="ErrCorrection" class="form-select mb-1">
+                                <option value="L">Level L-(7%)</option>
+                                <option value="M">Level M-(15%)</option>
+                                <option value="Q">Level Q-(25%)</option>
+                                <option value="H">Level H-(30%)</option>
+                            </select>
+                            <label cLabel class="form-label" for="dotsShape">Dots (Bentuk)</label>
+                            <select cSelect formControlName="dotsShape" class="form-select mb-1">
+                                <option value="square">Smooth (Square)</option>
+                                <option value="rounded">Rounded rectangle</option>
+                                <option value="dots">Dotted</option>
+                                <option value="extra-rounded">Extra Rounded</option>
+                            </select>
+                            <label cLabel class="form-label" for="cornersShape">Corners (Bentuk)</label>
+                            <select cSelect formControlName="cornersShape" class="form-select mb-1">
+                                <option value="square">Normal (Square)</option>
+                                <option value="rounded">Rounded corners</option>
+                                <option value="dot">Dot corners</option>
+                            </select>
+                        </div>
+
+                        <div class="mt-3">
+                            <label cLabel class="form-label fw-bold">Dots (Warna)</label>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <div>
+                                <input type="color" cFormControl formControlName="dotsColorNormal"
+                                    class="form-control form-control-color">
+                            </div>
+                        </div>
+
+                        <!-- <div class="mt-3">
+                            <label cLabel class="form-label fw-bold">Corners (Stroke - Warna)</label>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <div>
+                                <input type="color" cFormControl formControlName="cornersStrokeColorNormal"
+                                    class="form-control form-control-color">
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <label cLabel class="form-label fw-bold">Corners (Fill - Warna)</label>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <div>
+                                <input type="color" cFormControl formControlName="cornersFillColorNormal"
+                                    class="form-control form-control-color">
+                            </div>
+                        </div> -->
+                    </c-col>
+                    <c-col md="6">
+                        <div class="qr-preview">
+                            <qrcode [qrdata]="qrConfig.qrdata" [width]="qrConfig.width"
+                                [errorCorrectionLevel]="qrConfig.errorCorrectionLevel" [colorDark]="qrConfig.colorDark"
+                                [colorLight]="qrConfig.colorLight" [margin]="qrConfig.margin">
+                            </qrcode>
+                        </div>
+                    </c-col>
+
+                    <!--table-->
+                    <div class="d-flex justify-content-end mb-3 mt-5">
+                        <button class="btn btn-dark btn-sm">
+                            + Muat Naik
+                        </button>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-borderless table-sm align-middle">
+                            <thead>
+                                <tr class="border-bottom">
+                                    <th scope="col" class="fw-normal text-muted">Bil.</th>
+                                    <th scope="col" class="fw-normal text-muted">Keterangan</th>
+                                    <th scope="col" class="fw-normal text-muted">Nama Dokumen</th>
+                                    <th scope="col" class="fw-normal text-muted">Format</th>
+                                    <th scope="col" class="fw-normal text-muted"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let person of personList">
+                                    <td>{{ person.bil }}</td>
+                                    <td>{{ person.keterangan }}</td>
+                                    <td>{{ person.namadok }}</td>
+                                    <td>{{ person.format }}</td>
+                                    <td></td>
+                                    <td class="text-end">
+                                        <button class="btn btn-dark btn-sm">
+                                            + Muat Naik
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="border-top mt-2">
+                        <small class="text-muted fst-italic">*Saiz fail maximum: 6MB</small>
+                    </div>
+                </form>
+            </c-col>
+            <c-col md="3">
+                <div class="form-section h-100 p-4">
+                    <app-progress-flow [currentStep]="step" (stepChange)="onStepChange($event)"></app-progress-flow>
+                </div>
+            </c-col>
+        </c-row>
+    </c-container>
+    <!-- Navigation Footer -->
+    <div class="bg-light border-top p-3">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <button cButton color="primary" class="me-md-2 text-wrap" style="white-space: normal;">
+                Papar Contoh e-Digital Stamping
+            </button>
+            <button cButton color="primary" class="me-md-2 text-wrap" style="white-space: normal;"
+                (click)="navigateToMerekaTemplat()">
+                Mereka Templat E-Mel e-Digital Stamping
+            </button>
+
+            <div class="ms-auto d-flex gap-2">
+                <button cButton color="secondary">Simpan</button>
+                <button cButton color="secondary">Hantar</button>
+                <button cButton color="dark" class="btn-back" (click)="previousStep()">&lt;</button>
+                <button cButton color="dark" class="btn-back" (click)="nextStep()">&gt;</button>
+            </div>
+        </div>
+    </div>
+</c-card>

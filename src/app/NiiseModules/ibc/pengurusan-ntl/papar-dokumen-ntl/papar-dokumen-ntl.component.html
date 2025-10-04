@@ -1,0 +1,46 @@
+<div class="container card" style="min-height: 500px">
+  <c-row >
+    <c-col class="card-header">
+      <h4>Rayuan NTL</h4>
+    </c-col>
+  </c-row>
+
+  <c-col class="card-body">
+    <c-row>
+      <c-col>
+        <h5>Nama Fail : {{ fileName }}</h5>
+      </c-col>
+    </c-row>
+
+    <c-row class="mb-4">
+      <c-col>
+        <button cButton color="primary" (click)="muatTurun()">
+          Muat Turun
+        </button>
+      </c-col>
+    </c-row>
+
+    <!-- Loading Spinner -->
+    <c-row class="my-3" *ngIf="isLoading">
+      <c-col >
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Memuatkan...</span>
+        </div>
+        <p>Memuatkan dokumen...</p>
+      </c-col>
+    </c-row>
+
+    <!-- Document Viewer -->
+    <c-row *ngIf="fileUrl">
+      <c-col class="border p-3">
+        <iframe
+          [src]="fileUrl"
+          width="100%"
+          height="800px"
+          style="border: none"
+          (load)="onLoadComplete()"
+        ></iframe>
+      </c-col>
+    </c-row>
+  </c-col>
+</div>

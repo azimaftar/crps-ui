@@ -1,0 +1,126 @@
+<c-card class="mb-3">
+
+  <!-- CONTENT CARD BODY -->
+  <c-card-body>
+
+    <c-row>
+      <h5 class="mb-4 custom-header">Kod Tindakan</h5>
+    </c-row>
+
+    <!-- Horizontal Stepper -->
+    <div class="horizontal-stepper">
+      <ul class="stepper-list d-flex align-items-center justify-content-start flex-wrap">
+        <li class="stepper-item" *ngFor="let step of steps" [class.active]="isStepActive(step.number)">
+          <button type="button" class="step-btn" (click)="navigateTo(step)">
+            <span class="step-number">{{ step.number }}</span>
+            <span class="step-title">{{ step.title }}</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Applicant Form -->
+    <c-row class="ms-3">
+
+      <!-- Kod -->
+      <c-row class="mb-3" style="margin-top: 20px;">
+        <c-col md="6">
+          <label class="form-label custom-form-label">Kod</label>
+          <input type="text" class="form-control" style="width: 45%;" [(ngModel)]="kod" [readonly]="mode !== 'tambah'"
+            [ngClass]="{ 'is-invalid': errors.kod }">
+        </c-col>
+      </c-row>
+
+      <!-- Kategori Warganegara -->
+      <c-row class="mb-3">
+        <c-col md="6">
+          <label class="form-label custom-form-label">Kategori Warganegara</label>
+          <select class="form-select custom-dropdown" style="width: 65%;" [(ngModel)]="kategori"
+            [ngClass]="{ 'is-invalid': errors.kategori }">
+            <option value="">-Sila Pilih-</option>
+            <option value="W">Warganegara</option>
+            <option value="B">Bukan Warganegara</option>
+            <option value="P">Penduduk Tetap</option>
+          </select>
+        </c-col>
+      </c-row>
+
+      <!-- Keterangan -->
+      <c-row class="mb-3">
+        <c-col>
+          <label class="form-label custom-form-label">Keterangan (BM)</label>
+
+          <textarea class="form-control" style="width: 90%;" [(ngModel)]="keteranganbm"
+            [readonly]="mode === 'batal' || mode === 'lupus'"
+            [ngClass]="{ 'is-invalid': errors.keteranganbm }"></textarea>
+        </c-col>
+      </c-row>
+
+      <!-- ENG -->
+      <c-row class="mb-3">
+        <c-col>
+          <label class="form-label custom-form-label">Keterangan (ENG)</label>
+
+          <textarea class="form-control" style="width: 90%;" [(ngModel)]="keteranganbi"
+            [readonly]="mode === 'batal' || mode === 'lupus'"
+            [ngClass]="{ 'is-invalid': errors.keteranganbi }"></textarea>
+        </c-col>
+      </c-row>
+
+    </c-row>
+
+
+
+
+    <!-- Catatan (only for batal/lupus) -->
+      <c-row class="mb-3" *ngIf="mode === 'batal' || mode === 'lupus'">
+        <c-col>
+          <label class="form-label custom-form-label">Catatan</label>
+          <textarea class="form-control" placeholder="Sila masukkan catatan" style="width: 90%;" [(ngModel)]="catatan"
+            [ngClass]="{ 'is-invalid': errors.catatan }"></textarea>
+        </c-col>
+      </c-row>
+
+    <div class="action-footer">
+      <div class="nav-buttons">
+        <!-- Action Button -->
+        <button type="button" class="action-btn" (click)="saveForm()">
+          <svg cIcon name="cil-check-circle" class="me-2"></svg>
+          {{ mode === 'tambah' ? 'Simpan' : mode === 'kemaskini' ? 'Kemaskini' : mode === 'batal' ? 'Batal' : 'Lupus' }}
+        </button>
+
+        <!-- Prev Button -->
+        <button type="button" class="nav-btn prev-btn" (click)="goBack()">
+          <svg cIcon name="cil-chevron-circle-left-alt"></svg>
+        </button>
+
+        <!-- Next Button -->
+        <button type="button" class="nav-btn next-btn" disabled>
+          <svg cIcon name="cil-chevron-circle-right-alt"></svg>
+        </button>
+      </div>
+    </div>
+
+
+
+    <!-- CoreUI Modal -->
+    <c-modal [visible]="modalVisible" (visibleChange)="modalVisible = $event" backdrop="static" keyboard="false">
+
+      <c-modal-body class="text-center">
+        <div class="mb-3">
+          <svg width="64" height="48" viewBox="0 0 64 48" fill="none">
+            <rect x="8" y="8" width="48" height="32" stroke="#6c757d" stroke-width="2" fill="none" />
+            <line x1="16" y1="16" x2="48" y2="32" stroke="#6c757d" stroke-width="2" />
+            <line x1="48" y1="16" x2="16" y2="32" stroke="#6c757d" stroke-width="2" />
+          </svg>
+        </div>
+        <p>{{ modalMessage }}</p>
+      </c-modal-body>
+
+      <c-modal-footer>
+        <button type="button" cButton color="dark" (click)="onModalOk()" class="px-4"
+          style="width: 20%; margin-right: 40%;">
+          OK
+        </button>
+      </c-modal-footer>
+    </c-modal>

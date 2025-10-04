@@ -1,0 +1,112 @@
+<c-card class="mb-3">
+  <c-card-body>
+    <!-- Stepper -->
+    <c-row>
+      <div class="horizontal-tabs">
+        <div class="tabs-container">
+          <ng-container *ngFor="let step of steps">
+            <div class="tab-item" [ngClass]="{ completed: step.number < currentStep, active: step.number === currentStep }">
+              <div class="step-circle">
+                <span class="tab-number">{{ step.number }}</span>
+              </div>
+              <div class="tab-content">
+                <div class="tab">{{ step.title }}</div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </c-row>
+
+    <c-row>
+      <c-col>
+        <h5 class="mb-4">Dokumen Sokongan</h5>
+
+        <!-- Main Table -->
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered">
+            <thead class="table-light">
+              <tr>
+                <th style="width: 5%;">Bil</th>
+                <th style="width: 45%;">Nama Dokumen</th>
+                <th style="width: 15%;">Saiz</th>
+                <th style="width: 15%;">Status</th>
+                <th style="width: 15%;">Tarikh</th>
+                <th style="width: 5%;">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let doc of requiredDocuments; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>
+                  <ng-container *ngIf="doc.file; else noFile">
+                    <i class="fas {{ getFileIcon(doc.file.type) }} me-2"></i>
+                    {{ doc.file.name }}
+                  </ng-container>
+                  <ng-template #noFile>
+                    {{ doc.name }}
+                  </ng-template>
+                </td>
+                <td>{{ doc.file ? formatFileSize(doc.file.size) : '-' }}</td>
+                <td>
+                  <span *ngIf="doc.file"
+                        class="badge"
+                        [ngClass]="getStatusBadgeClass(doc.file.status)">
+                    {{ doc.file.status | titlecase }}
+                  </span>
+                  <span *ngIf="!doc.file" class="badge badge-secondary">Belum Muat Naik</span>
+                </td>
+                <td>{{ doc.file ? (doc.file.uploadDate | date:'dd/MM/yyyy HH:mm') : '-' }}</td>
+                <td>
+                  <div class="d-flex gap-2">
+                    <label [for]="'file-upload-' + doc.id" class="btn btn-dark btn-sm mb-0">+ Muat Naik</label>
+                    <input [id]="'file-upload-' + doc.id"
+                           type="file"
+                           style="display: none;"
+                           (change)="onFileSelected($event, doc.id)"
+                           accept=".pdf,.doc,.docx,.jpg,.png" />
+                    <button *ngIf="doc.file"
+                            class="btn btn-sm btn-outline-danger"
+                            (click)="removeFileByDocId(doc.id)"
+                            title="Padam"
+                            [disabled]="doc.file?.status === 'uploading'">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="fst-italic" style="font-size: x-small;">*Saiz fail maximum: 10MB</p>
+
+        <c-form-check style="margin-left: 10px;">
+          <input cFormCheckInput id="checkOne" type="checkbox" [(ngModel)]="isConfirmed" (change)="onCheckboxChange($event)" />
+          <label cFormCheckLabel for="checkOne">Saya mengesahkan maklumat yang diberikan adalah sah dan benar</label>
+        </c-form-check>
+      </c-col>
+    </c-row>
+
+    <!-- Footer Buttons -->
+    <c-row class="mt-4 mb-3">
+      <c-col class="d-flex justify-content-end align-items-center gap-2">
+        <button cButton type="button" color="primary" class="text-white px-4" (click)="saveForm()">Simpan</button>
+        <button cButton type="button" color="primary" class="text-white px-4" (click)="onSubmit()">Hantar</button>
+        <div class="d-flex gap-2 ms-4">
+          <button cButton type="button" color="primary" class="text-white px-3" (click)="goBack()">&lt;</button>
+        </div>
+      </c-col>
+    </c-row>
+  </c-card-body>
+</c-card>
+
+<!-- Modal -->
+<c-modal [visible]="modalVisible" (visibleChange)="modalVisible = $event" backdrop="static" keyboard="false">
+  <c-modal-body class="text-center">
+    <p>{{ modalMessage }}</p>
+  </c-modal-body>
+  <c-modal-footer>
+    <button type="button" cButton color="dark" (click)="onModalOk()" class="px-4">OK</button>
+  </c-modal-footer>
+</c-modal>

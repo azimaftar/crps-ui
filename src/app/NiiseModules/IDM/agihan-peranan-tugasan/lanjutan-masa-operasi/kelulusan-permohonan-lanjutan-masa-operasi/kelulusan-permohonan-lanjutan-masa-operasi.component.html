@@ -1,0 +1,494 @@
+<c-container fluid>
+  <div class="card">
+    <div class="ms-4 me-4">
+      <div class="mt-2 mb-2">
+        <h3 class="mb-2 mt-4"><b>PERMOHONAN LANJUTAN MASA OPERASI - KELULUSAN PERMOHONAN</b></h3>
+      </div>
+            <div class="row mt-4 border rounded" style="border-radius: 8px; background-color: #e0e0e0;">
+        <div class="col-md-6">
+          <div class="p-3">
+            <h6 class="mb-3"><b>Maklumat Keputusan</b></h6>
+
+            <!-- <div class="mb-3 d-flex">
+              <label class="form-label col-3 pt-2">Keputusan</label>
+              <input type="text" class="form-control bg-light" value="Lulus" readonly>
+            </div> -->
+
+            <div class="mb-3 d-flex">
+              <label class="form-label col-3 pt-2 me-4">Disahkan oleh</label>
+              <input type="text" class="form-control bg-light" value="Hanif bin Rahman" readonly>
+            </div>
+
+            <div class="mb-3 d-flex">
+              <label class="form-label col-3 pt-2 me-4">Tarikh</label>
+              <input type="text" class="form-control bg-light" value="19 Ogos 2025" readonly>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-4">
+        <!-- <reusable-tab [currentStep]="currentStep" [steps]="steps"></reusable-tab> -->
+        <c-row class="align-items-center mb-3">
+          <c-col md="6">
+            <p class="mb-0"><b>1. Maklumat Pegawai</b></p>
+            <small class="text-muted">Langkah 1 daripada 3</small>
+          </c-col>
+        </c-row>
+
+        <!-- Form Section -->
+        <c-row class="mb-1">
+
+          <!-- Left Side -->
+          <c-col md="6">
+            <!-- No Permohonan -->
+            <div class="mb-4">
+              <label class="form-label">No Permohonan</label>
+              <input type="text" class="form-control bg-light" [(ngModel)]="formData.noPermohonan" readonly>
+            </div>
+
+            <!-- Segera (Ad Hoc) -->
+           <div class="mb-4">
+              <div class="d-flex gap-3">
+                  <div class="form-check">
+                      <input class="form-check-input" type="radio" name="segeraAdHoc"
+                          value="segeraAdHoc" [(ngModel)]="formData.segeraAdHoc" disabled>
+                      <label class="form-check-label">Segera (Ad Hoc)</label>
+                  </div>
+              </div>
+            </div>
+
+            <!-- Cawangan -->
+             <div class="mb-3">
+              <label class="form-label">Cawangan</label>
+              <select class="form-select bg-light" [(ngModel)]="formData.cawangan" disabled>
+                <option value="">-Sila Pilih-</option>
+                <option value="Putrajaya">Putrajaya</option>
+                <option value="Cyberjaya">Cyberjaya</option>
+                <option value="Subang Jaya">Subang Jaya</option>
+              </select>
+             </div>
+
+             <!-- Bahagian -->
+             <div class="mb-3">
+              <label class="form-label">Bahagian</label>
+              <select class="form-select bg-light" [(ngModel)]="formData.bahagian" disabled>
+                <option value="">-Sila Pilih-</option>
+                <option value="Keselamatan">Keselamatan</option>
+                <option value="Teknikal">Teknikal</option>
+                <option value="Lain-lain">Lain-lain</option>
+              </select>
+             </div>
+
+             <!-- Tarikh Mula -->
+             <div class="mb-3">
+              <label class="form-label">Tarikh Mula</label>
+              <input type="date" class="form-control bg-light" [(ngModel)]="formData.tarikhMula" readonly>
+             </div>
+
+             <!-- Masa Mula -->
+             <div class="mb-3">
+              <label class="form-label">Masa Mula</label>
+              <select class="form-select bg-light" [(ngModel)]="formData.masaMula" disabled>
+                <option value="">-Sila Pilih-</option>
+                <option value="9">9.00 pagi</option>
+                <option value="12">12.00 tengahari</option>
+                <option value="Lain-lain">Lain-lain</option>
+              </select>
+             </div>
+
+          </c-col>
+
+          <!-- Right Side -->
+          <c-col md="6" class="align-self-end">
+              <!-- Unit -->
+             <div class="mb-3">
+              <label class="form-label">Unit</label>
+              <select class="form-select bg-light" [(ngModel)]="formData.unit" disabled>
+                <option value="">-Sila Pilih-</option>
+                <option value="Unit Senarai Syak">Unit Senarai Syak</option>
+                <option value="Lain-lain">Lain-lain</option>
+              </select>
+             </div>
+
+             <!-- Tarikh Akhir -->
+             <div class="mb-3">
+              <label class="form-label">Tarikh Akhir</label>
+              <input type="date" class="form-control bg-light" [(ngModel)]="formData.tarikhAkhir" readonly>
+             </div>
+
+             <!-- Masa Tamat -->
+             <div class="mb-3">
+              <label class="form-label">Masa Tamat</label>
+              <select class="form-select bg-light" [(ngModel)]="formData.masaTamat" disabled>
+                <option value="">-Sila Pilih-</option>
+                <option value="9">9.00 pagi</option>
+                <option value="12">12.00 tengahari</option>
+                <option value="Lain-lain">Lain-lain</option>
+              </select>
+             </div>
+
+          </c-col>
+
+        </c-row>
+
+        <!-- Catatan Section -->
+        <c-row class="mb-4">
+          <c-col md="12">
+            <label class="form-label">Catatan</label>
+            <textarea class="form-control bg-light" rows="3" [(ngModel)]="formData.catatan"
+              placeholder="Sila isikan catatan permohonan" readonly></textarea>
+          </c-col>
+        </c-row>
+
+        <!-- Dokumen Sokongan Section -->
+        <div class="mb-4">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <c-col md="6">
+              <p class="mb-0"><b>2. Dokumen Sokongan</b></p>
+              <small class="text-muted">Langkah 2 daripada 3</small>
+            </c-col>
+            <!-- <button class="btn btn-all" (click)="openFileUpload()">+ Muat Naik</button> -->
+
+          </div>
+          <div class="table-responsive">
+            <table class="table table-row">
+              <thead>
+                <tr>
+                  <th style="width: 10%;" class="table-header">Bil.</th>
+                  <th style="width: 30%;" class="table-header">Keterangan Dokumen</th>
+                  <th style="width: 30%;" class="table-header">Nama Dokumen</th>
+                  <th style="width: 15%;" class="table-header">Format</th>
+                  <!-- <th style="width: 5%;" class="table-header">Tindakan</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let doc of uploadedDocuments; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ doc.keterangan }}</td>
+                  <td>{{ doc.namaFail }}</td>
+                  <td>{{ doc.format }}</td>
+                  <!-- <td class="text-center">
+                    <button class="btn btn-all" (click)="removeDocument(i)">✕</button>
+                  </td> -->
+                </tr>
+                <tr *ngIf="uploadedDocuments.length === 0">
+                  <td colspan="5" class="text-center text-muted py-3">
+                    Tiada dokumen dimuat naik
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+
+
+        <!-- Senarai Pegawai Section -->
+        <div class="mb-4">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <c-col md="6">
+              <p class="mb-0"><b>3. Senarai Pegawai</b></p>
+              <small class="text-muted">Langkah 3 daripada 3</small>
+            </c-col>
+
+            <!-- Tambah Pegawai Button -->
+            <!-- <button class="btn btn-all" (click)="openTambahPegawaiModal()">Tambah Pegawai</button> -->
+
+          </div>
+          <!-- table senarai pegawai  -->
+          <div class="table-pagination-wrapper">
+            <div class="table-responsive table-scroll-container p-1">
+              <table class="table table-row">
+                <thead>
+                  <tr>
+                    <!-- <th style="width: 1%;">
+                      <input type="checkbox" class="form-check-input" (change)="toggleSelectAll($event)">
+                    </th> -->
+                    <th style="width: 7%;" class="table-header">Bil.</th>
+                    <th style="width: 50%;" class="table-header">Nama Pegawai</th>
+                    <!-- <th style="width: 3%;" class="table-header">Tindakan</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let pegawai of newPegawaiList; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ pegawai.nama }}</td>
+                    <!-- <td class="text-center">
+                      <button class="btn btn-all" (click)="removePegawai(i)">✕</button>
+                    </td> -->
+                  </tr>
+                  <tr *ngIf="newPegawaiList.length === 0">
+                    <td colspan="6" class="text-center text-muted py-3">
+                      Tiada pegawai ditambah
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination and Controls -->
+            <div class="row pagination-row">
+              <div class="col">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                  <!-- Left: Items per page -->
+                  <div class="d-flex align-items-center gap-3">
+                    <select class="form-select form-select-sm rounded-pill" [(ngModel)]="itemsPerPage"
+                      (change)="onItemsPerPageChange()">
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                    </select>
+                  </div>
+
+                  <!-- Right: Pagination and Pergi ke -->
+                  <div class="d-flex align-items-center flex-wrap gap-2">
+                    <!-- Pagination -->
+                    <nav>
+                      <ul class="pagination pagination-sm mb-0">
+                        <li class="page-item" [class.disabled]="currentPage === 1">
+                          <button class="page-link" (click)="goToPage('first')">&laquo;</button>
+                        </li>
+                        <li class="page-item" [class.disabled]="currentPage === 1">
+                          <button class="page-link" (click)="goToPage('prev')">&lsaquo;</button>
+                        </li>
+                        <li class="page-item active">
+                          <span class="page-link">{{ currentPage }}</span>
+                        </li>
+                        <li class="page-item" [class.disabled]="currentPage === totalPages">
+                          <button class="page-link" (click)="goToPage('next')">&rsaquo;</button>
+                        </li>
+                        <li class="page-item" [class.disabled]="currentPage === totalPages">
+                          <button class="page-link" (click)="goToPage('last')">&raquo;</button>
+                        </li>
+                      </ul>
+                    </nav>
+
+                    <div class="d-flex align-items-center">
+                      <small class="text-muted me-1">Pergi ke</small>
+                      <input type="number" class="form-control form-control-sm" style="width: 60px;"
+                        [(ngModel)]="goToPageNumber" (keyup.enter)="goToSpecificPage()" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Max 30 orang -->
+          <!-- Right-aligned -->
+          <div class="d-flex flex-wrap justify-content-end mt-3">
+            <small><b>Max: 30 Orang Sahaja</b></small>
+          </div>
+        </div>
+
+        <!-- Action Button -->
+        <div class="pagination-wrapper row mt-4 pb-2 pt-2">
+          <div class="col-12">
+            <div class="d-flex flex-wrap justify-content-end">
+                <!-- Right-aligned Buttons -->
+              <button class="btn me-2 btn-all" (click)="rejectForm()">Tidak Lulus</button>
+              <button class="btn btn-submit" (click)="submitRequest()">Lulus</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</c-container>
+
+<!-- Modals and Backdrop (unchanged) -->
+
+
+<!-- File Upload Modal -->
+<div class="modal fade" id="fileUploadModal" tabindex="-1" [class.show]="isFileUploadModalOpen"
+  [style.display]="isFileUploadModalOpen ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Muat Naik Dokumen</h5>
+        <button type="button" class="btn-close" (click)="closeFileUploadModal()"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label">Keterangan Dokumen</label>
+          <input type="text" class="form-control" [(ngModel)]="fileUploadForm.keterangan"
+            placeholder="Masukkan keterangan dokumen">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Pilih Fail</label>
+          <input type="file" class="form-control" (change)="onFileSelected($event)" accept=".pdf,.doc,.docx,.jpg,.png">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeFileUploadModal()">Batal</button>
+        <button type="button" class="btn btn-primary" (click)="uploadDocument()"
+          [disabled]="!fileUploadForm.selectedFile">Muat Naik</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="tambahPegawaiModal" tabindex="-1" aria-labelledby="tambahPegawaiModalLabel"
+  aria-hidden="true" [class.show]="isTambahPegawaiModalOpen"
+  [style.display]="isTambahPegawaiModalOpen ? 'block' : 'none'">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tambahPegawaiModalLabel">Tambah Pegawai</h5>
+        <button type="button" class="btn-close" (click)="closeTambahPegawaiModal()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Penetapan Pegawai Form -->
+        <div class="row g-3 mb-4">
+          <div class="col-md-6">
+            <label class="form-label">Negeri</label>
+            <select class="form-select" [(ngModel)]="modalForm.negeri" disabled>
+              <option value="">-Sila Pilih-</option>
+              <option value="Putrajaya">Putrajaya</option>
+              <option value="Cyberjaya">Cyberjaya</option>
+              <option value="Selangor">Selangor</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Cawangan</label>
+            <select class="form-select" [(ngModel)]="modalForm.cawangan" disabled>
+              <option value="">-Sila Pilih-</option>
+              <option value="Putrajaya">Putrajaya</option>
+              <option value="Cyberjaya">Cyberjaya</option>
+              <option value="Subang Jaya">Subang Jaya</option>
+            </select>
+          </div>
+        </div>
+        <div class="row g-3 mb-4">
+          <div class="col-md-6">
+            <label class="form-label">Unit</label>
+            <select class="form-select" [(ngModel)]="modalForm.unit" disabled>
+              <option value="">-Sila Pilih-</option>
+              <option value="Unit Senarai Syak">Unit Senarai Syak</option>
+              <option value="Lain-lain">Lain-lain</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Bahagian</label>
+            <select class="form-select" [(ngModel)]="modalForm.bahagian" disabled>
+              <option value="">-Sila Pilih-</option>
+              <option value="Keselamatan">Keselamatan</option>
+              <option value="Teknikal">Teknikal</option>
+              <option value="Lain-lain">Lain-lain</option>
+            </select>
+          </div>
+        </div>
+
+        <p class="mb-2"><b>Senarai Pegawai</b></p>
+        <div class="table-pagination-wrapper">
+
+          <!-- Scrollable Table Container -->
+          <div class="table-responsive table-scroll-container p-1">
+            <table class="table table-hover table-row">
+              <thead class="">
+                <tr class="">
+                  <th class="table-header">
+                    <input type="checkbox" class="form-check-input" (change)="toggleSelectAll($event)">
+                  </th>
+                  <th>
+                    <div class="d-flex align-items-center gap-2 ps-0 pb-0 table-header">Bil</div>
+                  </th>
+                  <th class="table-header">Nama Pegawai</th>
+                  <th class="table-header">Bahagian</th>
+                  <th class="table-header">Unit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let pegawai of paginatedPegawai; let i = index" [class.table-active]="pegawai.selected">
+                  <td class="">
+                    <input type="checkbox" class="form-check-input" [(ngModel)]="pegawai.selected">
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      {{ (currentPage - 1) * itemsPerPage + i + 1 }}
+                    </div>
+                  </td>
+                  <td class="text-truncate" [title]="pegawai.nama">{{ pegawai.nama }}</td>
+                  <td class="text-truncate">{{ pegawai.bahagian }}</td>
+                  <td class="text-truncate">{{ pegawai.unit }}</td>
+                </tr>
+                <tr *ngIf="paginatedPegawai.length === 0">
+                  <td colspan="5" class="text-center text-muted py-4">
+                    Tiada data pegawai dijumpai
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination and Controls -->
+          <div class="row mt-3 pagination-row">
+            <div class="col">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <!-- Left: Items per page -->
+                <div class="d-flex align-items-center gap-3">
+                  <select class="form-select form-select-sm rounded-pill" [(ngModel)]="itemsPerPage"
+                    (change)="onItemsPerPageChange()">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                  </select>
+                </div>
+
+                <!-- Right: Pagination and Pergi ke -->
+                <div class="d-flex align-items-center flex-wrap gap-2">
+                  <!-- Pagination -->
+                  <nav>
+                    <ul class="pagination pagination-sm mb-0">
+                      <li class="page-item" [class.disabled]="currentPage === 1">
+                        <button class="page-link" (click)="goToPage('first')">&laquo;</button>
+                      </li>
+                      <li class="page-item" [class.disabled]="currentPage === 1">
+                        <button class="page-link" (click)="goToPage('prev')">&lsaquo;</button>
+                      </li>
+                      <li class="page-item active">
+                        <span class="page-link">{{ currentPage }}</span>
+                      </li>
+                      <li class="page-item" [class.disabled]="currentPage === totalPages">
+                        <button class="page-link" (click)="goToPage('next')">&rsaquo;</button>
+                      </li>
+                      <li class="page-item" [class.disabled]="currentPage === totalPages">
+                        <button class="page-link" (click)="goToPage('last')">&raquo;</button>
+                      </li>
+                    </ul>
+                  </nav>
+
+                  <div class="d-flex align-items-center">
+                    <small class="text-muted me-1">Pergi ke</small>
+                    <input type="number" class="form-control form-control-sm" style="width: 60px;"
+                      [(ngModel)]="goToPageNumber" (keyup.enter)="goToSpecificPage()" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" (click)="closeTambahPegawaiModal()">Tutup</button> -->
+        <button type="button" class="btn btn-primary" (click)="tambahPegawai()">Tambah</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<modal-popup
+  [title]="modalTitle"
+  [buttons]="modalButtons"
+  [icon]="modalIcon"
+  [show]="showModalPopup"
+  [showComment]="showComment"
+  [commentPlaceholder]="commentPlaceholder"
+  (buttonClick)="handleModalPopupAction($event)"
+  (modalClose)="showModalPopup = false">
+</modal-popup>
+
+<!-- Modal Backdrop -->
+<div class="modal-backdrop fade" [class.show]="isFileUploadModalOpen || isTambahPegawaiModalOpen"
+  *ngIf="isFileUploadModalOpen || isTambahPegawaiModalOpen">
+</div>

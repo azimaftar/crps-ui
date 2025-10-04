@@ -1,0 +1,111 @@
+<c-card>
+  <c-card-header class="bg-primary text-white">NOTIFIKASI</c-card-header>
+  <c-card-body>
+    <c-row class="g-3 mb-5">
+      <c-col xs="12" md="4" class="me-4">
+        <label class="form-label">Carian</label>
+        <input
+          type="text"
+          id=""
+          class="form-control"
+          placeholder="Masukkan Kata Kunci"
+        />
+      </c-col>
+
+      <c-col xs="12" md="2">
+        <label class="form-label">Tarikh Mula</label>
+        <input type="date" id="" class="form-control" />
+      </c-col>
+
+      <c-col xs="12" md="2">
+        <label class="form-label">Tarikh Akhir</label>
+        <input type="date" id="" class="form-control" />
+      </c-col>
+
+      <c-col xs="12" md="3" class="d-flex align-items-end justify-content-end gap-2">
+        <button type="button" class="btn btn-secondary">Set Semula</button>
+        <button type="button" class="btn btn-secondary">Cari</button>
+      </c-col>
+    </c-row>
+
+    <c-row class="mb-5 table-responsive">
+      <table class="table">
+        <thead>
+          <tr class="align-middle">
+            <th class="py-4">Bil.</th>
+            <th class="py-4">Tarikh dan Masa</th>
+            <th class="py-4">Mesej</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of tableData" class="align-middle">
+            <td class="py-4">{{ item.bil }}</td>
+            <td class="py-4">{{ item.tarikhMasa }}</td>
+            <td class="py-4">{{ item.mesej }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </c-row>
+
+    <c-row>
+      <c-col xs="12" md="4" class="align-items-start justify-content-start mb-2">
+        <select id="" class="form-select form-select-sm" style="width: 60px">
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+        </select>
+      </c-col>
+      <c-col xs="12" md="6" tag="nav">
+        <ul class="pagination justify-content-end">
+          <li>
+            <a
+              class="page-link text-dark"
+              href="#/notifikasi"
+              aria-label="Previous"
+            >
+              <span aria-hidden="true">&laquo;&laquo;</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="page-link text-dark"
+              href="#/notifikasi"
+              aria-label="FirstPage"
+            >
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li><a class="page-link text-dark" href="#/notifikasi">1</a></li>
+          <li><a class="page-link text-dark" href="#/notifikasi">2</a></li>
+          <li><a class="page-link text-dark" href="#/notifikasi">3</a></li>
+          <li>
+            <a
+              class="page-link text-dark"
+              href="#/notifikasi"
+              aria-label="Next"
+            >
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="page-link text-dark"
+              href="#/notifikasi"
+              aria-label="LastPage"
+            >
+              <span aria-hidden="true">&raquo;&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </c-col>
+      <c-col xs="12" md="2" class="d-flex align-items-start justify-content-end gap-2">
+        <label class="form-label mb-0">Pergi ke</label>
+        <input
+          type="number"
+          class="form-control form-control-sm"
+          style="width: 50px"
+        />
+      </c-col>
+    </c-row>
+  </c-card-body>
+</c-card>

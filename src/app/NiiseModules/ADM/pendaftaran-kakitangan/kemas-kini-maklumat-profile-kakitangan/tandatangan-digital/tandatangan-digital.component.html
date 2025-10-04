@@ -1,0 +1,110 @@
+<c-card>
+  <c-card-body>
+    <c-row class="my-2">
+      <h4 class="fw-bold">TANDATANGAN DIGITAL</h4>
+    </c-row>
+
+    <app-stepper
+      [currentMainStep]="currentMainStep"
+      [currentSubStep]="currentSubStep"
+    ></app-stepper>
+
+    <c-row class="my-5">
+      <c-row class="mb-3">
+        <c-col xs="12" md="12" class="mb-5">
+          <c-row>
+            <label class="mb-2">Keperluan Tandatangan Digital</label>
+          </c-row>
+          <c-row>
+            <c-col>
+              <input
+                class="form-check-input mx-2"
+                name="keperluanTandatangan"
+                type="radio"
+              />
+              <label>Ya</label>
+              <input
+                class="form-check-input mx-2"
+                name="keperluanTandatangan"
+                type="radio"
+              />
+              <label>Tidak</label>
+            </c-col>
+          </c-row>
+        </c-col>
+        <c-col xs="12" md="6">
+          <label class="mb-2">Status Tandatangan Digital</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="maklumatTandatangan.sudahTandatangan"
+            [readonly]="readonlyField"
+            [ngClass]="{ 'bg-light text-muted': readonlyField }"
+          />
+        </c-col>
+        <c-col
+          xs="12"
+          md="6"
+          class="d-flex justify-content-end align-items-end gap-3"
+        >
+          <button
+            type="button"
+            class="btn btn-secondary btn-custom-digitalButton px-lg-5"
+          >
+            Semak
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary btn-custom-digitalButton px-lg-5"
+            (click)="tandatanganModalVisible = true"
+          >
+            Ambil
+          </button>
+        </c-col>
+      </c-row>
+    </c-row>
+
+    <c-row style="border-top: 1px solid rgba(0, 0, 0, 0.1)" class="pt-4">
+      <c-col class="d-flex justify-content-end">
+        <button
+          type="button"
+          class="btn-custom-normalBlue fw-semibold btn btn-primary"
+          (click)="navigateClosePage()"
+        >
+          Hantar
+        </button>
+      </c-col>
+    </c-row>
+  </c-card-body>
+</c-card>
+
+<!-- Sila buat tandatangan anda di sini Modal -->
+<c-modal [(visible)]="tandatanganModalVisible" size="lg">
+  <c-modal-body>
+    <c-row>
+      <c-col xs="12" md="12" class="d-flex justify-content-center">
+        Sila Buat Tandatangan Anda Di Sini
+      </c-col>
+      <c-col
+        xs="12"
+        md="12"
+        class="d-flex justify-content-center align-items-center border mx-auto"
+        style="min-height: 200px; max-width: 300px"
+      >
+        <!-- Temporary Change when Tandatangan Digital API is functional -->
+        {{ digitalSignatureText }}</c-col
+      >
+    </c-row>
+  </c-modal-body>
+  <c-modal-footer class="justify-content-center">
+    <button class="btn btn-secondary" (click)="tandatanganModalconfirm()">
+      Set Semula
+    </button>
+    <button class="btn btn-secondary" (click)="tandatanganModalconfirm()">
+      Simpan
+    </button>
+    <button class="btn btn-secondary" (click)="tandatanganModalconfirm()">
+      Hantar
+    </button>
+  </c-modal-footer>
+</c-modal>

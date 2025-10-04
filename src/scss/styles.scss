@@ -1,0 +1,234 @@
+/* You can add global styles to this file, and also import other style files */
+
+// If you want to override variables do it here
+@import "variables";
+
+// Import styles with default layout.
+@import "@coreui/coreui/scss/coreui";
+
+// Import Chart.js custom tooltips styles
+@import "@coreui/chartjs/scss/coreui-chartjs";
+
+// Custom styles for this theme
+@import "theme";
+
+// Some temp fixes
+//@import "fixes";
+
+// If you want to add custom CSS you can put it here.
+@import "custom";
+
+// Examples
+// We use those styles to show code examples, you should remove them in your application.
+@import "examples";
+
+/* Apply styles to any element using [routerLink] */
+//[routerLink] {
+//  text-decoration: none;
+//  color: #007bff;
+//  font-weight: bold;
+//  cursor: pointer;
+//  transition: color 0.3s ease-in-out;
+//}
+//
+//[routerLink]:hover {
+//  color: #0056b3;
+//  cursor: pointer;
+//  text-decoration: underline;
+//}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: #F8FAFC; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Inter, "Helvetica Neue", sans-serif; background: #F8FAFC;}
+
+.nav-item-vertical {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0.5rem;
+  color: white;
+
+  .nav-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    margin-left: 4px;
+    color: white;
+  }
+
+  .nav-link {
+    flex-direction: column;
+    align-items: center;
+    color: white;
+  }
+}
+
+.custom-nav-item {
+  list-style: none;
+  margin: 0.5rem 0;
+}
+
+.custom-nav-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  transition: background-color 0.3s ease;
+}
+
+.custom-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 0.5rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.active-icon .custom-icon-wrapper {
+  background-color: black;
+}
+
+.active-icon .custom-icon-wrapper svg {
+  color: white;
+}
+
+.custom-nav-label {
+  margin-top: 0.5rem;
+  color: white;
+  font-size: 0.875rem;
+}
+
+.custom-c-sidebar-nav-v2 {
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  --cui-sidebar-nav-link-hover-bg: rgba(15, 23, 43, 0.4);
+  --cui-sidebar-nav-link-active-bg: rgba(15, 23, 43, 0.4);
+  font-size: 12px;
+}
+
+.custom-c-row-side-hidden {
+  margin-left: calc(-8.0 * 1.5rem) !important;
+}
+
+.nav-group-toggle {
+  overflow-wrap: break-word !important;
+  font-style: normal;
+}
+
+.nav-link {
+  white-space: normal !important;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 110%; /* 15.4px */
+}
+
+.nav-link.nav-group-toggle {
+  font-weight: 600;
+}
+
+.sidebar-nav .nav-link {
+  white-space: normal !important;
+}
+
+.nav-link.active {
+  border-right: 5px solid blue;
+  border-radius: inherit;
+}
+
+.custom-inner-sidebar {
+  min-height: 91vh;
+  position: relative;
+  z-index: 1;
+  transition: margin-left .15s, margin-right .15s, box-shadow .075s, transform .15s, width .15s, z-index 0s ease .15s !important;
+  transform: translateX(0);
+}
+
+.custom-inner-sidebar:not(.show) {
+  transform: translateX(-100%);
+}
+
+.content {
+  display: flex;
+  padding: 0 20px 20px 0;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1 0 0;
+  align-self: stretch;
+  grid-row: 1 / span 1;
+  grid-column: 2 / span 1;
+}
+
+.content-sidebar {
+  display: flex;
+  width: 280px;
+  padding-bottom: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1 0 0;
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 1;
+}
+
+.custom-inner-sidebar-nav {
+  background: #F8FAFC;
+  display: flex;
+  min-width: 240px;
+  flex-direction: column;
+  //align-items: flex-start;
+}
+
+.custom-sidebar-area-internal {
+  display: flex;
+  width: 280px;
+  padding-bottom: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1 0 0;
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 1;
+}
+
+.custom-layout-col-content {
+  //width: calc(100% - var(--custom-width));
+  flex: 1 1 auto;
+  transition: width 0.3s ease;
+}
+
+/* Base class: always applied */
+.custom-content-area {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1 0 0;
+  align-self: stretch;
+  grid-row: 1 / span 1;
+  grid-column: 2 / span 1;
+  padding: 0 20px 20px 0; /* default */
+}
+
+/* Modifier class: conditionally applied */
+.custom-content-area.contracted {
+  padding-left: 120px;
+}
+
+// use inside content-area
+.custom-content-wrapper {
+  padding: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  flex: 1 0 0;
+  align-self: stretch;
+}

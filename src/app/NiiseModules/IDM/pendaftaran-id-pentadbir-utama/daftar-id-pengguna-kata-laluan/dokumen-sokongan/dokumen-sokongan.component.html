@@ -1,0 +1,149 @@
+<div class="container-fluid">
+  <!-- Main Content Area -->
+  <div class="card">
+    <div class="ms-4 me-4">
+      <div class="mt-2 mb-2">
+        <h3 class="mb-2 mt-4"><b>PERMOHONAN ID PENGGUNA - PENDAFTARAN PENGURUS ID UTAMA</b></h3>
+      </div>
+      <div class="mt-4">
+        <reusable-tab [currentStep]="currentStep" [steps]="steps"></reusable-tab>
+        <div class="row align-items-center mb-3">
+          <!-- Left Side: Maklumat Peranan -->
+          <div class="col-md-6">
+            <p class="mb-0">3. Dokumen Sokongan</p>
+            <small class="text-muted">Langkah 3 daripada 4 </small>
+          </div>
+        </div>
+
+        <!-- Maklumat Keputusan Section -->
+        <div class="mb-4 p-3 border rounded bg-light">
+          <div class="row">
+            <div class="col-md-4">
+              <h5>Perhatian</h5>
+              <h5>Saiz maksimum unutk setiap fail 10MB (fail format JPG, JPEG, PNG, PDF)</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-pagination-wrapper">
+          <!-- Scrollable Table Container -->
+          <div class="table-responsive table-scroll-container">
+            <table class="table table-hover table-row">
+              <thead>
+                <tr>
+                  <th>
+                    <div class="d-flex align-items-center gap-2 ps-0 pb-0 table-header">
+                      Bil
+                    </div>
+                  </th>
+                  <th class="table-header">Nama Dokumen</th>
+                  <th class="table-header">Format</th>
+                  <th class="table-header">Tindakan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let doc of paginatedDocuments; let i = index">
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      {{ (currentPage - 1) * itemsPerPage + i + 1 }}
+                    </div>
+                  </td>
+                  <td class="text-truncate" style="max-width: 300px;" [title]="doc.namadokumen">
+                    {{ doc.namadokumen }}
+                  </td>
+                  <td>
+                    {{ doc.format }}
+                  </td>
+                  <td>
+                    <button class="btn btn-danger btn-sm" (click)="removeDocument(doc.id)" title="Padam">
+                      <i class="cil-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr *ngIf="paginatedDocuments.length === 0">
+                  <td colspan="4" class="text-center text-muted py-4">
+                    Tiada dokumen dimuat naik
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination and Controls -->
+          <div class="row mt-3 pagination-row">
+            <div class="col">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <!-- Left: Items per page -->
+                <div class="d-flex align-items-center gap-3">
+                  <select class="form-select form-select-sm rounded-pill" [(ngModel)]="itemsPerPage"
+                    (change)="onItemsPerPageChange()">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                  </select>
+                </div>
+
+                <!-- Right: Pagination and Pergi ke -->
+                <div class="d-flex align-items-center flex-wrap gap-2">
+                  <!-- Pagination -->
+                  <nav>
+                    <ul class="pagination pagination-sm mb-0">
+                      <li class="page-item" [class.disabled]="currentPage === 1">
+                        <button class="page-link" (click)="goToPage('first')">&laquo;</button>
+                      </li>
+                      <li class="page-item" [class.disabled]="currentPage === 1">
+                        <button class="page-link" (click)="goToPage('prev')">&lsaquo;</button>
+                      </li>
+                      <li class="page-item active">
+                        <span class="page-link">{{ currentPage }}</span>
+                      </li>
+                      <li class="page-item" [class.disabled]="currentPage === totalPages">
+                        <button class="page-link" (click)="goToPage('next')">&rsaquo;</button>
+                      </li>
+                      <li class="page-item" [class.disabled]="currentPage === totalPages">
+                        <button class="page-link" (click)="goToPage('last')">&raquo;</button>
+                      </li>
+                    </ul>
+                  </nav>
+
+                  <div class="d-flex align-items-center">
+                    <small class="text-muted">Pergi ke</small>
+                    <input type="number" class="form-control form-control-sm" style="width: 60px;"
+                      [(ngModel)]="goToPageNumber" (keyup.enter)="goToSpecificPage()" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Catatan -->
+        <div class="mt-4">
+          <label for="catatan" class="form-label"><strong>Catatan</strong></label>
+          <textarea id="catatan" class="form-control" rows="3" [(ngModel)]="catatan"
+            placeholder="Masukkan catatan di sini..."></textarea>
+        </div>
+
+        <!-- Agreement Checkbox -->
+        <div class="form-check mt-3">
+          <input class="form-check-input" type="checkbox" id="agreement" [(ngModel)]="isAgreementChecked" />
+          <label class="form-check-label" for="agreement">
+            Saya memperakui segala maklumat yang diberikan di atas adalah benar
+          </label>
+        </div>
+      </div>
+
+      <!-- Bottom Navigation -->
+      <div class="pagination-wrapper row mt-4 pb-2 pt-2">
+        <div class="col-12">
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-all me-2">Set Semula</button>
+            <button class="btn btn-submit me-2">Hantar</button>
+            <button class="btn btn-all" (click)="goToPrevious()">&lt;</button>
+            <button class="btn btn-all" (click)="goToNext()">&gt;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

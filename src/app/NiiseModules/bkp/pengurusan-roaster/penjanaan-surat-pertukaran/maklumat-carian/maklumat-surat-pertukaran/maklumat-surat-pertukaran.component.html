@@ -1,0 +1,96 @@
+<c-container fluid>
+    <div class="form-section h-100">
+        <h2 class="section-title">Maklumat Surat Pertukaran</h2>
+
+        <form>
+            <!-- Nama Pegawai -->
+            <div class="mb-3">
+                <label for="nama" class="form-label">Nama Pegawai*</label>
+                <input type="text" class="form-control field-full" id="nama" name="nama"
+                    value="Muhammad Firdaus Bin Azmi">
+            </div>
+
+            <!-- Nombor Kad Pengenalan and Nombor Fail -->
+            <div class="mb-3">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nokp" class="form-label">Nombor Kad Pengenalan*</label>
+                        <input type="text" class="form-control field-medium" id="nokp" name="nokp"
+                            value="761231-14-5777">
+                    </div>
+                    <div class="form-group">
+                        <label for="nofail" class="form-label">Nombor Fail*</label>
+                        <input type="text" class="form-control field-medium" id="nofail" name="nofail" value="785432">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarikh -->
+            <div class="mb-3">
+                <label for="tarikh" class="form-label">Tarikh*</label>
+                <input type="date" class="form-control field-medium" id="tarikh" name="tarikh" value="2025-04-01">
+            </div>
+
+            <!-- Jawatan -->
+            <div class="mb-3">
+                <label for="jawatan" class="form-label">Jawatan*</label>
+                <select class="form-select field-full" id="jawatan" name="jawatan">
+                    <option value="">Pilih Jawatan</option>
+                    <option value="n41" selected>N41 - Penolong Pegawai Tadbir</option>
+                </select>
+            </div>
+
+            <!-- Kumpulan -->
+            <div class="mb-3">
+                <label for="kumpulan" class="form-label">Kumpulan*</label>
+                <select class="form-select field-short" id="kumpulan" name="kumpulan">
+                    <option value="">Pilih Kumpulan</option>
+                    <option value="A" selected>A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                </select>
+            </div>
+
+            <!-- Bahagian -->
+            <div class="mb-3">
+                <label for="bahagian" class="form-label">Bahagian*</label>
+                <select class="form-select field-full" id="bahagian" name="bahagian">
+                    <option value="">Pilih Bahagian</option>
+                    <option value="op1" selected>Bahagian Pengurusan Operasi Imegresen</option>
+                </select>
+            </div>
+
+            <!-- Tarikh Kelayakan and Nama PIN -->
+            <div class="mb-3">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tarikhkelayakan" class="form-label">Tarikh Kelayakan*</label>
+                        <input type="date" class="form-control field-medium" id="tarikhkelayakan" name="tarikhkelayakan"
+                            value="2025-05-03">
+                    </div>
+                    <div class="form-group">
+                        <label for="namapin" class="form-label">Nama PIN*</label>
+                        <input type="text" class="form-control field-medium" id="namapin" name="namapin" value="12345">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Digital Sign -->
+            <div class="mb-4">
+                <label for="digitalsign" class="form-label">Digital Sign*</label>
+                <div class="signature-area"></div>
+            </div>
+        </form>
+
+        <div class="action-buttons">
+            <button type="button" class="btn btn-dark action-btn">Set Semula</button>
+            <button type="button" class="btn btn-dark action-btn" (click)="onHantar()">Hantar</button>
+            <button type="button" class="btn btn-dark action-btn" (click)="onSimpan()">Simpan</button>
+            <button type="button" class="btn btn-dark action-btn">Cetak</button>
+        </div>
+    </div>
+
+    <app-modal-simpan [isSuccessModalVisible]="showModalSimpan" (modalClosed)="onModalSimpanClosed()"></app-modal-simpan>
+    <app-modal-hantar [isSuccessModalVisible]="showModalHantar" (modalClosed)="onModalHantarClosed()"></app-modal-hantar>
+</c-container>

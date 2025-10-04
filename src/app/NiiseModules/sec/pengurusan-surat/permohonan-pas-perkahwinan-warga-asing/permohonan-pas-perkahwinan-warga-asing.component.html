@@ -1,0 +1,241 @@
+<c-card class="mb-12">
+  <c-card-body>
+    <div class="p-2">
+      <c-card class="mb-3 shadow-sm">
+        <c-card-body>
+            <c-col md="9">
+              <h5 class="mb-4">
+                {{ pageTitle }}
+              </h5>
+              <div class="form-group">
+                <c-row class="mb-3">
+                  <c-col md="6">
+                    <label for="identification">No Pengenalan</label>
+                    <div class="d-flex gap-2">
+                      <input
+                        id="noPengenalan"
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="noPengenalan"
+                        (input)="enforce12DigitLimit($event)"
+                        placeholder="Masukkan No Pengenalan"
+                        maxlength="12"
+                      />
+                      <c-col class="col-4 ms-auto">
+                        <button class="btn btn-primary" (click)="onSubmit()">
+                          Cari
+                        </button>
+                      </c-col>
+                    </div>
+                  </c-col>
+                </c-row>
+                <c-row>
+                  <c-col class="text-end">
+                    <button cButton color="primary" (click)="onMohonPasClick()">
+                      Permohonan Baru
+                    </button>
+                  </c-col>
+                </c-row>
+                <!-- Always show the table -->
+                <ng-container *ngTemplateOutlet="resultTable1"></ng-container>
+                <ng-container *ngTemplateOutlet="resultTable2"></ng-container>
+                <ng-container *ngTemplateOutlet="resultTable3"></ng-container>
+                <ng-container *ngTemplateOutlet="resultTable4"></ng-container>
+              </div>
+            </c-col>
+
+          <!-- Reusable Table Template -->
+          <ng-template #resultTable1>
+            <div class="mt-4">
+              <h5 class="fw-bold mb-3">Maklumat Profil</h5>
+
+              <div class="table-responsive shadow-sm rounded border">
+                <table cTable class="table table-hover align-middle mb-0 w-100">
+                  <thead class="table-light">
+                    <tr>
+                      <th style="width: 50px">#</th>
+                      <th>IC Number</th>
+                      <th>Name</th>
+                      <th>No Dokumen</th>
+                      <th>W/N</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container
+                      *ngIf=" searchResultsProfile.length > 0; else noResultsRow1   ">
+                      <tr *ngFor="let item of searchResultsProfile; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ item.kpNo }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.docNo }}</td>
+                        <td>{{ item.nationality }}</td>
+                      </tr>
+                    </ng-container>
+
+                    <ng-template #noResultsRow1>
+                      <tr>
+                        <td colspan="6" class="text-center text-muted py-4">
+                          Tiada maklumat dijumpai berdasarkan carian anda.
+                        </td>
+                      </tr>
+                    </ng-template>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template #resultTable2>
+            <div class="mt-4">
+              <h5 class="fw-bold mb-3">Maklumat Pas</h5>
+
+              <div class="table-responsive shadow-sm rounded border">
+                <table cTable class="table table-hover align-middle mb-0 w-100">
+                  <thead class="table-light">
+                    <tr>
+                      <th style="width: 50px">#</th>
+                      <th>Name</th>
+                      <th>No Pengenalan</th>
+                      <th>No Dokumen</th>
+                      <th>W/N</th>
+                      <th>Nombor Pas</th>
+                      <th>Tarikh Luput Pas</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container
+                      *ngIf="searchResultsPas.length > 0; else noResultsRow2"
+                    >
+                      <tr *ngFor="let item of searchResultsPas; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.kpNo }}</td>
+                        <td>{{ item.docNo }}</td>
+                        <td>{{ item.nationality }}</td>
+                        <td>{{ item.pasNo }}</td>
+                        <td>{{ item.PasEnddt }}</td>
+                      </tr>
+                    </ng-container>
+
+                    <ng-template #noResultsRow2>
+                      <tr>
+                        <td colspan="6" class="text-center text-muted py-4">
+                          Tiada maklumat dijumpai berdasarkan carian anda.
+                        </td>
+                      </tr>
+                    </ng-template>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template #resultTable3>
+            <div class="mt-4">
+              <h5 class="fw-bold mb-3">Maklumat Senarai Syak</h5>
+
+              <div class="table-responsive shadow-sm rounded border">
+                <table cTable class="table table-hover align-middle mb-0 w-100">
+                  <thead class="table-light">
+                    <tr>
+                      <th style="width: 50px">#</th>
+                      <th>No KP</th>
+                      <th>Nama</th>
+                      <th>No Dokumen</th>
+                      <th>W/N</th>
+                      <th>Status</th>
+                      <th>No Agensi</th>
+                      <th>Kes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container
+                      *ngIf="searchResultsSL.length > 0; else noResultsRow3"
+                    >
+                      <tr *ngFor="let item of searchResultsSL; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ item.kpNo }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.docNo }}</td>
+                        <td>{{ item.nationality }}</td>
+                        <td>{{ item.slStatus }}</td>
+                        <td>{{ item.agency }}</td>
+                        <td>{{ item.case }}</td>
+                      </tr>
+                    </ng-container>
+
+                    <ng-template #noResultsRow3>
+                      <tr>
+                        <td colspan="6" class="text-center text-muted py-4">
+                          Tiada maklumat dijumpai berdasarkan carian anda.
+                        </td>
+                      </tr>
+                    </ng-template>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template #resultTable4>
+            <div class="mt-4">
+              <h5 class="fw-bold mb-3">Maklumat Pergerakan</h5>
+
+              <div class="table-responsive shadow-sm rounded border">
+                <table cTable class="table table-hover align-middle mb-0 w-100">
+                  <thead class="table-light">
+                    <tr>
+                      <th style="width: 50px">#</th>
+                      <th>Name</th>
+                      <th>No KP</th>
+                      <th>No Dokumen</th>
+                      <th>W/N</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container
+                      *ngIf="
+                        searchResultsPergerakan.length > 0;
+                        else noResultsRow4
+                      "
+                    >
+                      <tr
+                        *ngFor="
+                          let item of searchResultsPergerakan;
+                          let i = index
+                        "
+                      >
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.kpNo }}</td>
+                        <td>{{ item.docNo }}</td>
+                        <td>{{ item.nationality }}</td>
+                      </tr>
+                    </ng-container>
+
+                    <ng-template #noResultsRow4>
+                      <tr>
+                        <td colspan="6" class="text-center text-muted py-4">
+                          Tiada maklumat dijumpai berdasarkan carian anda.
+                        </td>
+                      </tr>
+                    </ng-template>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </ng-template>
+        </c-card-body>
+      </c-card>
+    </div>
+  </c-card-body>
+</c-card>
+
+<app-shared-modal
+  [visible]="modalVisible"
+  [message]="modalMessage"
+  [mode]="modalMode"
+  (confirm)="handleConfirmSubmit()"
+  (cancel)="handleCancelModal()"
+>
+</app-shared-modal>

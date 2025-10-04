@@ -1,0 +1,418 @@
+<!-- <p>maklumat-profil-ibc works!</p> -->
+ <c-card class="mb-3">  
+    <!-- HEADER PROFIL -->
+    <c-card-header class="card-header">
+      <h4 class="card-header-title">Jadual-Pergerakan Kapal</h4>
+    </c-card-header>
+
+    <!-- CONTENT CARD BODY -->
+    <c-card-body>
+        <c-row>
+            <!-- FORMS -->
+            <c-col md="8">
+                    <!-- FORMS START -->
+                    <form [formGroup]="profilForm" class="form" (ngSubmit)="onSubmit()">
+                        <!-- Form Title -->
+                        <!-- Replace your current h5 heading with this: -->
+            <h5 class="mb-4">
+            Maklumat Pergerakan Kapal
+            
+            </h5>
+                        
+                        <!-- Photo Placeholder -->
+                        <div class="photo-placeholder mb-4">
+                          <img [src]="photoUrl || 'assets/placeholder-image.png'" alt="Gambar Kapal" />
+                        </div>
+
+                        
+                       
+                        <c-row class="g-3 mb-3">
+                          <c-col md="6">
+                            <label cLabel for="namaKapal" class="mb-2">Nama Kapal</label>
+                            <input
+                              cFormControl
+                              id="namaKapal"
+                              type="text"
+                              formControlName="namaKapal"
+                              class="form-control"
+                              
+                            />
+                          </c-col>
+                          <c-col md="6">
+                            <label cLabel for="JenisKapal" class="mb-2">Jenis Kapal</label>
+                            <input
+                              cFormControl
+                              id="JenisKapal"
+                              type="text"
+                              formControlName="JenisKapal"
+                              class="form-control"
+                            />
+                          </c-col>                      
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+                          <c-col md="6">
+                            <label cLabel for="VoyagNo" class="mb-2">Voyage No.</label>
+                            <input
+                              cFormControl
+                              id="VoyagNo"
+                              type="text"
+                              formControlName="VoyagNo"
+                              class="form-control"
+                            />
+                          </c-col>                     
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+                          <c-col md="6">
+                            <label cLabel for="DestinasiPelabuhanTerakhir" class="mb-2">Destinasi (Pelabuhan) Terakhir</label>
+                            <input
+                              cFormControl
+                              id="DestinasiPelabuhanTerakhir"
+                              type="text"
+                              formControlName="DestinasiPelabuhanTerakhir"
+                              class="form-control"
+                            />
+                          </c-col>  
+                          <c-col md="6">
+                            <label cLabel for="namaAnakKapal" class="mb-2">Pelabuhan Seterusnya</label>
+                            <input
+                              cFormControl
+                              id="negaraAsalKapal"
+                              type="text"
+                              formControlName="negaraAsalKapal"
+                              class="form-control"
+                            />
+                          </c-col>                     
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+                          <c-col md="6">
+                            <label cLabel for="namaAnakKapal" class="mb-2">Bilangan Anak Kapal</label>
+                            <input
+                              cFormControl
+                              id="negaraAsalKapal"
+                              type="text"
+                              formControlName="negaraAsalKapal"
+                              class="form-control"
+                            />
+                          </c-col>  
+                          <c-col md="6">
+                            <label cLabel for="namaAnakKapal" class="mb-2">Bilangan Penumpang</label>
+                            <input
+                              cFormControl
+                              id="negaraAsalKapal"
+                              type="text"
+                              formControlName="negaraAsalKapal"
+                              class="form-control"
+                            />
+                          </c-col>                     
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+                          <c-col>
+                            <label cLabel for="namaAnakKapal" class="mb-2">Nama Nakhoda</label>
+                            <input
+                              cFormControl
+                              id="negaraAsalKapal"
+                              type="text"
+                              formControlName="negaraAsalKapal"
+                              class="form-control"
+                            />
+                          </c-col>                      
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+                          <c-col>
+                            <label cLabel for="namaAnakKapal" class="mb-2">Nama Syarikat Perkapalan</label>
+                            <input
+                              cFormControl
+                              id="negaraAsalKapal"
+                              type="text"
+                              formControlName="negaraAsalKapal"
+                              class="form-control"
+                            />
+                          </c-col>                      
+                        </c-row>
+
+
+                        <!-- SHIP INFORMATION TABLE -->
+        <div class="table-section"><br><br>
+    <h6 class="section-title mb-3 text-center">Maklumat Agensi Pegawai Perkapalan</h6>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th style="width: 60px;">Bil.</th>
+                    <th style="width: 170px;">No. MyKad</th>
+                    <th style="width: 140px;">No. Telefon</th>
+                    <th style="width: 250px;">Nama Pegawai Agensi Perkapalan</th>
+                    <th style="width: 150px;">Jawatan</th>
+                    <th style="width: 200px;">Muat Naik Photo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ship of shipList; let i = index">
+                    <td class="text-center">{{ i + 1 }}.</td>
+                    <td>{{ ship.namaKapal }}</td>
+                    <td>{{ ship.noImo }}</td>
+                    <td>{{ ship.noRasmi }}</td>
+                    <td>{{ ship.jawatan }}</td>
+                    <td>
+                        <div class="upload-container">
+                            <input 
+                                type="file" 
+                                [id]="'fileUpload_' + i" 
+                                class="form-control-file"
+                                accept="image/*,.pdf,.doc,.docx"
+                                (change)="onFileSelected($event, i)"
+                                style="display: none;">
+                            <button 
+                                type="button" 
+                                class="btn btn-sm btn-outline-primary"
+                                (click)="triggerFileUpload(i)">
+                                <i class="fas fa-upload"></i> + Muat Naik
+                            </button>
+                            <div *ngIf="ship.uploadedFile" class="mt-1">
+                                <small class="text-success">
+                                    <i class="fas fa-check"></i> {{ ship.uploadedFile.name }}
+                                </small>
+                                <button 
+                                    type="button" 
+                                    class="btn btn-sm btn-link text-danger p-0 ms-1"
+                                    (click)="removeFile(i)">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div *ngIf="ship.uploadError" class="mt-1">
+                                <small class="text-danger">{{ ship.uploadError }}</small>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Default rows if no data -->
+                <tr *ngIf="shipList.length === 0">
+                    <td class="text-center">1.</td>
+                    <td>901001-10-6789</td>
+                    <td>016-2181554</td>
+                    <td>Ali Bin Abu</td>
+                    <td>CEO</td>
+                    <td>
+                        <div class="upload-container">
+                            <input 
+                                type="file" 
+                                id="fileUpload_default_0" 
+                                class="form-control-file"
+                                accept="image/*,.pdf,.doc,.docx"
+                                (change)="onDefaultFileSelected($event, 0)"
+                                style="display: none;">
+                            <button 
+                                type="button" 
+                                class="btn btn-sm btn-outline-primary"
+                                (click)="triggerDefaultFileUpload(0)">
+                                <i class="fas fa-upload"></i> + Muat Naik
+                            </button>
+                            <div *ngIf="defaultFiles[0]" class="mt-1">
+                                <small class="text-success">
+                                    <i class="fas fa-check"></i> {{ defaultFiles[0].name }}
+                                </small>
+                                <button 
+                                    type="button" 
+                                    class="btn btn-sm btn-link text-danger p-0 ms-1"
+                                    (click)="removeDefaultFile(0)">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div *ngIf="defaultFileErrors[0]" class="mt-1">
+                                <small class="text-danger">{{ defaultFileErrors[0] }}</small>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr *ngIf="shipList.length <= 1">
+                    <td class="text-center">2.</td>
+                    <td>850604-14-4567</td>
+                    <td>03-91020303</td>
+                    <td>Zaid Bin Maarof</td>
+                    <td>Technician Engineer</td>
+                    <td>
+                        <div class="upload-container">
+                            <input 
+                                type="file" 
+                                id="fileUpload_default_1" 
+                                class="form-control-file"
+                                accept="image/*,.pdf,.doc,.docx"
+                                (change)="onDefaultFileSelected($event, 1)"
+                                style="display: none;">
+                            <button 
+                                type="button" 
+                                class="btn btn-sm btn-outline-primary"
+                                (click)="triggerDefaultFileUpload(1)">
+                                <i class="fas fa-upload"></i> + Muat Naik
+                            </button>
+                            <div *ngIf="defaultFiles[1]" class="mt-1">
+                                <small class="text-success">
+                                    <i class="fas fa-check"></i> {{ defaultFiles[1].name }}
+                                </small>
+                                <button 
+                                    type="button" 
+                                    class="btn btn-sm btn-link text-danger p-0 ms-1"
+                                    (click)="removeDefaultFile(1)">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div *ngIf="defaultFileErrors[1]" class="mt-1">
+                                <small class="text-danger">{{ defaultFileErrors[1] }}</small>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr *ngIf="shipList.length <= 2">
+                    <td class="text-center">3.</td>
+                    <td>860810-12-6476</td>
+                    <td>011-3465435</td>
+                    <td>Arif Kamil Bin Haris</td>
+                    <td>System Engineer</td>
+                    <td>
+                        <div class="upload-container">
+                            <input 
+                                type="file" 
+                                id="fileUpload_default_2" 
+                                class="form-control-file"
+                                accept="image/*,.pdf,.doc,.docx"
+                                (change)="onDefaultFileSelected($event, 2)"
+                                style="display: none;">
+                            <button 
+                                type="button" 
+                                class="btn btn-sm btn-outline-primary"
+                                (click)="triggerDefaultFileUpload(2)">
+                                <i class="fas fa-upload"></i> + Muat Naik
+                            </button>
+                            <div *ngIf="defaultFiles[2]" class="mt-1">
+                                <small class="text-success">
+                                    <i class="fas fa-check"></i> {{ defaultFiles[2].name }}
+                                </small>
+                                <button 
+                                    type="button" 
+                                    class="btn btn-sm btn-link text-danger p-0 ms-1"
+                                    (click)="removeDefaultFile(2)">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div *ngIf="defaultFileErrors[2]" class="mt-1">
+                                <small class="text-danger">{{ defaultFileErrors[2] }}</small>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<br><br>
+
+                        <c-row class="g-3 mb-3">
+                          <c-col md="6">
+                            <label cLabel for="namaAnakKapal" class="mb-2">Jangka Tiba</label>
+                            <input
+                              cFormControl
+                              id="negaraAsalKapal"
+                              type="datetime-local"
+                              formControlName="negaraAsalKapal"
+                              class="form-control"
+                            />
+                          </c-col>
+                          <c-col md="6">
+                            <label cLabel for="namaAnakKapal" class="mb-2">Jangka Rapat Dan Dermaga</label>
+                            <input
+                              cFormControl
+                              id="negaraAsalKapal"
+                              type="text"
+                              formControlName="negaraAsalKapal"
+                              class="form-control"
+                            />
+                          </c-col>                      
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+                          <c-col md="6">
+                            <label cLabel for="namaAnakKapal" class="mb-2">Jangka Berlayar</label>
+                            <input
+                              cFormControl
+                              id="negaraAsalKapal"
+                              type="datetime-local"
+                              formControlName="negaraAsalKapal"
+                              class="form-control"
+                            />
+                          </c-col>                     
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+                          <c-col>
+                            <label cLabel for="namaAnakKapal" class="mb-2">Catatan</label>
+                            <input
+                              cFormControl
+                              id="negaraAsalKapal"
+                              type="text"
+                              formControlName="negaraAsalKapal"
+                              class="form-control"
+                            />
+                          </c-col>                     
+                        </c-row>
+
+                        
+
+                        
+            </form>
+            </c-col>       
+        </c-row>
+        <!-- END OF CONTENT -->
+
+        <!-- FOOTER CONTENT FOR BUTTONS -->
+        <c-row class="mt-4 mb-3 footer-row">
+            <c-col class="d-flex justify-content-end align-items-center gap-2">
+            <!-- Action Buttons -->
+            <c-row class="g-3 mb-3 mt-3 justify-content-end">
+    <c-col class="d-flex justify-content-end gap-2">
+        <button
+            cButton 
+            color="primary"
+            class="biometric-btn">
+            Kembali
+        </button>
+        <button 
+            cButton 
+            color="primary" (click)="onSimpanClicked()"
+            class="biometric-btn">
+            Simpan
+        </button>
+    </c-col>
+</c-row>
+
+            
+            </c-col>
+        </c-row>
+    </c-card-body>
+</c-card>
+
+<!-- Standard Modal for Error Messages -->
+<c-modal #modalStandard [visible]="false" backdrop="static">
+  <c-modal-body class="text-center p-4">
+    <div class="mb-3">
+      <svg width="80" height="80" viewBox="0 0 100 100" style="margin-bottom: 1rem;">
+        <rect x="10" y="10" width="80" height="80" fill="none" stroke="#000" stroke-width="2"/>
+        <line x1="20" y1="20" x2="80" y2="80" stroke="#000" stroke-width="2"/>
+        <line x1="80" y1="20" x2="20" y2="80" stroke="#000" stroke-width="2"/>
+      </svg>
+    </div>
+    <h6 class="mb-3">{{ modalMessage }}</h6>
+  </c-modal-body>
+  <c-modal-footer class="text-center">
+    <button cButton color="secondary" (click)="modalStandardClick()">
+      {{ modalButtonText }}
+    </button>
+  </c-modal-footer>
+</c-modal>
+
+

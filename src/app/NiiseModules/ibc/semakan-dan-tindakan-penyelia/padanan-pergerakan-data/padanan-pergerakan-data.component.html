@@ -1,0 +1,242 @@
+<!-- CoreUI Traveler Form Component -->
+<c-container fluid class="p-4">
+  <c-card class="mx-auto" style="max-width: 1200px;">
+    <!-- Header -->
+    <c-card-header class="text-start border-bottom">
+      <h5 class="mb-0 fw-bold text-uppercase text-body">PADANAN PERGERAKAN DATA</h5>
+    </c-card-header>
+    
+    <!-- Content -->
+    <c-card-body class="p-4">
+
+      <!-- Filter Section - Shows when showFilters is true -->
+      <div *ngIf="showFilters" class="filter-section">
+        <!-- <h6 class="mb-4 text-center fw-semibold">PADANAN PERGERAKAN DATA</h6> -->
+        
+        <form>
+          <!-- First Row -->
+          <c-row class="mb-3">
+            <c-col md="6">
+              <label class="form-label small fw-semibold">No Pesawat</label>
+              <select 
+                class="form-select form-select-sm"
+                [(ngModel)]="filterCriteria.noVessel"
+                name="noVessel">
+                <option *ngFor="let option of noVesselOptions" [value]="option">
+                  {{option}}
+                </option>
+              </select>
+            </c-col>
+            <c-col md="6">
+              <label class="form-label small fw-semibold">Jadual Penerbangan</label>
+              <select 
+                class="form-select form-select-sm"
+                [(ngModel)]="filterCriteria.jadualPenerbangan"
+                name="jadualPenerbangan">
+                <option *ngFor="let option of jadualPenerbanganOptions" [value]="option">
+                  {{option}}
+                </option>
+              </select>
+            </c-col>
+          </c-row>
+
+          <!-- Second Row -->
+          <c-row class="mb-3">
+            <c-col md="6">
+              <label class="form-label small fw-semibold">Tarikh Pergerakan</label>
+              <input 
+                type="date" 
+                class="form-control form-control-sm"
+                [(ngModel)]="filterCriteria.tarikhPergerakan"
+                name="tarikhPergerakan"
+                [max]="maxDate"
+                placeholder="DD/MM/YYYY">
+            </c-col>
+          </c-row>
+
+          <!-- Action Buttons -->
+          <div class="text-center mt-4">
+            <button 
+              type="button"
+              cButton 
+              color="dark" 
+              class="me-3 px-4"
+              [disabled]="!isFormValid() || isSearching"
+              (click)="onSemak()">
+              <span *ngIf="isSearching" class="spinner-border spinner-border-sm me-2"></span>
+              Semak
+            </button>
+            <button 
+              type="button"
+              cButton 
+              variant="outline"
+              color="secondary" 
+              class="px-4"
+              (click)="onSetSemula()">
+              Set Semula
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Results Section - Shows when showFilters is false -->
+      <div *ngIf="!showFilters" class="results-section">
+        <!-- Disabled Filter Summary -->
+        <div class="filter-summary bg-light p-3 rounded mb-4">
+          <c-row class="mb-2">
+            <c-col md="6">
+              <label class="form-label small fw-semibold">Plat Masuk Keluar</label>
+              <input 
+                type="text" 
+                class="form-control form-control-sm"
+                [value]="filterCriteria.platMasukKeluar"
+                readonly>
+            </c-col>
+            <c-col md="6">
+              <label class="form-label small fw-semibold">No Vesel/ Kenderaan</label>
+              <input 
+                type="text" 
+                class="form-control form-control-sm"
+                [value]="filterCriteria.noVessel"
+                readonly>
+            </c-col>
+          </c-row>
+
+          <c-row class="mb-2">
+            <c-col md="6">
+              <label class="form-label small fw-semibold">Tarikh Pergerakan</label>
+              <input 
+                type="text" 
+                class="form-control form-control-sm"
+                [value]="filterCriteria.tarikhPergerakan"
+                readonly>
+            </c-col>
+            <c-col md="6">
+              <label class="form-label small fw-semibold">Masa Pergerakan</label>
+              <input 
+                type="text" 
+                class="form-control form-control-sm"
+                [value]="filterCriteria.masaPergerakan"
+                readonly>
+            </c-col>
+          </c-row>
+          <c-row class="mb-2">
+            <c-col md="6">
+              <label class="form-label small fw-semibold">Jenis Pemeriksaan</label>
+              <select 
+                class="form-select form-select-sm"
+                [(ngModel)]="filterCriteria.jadualPemeriksaan"
+                name="jadualPemeriksaan">
+                <option *ngFor="let option of jadualPemeriksaanOptions" [value]="option">
+                  {{option}}
+                </option>
+              </select>
+            </c-col>
+          </c-row>
+
+          <!-- New Search Button -->
+          <div class="text-end mt-3">
+            <button 
+              type="button"
+              cButton 
+              variant="outline"
+              color="primary" 
+              size="sm"
+              (click)="showFiltersAgain()">
+              Carian Baharu
+            </button>
+          </div>
+        </div>
+
+        <h6 class="mb-4 text-center fw-semibold">Maklumat Pemeriksaan Pergerakan Pengembara</h6>
+        
+        <!-- Table Container -->
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead class="table-light">
+              <tr>
+                <th scope="col" class="text-center" style="width: 60px;">Bil.</th>
+                <th scope="col" class="text-center" style="width: 40px;"></th>
+                <th scope="col">Nama</th>
+                <th scope="col" class="text-center" style="width: 120px;">Tarikh</th>
+                <th scope="col" class="text-center" style="width: 130px;">No.Dokumen</th>
+                <th scope="col" class="text-center" style="width: 120px;">Tarikh Lahir</th>
+                <th scope="col" class="text-center" style="width: 100px;">Jantina</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr 
+                *ngFor="let traveler of travelers; let i = index" 
+                [class.table-active]="selectedRow === i"
+                (click)="selectRow(i)"
+                class="cursor-pointer">
+                
+                <!-- Bil Column -->
+                <td class="text-center fw-semibold">
+                  {{ traveler.id }}.
+                </td>
+                
+                <!-- Status/Color Indicator Column -->
+                <td class="text-center">
+                  <span class="status-dot d-inline-block rounded-circle"
+                        [class.bg-success]="traveler.status === 'LELAKI'"
+                        [class.bg-warning]="traveler.status === 'PEREMPUAN'"
+                        style="width: 12px; height: 12px;">
+                  </span>
+                </td>
+                
+                <!-- Data Columns -->
+                <td>{{ traveler.nama }}</td>
+                <td class="text-center">{{ traveler.tarikh }}</td>
+                <td class="text-center">{{ traveler.noDokumen }}</td>
+                <td class="text-center">{{ traveler.tarikhLahir }}</td>
+                <td class="text-center">{{ traveler.jantina }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- Pagination Info and Controls -->
+        <div class="mt-3">
+          <!-- Pagination Info -->
+          <div class="d-flex justify-content-start mb-2">
+            <small class="text-muted">{{ getPaginationInfo() }}</small>
+          </div>
+          
+          <!-- Pagination Controls - Centered -->
+          <div class="d-flex justify-content-center">
+            <c-button-group role="group" class="gap-2">
+              <button 
+                cButton 
+                variant="outline" 
+                color="secondary"
+                [disabled]="currentPage === 1" 
+                (click)="previousPage()">
+                &lsaquo;
+              </button>
+              <button 
+                cButton 
+                color="dark"
+                [disabled]="currentPage === totalPages" 
+                (click)="nextPage()">
+                &rsaquo;
+              </button>
+            </c-button-group>
+          </div>
+        </div>
+      </div>
+
+    </c-card-body>
+    
+    <!-- Footer -->
+    <c-card-footer class="d-flex justify-content-end border-top">
+      <button *ngIf="!showFilters"
+        cButton 
+        color="dark" 
+        class="px-4"
+        (click)="onClose()">
+        Tutup
+      </button>
+    </c-card-footer>
+  </c-card>
+</c-container>

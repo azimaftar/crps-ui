@@ -1,0 +1,101 @@
+<c-card>
+ <c-card-header class="bg-white text-dark">
+  KEMAS KINI NOMBOR SIRI KAD KUASA
+</c-card-header>
+
+
+  <c-card-body>
+    <c-row>
+      <c-col xs="12" md="9" class="order-2 order-md-1">
+        <c-row class="mb-3">
+          <h6>Kemas Kini Serahan Kad Kuasa</h6>
+        </c-row>
+
+        <c-row>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Tarikh Serahan Kad Kuasa</label>
+            <input
+              class="form-control"
+              type="date"
+              [(ngModel)]="maklumatKad.tarikhSerahanKad"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+          <c-col xs="12" md="6" class="mb-3">
+            <label>Nombor Siri Kad Kuasa</label>
+            <input
+              class="form-control"
+              [(ngModel)]="maklumatKad.nomborSiriKad"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+        </c-row>
+      </c-col>
+
+      <c-col xs="12" md="3" class="order-1 order-md-2">
+        <!-- Loop through breadcrumb sections -->
+        <ng-container *ngFor="let section of breadcrumbSections">
+          <!-- Main Step (1, 2, 3, etc.) -->
+          <div class="d-flex align-items-center mb-3">
+            <div
+              class="step-circle me-3"
+              [ngClass]="{
+                'active-step': section.mainStep === currentMainStep
+              }"
+            >
+              {{ section.mainStep }}
+            </div>
+            <span>
+              {{ section.mainLabel }}
+            </span>
+          </div>
+        </ng-container>
+      </c-col>
+
+      <c-col
+        xs="12"
+        class="d-flex flex-wrap justify-content-end align-items-center gap-5 my-3 order-3 order-md-3"
+      >
+        <c-row>
+          <c-col class="d-flex gap-3">
+            <button type="button" class="btn btn-primary">Hantar</button>
+          </c-col> 
+
+          <!-- <button type="button" class="btn btn-primary" (click)="hantarRekod()">
+  Hantar
+</button> -->
+         
+ 
+          <c-col class="d-flex gap-3">
+            <button type="button" class="btn btn-secondary" disabled>
+              &lt;
+            </button>
+            <button type="button" class="btn btn-secondary">&gt;</button>
+          </c-col>
+        </c-row>
+      </c-col>
+    </c-row>
+  </c-card-body>
+</c-card>
+
+<!-- Rekod telah berjaya dihantar Modal -->
+<c-modal
+this.rekodDihantarVisible = true;
+  [(visible)]="rekodDihantarVisible"
+  size="sm"
+  backdrop="static"
+  keyboard="false"
+>
+  <c-modal-header class="border border-secondary">
+    <!-- Image or Anything -->
+    Icon Here
+  </c-modal-header>
+  <c-modal-body> Rekod telah berjaya dihantar </c-modal-body>
+  <c-modal-footer class="justify-content-center">
+    <button class="btn btn-secondary" (click)="rekodDihantarModalconfirm()">
+      OK
+    </button>
+  </c-modal-footer>
+</c-modal>

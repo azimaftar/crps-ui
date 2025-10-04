@@ -1,0 +1,86 @@
+// ========================
+// Wrapper Button Footer (Flex Layout)
+// ========================
+.card-footer.button-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem; // ruang dalam card footer
+  gap: 1rem;     // jarak antara button
+  flex-wrap: wrap; // supaya responsive jika skrin kecil
+}
+
+// ========================
+// Disyaki Palsu Button
+// ========================
+.disyaki-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 10px 16px;
+  background-color: #fff5f5;
+  color: #c92a2a;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #ffe3e3;
+  }
+
+  .icon-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+}
+
+// ========================
+// Semak Button Styles
+// ========================
+.semak-btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.semak-btn {
+  display: flex;
+  height: 40px;
+  padding: 10px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  border: 1px solid #1461BA;
+  background-color: #1461BA;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #0f4ea0;
+  }
+
+  .icon-circle {
+    width: 1.1rem;
+    height: 1.1rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 50%;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    background-color: transparent;
+  }
+}

@@ -1,0 +1,66 @@
+<div class="header-section">
+  <h2>KALENDAR TAKWIM</h2>
+  <div class="search-bar">
+    <label for="negeri-pejabat">Negeri/Pejabat Atase:</label>
+    <select id="negeri-pejabat" name="negeri-pejabat" [(ngModel)]="selectedRegion">
+      <option value="">Wilayah Persekutuan Putrajaya, Malaysia</option>
+      <option value="johor">Johor</option>
+      <option value="kedah">Kedah</option>
+      <option value="kelantan">Kelantan</option>
+    </select>
+    <button (click)="search()">CARI</button>
+  </div>
+</div>
+<div class="calendar-container">
+  <div class="header">
+    <button (click)="previousMonth()">◄</button>
+    <h1>{{ getMonthName() }}</h1>
+    <button (click)="nextMonth()">►</button>  
+    <button (click)="eLibrary()">e-LIBRARY</button>  
+  </div>
+  <div class="calendar-grid">
+    <div class="day-header" *ngFor="let day of daysOfWeek">{{ day }}</div>
+    <div
+      class="day"
+      *ngFor="let day of daysInMonth"
+      [ngClass]="{
+        'empty': day.date.getMonth() !== currentDate.getMonth(),
+        'holiday': day.isHoliday,
+        'selected': selectedDate === day.date,
+        'has-event': day.events && day.events.length > 0
+      }"
+      (click)="openModal(day)"
+    >
+      <span *ngIf="day.date.getMonth() === currentDate.getMonth()">{{ day.date.getDate() }}</span>
+      <span *ngIf="day.isHoliday" class="holiday-name">{{ day.holidayName }}</span>
+      <span *ngIf="day.events && day.events.length > 0" class="event-name">
+        {{ day.events[0].eventName }}
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Adding/Updating Events -->
+<c-modal [visible]="showModal" (visibleChange)="showModal = $event">
+  <c-modal-header>
+    <h5>Tambah/ Kemaskini Cuti</h5>
+  </c-modal-header>
+  <c-modal-body>
+    <div class="form-group">
+      <label for="startDate">Tarikh Mula:</label>
+      <input type="date" id="startDate" [(ngModel)]="newEvent.startDate" />
+    </div>
+    <div class="form-group">
+      <label for="endDate">Tarikh Tamat:</label>
+      <input type="date" id="endDate" [(ngModel)]="newEvent.endDate" />
+    </div>
+    <div class="form-group">
+      <label for="eventName">Nama Cuti:</label>
+      <input type="text" id="eventName" [(ngModel)]="newEvent.eventName" placeholder="Masukkan Nama Cuti" />
+    </div>
+  </c-modal-body>
+  <c-modal-footer>
+    <button cButton color="secondary" (click)="cancelEvent()">BATAL</button>
+    <button cButton color="primary" (click)="saveEvent()">SIMPAN</button>
+  </c-modal-footer>
+</c-modal>

@@ -1,0 +1,128 @@
+<div class="custom-content-wrapper">  
+  <c-card>
+    <c-card-body>
+      <c-row class="my-2">
+        <h4 class="fw-bold">MAKLUMAT PROFIL KAKITANGAN</h4>
+      </c-row>
+
+      <c-row class="my-2">
+        <c-col>
+          <ng-container *ngFor="let section of mainSteps">
+            <button
+              type="button"
+              class="btn-custom-breadcrumbADM btn btn-light d-inline-flex gap-2 fw-semibold"
+              [ngClass]="{
+                'btn-custom-breadcrumbADM-active':
+                  section.mainStep === currentMainStep
+              }"
+            >
+              <span
+                class="btn-custom-breadcrumbNoADM"
+                [ngClass]="{
+                  'btn-custom-breadcrumbNoADM-active':
+                    section.mainStep === currentMainStep
+                }"
+                >{{ section.mainStep }}</span
+              >
+              <span class="btn-custom-breadcrumbLabelADM">{{
+                section.mainLabel
+              }}</span>
+            </button>
+          </ng-container>
+        </c-col>
+      </c-row>
+
+      <c-row class="my-2">
+        <c-col class="d-flex flex-nowrap overflow-auto align-items-stretch">
+          <ng-container *ngFor="let section of subSteps">
+            <button
+              type="button"
+              class="btn-custom-breadcrumbADM btn btn-light fw-bold d-inline-flex gap-2 flex-shrink-0"
+              #subButton
+              [ngClass]="{
+                'btn-custom-breadcrumbADM-active':
+                  section.mainStep === currentMainStep &&
+                  section.subStep === currentSubStep
+              }"
+            >
+              <span
+                class="btn-custom-breadcrumbNoADM"
+                [ngClass]="{
+                  'btn-custom-breadcrumbNoADM-active':
+                    section.mainStep === currentMainStep &&
+                    section.subStep === currentSubStep
+                }"
+                >{{ section.subStep }}</span
+              >
+              <span class="btn-custom-breadcrumbLabelADM">{{
+                section.subLabel
+              }}</span>
+            </button>
+          </ng-container>
+        </c-col>
+      </c-row>
+
+      <c-row>
+        <c-col xs="12" md="12" class="order-2 order-md-1 mt-3">
+          <c-row class="mb-2">
+            <h5 class="fw-semibold">Maklumat Keluarga (Ibu/Bapa)</h5>
+          </c-row>
+          <c-row>
+            <c-col xs="12" md="6" class="mb-3">
+              <label class="fw-semibold">Nama Ibu</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatIbuBapa1.namaIbu"
+              />
+            </c-col>
+            <c-col xs="12" md="6" class="mb-3">
+              <label class="fw-semibold">Hubugan</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatIbuBapa1.hubunganIbu"
+              />
+            </c-col>
+          </c-row>
+          <c-row>
+            <c-col xs="12" md="6" class="mb-3">
+              <label class="fw-semibold">Nama Bapa</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatIbuBapa1.namaBapa"
+              />
+            </c-col>
+            <c-col xs="12" md="6" class="mb-3">
+              <label>Hubungan</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatIbuBapa1.hubunganBapa"
+              />
+            </c-col>
+          </c-row>
+        </c-col>
+      </c-row>
+
+      <c-row style="border-top: 1px solid rgba(0, 0, 0, 0.1)">
+        <c-col class="d-flex gap-5 flex-shrink-0 justify-content-end py-3">
+
+          <div class="d-flex">
+            <button
+              type="button"
+              class="btn-custom-normalWhite fw-semibold btn btn-light"
+              (click)="back()"
+            >
+              &lt;
+            </button>
+            <button
+              type="button"
+              class="btn-custom-normalWhite fw-semibold btn btn-light"
+              (click)="next()"
+            >
+              &gt;
+            </button>
+          </div>
+        </c-col>
+      </c-row>
+    </c-card-body>
+  </c-card>
+</div>

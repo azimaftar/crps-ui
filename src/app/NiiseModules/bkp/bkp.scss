@@ -1,0 +1,3595 @@
+//Pengurusan-vaksin
+//daftar tarikh publish
+.form-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 0;
+}
+
+
+.form-label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.form-control,
+.form-select {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.field-full {
+  width: 100%;
+  max-width: 500px;
+}
+
+.field-short {
+  width: 200px;
+  max-width: 100%;
+}
+
+.form-control:focus,
+.form-select:focus {
+  // border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+}
+
+.mb-3 {
+  margin-bottom: 1.5rem;
+}
+
+.mt-4 {
+  margin-top: 2rem;
+}
+
+/* Results Section Styling */
+.results-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 0 0 8px 8px;
+  border-top: 1px solid #ddd;
+  margin-top: 0;
+}
+
+.results-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.results-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.results-table td {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  vertical-align: middle;
+}
+
+.col-action {
+  width: 80px;
+  text-align: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Action button styling */
+.btn-edit {
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.btn-edit:hover {
+  background-color: #222;
+}
+
+.action-text {
+  color: white;
+}
+
+/* Modal Styles */
+.modal-header-custom {
+  border: 0;
+  padding-bottom: 0;
+}
+
+.modal-icon-container {
+  width: 100%;
+  text-align: center;
+}
+
+.modal-square-icon {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #000;
+  margin: 0 auto 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.modal-x-line-1,
+.modal-x-line-2 {
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  background-color: #000;
+}
+
+.modal-x-line-1 {
+  transform: rotate(45deg);
+}
+
+.modal-x-line-2 {
+  transform: rotate(-45deg);
+}
+
+.modal-body-custom {
+  text-align: center;
+  padding-top: 0;
+}
+
+.modal-message {
+  color: #000;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.modal-footer-custom {
+  border: 0;
+  padding-top: 0;
+}
+
+.modal-button-container {
+  width: 100%;
+  text-align: center;
+}
+
+.modal-ok-button {
+  background: #1461BA;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 24px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s;
+ 
+  &:hover {
+    background: #0f4c92;
+  }
+
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(108, 117, 125, 0.25);
+  }
+}
+//daftar kemaskini
+
+//scss
+.error-icon {
+            width: 96px;
+            height: 96px;
+            background: #fecaca;         /* light red background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            opacity: 1;
+            transform: rotate(0deg);     /* kalau nak pusing, ubah sini */
+            padding: 20px;
+ 
+            /* Better rounded triangle clip-path with more rounded corners */
+            clip-path: path("M48,12 C50.5,12 52.5,13 53.8,14.8 L84,70 C85.5,72.5 84.5,75.5 82,77 C81,77.6 79.8,78 78.5,78 L17.5,78 C14.5,78 12,75.5 12,72.5 C12,71.2 12.4,70 13,69 L43.2,14.8 C44.5,13 46.5,12 48,12 Z");
+        }
+ 
+        .error-icon i {
+            font-size: 22px;
+            color: #dc2626;
+            height: fit-content;            /* red exclamation */
+        }
+
+  .success-icon {
+  font-size: 32px;
+  color: #22c55e;            /* checkmark color */
+  background: #bbf7d0;       /* light green circle */
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;            /* center horizontally */
+}
+ 
+.modal-message {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1e293b;            /* dark gray */
+  margin: 20px 0;
+}
+ 
+.modal-ok-button {
+  background: #1461BA;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 24px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s;
+ 
+  &:hover {
+    background: #0f4c92;
+  }
+}
+
+
+//dafttart vaksin
+
+
+        .section-title.h-100 {
+            background-color: white;
+            border: 2px solid #dee2e6;
+            // border-radius: 8px;
+            border-color: black;
+            padding: 20px;
+            height: 100%;
+            box-sizing: border-box;
+            }
+
+
+        .form-label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color:#555;
+        }
+
+        .col-auto.col-form-label{
+            // font-weight: 400;
+            // color: black;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .col-md-6.col-form-label{
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .col-form-label{
+            font-weight: 400;
+            color: black;
+        }
+
+        .form-control.field-medium{
+            border: 2px solid #555;
+            width: 100%;    
+        }
+
+        .form-control.form-control-sm.input-small.field-medium{
+            width: 100% ;
+        }
+
+        .form-select{
+            border: 2px solid #000;
+            width: 100%; 
+        }
+
+        .form-control {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .field-full {
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .field-medium {
+            width: 200px;
+        }
+
+        .field-short {
+            width: 120px;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        .input-small {
+        width: 90px;       /* Make the box narrow */
+        padding: 0.25rem;  /* Reduce inside padding */
+        font-size: 0.875rem; /* Slightly smaller text */
+        }
+
+
+        .btn-dark {
+            background-color: #333;
+            border-color: #333;
+            padding: 0.75rem 2rem;
+            font-weight: 500;
+        }
+
+        .btn-dark:hover {
+            background-color: #222;
+            border-color: #222;
+        }
+
+        .mb-3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .mt-4 {
+            margin-top: 2rem;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .action-btn {
+            min-width: 120px;
+            width: 100%;
+            max-width: 150px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            border-radius: 6px;
+        }
+
+        .btn.btn-dark.action-button {
+            margin-top: 3.0rem;
+            margin-bottom: 3.0rem;
+        }
+
+        .btn.btn-dark.action-btn {
+            margin-bottom: 3.0rem;
+            margin-left: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .field-medium,
+            .field-short {
+                width: 100%;
+                max-width: 300px;
+            }
+
+        }
+
+        //modal simpan
+        /* Modal Styles */
+.modal-header-custom {
+    border: 0;
+    padding-bottom: 0;
+}
+
+.modal-icon-container {
+    width: 100%;
+    text-align: center;
+}
+
+.modal-square-icon {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #000;
+    margin: 0 auto 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Check mark icon for success modal */
+.modal-check-line-1,
+.modal-check-line-2 {
+    position: absolute;
+    background-color: #000;
+    height: 3px;
+    border-radius: 2px;
+}
+
+.modal-check-line-1 {
+    width: 16px;
+    transform: rotate(45deg);
+    left: 12px;
+    top: 30px;
+}
+
+.modal-check-line-2 {
+    width: 29px;
+    transform: rotate(-45deg);
+    right: 7px;
+    top: 26px;
+}
+
+// X-slashed design
+.modal-x-line-1,
+.modal-x-line-2 {
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  background-color: black; 
+}
+
+.modal-x-line-1 {
+  transform: rotate(45deg);
+}
+
+.modal-x-line-2 {
+  transform: rotate(-45deg);
+}
+//
+
+.modal-body-custom {
+    text-align: center;
+    padding-top: 0;
+}
+
+.modal-message {
+    color: #000;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+
+.modal-footer-custom {
+    border: 0;
+    padding-top: 0;
+}
+
+.modal-button-container {
+    width: 100%;
+    text-align: center;
+}
+
+.modal-ok-button {
+  background: #1461BA;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 24px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s;
+ 
+  &:hover {
+    background: #0f4c92;
+  }
+
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(108, 117, 125, 0.25);
+    }
+}
+
+
+
+//pengurusan roster geotime
+.form-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.form-section {
+  background-color: white;
+  border: 1px solid #dee2e6;
+  // border-radius: 8px;
+  border-color: black;
+  padding: 30px;
+}
+
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-box {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.popup-box button {
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  background-color: #343a40;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+//penetapan koordinasi
+
+//maklumat radius
+.form-section {
+  background-color: white;
+  border: 1px solid #dee2e6;
+  // border-radius: 8px;
+  border-color: black;
+  padding: 30px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+
+//sidebar
+.step {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 30px;
+
+  .circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #ccc;
+    color: white;
+    text-align: center;
+    line-height: 28px;
+    font-weight: bold;
+    z-index: 1;
+  }
+
+  .label {
+    margin-left: 10px;
+    color: #333;
+  }
+
+  .label {
+    margin-left: 10px;
+    color: #333;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 28px;
+    left: 13px;
+    width: 2px;
+    height: 100%;
+    background: #ccc;
+    z-index: 0;
+  }
+
+  &:last-child::before {
+    display: none;
+  }
+
+  &.active {
+    .circle {
+      background-color: black;
+    }
+
+    .label {
+      font-weight: bold;
+    }
+  }
+}
+
+.simple-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 30px;
+  padding: 20px 0;
+  border-top: 1px solid #eee;
+}
+
+.btn-cancel {
+  padding: 8px 20px;
+  background: white;
+  border: 1px solid #ccc;
+}
+
+.btn-submit {
+  padding: 8px 20px;
+  background: #0066cc;
+  color: white;
+  border: none;
+}
+
+// footer
+.navigation-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid #dee2e6;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-arrows {
+  display: flex;
+  gap: 5px;
+}
+
+.btn-reset {
+  background-color: #000;
+  border-color: #000;
+  color: white;
+  border-radius: 0.375rem;
+  padding: 8px 20px;
+  font-size: 14px;
+}
+
+.btn-reset:hover {
+  background-color: #333;
+  border-color: #333;
+}
+
+.btn-submit {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: white;
+  border-radius: 0.375rem;
+  padding: 8px 20px;
+  font-size: 14px;
+}
+
+.btn-submit:hover {
+  background-color: #5a6268;
+  border-color: #5a6268;
+}
+
+.btn-nav {
+  background-color: #000;
+  border-color: #000;
+  color: white;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+}
+
+.btn-nav:hover {
+  background-color: #333;
+  border-color: #333;
+  color: white;
+}
+
+//footer button
+.bottom-navigation {
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem; // sama dengan `p-3` dari Bootstrap
+
+  .nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .btn {
+      margin: 0.5rem; // sama dengan `m-2`
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 14px;
+
+      &.btn-dark {
+        background-color: #333;
+        border-color: #333;
+        color: white;
+
+        &:hover {
+          background-color: #555!important;
+          border-color: #555!important;
+        }
+      }
+    }
+
+    .right-buttons {
+      display: flex;
+      gap: 10px;
+    }
+  }
+}
+
+//pengurusan roster
+//terima jadual
+/* Form Section */
+.form-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 0;
+}
+
+/* Form Row - Horizontal Layout */
+.form-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Inline Form Labels */
+.form-label-inline {
+    font-weight: 500;
+    color: #555;
+    font-size: 0.95rem;
+    min-width: 180px;
+    text-align: left;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* Form Controls */
+.form-control,
+.form-select {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0.75rem;
+    font-size: 0.95rem;
+    background-color: #f8f9fa;
+}
+
+/* Inline Field Widths */
+.field-inline {
+    width: 400px;
+    max-width: 100%;
+}
+
+.field-inline-short {
+    width: 250px;
+    max-width: 100%;
+}
+
+.field-inline-dropdown {
+    width: 350px;
+    max-width: 100%;
+}
+
+.field-inline-date {
+    width: 200px;
+    max-width: 100%;
+}
+
+.field-inline-wide {
+    width: 500px;
+    max-width: 100%;
+}
+
+/* Date Input Wrapper */
+.date-input-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* Select Dropdown Arrow */
+.form-select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 45px;
+}
+/* Focused Fields */
+.form-control:focus,
+.form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    background-color: white;
+}
+
+/* Submit Buttons */
+.btn-dark {
+    background-color: #333;
+    border-color: #333;
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    min-width: 100px;
+    width: 100px;
+    text-align: center;
+}
+
+.btn-dark:hover {
+    background-color: #222;
+    border-color: #222;
+}
+
+/* Flex Utilities */
+.d-flex {
+    display: flex;
+}
+
+.justify-content-start {
+    justify-content: flex-start;
+}
+
+.gap-3 {
+    gap: 1rem;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-section {
+        padding: 1rem;
+        max-width: 100%;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .form-label-inline {
+        min-width: auto;
+        width: 100%;
+    }
+    
+    .field-inline,
+    .field-inline-short,
+    .field-inline-dropdown,
+    .field-inline-date,
+    .field-inline-wide {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .d-flex.gap-3 {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .btn-dark {
+        width: 100%;
+    }
+}
+// pengurusan roster
+
+.logo-card {
+  height: 200px;
+  border: 1px solid #e0e0e0;
+  
+  .logo-placeholder {
+    height: 120px;
+    border: 2px solid #ddd;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background: #ddd;
+      top: 50%;
+      left: 0;
+    }
+    
+    &::before {
+      transform: rotate(45deg);
+    }
+    
+    &::after {
+      transform: rotate(-45deg);
+    }
+    
+    span {
+      background: #f8f9fa;
+      padding: 0 10px;
+      font-weight: 500;
+      color: #666;
+      z-index: 1;
+      position: relative;
+    }
+  }
+  
+  c-card-footer {
+    background: #f8f9fa;
+    border-top: 1px solid #e0e0e0;
+    padding: 10px 15px;
+    
+    small {
+      font-size: 0.875rem;
+      color: #666;
+      font-weight: 400;
+    }
+  }
+
+}
+//setting paparan
+
+.field-full {
+  width: 100%;
+  max-width: 500px;
+}
+
+.field-short {
+  width: 100%;
+  max-width: 200px;
+}
+
+.btn-dark {
+  background-color: #333;
+  border-color: #333;
+  padding: 0.75rem 2rem;
+  font-weight: 500;
+}
+
+.btn-white {
+  background-color: #FFFFFF;
+  border-color: #CAD5E2;
+  padding: 0.75rem 2rem;
+  font-weight: 500;
+}
+
+
+
+.btn-teal {
+  background-color: #008080;
+  border-color: #008080;
+  padding: 0.75rem 2rem;
+  font-weight: 500;
+}
+
+
+.mb-3 {
+  margin-bottom: 1.5rem;
+}
+
+.mt-4 {
+  margin-top: 2rem;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+
+.col-perkhidmatan {
+  width: 180px;
+}
+
+/* Action button styling */
+.btn-view {
+  background-color: transparent;
+  color: #007bff;
+  border: 1px solid #007bff;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.btn-view:hover {
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+}
+
+.action-text {
+  font-size: 11px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .field-full,
+  .field-short {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .form-section {
+    padding: 1rem;
+  }
+  
+  .results-section {
+    padding: 1rem;
+  }
+}
+
+//modal hantar
+//jadual roster
+.form-section {
+  background: white;
+  padding: 2rem;
+  margin-bottom: 0;
+  border-radius: 8px 8px 0 0;
+}
+.form-label-sub {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.form-control,
+.form-select,
+textarea.form-control {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.form-control:focus,
+.form-select:focus,
+textarea.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Field width controls */
+.field-short {
+  width: 150px;
+  max-width: 100%;
+}
+
+.field-medium {
+  width: 350px;
+  max-width: 100%;
+}
+
+.field-full {
+  width: 100%;
+}
+
+.field-time {
+  width: 120px;
+  max-width: 100%;
+}
+
+/* Date and time input styling */
+.date-input-container,
+.time-input-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Time row styling */
+.time-row {
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+
+  .col-md-6 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* Button styling */
+.btn {
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.btn-dark {
+  background-color: #333;
+  border-color: #333;
+}
+
+.btn-dark:hover {
+  background-color: #222;
+  border-color: #222;
+}
+
+.btn-outline-dark {
+  color: #333;
+  border-color: #333;
+  background-color: transparent;
+}
+
+.btn-outline-dark:hover {
+  background-color: #333;
+  border-color: #333;
+  color: white;
+}
+
+/* Form spacing */
+.mb-3 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 2rem;
+}
+
+.mt-4 {
+  margin-top: 2rem;
+}
+
+/* Gap utility for buttons */
+.gap-3 {
+  gap: 1rem;
+}
+
+/* Textarea specific styling */
+textarea.form-control {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .form-section {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+
+  .field-short,
+  .field-medium,
+  .field-time {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .time-row {
+    margin-left: 0;
+    margin-right: 0;
+
+    .col-md-6 {
+      padding-left: 0;
+      padding-right: 0;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .d-flex.justify-content-center {
+    flex-direction: column;
+
+    .btn {
+      margin-bottom: 0.5rem;
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+}
+
+/* Custom styling for form elements */
+.form-control::placeholder,
+.form-select option:first-child {
+  color: #6c757d;
+  opacity: 1;
+}
+
+/* Focus states */
+.form-control:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Validation styling (if needed) */
+.form-control.is-invalid,
+.form-select.is-invalid {
+  border-color: #dc3545;
+}
+
+.form-control.is-valid,
+.form-select.is-valid {
+  border-color: #28a745;
+}
+
+
+//maklumat surat pertukaran
+  .form-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 0;
+        }
+
+        
+
+        .form-label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .form-control,
+        .form-select {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .signature-area {
+            width: 100%;
+            max-width: 270px;
+            height: 120px;
+            border: 1px solid #ced4da;
+        }
+
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-start;
+            margin-top: 2rem;
+            padding-top: 1rem;
+        }
+
+        .action-btn {
+            min-width: 120px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            border-radius: 6px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .field-medium,
+            .field-short {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .action-btn {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+
+//maklumat carian
+
+
+.col-bil {
+  width: 60px;
+  text-align: center;
+}
+
+.col-nama {
+  width: 250px;
+}
+
+.col-kad {
+  width: 180px;
+}
+
+.col-gred {
+  width: 280px;
+}
+
+
+.field-full { width: 100%; max-width: 500px; }
+.field-short { width: 150px; max-width: 100%; }
+.field-date { width: 200px; max-width: 100%; }
+
+/* ========== BUTTONS ========== */
+.btn-dark {
+  background-color: #333;
+  border-color: #333;
+  padding: 0.75rem 2rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+/* ========== LAYOUT UTILITIES ========== */
+.mb-3 { margin-bottom: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+.mt-5 { margin-top: 3rem; }
+
+.form-row {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #dee2e6;
+}
+
+.action-btn {
+  min-width: 120px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* ========== TABLE STYLES ========== */
+.table-container {
+  overflow-x: auto;
+  margin: 2rem 0;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.custom-table {
+  width: 100%;
+  min-width: 1400px; /* Adjusted for better fit */
+  border-collapse: collapse;
+  table-layout: fixed; /* Ensures consistent column widths */
+}
+
+/* Cell Base Styles */
+.custom-table td {
+  vertical-align: top;
+  padding: 1;
+  border: 1px solid #e0e0e0;
+}
+
+/* Header Styles */
+.custom-table th {
+  padding: 12px 15px;
+  background: #2c3e50;
+  color: white;
+  text-align: left;
+  font-weight: 500;
+  position: sticky;
+  top: 0;
+  border: 1px solid #e0e0e0;
+}
+
+/* ========== DRAG & DROP STATES ========== */
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 3px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  padding: 12px 10px;
+  background: #2c3e50;
+  color: white;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating, 
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: none !important;
+  transform: none !important;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transform: none !important;
+}
+
+.time-column, .id-column, .grade-column {
+  width: 15%;
+  padding: 10px;
+  min-height: 400px;
+  background: #f8f9fa;
+}
+
+.time-list, .id-list, .grade-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.time-item,
+.id-item,
+.grade-item {
+  background: #e9ecef;
+  text-align: center;
+}
+
+/* ========== RESPONSIVE ADJUSTMENTS ========== */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .field-short,
+  .field-date {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .action-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .custom-table {
+    min-width: 100%;
+  }
+
+  .example-box,
+  .person-item {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Column Specific Styles */
+.kaunter-list {
+  width: 20%;
+  padding: 8px;
+  background: #f8f9fa;
+}
+
+.nama-column {
+  width: 25%;
+  padding: 8px;
+  background: #f8f9fa;
+}
+
+.time-column {
+  width: 12%;
+  padding: 8px;
+  background: #f8f9fa;
+}
+
+.id-column {
+  width: 12%;
+  padding: 8px;
+  background: #f8f9fa;
+}
+
+.grade-column {
+  width: 15%;
+  padding: 8px;
+  background: #f8f9fa;
+}
+
+/* Item Styles (applied to all cells) */
+.kaunter-item,
+.nama-item,
+.time-item,
+.id-item,
+.grade-item {
+  padding: 12px 10px;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  border-radius: 3px;
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Specific Item Styles */
+.kaunter-item {
+  background: #2c3e50;
+  color: white;
+  cursor: move;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.nama-item {
+  background: #e9ecef;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1400px) {
+  .table-container {
+    padding: 0.5rem;
+    overflow-x: auto;
+  }
+  
+  .nama-item {
+    white-space: normal;
+  }
+}
+
+.field-full {
+  width: 100%;
+  max-width: 500px;
+}
+
+.field-short {
+  width: 150px;
+  max-width: 100%;
+}
+
+.mb-3 {
+  margin-bottom: 1.5rem;
+}
+
+.mt-4 {
+  margin-top: 2rem;
+}
+
+/* Edit button styling */
+.btn-edit {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+}
+
+.edit-icon {
+  font-size: 16px;
+}
+
+.edit-text {
+  font-size: 10px;
+  color: #666;
+  font-weight: 500;
+}
+
+.btn-edit:hover {
+  opacity: 0.7;
+}
+
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  
+  button {
+    min-width: 100px;
+  }
+}
+
+
+/* Form Labels */
+.form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+/* Form Controls */
+.form-control,
+.form-select {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0.75rem;
+    font-size: 0.95rem;
+}
+
+/* Full-width Field */
+.field-full {
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Short-width Field */
+.field-short {
+    width: 150px;
+    max-width: 100%;
+}
+
+/* Date Field */
+.field-date {
+    width: 200px;
+    max-width: 100%;
+}
+
+/* Focused Fields */
+.form-control:focus,
+.form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Button Styles */
+.btn-dark {
+    background-color: #333;
+    border-color: #333;
+    padding: 0.75rem 2rem;
+    font-weight: 500;
+}
+
+/* Margin Utilities */
+.mb-3 {
+    margin-bottom: 1.5rem;
+}
+
+/* Flex Layout for Kumpulan and Tarikh Fields */
+.form-row {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+/* Form Group */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    padding-top: 1rem;
+}
+
+.action-btn {
+    min-width: 120px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    border-radius: 6px;
+}
+
+.action-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .field-short,
+    .field-date {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .action-btn {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+.result-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    padding: 0.75rem;
+    // border: 1px solid #ddd;
+    text-align: left;
+}
+
+.table td {
+    padding: 0.75rem;
+    // border: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+/* Column widths */
+.col-bil {
+    width: 60px;
+    text-align: center;
+}
+
+.col-nama {
+    width: 250px;
+}
+
+.col-kad {
+    width: 180px;
+}
+
+.col-gred {
+    width: 280px;
+}
+
+.col-action {
+    width: 120px;
+    text-align: center;
+}
+
+/* Simple checkbox styling */
+.checkbox-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    justify-content: center;
+}
+
+.checkbox-group label {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+}
+
+/* Simple button styling */
+.btn-view {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.btn-view:hover {
+    background: #0056b3;
+}
+
+
+.px-4 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-end {
+  justify-content: flex-end;
+}
+
+.mt-4 {
+  margin-top: 2rem;
+}
+
+/* Form Labels */
+
+.form-label-small {
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+/* Form Controls */
+
+.field-kaunter {
+    width: 100%;
+    max-width: 430px;
+}
+
+.field-med {
+    width: 200px;
+    max-width: 100%;
+}
+
+/* Time Input Field */
+.field-time {
+    width: 120px;
+    max-width: 100%;
+}
+
+/* Textarea Field */
+.field-textarea {
+    width: 100%;
+    max-width: 600px;
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Time Input Group */
+.time-input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Flex Utilities */
+.d-flex {
+    display: flex;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.gap-3 {
+    gap: 1rem;
+}
+
+.justify-content-end {
+    justify-content: flex-end;
+}
+
+/* Form Check Styles */
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-check-input {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin: 0;
+}
+
+.form-check-label {
+    font-weight: 500;
+    color: #555;
+    cursor: pointer;
+}
+/* Submit Button */
+
+
+
+.action-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+
+    .field-short,
+    .field-time {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .time-input-group {
+        width: 100%;
+    }
+
+    .d-flex.align-items-center {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .gap-3 {
+        gap: 1rem;
+    }
+
+    .form-section {
+        padding: 1rem;
+    }
+}
+
+//dftar jadual
+//maklumat pendaftaran jadual
+.registration-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+
+/* Field width classes */
+.field-short {
+    width: 160px;
+    max-width: 100%;
+}
+
+.field-time {
+    width: 160px;
+    max-width: 100%;
+}
+
+
+
+/* Action buttons */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+}
+
+.btn-action {
+    background-color: #333;
+    border-color: #333;
+    color: white;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 4px;
+    min-width: 100px;
+}
+
+.btn-action:hover {
+    background-color: #222;
+    border-color: #222;
+}
+
+
+.mb-4 {
+    margin-bottom: 2rem;
+}
+
+//modal simpan
+
+//modal hantar
+//jadual roster
+.form-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 0;
+  flex-grow: 1;
+}
+
+.calendar-wrapper {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+.calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  font-family: Arial, sans-serif;
+  
+  th, td {
+    border: 1px solid #333;
+    text-align: center;
+    padding: 4px 2px;
+    min-width: 35px;
+    height: 25px;
+    vertical-align: middle;
+  }
+  
+  // Header styles
+  .day-header {
+    background-color: #d4edda; /* Light green background */
+    font-weight: bold;
+    width: 50px;
+    font-size: 10px;
+    color: #000000; /* Black text */
+  }
+  
+  .month-header {
+    background-color: #d4edda; /* Light green background */
+    font-weight: bold;
+    min-width: 40px;
+    font-size: 10px;
+    color: #000000; /* Black text */
+  }
+  
+  // Extra column headers (PG, PTG, MLM, REHAT, REHAT) - SPEC MATCH
+  .extra-header {
+    background-color: #d4edda; /* Light green background to match other headers */
+    font-weight: bold;
+    min-width: 35px;
+    width: 35px;
+    font-size: 11px;
+    text-align: center;
+    border: 1px solid #333;
+    color: #000000; /* Black text */
+  }
+  
+  // Day column
+  .day-cell {
+    background-color: #d4edda; /* Light green background */
+    font-weight: bold;
+    text-align: center;
+    font-size: 10px;
+    width: 50px;
+    color: #000000; /* Black text */
+  }
+  
+  // Date cells - COMPACT VERSION
+  .date-cell {
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 10px;
+    background-color: white;
+    min-width: 20px !important;
+    width: 20px !important;
+    padding: 2px 1px !important;
+    
+    &:hover {
+      background-color: #f0f0f0;
+    }
+    
+    &.selected {
+      background-color: #ff9500;
+      color: white;
+      font-weight: bold;
+    }
+    
+    &.highlighted {
+      background-color: #fff3cd;
+    }
+    
+    // Previous month cells styling
+    &.previous-month-cell,
+    &.prev-month-cell {
+      background-color: #f8f8f8;
+      color: #888;
+      font-style: italic;
+      min-width: 20px !important;
+      width: 20px !important;
+      
+      &:hover:not(.empty-cell) {
+        background-color: #f0f0f0;
+      }
+      
+      &.selected {
+        background-color: #cc7700;
+        color: white;
+        font-weight: bold;
+      }
+    }
+    
+    // Empty cells
+    &:empty {
+      background-color: #fafafa;
+    }
+    
+    &.empty-cell {
+      background-color: #f5f5f5 !important;
+      color: #ccc !important;
+      cursor: not-allowed !important;
+      
+      &:hover {
+        background-color: #f5f5f5 !important;
+      }
+    }
+  }
+  
+  // Extra column cells (PG, PTG, MLM, REHAT, REHAT) - LIGHT PASTEL COLORS
+  .extra-cell {
+    font-weight: bold;
+    font-size: 12px;
+    min-width: 35px !important;
+    width: 35px !important;
+    max-width: 35px !important;
+    padding: 3px 2px !important;
+    text-align: center;
+    border-left: none; /* Remove left borders between extra cells */
+    border-top: 1px solid #333; /* Keep top borders */
+    border-bottom: 1px solid #333; /* Keep bottom borders */
+    border-right: 1px solid #333; /* Keep right borders */
+    color: #000000; /* Black text */
+    
+    // Light pastel color coding matching second image
+    &.extra-a {
+      background-color: #f8d7da; /* Very light pink/red */
+    }
+    
+    &.extra-b {
+      background-color: #d1ecf1; /* Very light blue */
+    }
+    
+    &.extra-c {
+      background-color: #e2d9f3; /* Very light purple */
+    }
+    
+    &.extra-d {
+      background-color: #fff3cd; /* Very light yellow */
+    }
+  }
+  
+  // Individual column specifications - ALL SAME SIZE
+  .extra-pg,
+  .extra-ptg,
+  .extra-mlm,
+  .extra-rehat1,
+  .extra-rehat2 {
+    min-width: 35px !important;
+    width: 35px !important;
+    max-width: 35px !important;
+  }
+  
+  // Row styling
+  .calendar-row {
+    &:nth-child(even) {
+      .date-cell:empty {
+        background-color: #f9f9f9;
+      }
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .calendar-table {
+    font-size: 9px;
+    
+    th, td {
+      padding: 2px 1px;
+      min-width: 30px;
+      height: 20px;
+    }
+    
+    .day-header {
+      width: 40px;
+    }
+    
+    .date-cell {
+      min-width: 15px !important;
+      width: 15px !important;
+      font-size: 8px !important;
+      
+      &.prev-month-cell {
+        min-width: 15px !important;
+        width: 15px !important;
+      }
+    }
+    
+    .extra-header {
+      min-width: 30px !important;
+      width: 30px !important;
+      max-width: 30px !important;
+      font-size: 9px !important;
+    }
+    
+    .extra-cell {
+      min-width: 30px !important;
+      width: 30px !important;
+      max-width: 30px !important;
+      font-size: 10px !important;
+      padding: 2px 1px !important;
+    }
+
+    .extra-pg,
+    .extra-ptg,
+    .extra-mlm,
+    .extra-rehat1,
+    .extra-rehat2 {
+      min-width: 30px !important;
+      width: 30px !important;
+      max-width: 30px !important;
+    }
+  }
+  
+  .section-title {
+    font-size: 1.2rem;
+  }
+  
+  .form-section {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar-table {
+    font-size: 8px;
+    
+    th, td {
+      padding: 1px;
+      min-width: 25px;
+      height: 18px;
+    }
+    
+    .extra-header {
+      min-width: 25px !important;
+      width: 25px !important;
+      max-width: 25px !important;
+      font-size: 8px !important;
+    }
+    
+    .extra-cell {
+      min-width: 25px !important;
+      width: 25px !important;
+      max-width: 25px !important;
+      font-size: 9px !important;
+      padding: 1px !important;
+    }
+
+    .extra-pg,
+    .extra-ptg,
+    .extra-mlm,
+    .extra-rehat1,
+    .extra-rehat2 {
+      min-width: 25px !important;
+      width: 25px !important;
+      max-width: 25px !important;
+    }
+  }
+}
+
+
+.col-action {
+    width: 80px;
+    text-align: center;
+}
+
+/* Edit button styling */
+.btn-edit {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 4px;
+}
+
+.edit-icon {
+    font-size: 16px;
+}
+
+.edit-text {
+    font-size: 10px;
+    color: #666;
+    font-weight: 500;
+}
+
+.btn-edit:hover {
+    opacity: 0.7;
+}
+
+.text-center {
+    text-align: center;
+}
+
+//penggantian tugas
+// @import '@coreui/coreui/scss/coreui';
+.container-fluid{
+  width: 100%;
+  animation: fadeIn 0.3s ease-in-out;
+  border-color: #FFFFFF;
+}
+
+// :host {
+//   display: block;
+//   height: 100vh;
+//   background-color: var(--cui-body-bg);
+// }
+
+  .table-section {
+        background-color: white;
+        padding: 10px;
+    }
+
+  
+  h6 {
+    color: var(--cui-heading-color);
+    font-weight: 600;
+    border-bottom: 1px solid var(--cui-border-color);
+    padding-bottom: 0.5rem;
+  }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Custom scrolling for content areas
+.c-card-body {
+  overflow-y: auto;
+  
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: var(--cui-gray-100);
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: var(--cui-gray-400);
+    border-radius: 3px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--cui-gray-500);
+  }
+}
+
+//maklumat pegawai pegannti
+
+.form-section {
+  background-color: white;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+
+.btn-nav:hover {
+  background-color: #333;
+  border-color: #333;
+  color: white;
+}
+
+.sign-input{
+        width: 400px;
+        height: 200px;
+}
+
+.photo-class{
+    width: 132px;
+    height: 170px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-box {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.popup-box p {
+  margin-bottom: 1rem;
+}
+
+.popup-box button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+//maklumat-pegaawai-pemohon
+.sign-input{
+        width: 400px;
+        height: 200px;
+    }
+
+    .photo-class{
+        width: 132px;
+        height: 170px;
+        object-fit: cover;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+
+.big-square-radio {
+  width: 30px;
+  height: 30px;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #fff;
+  border: 2px solid #999;
+  border-radius: 0;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  margin: 0;
+
+  &:checked::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 18px;
+    height: 18px;
+    background-color: #000000;
+  }
+}
+
+.form-check-label {
+  font-size: 1rem;  //1.1rem seems too big
+}
+
+//eroster
+.container {
+  text-align: center;
+  padding: 40px;
+}
+
+.button-group {
+  margin-top: 20px;
+}
+
+.btn {
+  background-color: #1976d2;
+  color: white;
+  padding: 12px 24px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #1565c0;
+}
+
+
+
+.field-medium {
+    width: 300px;
+    max-width: 100%;
+}
+
+.field-small {
+    width: 200px;
+    max-width: 100%;
+}
+
+
+
+.mt-4 {
+    margin-top: 2rem;
+}
+
+/* Badge Styling for Kelulusan */
+.kelulusan-badge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 1rem;
+  text-align: center;
+  min-width: 80px;
+}
+
+.kelulusan-lulus {
+  background-color: #e6f4ea;
+  color: #2e7d32;
+}
+
+.kelulusan-gagal {
+  background-color: #fce4e4;
+  color: #c62828;
+}
+
+.kelulusan-pending {
+  background-color: #f5f5f5;
+  color: #616161;
+}
+
+/* Interactive Checkbox Group */
+.checkbox-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkbox-group label {
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.checkbox-group label:hover {
+  background-color: #f1f1f1;
+}
+
+.checkbox-group input[type="checkbox"] {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  accent-color: #007bff;
+}
+
+/* Table Cell for Kelulusan */
+.table td.kelulusan-cell {
+  padding: 0.5rem;
+  vertical-align: middle;
+}
+
+/* View Button Styling */
+.btn-view {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+  min-width: 90px;
+  text-decoration: none;
+}
+
+.btn-view:hover {
+  background: #0056b3;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.btn-view:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Results Section Styling */
+.results-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 0 0 8px 8px;
+    border-top: 1px solid #ddd;
+    margin-top: 0;
+}
+
+.results-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.results-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.results-table td {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+
+.col-action {
+    width: 80px;
+    text-align: center;
+}
+
+/* Edit button styling */
+.btn-edit {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 4px;
+}
+
+.edit-icon {
+    font-size: 16px;
+}
+
+.edit-text {
+    font-size: 10px;
+    color: #666;
+    font-weight: 500;
+}
+
+.btn-edit:hover {
+    opacity: 0.7;
+}
+
+
+//maklumat pegawai
+
+//jana laporan
+// Main container layout
+.carian-sl-container {
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .left-panel {
+    width: 100%;
+  }
+}
+
+// Equal width sections
+.search-section,
+.subject-list-section {
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #f8f9fa;
+  margin-bottom: 20px;
+
+  h3 {
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 600;
+  }
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  color: #1D293D;
+
+  
+  font-family: var(--global-font-family-heading);
+  font-weight: 700;            // Bold
+  font-style: normal;          // not italic
+  font-size: var(--global-font-size-heading-h4);
+  line-height: 120%;           // controls vertical spacing
+  letter-spacing: 0;
+  
+  /* Avoid fixed height, let line-height handle it */
+  width: 349px;                // if you really need fixed width
+  opacity: 1;
+}
+
+
+.white-box {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: 100%;
+}
+
+// Form styling
+.form-group5 {
+  margin-bottom: 15px;
+
+   label {
+    font-family: var(--global-font-family-body);
+    font-weight: 600;                /* Semi Bold */
+    font-style: normal;
+    font-size: var(--global-font-size-body-md);
+    letter-spacing: 0;
+    color:  #1D293D;  
+    opacity: 1;
+    display: inline-block;           /* supaya width & height berfungsi */
+    
+    padding: 2px 4px;                /* optional, bagi spacing sikit */
+   }
+
+  .form-control {
+    width: 664px;
+    height: 40px;
+    
+    border: 1px solid var(--color-outline-base, #CAD5E2);
+    border-radius: var(--global-layout-radius-md);
+    background: var(--color-surface-white,#F8FAFC);
+;
+    box-shadow: 0px 1px 2px 0px #0A0D120D;
+    opacity: 1;
+
+    padding: 8px 12px;
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    &:focus {
+      border-color: var(--color-outline-base, #CAD5E2);
+      outline: none;
+      box-shadow: 0px 1px 2px 0px #0A0D120D;
+    }
+  }
+}
+
+.d-flex.align-items-center2 {
+  display: flex;
+  flex-direction: column;   /* kekalkan column */
+  align-items: flex-start;  /* label + input align kiri */
+  gap: 8px; 
+  background: var(--color-surface-off-white, #F8FAFC);                /* ikut spec "gap: 8" */
+}
+
+
+.search-input-group {
+  .form-control {
+    margin-right: 10px;
+  }
+}
+
+.btn-search {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+
+  &:hover {
+    background-color: #555;
+  }
+}
+
+// Table styling
+.subjects-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 14px;
+  background-color: white;
+
+  thead {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #333;
+
+    th {
+      text-align: left;
+      padding: 12px;
+      font-weight: 600;
+      color: #333;
+      border: 1px solid #dee2e6;
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(even) {
+        background-color: #f8f9fa;
+      }
+
+      &:hover {
+        background-color: #e9ecef;
+      }
+
+      td {
+        padding: 12px;
+        vertical-align: middle;
+        border: 1px solid #dee2e6;
+      }
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 20px;
+      font-style: italic;
+      color: #666;
+    }
+  }
+}
+
+// Sidebar/Breadcrumb
+.breadcrumb-drawer {
+  right: 0;
+  top: 0;
+  width: 260px;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+// Bottom navigation
+.bottom-navigation {
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+
+  .nav-buttons {
+    gap: 10px;
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 14px;
+      
+      &.btn-dark {
+        background-color: #333;
+        border-color: #333;
+
+        &:hover {
+          background-color: #555;
+          border-color: #555;
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .carian-sl-container {
+    .main-content {
+      padding: 10px;
+    }
+  }
+
+  .search-section,
+  .subject-list-section {
+    padding: 15px;
+  }
+
+  .breadcrumb-drawer {
+    width: 100%;
+    position: relative;
+  }
+}
+
+
+/* Additional styles for the main layout */
+.carian-sl-container {
+  min-height: 100vh;
+}
+
+.main-content {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+//catatan lewat
+.greyed-input {
+  background-color: #e9ecef; // light grey (similar to Bootstrap disabled)
+  color: #6c757d;             // muted text
+}
+
+
+//ereporting
+
+
+// Table responsiveness
+.table-container {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+
+  .subjects-table {
+    min-width: 1000px;
+    width: 100%;
+    table-layout: auto;
+    margin: 0; // Remove margin when inside container
+
+    th,
+    td {
+      white-space: nowrap;
+    }
+  }
+}
+
+
+//elibrary
+// progress flow
+
+.custom-outline {
+  border-right: 1px solid #CAD5E2;
+}
+
+.step {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.step .circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #ccc;
+    color: white;
+    text-align: center;
+    line-height: 28px;
+    font-weight: bold;
+    z-index: 2;
+    flex-shrink: 0; 
+}
+
+.step .label {
+    margin-left: 15px;
+    color: #333;
+    line-height: 1.4;
+    padding-top: 4px; 
+}
+
+.step::after {
+    content: "";
+    position: absolute;
+    top: 28px;
+    left: 13px;
+    width: 2px;
+    height: calc(100% + 2px);
+    background: #ccc;
+    z-index: 1;
+}
+
+.step:last-child::after {
+    display: none;
+}
+
+.step::before {
+    content: "";
+    position: absolute;
+    top: 28px;
+    left: 13px;
+    width: 2px;
+    height: 100%;
+    background: #ccc;
+    z-index: 0;
+}
+
+.step:last-child::before {
+    display: none;
+}
+
+.step.active .circle {
+    background-color: black;
+}
+
+.step.active .label {
+    font-weight: bold;
+}
+.table-custom {
+  width: 1312px;
+  height: 488px;
+  border-radius: 0.5rem; // global/layout/radius/md
+  border: 1px solid var(--color-outline-lighter, #F1F5F9);
+  border-collapse: collapse;
+  opacity: 1;
+  overflow: hidden; // supaya border-radius apply betul
+
+  th, td {
+    padding: 12px 16px;
+    font-size: 14px;
+    text-align: left;
+    border-bottom: 1px solid #F1F5F9; // horizontal lines sahaja
+  }
+
+  th {
+    font-weight: bold;
+    color: #222;
+    background-color: #f9fbfc;
+  }
+
+  td {
+    color: #444;
+  }
+
+  tr:nth-child(even) {
+    background-color: #fafafa;
+  }
+
+  tr:hover {
+    background-color: #f1faff;
+  }
+}
+
+.btn-secondary-gray {
+  width: 139px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #E2E8F0; // light gray border
+  background-color: #F8FAFC; // light gray background
+  color: #374151; // dark gray text
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; // spacing between icon & text
+  cursor: pointer;
+  opacity: 1;
+  transition: background-color 0ms, border-color 0ms; // instant
+
+  i {
+    font-size: 16px; // icon size
+  }
+
+  &:hover {
+    background-color: #F1F5F9; // slightly darker gray
+  }
+
+  &:active {
+    background-color: #E2E8F0; // active state gray
+  }
+
+  &:disabled {
+    background-color: #F9FAFB;
+    color: #9CA3AF;
+    cursor: not-allowed;
+  }
+}
+
+.btn-brand {
+  background: var(--color-surface-brand-primary, #1461BA);
+  border: 1px solid var(--color-surface-brand-primary, #1461BA);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+
+  i {
+    font-size: 16px;
+  }
+
+  &:hover {
+    background: #0f4d94; // darker shade
+    border-color: #0f4d94;
+  }
+
+  &:active {
+    background: #0c3c75;
+    border-color: #0c3c75;
+  }
+
+  &:disabled {
+    background: #b0c9e6;
+    border-color: #b0c9e6;
+    color: #f8f9fa;
+    cursor: not-allowed;
+  }
+}
+
+/* Horizontal Stepper */
+.horizontal-stepper {
+  background-color: #F6F6F6;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 12px;
+  width: 100%;
+}
+
+.horizontal-stepper .stepper-list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.horizontal-stepper .step-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  padding: 6px 14px;
+  background: #f9f9f9;
+  font-size: 0.9rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.horizontal-stepper .step-number {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  color: #000;
+  font-size: 0.8rem;
+  line-height: 22px;
+  text-align: center;
+  font-weight: 600;
+
+  display: flex;               /* enable flexbox */
+  align-items: center;         /* vertical center */
+  justify-content: center;     /* horizontal center */
+}
+
+.horizontal-stepper .active .step-btn {
+  border: none;                 /* remove border */
+  background: #fff;          /* keep background */
+  color: #000000;               /* keep text color */
+  font-weight: bold;            /* keep bold text */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* add shadow */
+  transition: box-shadow 0.3s ease; /* smooth effect */
+}
+
+.horizontal-stepper .active .step-number {
+  background: linear-gradient(258.77deg, #00BBA7 0%, #122640 98.29%);
+  color: #fff;
+}
+
+.stepper-list {
+  list-style: none;   /* removes the bullets */
+  margin: 0;          /* reset default margin */
+  padding: 0;         /* reset default padding */
+}
+
+/* Disabled state */
+.horizontal-stepper .step-btn:disabled {
+  background-color: #ccc;   /* grey */
+  color: #666;            /* dark grey text */
+  cursor: not-allowed;      /* change cursor */
+  opacity: 0.7;             /* slightly faded */
+}
+
+//atkpi
+//draft list
+.form-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+  
+  .form-section {
+    background-color: white;
+    border: 1px solid #dee2e6;
+    // border-radius: 8px;
+    border-color: black;
+    padding: 30px;
+  }
+  
+  .section-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #000000;
+  }
+  
+  .section-title2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #000000;
+    text-align: left;
+  }
+
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .popup-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  .popup-box button {
+    margin-top: 1rem;
+    padding: 0.5rem 1.5rem;
+    background-color: #343a40;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+ 
+  
+  //sidebar
+  .step {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 30px;
+  
+    .circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: #ccc;
+      color: white;
+      text-align: center;
+      line-height: 28px;
+      font-weight: bold;
+      z-index: 1;
+    }
+  
+    .label {
+      margin-left: 10px;
+      color: #333;
+    }
+  
+    .label {
+      margin-left: 10px;
+      color: #333;
+    }
+  
+    &::before {
+      content: "";
+      position: absolute;
+      top: 28px;
+      left: 13px;
+      width: 2px;
+      height: 100%;
+      background: #ccc;
+      z-index: 0;
+    }
+  
+    &:last-child::before {
+      display: none;
+    }
+  
+    &.active {
+      .circle {
+        background-color: black;
+      }
+  
+      .label {
+        font-weight: bold;
+      }
+    }
+  }
+  
+  .container-fluid {
+    height: 100vh;
+  border-color: #FFFFFF;
+  }
+  
+  .container-fluid {
+    height: 100%;
+    padding: 20px;
+  border-color: #FFFFFF;
+  }
+  
+  .simple-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 30px;
+    padding: 20px 0;
+    border-top: 1px solid #eee;
+  }
+  
+  .btn-cancel {
+    padding: 8px 20px;
+    background: white;
+    border: 1px solid #ccc;
+  }
+  
+  .btn-submit {
+    padding: 8px 20px;
+    background: #0066cc;
+    color: white;
+    border: none;
+  }
+  
+  // footer
+  .navigation-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .nav-arrows {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .btn-reset {
+    background-color: #000;
+    border-color: #000;
+    color: white;
+    border-radius: 0.375rem;
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+  
+  .btn-reset:hover {
+    background-color: #333;
+    border-color: #333;
+  }
+  
+  .btn-submit {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: white;
+    border-radius: 0.375rem;
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+  
+  .btn-submit:hover {
+    background-color: #5a6268;
+    border-color: #5a6268;
+  }
+  
+  .btn-nav {
+    background-color: #000;
+    border-color: #000;
+    color: white;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.375rem;
+  }
+  
+  .btn-nav:hover {
+    background-color: #333;
+    border-color: #333;
+    color: white;
+  }
+  
+  //footer button
+  .bottom-navigation {
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem; // sama dengan `p-3` dari Bootstrap
+  
+    .nav-buttons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+  
+      .btn {
+        margin: 0.5rem; // sama dengan `m-2`
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-size: 14px;
+  
+        &.btn-dark {
+          background-color: #333;
+          border-color: #333;
+          color: white;
+  
+          &:hover {
+            background-color: #555;
+            border-color: #555;
+          }
+        }
+      }
+  
+      .right-buttons {
+        display: flex;
+        gap: 10px;
+      }
+    }
+  }
+
+  .blue-btn {
+  width: 139px;
+  height: 40px;
+  border-radius: 8px; // more curled than 8px, but not too round
+  gap: 8px; // if using flex/grid container with icon + text
+  opacity: 1;
+  padding-right: 8px;
+  padding-left: 8px;
+
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--color-surface-brand-primary, #1461BA);
+
+  background: var(--color-surface-brand-primary, #1461BA);
+  color: #fff; // text color for contrast
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 150%;
+  display: inline-flex; 
+  align-items: center;
+  justify-content: center;
+
+  // icon spacing if "leading icon"
+  svg, i {
+    margin-right: 8px;
+  }
+
+  &:hover {
+    background: darken(#1461BA, 5%);
+    border-color: darken(#1461BA, 5%);
+  }
+
+  &:active {
+    background: darken(#1461BA, 10%);
+    border-color: darken(#1461BA, 10%);
+  }
+}
+
+.blue-btn:disabled {
+  background-color: #ccc;   /* grey background */
+  color: #666;              /* dimmed text */
+  cursor: not-allowed;      /* show blocked cursor */
+  opacity: 0.6;             /* slightly transparent */
+}
+
+
+.set-semula-button {
+  width: 139px;
+  height: 40px;
+  border-radius: 8px; // more curled than 8px, but not too round
+  gap: 8px; // if using flex/grid container with icon + text
+  opacity: 1;
+  padding-right: 8px;
+  padding-left: 8px;
+
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--color-surface-brand-primary, #CAD5E2);
+
+  background: var(--color-surface-brand-primary, #FFFFFF);
+  color: #000000; // text color for contrast
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 150%;
+  display: inline-flex; 
+  align-items: center;
+  justify-content: center;
+
+  // icon spacing if "leading icon"
+  svg, i {
+    margin-right: 8px;
+  }
+
+  &:hover {
+    background: darken(#CAD5E2, 5%);
+    border-color: darken(#ffffff, 5%);
+  }
+
+  &:active {
+    background: darken(#CAD5E2, 10%);
+    border-color: darken(#ffffff, 10%);
+  }
+}
+.action-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff; /* or your theme background */
+  display: flex;
+  justify-content: end;
+  padding: 0.1rem 0;
+  z-index: 500; /* keep above other content */
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.15);
+  .btn {
+    padding: 2px 12px;   /* smaller button size */
+    font-size: 13px;     /* smaller text */
+  }
+}

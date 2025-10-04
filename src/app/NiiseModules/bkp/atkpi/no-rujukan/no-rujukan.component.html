@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div class="form-section">
+      <h5 class="section-title">Jenis Dokumen</h5>
+      <form>
+        <!-- Row 1 -->
+        <div class="form-group5 d-flex align-items-center2">
+          <label class="form-label required">Jenis Dokumen</label>
+          <select class="form-select">
+            <option selected disabled>Sila Pilih</option>
+            <option>Bahagian Imigresen</option>
+          </select>
+        </div>
+
+        <h5 class="section-title">Format Penjanaan Nombor Dokumen</h5>
+
+        <!-- Row 2 -->
+        <div class="form-group5 d-flex align-items-center2">
+          <label class="form-label">Nombor Bilangan</label>
+          <input type="text" class="form-control" value="BIL 01" />
+        </div>
+
+        <!-- Row 3 -->
+        <div class="form-group5 d-flex align-items-center2">
+            <label class="form-label">Tahun Dikeluarkan</label>
+            <input type="text" class="form-control" value="2025" />
+          </div>
+
+          <div class="d-flex justify-content-center">
+            <button type="button" class="btn-blue btn-dark mx-2" (click)="onJana()">Jana</button>
+            <button type="button" class="btn btn-dark mx-2" (click)="onHantar()">Hantar</button>
+            <button type="button" class="btn btn-dark mx-2" (click)="onSimpan()">Simpan</button>
+          </div>
+      </form>
+    </div>
+  </div>
+

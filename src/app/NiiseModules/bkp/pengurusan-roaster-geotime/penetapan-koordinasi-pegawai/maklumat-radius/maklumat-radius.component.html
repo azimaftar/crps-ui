@@ -1,0 +1,101 @@
+<div class="container-fluid">
+  <div class="form-section">
+    <div class="row">
+      <div class="col-md-8 border-end pe-4">
+        <h5>Maklumat Radius</h5>
+
+        <form class="mt-3">
+          <div class="form-group5 d-flex align-items-center2">
+            <label>Lokasi Bertugas</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="radius.lokasi"
+              name="lokasi"
+              readonly
+            />
+          </div>
+
+          <div class="form-group5 d-flex align-items-center2">
+            <label>Koordinat Pejabat</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="radius.koordinat"
+              name="koordinat"
+              readonly
+            />
+          </div>
+
+          <div class="form-group5 d-flex align-items-center2">
+            <label>Julat Radius</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="radius.julat"
+              name="julat"
+            />
+          </div>
+        </form>
+      </div>
+
+      <!-- Right Side: Steps with vertical line -->
+      <div class="col-md-4 ps-4 border-start">
+        <div
+          class="step"
+          [class.active]="isStepActive(1)"
+          [class.completed]="isStepCompleted(1)"
+        >
+          <div class="circle">1</div>
+          <div class="label">Maklumat Pegawai</div>
+        </div>
+        <div
+          class="step"
+          [class.active]="isStepActive(2)"
+          [class.completed]="isStepCompleted(2)"
+        >
+          <div class="circle">2</div>
+          <div class="label">Maklumat Radius</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="d-flex justify-content-end mt-4 gap-2">
+      <button cButton type="button" class="btn btn-dark" (click)="onSubmit()">
+        Hantar
+      </button>
+
+      <button cButton type="button" class="btn btn-dark" (click)="onSave()">
+        Simpan
+      </button>
+
+      <button
+        class="btn btn-secondary me-2"
+        (click)="goToMaklumatPegawai()"
+        [disabled]="currentStep === 1"
+      >
+        &lt;
+      </button>
+      <button class="btn btn-dark" [disabled]="currentStep === maxStep">
+        &gt;
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Success Popup -->
+<div class="popup-overlay" *ngIf="showSuccessPopup">
+  <div class="popup-box">
+    <p>Rekod telah berjaya dihantar</p>
+    <button (click)="closePopup()">Okay</button>
+  </div>
+</div>
+
+<!-- Save Popup -->
+<div class="popup-overlay" *ngIf="showSavePopup">
+  <div class="popup-box">
+    <p>Rekod telah berjaya disimpan</p>
+    <button (click)="closePopup()">Okay</button>
+  </div>
+</div>

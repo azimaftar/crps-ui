@@ -1,0 +1,180 @@
+<!-- semakan-tindakan-penyelia.component.html -->
+<c-card class="mb-4">
+  <!-- HEADER -->
+  <c-card-header class="bg-light">
+    <h5 class="card-title mb-0 text-uppercase fw-bold">
+      Semakan & Tindakan Penyelia
+    </h5>
+  </c-card-header>
+
+  <!-- CARD BODY -->
+  <c-card-body class="p-4">
+    <form [formGroup]="semakanForm" (ngSubmit)="onSemak()">
+      
+      <c-row class="g-4">
+        <!-- LEFT COLUMN -->
+        <c-col md="4">
+
+            <!-- <div class="row ps-3">
+                            <div class="col-md-6">
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Nama Kapal</label>
+                                    <input type="text" class="form-control" [(ngModel)]="formData.NamaKapal" name="NamaKapal">
+                                </div>              
+                            </div>
+                            <div class="col-md-6">
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Jenis Kapal</label>
+                                    <input type="text" class="form-control" [(ngModel)]="formData.JenisKapal" name="JenisKapal">
+                                </div>              
+                            </div>
+                        </div> -->
+          
+          <!-- Jenis Dokumen -->
+          <div class="mb-2">
+            <label cFormLabel class="fw-semibold mb-2">
+              Jenis Dokumen <span class="text-danger">*</span>
+            </label>
+            <select 
+              cFormSelect 
+              formControlName="jenisDoumen"
+              [class.is-invalid]="isFieldInvalid('jenisDoumen')"
+              class="form-select">
+              <option *ngFor="let option of jenisDoumenOptions" [value]="option.value">
+                {{ option.label }}
+              </option>
+            </select>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('jenisDoumen')">
+              {{ getFieldErrorMessage('jenisDoumen') }}
+            </div>
+          </div>
+
+          <!-- No Dokumen -->
+          <div class="mb-2">
+            <label cFormLabel class="fw-semibold mb-2">
+              No Dokumen <span class="text-danger">*</span>
+            </label>
+            <input 
+              type="text" 
+              cFormControl
+              formControlName="noDokumen"
+              [class.is-invalid]="isFieldInvalid('noDokumen')"
+              class="form-control"
+              placeholder="Contoh: A1234567"
+              maxlength="20">
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('noDokumen')">
+              {{ getFieldErrorMessage('noDokumen') }}
+            </div>
+          </div>
+
+          <!-- No Pengenalan -->
+          <div class="mb-2">
+            <label cFormLabel class="fw-semibold mb-2">
+              No Pengenalan <span class="text-danger">*</span>
+            </label>
+            <input 
+              type="text" 
+              cFormControl
+              formControlName="noPengenalan"
+              [class.is-invalid]="isFieldInvalid('noPengenalan')"
+              class="form-control"
+              placeholder="Contoh: 910104140006"
+              maxlength="15">
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('noPengenalan')">
+              {{ getFieldErrorMessage('noPengenalan') }}
+            </div>
+          </div>
+
+        </c-col>
+
+        <!-- RIGHT COLUMN -->
+        <c-col md="4">
+          
+          <!-- Jenis Pelapor -->
+          <div class="mb-2">
+            <label cFormLabel class="fw-semibold mb-2">
+              Jenis Pelapor <span class="text-danger">*</span>
+            </label>
+            <select 
+              cFormSelect 
+              formControlName="jenisPelapor"
+              [class.is-invalid]="isFieldInvalid('jenisPelapor')"
+              class="form-select">
+              <option *ngFor="let option of jenisPelaporOptions" [value]="option.value">
+                {{ option.label }}
+              </option>
+            </select>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('jenisPelapor')">
+              {{ getFieldErrorMessage('jenisPelapor') }}
+            </div>
+          </div>
+
+          <!-- Warganegara -->
+          <div class="mb-2">
+            <label cFormLabel class="fw-semibold mb-2">
+              Warganegara <span class="text-danger">*</span>
+            </label>
+            <select 
+              cFormSelect 
+              formControlName="warganegara"
+              [class.is-invalid]="isFieldInvalid('warganegara')"
+              class="form-select">
+              <option *ngFor="let option of warganegaraOptions" [value]="option.value">
+                {{ option.label }}
+              </option>
+            </select>
+            <div class="invalid-feedback" *ngIf="isFieldInvalid('warganegara')">
+              {{ getFieldErrorMessage('warganegara') }}
+            </div>
+          </div>
+
+        </c-col>
+      </c-row>
+
+      <!-- BUTTONS ROW -->
+      <c-row class="mt-4">
+        <c-col class="d-flex justify-content-end gap-3">
+          
+          <!-- Set Semula Button -->
+          <button 
+            type="button"
+            cButton
+            color="secondary"
+            variant="outline"
+            (click)="onSetSemula()"
+            class="px-4 py-2">
+            <i class="fas fa-undo me-2"></i>
+            Set Semula
+          </button>
+
+          <!-- Semak Button -->
+          <button 
+            type="submit"
+            cButton
+            color="dark"
+            [disabled]="semakanForm.invalid"
+            class="px-4 py-2">
+            <i class="fas fa-search me-2"></i>
+            Semak
+          </button>
+
+        </c-col>
+      </c-row>
+          <div class="mb-5"><br><br><br><br></div>
+          <div class="mb-5"><br><br><br><br></div>
+
+
+      <!-- FORM STATUS INFO (Optional - for debugging) -->
+      <div class="mt-3" *ngIf="false">
+        <small class="text-muted">
+          Form Status: {{ semakanForm.valid ? 'Valid' : 'Invalid' }} | 
+          Form Touched: {{ semakanForm.touched ? 'Yes' : 'No' }}
+        </small>
+      </div>
+
+    </form>
+  </c-card-body>
+</c-card>
+

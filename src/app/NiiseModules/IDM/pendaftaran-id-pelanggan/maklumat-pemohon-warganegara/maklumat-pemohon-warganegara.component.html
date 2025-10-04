@@ -1,0 +1,261 @@
+<div style="background-color: black; min-height: 100vh;">
+  <div class="bg-light min-vh-100 d-flex justify-content-center align-items-center" style="
+      background-image: url('../../../assets/images/login_background.png');
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    ">
+
+    <div class="card mt-3" style="border-radius: 20px; width: 90%; max-width: 900px;">
+      <div class="p-2">
+        <div class="text-center mb-4">
+          <img [src]="'../../../../assets/logo/' + config.logo" alt="mySIKAP Logo" class="img-fluid"
+            style="max-width: 300px; width: 100%; height: auto;" />
+        </div>
+
+        <h6 class="fw-bold mt-5 text-center">
+          PERMOHONAN ID PENGGUNA - PENDAFTARAN ID PELANGGAN (INDIVIDU)
+        </h6>
+        <hr class="m-0 p-0">
+
+        <div class="row mt-1 p-4">
+          <div class="col-md-12">
+            <form>
+              <h6 class="mb-3 fw-bold">Maklumat Pemohon</h6>
+
+              <div class="row mb-4 g-6">
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label class="form-label">Taraf Penduduk</label>
+                      <select class="form-select" disabled>
+                        <option value="Warganegara" selected>Warganegara</option>
+                        <option value="bukanWarganegara">Bukan Warganegara</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4"></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-8">
+                    </div>
+                    <div class="col-md-4"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-4 g-6">
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label class="form-label">Jenis Dokumen</label>
+                      <select class="form-select" disabled>
+                        <option value="mykad" selected>MyKad</option>
+                        <option value="passport">Passport</option>
+                        <option value="other">Lain-lain</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4"></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label class="form-label">No Dokumen / ID</label>
+                      <input type="text" class="form-control" value="980330025489" disabled />
+                    </div>
+                    <div class="col-md-4">
+                      <div class="text-end">
+                        <button type="button" class="btn btn-dark px-4" style="margin-top: 32px;">Semak</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-4 g-6">
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label class="form-label">Nama</label>
+                      <input type="text" class="form-control" value="Mohd Nu'man bin Mohd Liki" disabled />
+                    </div>
+                    <div class="col-md-4"></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label class="form-label">Warganegara</label>
+                      <input type="text" class="form-control" value="Malaysia" disabled />
+                    </div>
+                    <div class="col-md-4"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-4 g-6">
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label class="form-label">Tarikh Lahir</label>
+                      <input type="text" class="form-control" value="30 Mac 1998" disabled />
+                    </div>
+                    <div class="col-md-4"></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label class="form-label">Jantina</label>
+                      <input type="text" class="form-control" value="Lelaki" disabled />
+                    </div>
+                    <div class="col-md-4"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-4 g-6">
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label class="form-label">Tempat Lahir</label>
+                      <input type="text" class="form-control" value="Pahang, Rompin" />
+                    </div>
+                    <div class="col-md-4"></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label class="form-label">No. Telefon*</label>
+                      <input type="text" class="form-control" value="" />
+                    </div>
+                    <div class="col-md-4"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-4 g-6">
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label class="form-label">E-mel*</label>
+                      <input type="email" class="form-control" value="abc@gmail.com" />
+                    </div>
+                    <div class="col-md-4"></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label class="form-label">OTP*</label>
+                      <input type="text" class="form-control" value="******" />
+                    </div>
+                    <div class="col-md-4">
+                      <div style="margin-top: 32px;">
+                        <a href="#" class="text-decoration-none">Permintaan OTP</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-4 g-6">
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label class="form-label">Alamat *</label>
+                      <input type="text" class="form-control mb-2" placeholder="Alamat 1" />
+                      <input type="text" class="form-control mb-2" placeholder="Alamat 2" />
+                      <input type="text" class="form-control" placeholder="Alamat 3" />
+                    </div>
+                    <div class="col-md-4"></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label class="form-label">Poskod*</label>
+                      <input type="text" class="form-control" value="70400" />
+                    </div>
+                    <div class="col-md-4"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-4 g-6">
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label class="form-label">Bandar*</label>
+                      <select class="form-select">
+                        <option value="">-Sila Pilih-</option>
+                        <option value="shah_alam">Shah Alam</option>
+                        <option value="kuala_lumpur">Kuala Lumpur</option>
+                        <option value="petaling_jaya">Petaling Jaya</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4"></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label class="form-label">Negeri*</label>
+                      <select class="form-select">
+                        <option value="">-Sila Pilih-</option>
+                        <option value="selangor">Selangor</option>
+                        <option value="kuala_lumpur">Kuala Lumpur</option>
+                        <option value="johor">Johor</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Terms and Conditions Section -->
+              <div class="mt-5 mb-4">
+                <div class="p-3" style="background-color: #d3d3d3; border-radius: 5px;">
+                  <div class="mb-3">
+                    <p class="mb-2"><strong>1.</strong> Saya dengan ini mengesahkan bahawa semua maklumat yang dikemukakan adalah benar dan betul.</p>
+                    <p class="mb-2"><strong>2.</strong> Saya dengan ini mengesahkan bahawa permohonan ini dibuat oleh saya sendiri berdasarkan maklumat pengenalan diri saya yang telah didaftarkan di JIM.</p>
+                    <p class="mb-2"><strong>3.</strong> Saya memahami bahawa adalah menjadi suatu kesalahan sekiranya saya memberikan apa-apa maklumat yang tidak benar atau tidak betul atau mengemukakan apa-apa dokumen palsu dan saya boleh dikenakan denda atau dipenjara atau kedua-duanya.</p>
+                    <p class="mb-2"><strong>4.</strong> Saya memahami bahawa kelulusan pendaftaran ini adalah tertakluk kepada terma dan syarat yang ditentukan oleh JIM.</p>
+                  </div>
+                  
+                  <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="termsCheck">
+                    <label class="form-check-label" for="termsCheck">
+                      Saya bersetuju dengan terma dan syarat tersebut.
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="mt-3 p-3" style="background-color: #b8b8b8; border-radius: 5px;">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="robotCheck">
+                    <label class="form-check-label" for="robotCheck">
+                      Saya bukan robot
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="d-flex justify-content-end mt-4 gap-3">
+                  <button type="button" class="btn btn-dark px-4 py-2" style="min-width: 120px;">Set Semula</button>
+                  <button type="button" class="btn btn-secondary px-4 py-2" style="min-width: 120px;">Hantar</button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">

@@ -1,0 +1,38 @@
+<c-card style="padding: 15px">
+  <c-tabs [activeItemKey]="0" (activeItemKeyChange)="handleActiveItemChange($event)">
+    <c-tabs-list variant="underline-border">
+      <button cTab [itemKey]="0">
+        <svg cIcon class="me-2" name="cilHome"></svg>
+        Unread
+      </button>
+      <button cTab [itemKey]="1">
+        <svg cIcon class="me-2" name="cilUser"></svg>
+        Read
+      </button>
+    </c-tabs-list>
+    <c-tabs-content>
+      <c-tab-panel [itemKey]="0" class="p-3">
+        <div *ngFor="let item of notifications" class="notification-card">
+        <div class="notification-header">
+          <span class="author">{{ item.author }}</span>
+          <span class="date">{{ item.date }}</span>
+        </div>
+        <div class="notification-body">
+          <h5 class="title">{{ item.title }}</h5>
+          <span class="category">{{ item.category }}</span>
+          <span *ngIf="item.important" class="badge badge-danger">Important</span>
+          <p *ngIf="item.description">{{ item.description }}</p>
+          <ul *ngIf="item.links.length > 0">
+            <li *ngFor="let link of item.links">
+              <a [href]="link.url">{{ link.text }}</a>
+            </li>
+          </ul>
+        </div>
+        </div>
+      </c-tab-panel>
+      <c-tab-panel [itemKey]="1" class="p-3">
+
+      </c-tab-panel>
+    </c-tabs-content>
+  </c-tabs>
+</c-card>

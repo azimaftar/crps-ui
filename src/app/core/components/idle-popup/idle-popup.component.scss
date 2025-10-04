@@ -1,0 +1,43 @@
+.idle-backdrop {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+.idle-modal {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn-keep {
+  background: #00BBA7;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-logout {
+  background: #dc3545;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}

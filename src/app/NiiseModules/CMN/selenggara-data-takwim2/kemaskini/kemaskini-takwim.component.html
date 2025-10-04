@@ -1,0 +1,44 @@
+<c-modal [visible]="true" (close)="cancel()" size="lg">
+  <c-modal-header>
+    <h5 class="modal-title">Kemaskini Cuti</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="cancel()"></button>
+  </c-modal-header>
+
+  <c-modal-body *ngIf="!loading && edited">
+    <div class="mb-3">
+      <label>Negeri:</label>
+      <input class="form-control" [(ngModel)]="edited.state" />
+    </div>
+
+    <div class="mb-3">
+      <label>Negara:</label>
+      <input class="form-control" [(ngModel)]="edited.ctry" />
+    </div>
+
+    <div class="mb-3">
+      <label>Tarikh:</label>
+      <input type="date" class="form-control" [(ngModel)]="edited.date" />
+    </div>
+
+    <div class="mb-3">
+      <label>Jenis Cuti:</label>
+      <input class="form-control" [(ngModel)]="edited.holidayType" />
+    </div>
+
+    <div class="mb-3">
+      <label>Perincian Cuti:</label>
+      <input class="form-control" [(ngModel)]="edited.holidayDetail" />
+    </div>
+  </c-modal-body>
+
+  <c-modal-body *ngIf="loading">
+    <p>Loading data...</p>
+  </c-modal-body>
+
+  <c-modal-footer *ngIf="edited">
+    <button class="btn btn-secondary" (click)="cancel()">Batal</button>
+    <button class="btn btn-success" (click)="save()">Simpan</button>
+  </c-modal-footer>
+</c-modal>
+
+

@@ -1,0 +1,114 @@
+<!-- <p>bahagian-data-biometrik-wajah-dan-iris works!</p> -->
+
+<c-container class="p-3">
+    <c-card>
+        <c-card-header>
+            PEMERIKSAAN MASUK (EGATE) - BAHAGIAN DATA BIOMETRIK [WAJAH & IRIS]
+        </c-card-header>
+        <c-card-body>
+            <c-row>
+                <!-- LEFT SIDE -->
+                <c-col class="col-12 col-md-8 p-3 border-end" style="border-right: 1px solid #ccc;">
+
+                    <!-- WAJAH -->
+                    <c-row class="p-3">
+                        <!-- Pengecaman Wajah -->
+                        <c-col class="d-flex align-items-center">
+                            <div
+                                style="border: 1px solid #ccc; border-radius: 6px; padding: 1rem; width: 200px; min-width: 200px; max-width: 200px;">
+                                <div
+                                    style="border: 1px solid #ccc; border-radius: 6px; padding:60px 30px; text-align: center;">
+                                    <img src="" alt="WAJAH">
+                                </div>
+                            </div>
+                        </c-col>
+
+                        <!-- Percentage -->
+                        <c-col class="d-flex align-items-center">
+                            <div class="w-100">
+                                <label cLabel for="pengecamanWajah" class="mb-2">% Pengecaman Wajah</label>
+                                <c-progress [value]="75">
+                                    <span class="text-white px-2">75%</span>
+                                </c-progress>
+                                <!-- <input cFormControl id="pengecamanWajah" type="text" class="form-control" /> -->
+                            </div>
+                        </c-col>
+                    </c-row>
+
+                    <!-- IRIS -->
+                    <c-row class="p-3">
+                        <!-- Pengecaman Iris -->
+                        <c-col class="d-flex align-items-center">
+                            <div
+                                style="border: 1px solid #ccc; border-radius: 6px; padding: 1rem; width: 200px; min-width: 200px; max-width: 200px;">
+                                <div
+                                    style="border: 1px solid #ccc; border-radius: 6px; padding:60px 30px; text-align: center;">
+                                    <img src="" alt="IRIS">
+                                </div>
+                            </div>
+                        </c-col>
+
+                        <!-- Percentage -->
+                        <c-col class="d-flex align-items-center">
+                            <div class="w-100">
+                                <label cLabel for="pengecamanIris" class="mb-2">% Pengecaman Iris</label>
+                                <c-progress [value]="75">
+                                    <span class="text-white px-2">75%</span>
+                                </c-progress>
+                                <!-- <input cFormControl id="pengecamanIris" type="text" class="form-control" /> -->
+                            </div>
+                        </c-col>
+
+                    </c-row>
+                </c-col>
+
+                <!-- RIGHT SIDE -->
+                <c-col class="col-12 col-md-4 d-flex justify-content-center align-items-center p-3">
+                    <!-- <button cButton color="primary" (click)="onStatusImbasanClick()">STATUS IMBASAN</button> -->
+                    <button cButton color="primary" disabled>STATUS IMBASAN</button>
+                </c-col>
+            </c-row>
+        </c-card-body>
+    </c-card>
+</c-container>
+
+<!-- MODAL -->
+<!-- Debug info -->
+<!-- <div>
+    <p>currentResponseCode: "{{ currentResponseCode }}"</p>
+    <p>Length: {{ currentResponseCode.length }}</p>
+    <p>ngIf condition: {{ currentResponseCode !== '' }}</p>
+</div> -->
+
+<!-- Modal semua okay boleh panggil -->
+<c-card>
+    <c-card-header>
+        Development Test Button:
+    </c-card-header>
+    <c-card-body>
+        <button cButton (click)="openModal('WFR-IBC-02.9-3')">WFR-IBC-02.9-3</button>
+        <button cButton (click)="openModal('WFR-IBC-02.9-5')">WFR-IBC-02.9-5</button>
+        <button cButton (click)="openModal('WFR-IBC-02.9-6')">WFR-IBC-02.9-6</button>
+    </c-card-body>
+</c-card>
+
+<app-modal-notifikasi-standard #standardModal [visible]="showStandardModal" [responseCode]="currentResponseCode">
+</app-modal-notifikasi-standard>
+
+<app-modal-notifikasi-maklumat-pas #maklumatPasModal [visible]="showMaklumatPasModal"
+    [responseCode]="currentResponseCode">
+</app-modal-notifikasi-maklumat-pas>
+
+
+
+
+
+
+<!-- <app-notification-modal
+  [modalTitle]="modalTitle"
+  [visible]="showModal"
+  [showBiometricModal]="showBiometricModal"
+  [showModalAlert]="showModalAlert"
+  [showModalAlertNoButton]="showModalAlertNoButton"
+  (close)="closeModal()"
+></app-notification-modal> -->

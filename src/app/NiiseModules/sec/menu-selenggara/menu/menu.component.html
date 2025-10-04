@@ -1,0 +1,122 @@
+<c-card class="mb-3">
+    <c-card-body>
+        <c-row>
+            <c-col md="12">
+                <h5 class="mb-4 custom-header">
+                    Selenggara Kod-Kod Keselamatan Dan Kod-Kod Agensi
+                </h5>
+
+
+                <!-- Horizontal Stepper -->
+                <div class="horizontal-stepper">
+                    <ul class="stepper-list d-flex align-items-center justify-content-start flex-wrap">
+                        <li class="stepper-item" *ngFor="let step of steps" [class.active]="isStepActive(step.number)">
+                            <button type="button" class="step-btn" (click)="navigateTo(step)">
+                                <span class="step-number">{{ step.number }}</span>
+                                <span class="step-title">{{ step.title }}</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Wrapper with background + padding -->
+                <div class="dropdown-wrapper">
+                    <c-row class="mb-3" style="margin-top: 20px;">
+                        <c-col md="5" sm="6">
+                            <label class="form-label mt-3 custom-label">Kod Rujukan</label>
+
+                            <select class="form-select custom-dropdown" [(ngModel)]="selectedCategory"
+                                (change)="onCategoryChange()" name="kategori" required
+                                [ngClass]="{ 'is-invalid': submitted && !selectedCategory }">
+                                <option value="">-Sila Pilih-</option>
+                                <option value="kod-tindakan">Kod Tindakan</option>
+                                <option value="kod-tco">Kod TCO</option>
+                                <option value="kod-nap">Kod NAP/ NAS</option>
+                            </select>
+                        </c-col>
+                    </c-row>
+                </div>
+
+
+                <!-- Title -->
+                <div class="custom-header-row">
+                    <p class="custom-section-label mb-0">Senarai Kod</p>
+
+                    <button cButton class="custom-btn" (click)="goToKodPage()">
+                        + Tambah Kod
+                    </button>
+                </div>
+
+                <!-- Table -->
+                <div class="table-responsive custom-table-container" style="margin-top: 20px;">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%;">Bil</th>
+                                <th style="width: 20%;">Kod Keselamatan</th>
+                                <th style="width: 55%;">Keterangan Kod</th>
+                                <th style="width: 20%;">Tindakan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- If tableData has data -->
+                            <tr *ngFor="let item of tableData; let i = index">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ item.napTypeCode || item.actionCode || item.tcoTypeCode }}</td>
+                                <td>{{ item.napTypeBmDesc || item.actionBmDesc || item.desc1 }}</td>
+                                <td class="action-buttons">
+                                    <!-- Kemaskini -->
+                                    <button cButton class="action-btn" [cTooltip]="'Kemaskini'" tooltipPlacement="top"
+                                        (click)="goToForm(item, 'kemaskini')">
+                                        <svg cIcon name="cil-loop"></svg>
+                                    </button>
+
+                                    <!-- Batal -->
+                                    <button cButton class="action-btn" [cTooltip]="'Batal'" tooltipPlacement="top"
+                                        (click)="goToForm(item, 'batal')">
+                                        <svg cIcon name="cil-x-circle"></svg>
+                                    </button>
+
+                                    <!-- Lupus -->
+                                    <button cButton class="action-btn action-btn-danger" [cTooltip]="'Lupus'"
+                                        tooltipPlacement="top" (click)="goToForm(item, 'lupus')">
+                                        <svg cIcon name="cil-trash"></svg>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <!-- If no data -->
+                            <tr *ngIf="!tableData || tableData.length === 0">
+                                <td colspan="4" class="text-center text-muted">
+                                    Tiada rekod untuk dipaparkan
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </c-col>
+        </c-row>
+    </c-card-body>
+</c-card>
+
+<!-- Modal -->
+<c-modal [visible]="modalVisible" (visibleChange)="modalVisible = $event" backdrop="static" keyboard="false">
+    <c-modal-body class="text-center">
+        <div class="mb-3">
+            <svg width="64" height="48" viewBox="0 0 64 48" fill="none">
+                <rect x="8" y="8" width="48" height="32" stroke="#6c757d" stroke-width="2" fill="none" />
+                <line x1="16" y1="16" x2="48" y2="32" stroke="#6c757d" stroke-width="2" />
+                <line x1="48" y1="16" x2="16" y2="32" stroke="#6c757d" stroke-width="2" />
+            </svg>
+        </div>
+        <p>{{ modalMessage }}</p>
+    </c-modal-body>
+    <c-modal-footer>
+        <button type="button" cButton color="dark" (click)="onModalOk()" class="px-4"
+            style="width: 20%; margin-right: 40%">
+            OK
+        </button>
+    </c-modal-footer>
+</c-modal>

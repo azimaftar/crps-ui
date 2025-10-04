@@ -1,0 +1,33 @@
+stages:
+  - Build app
+  - Build image
+
+variables:
+  IMAGE_VERSION: niise-fe-angular-v1.0.0
+
+app build:
+  stage: Build app
+  image: trion/ng-cli
+  script:
+    # - npm install
+    - npm ci --legacy-peer-deps
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+  only:
+    - tags
+
+docker build:
+  stage: Build image
+  image: docker:stable
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+  script:
+    - echo $CI_REGISTRY_IMAGE
+    - echo $CI_COMMIT_TAG
+    - docker info
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
+  only:
+    - tags

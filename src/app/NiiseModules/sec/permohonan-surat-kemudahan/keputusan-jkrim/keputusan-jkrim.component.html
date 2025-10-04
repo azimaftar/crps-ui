@@ -1,0 +1,220 @@
+<c-card class="mb-3">
+    <!-- CONTENT CARD BODY -->
+    <c-card-body>
+        <c-row>
+            <!-- FORMS -->
+            <c-col md="9">
+                <!-- FORMS START -->
+                <!-- Form Title -->
+                <h5 class="mb-4">Senarai Permohonan Surat Kemudahan</h5>
+
+                <!-- Category Selection -->
+                <div class="mb-3">
+                    <label class="form-label">Kategori Carian</label>
+                    <select class="form-select" [(ngModel)]="selectedCategory" (ngModelChange)="onCategoryChange()"
+                        style="width: 100%; max-width: 250px;">
+                        <option value="">-Sila Pilih-</option>
+                        <option value="warganegara">Warganegara/ Penduduk Tetap</option>
+                        <option value="warga_asing">Warga Asing</option>
+                        <option value="no_rujukan">No Rujukan</option>
+                    </select>
+                </div>
+
+                <!-- Form for Warganegara/Penduduk Tetap -->
+                <div *ngIf="selectedCategory === 'warganegara'">
+                    <form (ngSubmit)="validateNoKP(searchNoKP)" #searchForm="ngForm">
+                        <div class="mb-3">
+                            <label for="noKP" class="form-label">No Pengenalan</label>
+                            <input type="text" class="form-control" id="noKP" name="noKP" [(ngModel)]="searchNoKP"
+                                style="width: 50%;" placeholder="Contoh: 800211040991" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" [disabled]="!searchForm.form.valid"
+                            style="width: 50%;">
+                            Cari
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Form for Warga Asing -->
+                <div *ngIf="selectedCategory === 'warga_asing'">
+                    <form (ngSubmit)="searchWargaAsing()" #wargaAsingForm="ngForm">
+                        <c-row>
+                            <!-- Left Column -->
+                            <c-col md="6">
+                                <div class="mb-3">
+                                    <label for="nama" class="form-label">Nama</label>
+                                    <input type="text" class="form-control" id="nama" name="nama"
+                                        [(ngModel)]="searchNama" placeholder="Mila Dilan" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="warganegara" class="form-label">Warganegara</label>
+                                    <select class="form-select" [(ngModel)]="searchWarganegara" name="warganegara"
+                                        required>
+                                        <option value="">-Sila Pilih-</option>
+                                        <option value="Indonesia">Indonesia</option>
+                                        <option value="Singapore">Singapore</option>
+                                        <option value="Thailand">Thailand</option>
+                                        <option value="Philippines">Philippines</option>
+                                        <option value="Vietnam">Vietnam</option>
+                                        <option value="Myanmar">Myanmar</option>
+                                        <option value="Cambodia">Cambodia</option>
+                                        <option value="Others">Lain-lain</option>
+                                    </select>
+                                </div>
+                            </c-col>
+
+                            <!-- Right Column -->
+                            <c-col md="6">
+                                <div class="mb-3">
+                                    <label for="tarikhLahir" class="form-label">Tarikh Lahir</label>
+                                    <input type="date" class="form-control" id="tarikhLahir" name="tarikhLahir"
+                                        [(ngModel)]="searchTarikhLahir" placeholder="31/01/1990" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="noPassport" class="form-label">No Pasport</label>
+                                    <input type="text" class="form-control" id="noPassport" name="noPassport"
+                                        [(ngModel)]="searchNoPassport" placeholder="A0991821" required>
+                                </div>
+                            </c-col>
+                        </c-row>
+
+                        <!-- Search Button -->
+                        <c-row>
+                            <c-col md="12" class="text-end">
+                                <button type="submit" class="btn btn-dark" [disabled]="!wargaAsingForm.form.valid"
+                                    style="width: 100px;">
+                                    Cari
+                                </button>
+                            </c-col>
+                        </c-row>
+                    </form>
+                </div>
+
+                <!-- Form for No Rujukan -->
+                <div *ngIf="selectedCategory === 'no_rujukan'">
+                    <form (ngSubmit)="searchNoRujukan()" #noRujukanForm="ngForm">
+                        <div class="mb-3">
+                            <label for="noRujukan" class="form-label">No Rujukan</label>
+                            <input type="text" class="form-control" id="noRujukan" name="noRujukan" 
+    [(ngModel)]="searchNoRujukanValue" style="width: 50%;" 
+    placeholder="Contoh: A800211" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" [disabled]="!noRujukanForm.form.valid"
+                            style="width: 50%;">
+                            Cari
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Search Results Section -->
+                <div *ngIf="searchResults.length > 0 || showNoResults">
+                    <p style="margin-top: 20px;">
+                        Senarai Permohonan
+                    </p>
+
+                    <div class="table-responsive" *ngIf="searchResults.length > 0" style="margin-top: 10px;">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" *ngIf="selectedCategory === 'warganegara'">No K/P.</th>
+                                    <th scope="col" *ngIf="selectedCategory === 'warga_asing'">Nama</th>
+                                    <th scope="col" *ngIf="selectedCategory === 'no_rujukan'">No Rujukan</th>
+                                    <th scope="col">No Dokumen</th>
+                                    <th scope="col" class="text-nowrap">W/N</th>
+                                    <th scope="col" *ngIf="selectedCategory === 'warganegara'">Nama</th>
+                                    <th scope="col" *ngIf="selectedCategory === 'warga_asing'" class="text-nowrap">
+                                        Tarikh Lahir</th>
+                                    <th scope="col" *ngIf="selectedCategory === 'no_rujukan'">Nama</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col" class="text-nowrap">Tindakan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of searchResults">
+                                    <td *ngIf="selectedCategory === 'warganegara'" class="text-nowrap">{{ item.noKP }}
+                                    </td>
+                                    <td *ngIf="selectedCategory === 'warga_asing'">{{ item.nama }}</td>
+                                    <td *ngIf="selectedCategory === 'no_rujukan'" class="text-nowrap">{{ item.noDokumen }}</td>
+                                    <td class="text-nowrap">{{ item.noDokumen }}</td>
+                                    <td>{{ item.warganegara }}</td>
+                                    <td *ngIf="selectedCategory === 'warganegara'">{{ item.nama }}</td>
+                                    <td *ngIf="selectedCategory === 'warga_asing'" class="text-nowrap">{{
+                                        item.tarikhLahir }}</td>
+                                    <td *ngIf="selectedCategory === 'no_rujukan'">{{ item.nama }}</td>
+                                    <td>
+                                        <span class="badge"
+                                            [ngClass]="item.status === 'aktif' ? 'bg-success' : 'bg-secondary'">
+                                            {{ item.status }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-wrap gap-1 gap-sm-2">
+                                            <button class="btn btn-sm btn-outline-primary text-nowrap"
+                                                (click)="paparDetails(item)">
+                                                <i class="fas fa-eye me-1"></i>
+                                                <span>Papar</span>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary text-nowrap"
+                                                (click)="kemaskiniItem(item)">
+                                                <i class="fas fa-edit me-1"></i>
+                                                <span>Kemaskini</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div *ngIf="showNoResults && searchResults.length === 0" class="alert alert-info">
+                        Tiada rekod dijumpai berdasarkan kriteria carian.
+                    </div>
+                </div>
+            </c-col>
+
+            <!-- STEPPER -->
+            <c-col md="3" class="px-4 py-3 mt-3 stepper-container">
+                <ul class="stepper-list">
+                    <li class="stepper-item" [class.active]="currentStep === step.number"
+                        *ngFor="let step of steps; let i = index">
+                        <div class="stepper-content">
+                            <span class="step-number" [class.active]="currentStep === step.number">
+                                {{ step.number }}
+                            </span>
+                            <span class="step-title" [class.active]="currentStep === step.number">
+                                {{ step.title }}
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </c-col>
+        </c-row>
+        <!-- END OF CONTENT -->
+    </c-card-body>
+</c-card>
+
+<!-- CoreUI Modal -->
+<c-modal [visible]="modalVisible" (visibleChange)="modalVisible = $event" backdrop="static" keyboard="false">
+
+    <c-modal-body class="text-center">
+        <!-- Icon placeholder -->
+        <div class="mb-3">
+            <svg width="64" height="48" viewBox="0 0 64 48" fill="none">
+                <rect x="8" y="8" width="48" height="32" stroke="#6c757d" stroke-width="2" fill="none" />
+                <line x1="16" y1="16" x2="48" y2="32" stroke="#6c757d" stroke-width="2" />
+                <line x1="48" y1="16" x2="16" y2="32" stroke="#6c757d" stroke-width="2" />
+            </svg>
+        </div>
+
+        <p>{{ modalMessage }}</p>
+    </c-modal-body>
+
+    <c-modal-footer>
+        <button type="button" cButton color="dark" (click)="onModalOk()" class="px-4"
+            style="width: 20%;margin-right: 40%;">
+            OK
+        </button>
+    </c-modal-footer>
+</c-modal>

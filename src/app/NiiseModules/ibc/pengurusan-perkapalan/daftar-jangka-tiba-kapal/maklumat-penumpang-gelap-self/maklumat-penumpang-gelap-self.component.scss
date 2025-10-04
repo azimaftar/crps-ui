@@ -1,0 +1,248 @@
+//Header
+.card-header {
+    padding-left: 2.2rem;
+    padding-top: 1rem;
+}
+
+//Form
+form {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+//Photo Placeholder
+.photo-placeholder {
+    width: 150px;
+    height: 200px;
+    border: 2px solid var(--cui-border-color, #dee2e6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--cui-body-bg, #f8f9fa);
+    border-radius: 0.375rem;
+}
+
+.photo-placeholder img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 0.25rem;
+}
+
+//Stepper - ENHANCED WITH CONNECTING LINES
+.stepper-container {
+    border-left: 1px solid var(--cui-border-color, #dee2e6);
+    padding-left: 1rem;
+}
+
+.stepper-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    
+    // MAIN CONTINUOUS VERTICAL LINE
+    &::before {
+        content: '';
+        position: absolute;
+        left: 15px; // Center with the circles
+        top: 0; // Start below first circle
+        bottom: 0; // End before last circle
+        width: 2px;
+        background-color: var(--cui-border-color, #dee2e6);
+        z-index: 1;
+    }
+}
+
+.stepper-item {
+    margin-bottom: 3rem;
+    position: relative;
+    
+    // COLORED LINE SEGMENTS FOR COMPLETED STEPS
+    &.completed {
+        &::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: -3rem; // Start from previous step
+            width: 2px;
+            height: calc(3rem + 32px); // Cover the gap + circle height
+            background-color: var(--cui-success, #198754);
+            z-index: 2; // Above the main line
+        }
+        
+        // First completed step starts from circle
+        &:first-child::before {
+            top: 0;
+            height: calc(3rem + 32px);
+        }
+    }
+    
+    // ACTIVE STEP LINE (partial coloring)
+    &.active:not(:first-child) {
+        &::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: -3rem;
+            width: 2px;
+            height: 3rem; // Only color up to current step
+            background-color: var(--cui-success, #198754);
+            z-index: 2;
+        }
+    }
+}
+
+.stepper-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    position: relative;
+    z-index: 2; // Above the connecting line
+}
+
+.step-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--cui-secondary, #6c757d);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    flex-shrink: 0;
+    border: 2px solid transparent; // Added border for better styling
+    transition: all 0.3s ease; // Added smooth transition
+    
+    // Completed step styling
+    &.completed {
+        background-color: var(--cui-success, #198754);
+        border-color: var(--cui-success, #198754);
+        
+        // Show checkmark for completed steps
+        &::before {
+            content: '✓';
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+    }
+    
+    // Active step styling
+    &.active {
+        background-color: var(--cui-primary, #0d6efd);
+        border-color: var(--cui-primary, #0d6efd);
+        box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15); // Glow effect
+    }
+}
+
+.step-title {
+    color: var(--cui-secondary, #6c757d);
+    font-size: 1rem;
+    transition: color 0.2s ease;
+    
+    // Completed step title
+    &.completed {
+        color: var(--cui-success, #198754);
+        font-weight: 500;
+    }
+    
+    // Active step title
+    &.active {
+        color: var(--cui-body-color, #212529);
+        font-weight: 500;
+    }
+}
+
+// Hover effect for clickable steps
+.stepper-item.clickable {
+    cursor: pointer;
+    
+    &:hover .step-number:not(.active):not(.completed) {
+        background-color: var(--cui-primary, #0d6efd);
+        border-color: var(--cui-primary, #0d6efd);
+        transform: scale(1.1);
+    }
+    
+    &:hover .step-title:not(.active):not(.completed) {
+        color: var(--cui-primary, #0d6efd);
+    }
+}
+
+// Dark Mode Adjustments
+[data-coreui-theme="dark"] .step-title.active,
+.dark .step-title.active,
+:root[data-bs-theme="dark"] .step-title.active {
+    color: var(--cui-body-color, #ffffff);
+}
+
+[data-coreui-theme="dark"] .photo-placeholder,
+.dark .photo-placeholder,
+:root[data-bs-theme="dark"] .photo-placeholder {
+    background-color: var(--cui-tertiary-bg, #2b3035);
+    border-color: var(--cui-border-color, #495057);
+}
+
+// Dark mode stepper lines
+[data-coreui-theme="dark"] .stepper-list::before,
+.dark .stepper-list::before,
+:root[data-bs-theme="dark"] .stepper-list::before {
+    background-color: var(--cui-border-color, #495057);
+}
+
+//Buttons
+.biometric-btn, .reset-btn, .submit-btn, .nav-btn {
+    min-width: 42px;
+}
+
+.biometric-btn {
+    min-width: 200px;
+}
+
+.form-control:focus {
+    border-color: var(--cui-primary);
+    box-shadow: 0 0 0 0.2rem rgba(var(--cui-primary-rgb), 0.25);
+}
+
+.gap-2 > * + * {
+    margin-left: 0.5rem;
+}
+
+.upload-container {
+    min-height: 40px;
+}
+
+.upload-container .btn {
+    font-size: 0.875rem;
+}
+
+.upload-container small {
+    display: block;
+    word-break: break-all;
+}
+
+// Add this to your existing SCSS file
+
+// Footer Row Styling
+.footer-row {
+    border-top: 1px solid var(--cui-border-color, #dee2e6);
+    padding-top: 1rem;
+    margin-top: 2rem !important;
+    
+    // Optional: Add background color to distinguish footer
+    // background-color: var(--cui-tertiary-bg, #f8f9fa);
+    // margin-left: -1.25rem;
+    // margin-right: -1.25rem;
+    // padding-left: 1.25rem;
+    // padding-right: 1.25rem;
+}
+
+// Dark mode support for footer border
+[data-coreui-theme="dark"] .footer-row,
+.dark .footer-row,
+:root[data-bs-theme="dark"] .footer-row {
+    border-color: var(--cui-border-color, #495057);
+}

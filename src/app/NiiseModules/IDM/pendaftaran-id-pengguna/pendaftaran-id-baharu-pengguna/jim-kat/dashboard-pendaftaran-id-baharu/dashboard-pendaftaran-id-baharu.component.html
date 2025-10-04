@@ -1,0 +1,151 @@
+<c-card>
+    <!-- <c-card-header class="bg-primary text-white d-flex justify-content-between align-items-center">
+  </c-card-header> -->
+
+    <c-card-body>
+        <div class="d-flex justify-content-end mb-5 mt-4">
+            <button class="btn btn-dark">Pendaftaran ID Pengguna</button>
+        </div>
+        <c-row class="mb-3">
+            <c-col md="3">
+                <label class="form-label">Carian</label>
+                <input type="text" class="form-control" placeholder="Text Here" />
+            </c-col>
+            <c-col md="3">
+                <label class="form-label">Jenis Permohonan</label>
+                <select class="form-select">
+                    <option>Semua</option>
+                </select>
+            </c-col>
+            <c-col md="3">
+                <label class="form-label">No. Permohonan</label>
+                <input type="text" class="form-control" placeholder="Text Here" />
+            </c-col>
+            <c-col md="3">
+                <label class="form-label">Tarikh Permohonan</label>
+                <input type="date" class="form-control" />
+            </c-col>
+        </c-row>
+
+        <c-row class="mb-3">
+            <c-col md="3">
+                <label class="form-label">Status</label>
+                <select class="form-select">
+                    <option>Semua</option>
+                </select>
+            </c-col>
+            <c-col md="3" class="d-flex align-items-end">
+                <button class="btn btn-dark me-2">Set Semula</button>
+                <button class="btn btn-secondary">Cari</button>
+            </c-col>
+        </c-row>
+
+        <div class="table-responsive mt-5">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="bg-primary text-white" style="border: none; border-bottom: 2px solid black;">Bil.
+                        </th>
+                        <th class="bg-primary text-white" style="border: none; border-bottom: 2px solid black;">Nama
+                        </th>
+                        <th class="bg-primary text-white" style="border: none; border-bottom: 2px solid black;">No.
+                            Permohonan</th>
+                        <th class="bg-primary text-white" style="border: none; border-bottom: 2px solid black;">Jenis
+                            Permohonan</th>
+                        <th class="bg-primary text-white" style="border: none; border-bottom: 2px solid black;">Tarikh
+                            Permohonan</th>
+                        <th class="bg-primary text-white" style="border: none; border-bottom: 2px solid black;">Status
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="border: none; border-bottom: 2px solid black;">1</td>
+                        <td style="border: none; border-bottom: 2px solid black;">
+                            <div class="d-flex align-items-center">
+                                <img src="assets/images/avatars/1.jpg" class="rounded-circle me-3" width="40"
+                                    height="40" alt="Profile">
+                                <span>Mohd Nu'man Bin Mohd Liki</span>
+                            </div>
+                        </td>
+                        <td style="border: none; border-bottom: 2px solid black;">IDM/PUTRA/JAYAKOND9/12/2022/09/98709
+                        </td>
+                        <td style="border: none; border-bottom: 2px solid black;">Pembatalan ID Pengguna</td>
+                        <td style="border: none; border-bottom: 2px solid black;">11/02/2022</td>
+                        <td style="border: none; border-bottom: 2px solid black;">Baharu</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none; border-bottom: 2px solid black;">2</td>
+                        <td style="border: none; border-bottom: 2px solid black;">
+                            <div class="d-flex align-items-center">
+                                <img src="assets/images/avatars/2.jpg" class="rounded-circle me-3" width="40"
+                                    height="40" alt="Profile">
+                                <span>Zainul Arif Bin Abu</span>
+                            </div>
+                        </td>
+                        <td style="border: none; border-bottom: 2px solid black;">IDM/PUTRA/JAYAKOND9/12/2022/08/50655
+                        </td>
+                        <td style="border: none; border-bottom: 2px solid black;">Pembatalan ID Pengguna</td>
+                        <td style="border: none; border-bottom: 2px solid black;">12/12/2021</td>
+                        <td style="border: none; border-bottom: 2px solid black;">Baharu</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none; border-bottom: 2px solid black;">3</td>
+                        <td style="border: none; border-bottom: 2px solid black;">
+                            <div class="d-flex align-items-center">
+                                <img src="assets/images/avatars/3.jpg" class="rounded-circle me-3" width="40"
+                                    height="40" alt="Profile">
+                                <span>Nur Qistina Binti Harun</span>
+                            </div>
+                        </td>
+                        <td style="border: none; border-bottom: 2px solid black;">IDM/PUTRA/JAYAKOND9/12/2022/07/50655
+                        </td>
+                        <td style="border: none; border-bottom: 2px solid black;">Nyahaktif ID Pengguna</td>
+                        <td style="border: none; border-bottom: 2px solid black;">03/12/2021</td>
+                        <td style="border: none; border-bottom: 2px solid black;">Tidak Lulus</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <div class="d-flex align-items-center">
+                <select class="form-select form-select-sm" style="width: 70px;">
+                    <option>10</option>
+                    <option>25</option>
+                    <option>50</option>
+                    <option>100</option>
+                </select>
+            </div>
+
+            <!-- Pagination (right side) -->
+            <div class="d-flex align-items-center justify-content-center gap-2 mt-3">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination pagination-sm mb-0">
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:void(0)">&laquo;</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:void(0)">&lsaquo;</a>
+                        </li>
+                        <li class="page-item active">
+                            <a class="page-link" href="javascript:void(0)">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:void(0)">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:void(0)">&rsaquo;</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:void(0)">&raquo;</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <span class="ms-2">Pergi ke</span>
+                <input type="text" class="form-control form-control-sm ms-1" style="width: 50px;" />
+            </div>
+        </div>
+    </c-card-body>
+</c-card>

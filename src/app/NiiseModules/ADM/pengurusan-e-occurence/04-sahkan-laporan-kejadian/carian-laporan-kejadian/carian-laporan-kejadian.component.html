@@ -1,0 +1,171 @@
+<c-card>
+    <c-card-body class="p-5">
+        <h4 class="fw-bold mb-5">LAPORAN KEJADIAN</h4>
+        <h6 class="fw-bold mb-4">Carian Maklumat Laporan Kejadian</h6>
+        <form [formGroup]="searchForm">
+            <c-row>
+                <c-col class="mb-3" md="2" xs="12">
+                    <label for="kategoriKejadian" cLabel>Kategori Kejadian</label>
+                </c-col>
+                <c-col class="col-md-3">
+                    <input type="text" id="kategoriKejadian" class="form-control" placeholder="" formControlName="kategoriKejadian" />
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col class="mb-3" md="2" xs="12">
+                    <label for="jenisKejadian" cLabel>Jenis Kejadian</label>
+                </c-col>
+                <c-col class="col-md-6">
+                    <select id="jenisKejadian" class="form-select" formControlName="jenisKejadian">
+                        <option value="">-Sila Pilih-</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col class="mb-3" md="2" xs="12">
+                    <label for="namaKejadian" cLabel>Nama Kejadian</label>
+                </c-col>
+                <c-col class="col-md-6 col-12">
+                    <select id="namaKejadian" class="form-select" formControlName="namaKejadian">
+                        <option value="">-Sila Pilih-</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </c-col>
+                <c-col class="d-flex justify-content-start flex-column flex-sm-row mt-md-0 mt-3">
+                    <button color="primary" class="primary-custom-btn w-auto px-5 me-0 me-sm-3 mb-2 mb-sm-0" (click)="search()">
+                        Carian</button>
+                    <button color="primary" class="primary-custom-btn w-auto px-5">
+                        Papar</button>
+                </c-col>
+            </c-row>
+        </form>
+        <h6 class="mt-5 mb-3 fw-bold">Senarai Laporan Kejadian</h6>
+        <div class="table-responsive-md">
+          <table cTable hover>
+            <thead>
+              <tr>
+                <th>Bil.</th>
+                <th (click)="sort('jenisKejadian')" style="cursor:pointer">Jenis Kejadian</th>
+                <th (click)="sort('kategoriKejadian')" style="cursor:pointer">Kategori Kejadian</th>
+                <th (click)="sort('subKategoriKejadian')" style="cursor:pointer">Sub Kategori Kejadian</th>
+                <th (click)="sort('tahapKejadian')" style="cursor:pointer">Tahap Kejadian</th>
+                <th (click)="sort('namaKejadian')" style="cursor:pointer">Nama Kejadian</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let kejadian of paginatedData(); let i = index">
+                <td>{{ i + 1 + (currentPage - 1) * rowsPerPage }}.</td>
+                <td>{{ kejadian.jenisKejadian }}</td>
+                <td>{{ kejadian.kategoriKejadian }}</td>
+                <td>{{ kejadian.subKategoriKejadian }}</td>
+                <td>{{ kejadian.tahapKejadian }}</td>
+                <td>{{ kejadian.namaKejadian }}</td>
+                <td class="text-nowrap">
+                  <button cButton color="secondary" class="me-2" (click)="navigateToPengesahanLaporanKejadian()">Pengesahan</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+           <!-- Pagination Controls -->
+           <c-row>
+            <c-col
+              [xs]="12"
+              [md]="8"
+              class="align-items-start justify-content-start mb-2"
+            >
+              <select class="form-select form-select-sm" style="width: 70px" [(ngModel)]="rowsPerPage">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+              </select>
+            </c-col>
+      
+            <c-col [xs]="12" [md]="2">
+              <ul class="pagination justify-content-center justify-content-md-end">
+                <li>
+                  <a
+                    class="page-link text-dark left-border-radius"
+                    (click)="goToFirstPage()"
+                    style="cursor: pointer;"
+                    aria-label="Previous"
+                  >
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="page-link text-dark"
+                    (click)="prevPage()"
+                    style="cursor: pointer;"
+                    aria-label="FirstPage"
+                  >
+                    <span aria-hidden="true">&lsaquo;</span>
+                  </a>
+                </li>
+                <li *ngFor="let page of getPageNumbers()">
+                  <a 
+                    class="page-link text-dark" 
+                    (click)="goToPage(page)"
+                    style="cursor: pointer;"
+                    [class.active]="page === currentPage"
+                  >{{ page }}</a>
+                </li>
+                <li>
+                  <a
+                    class="page-link text-dark"
+                    (click)="nextPage()"
+                    style="cursor: pointer;"
+                    aria-label="Next"
+                  >
+                    <span aria-hidden="true">&rsaquo;</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="page-link text-dark right-border-radius"
+                    (click)="goToLastPage()"
+                    style="cursor: pointer;"
+                    aria-label="LastPage"
+                  >
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </c-col>
+      
+            <c-col
+              [xs]="12"
+              [md]="2"
+              class="d-flex align-items-start justify-content-end gap-2"
+            >
+              <label class="form-label">Pergi ke</label>
+              <input
+                type="number"
+                class="form-control form-control-sm"
+                style="width: 50px"
+                [(ngModel)]="pageInput"
+                (keyup.enter)="goToPage()"
+                min="1"
+                [max]="totalPages"
+              />
+            </c-col>
+          </c-row>
+        </div>
+    </c-card-body>
+</c-card>
+
+<!-- Carian Pop Up Modal -->
+<app-modal-component
+  [visible]="showSearchPopUp"
+  title=""
+  message="Maklumat carian tidak wujud. Sila masukkan kunci carian lain."
+  mode="ok" 
+  icon="danger"
+  (close)="closeSearchPopUp()"
+></app-modal-component>

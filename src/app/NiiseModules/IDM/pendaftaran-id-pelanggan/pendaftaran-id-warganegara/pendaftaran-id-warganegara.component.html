@@ -1,0 +1,88 @@
+<div style="background-color: black; max-height: 100%;">
+  <div style="background-color: red">
+    <!-- <app-dev-mode/> -->
+  </div>
+
+  <div class="bg-light dark:bg-transparent min-vh-100 d-flex justify-content-center align-items-center" style="
+      background-image: url('../../../assets/images/login_background.png');
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    ">
+    <div class="card w-100 mx-3" style="border-radius: 20px; max-width: 1000px;">
+      <div class="p-4">
+        <div class="text-center mb-4">
+          <img [src]="'../../../../assets/logo/' + config.logo" alt="mySIKAP Logo" class="img-fluid"
+            style="max-width: 300px; width: 100%; height: auto;" />
+        </div>
+
+        <h5 class="fw-bold">PERMOHONAN ID PENGGUNA - PENDAFTARAN ID PELANGGAN (INDIVIDU)</h5>
+        <hr />
+
+        <form [formGroup]="documentForm" (ngSubmit)="onSubmit()">
+          <h6 class="mb-3 fw-bold">Maklumat Pemohon</h6>
+          <!-- First Row -->
+          <div class="row mb-4">
+            <div class="col-md-6 col-12 mb-3 mb-md-0">
+              <label class="form-label">Taraf Penduduk</label>
+              <select formControlName="tarafPenduduk" class="form-select">
+                <option value="Warganegara">Warganegara</option>
+                <option value="bukanWarganegara">Bukan Warganegara</option>
+              </select>
+            </div>
+
+            <!-- Show Jenis Dokumen only when bukan warganegara -->
+            <ng-container *ngIf="isBukanWarganegara">
+              <div class="col-md-6 col-12">
+                <label class="form-label">Jenis Dokumen</label>
+                <select formControlName="jenisDokumen" class="form-select">
+                  <option value="passport">Passport</option>
+                  <option value="other">Lain-lain</option>
+                </select>
+              </div>
+            </ng-container>
+          </div>
+
+          <!-- Second Row -->
+          <div class="row mb-4">
+            <!-- For Warganegara -->
+            <ng-container *ngIf="!isBukanWarganegara">
+              <div class="col-md-6 col-12 mb-3 mb-md-0">
+                <label class="form-label">Jenis Dokumen</label>
+                <select formControlName="jenisDokumen" class="form-select">
+                  <option value="mykad">MyKad</option>
+                  <option value="passport">Passport</option>
+                  <option value="other">Lain-lain</option>
+                </select>
+              </div>
+
+              <div class="col-md-6 col-12">
+                <label class="form-label">No Dokumen / ID</label>
+                <input type="text" formControlName="noDokumen" class="form-control" placeholder="980330025489" />
+              </div>
+            </ng-container>
+
+            <!-- For Bukan Warganegara -->
+            <ng-container *ngIf="isBukanWarganegara">
+              <div class="col-md-6 col-12 mb-3 mb-md-0">
+                <label class="form-label">No Passport Terdahulu</label>
+                <input type="text" formControlName="noPassportLama" class="form-control" placeholder="A1234567" />
+              </div>
+
+              <div class="col-md-6 col-12">
+                <label class="form-label">No Passport Terkini</label>
+                <input type="text" formControlName="noPassportBaru" class="form-control" placeholder="B7654321" />
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="row">
+            <div class="col-12 text-end">
+              <button type="submit" class="btn btn-dark px-4">Semak</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

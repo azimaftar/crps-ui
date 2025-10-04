@@ -1,0 +1,73 @@
+<c-card>
+  <c-card-body style="height: 80vh;">
+    <c-row>
+      <c-col xs="12" md="12" class="order-2 order-md-1">
+        <c-row class="mb-5">
+          <h6>Dokumen Sokongan*</h6>
+        </c-row>
+        <c-row class="mb-5 px-2 table-responsive">
+          <table class="table">
+            <thead>
+              <tr class="align-middle">
+                <th class="py-4">Bil.</th>
+                <th class="py-4">Nama Dokumen</th>
+                <th class="py-4">Format</th>
+                <th class="py-4">Tindakan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let item of tableData; let i = index"
+                class="align-middle"
+              >
+                <td class="py-4">{{ i + 1 }}</td>
+                <td class="py-4">{{ item.namaDokumen }}</td>
+                <td class="py-4">{{ item.format }}</td>
+                <td class="py-4 d-flex gap-2">
+                  <button type="button" class="btn btn-secondary">Muat Naik</button>
+                  <button type="button" class="btn btn-secondary">Padam</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </c-row>
+        <button type="button" class="btn btn-secondary">Tambah Dokumen</button>
+      </c-col>
+    </c-row>
+  </c-card-body>
+  <c-card-body>
+    <c-col
+        xs="12"
+        class="d-flex flex-wrap justify-content-end align-items-center gap-5 my-3 order-3 order-md-3"
+      >
+        <c-row>
+          <c-col class="d-flex gap-3">
+            <button type="button" class="btn btn-secondary" (click)="showHubungidisimpan()">Simpan</button>
+            <button type="button" class="btn btn-secondary" (click)="showRekodDihantar()">Hantar</button>
+          </c-col>
+
+          <c-col class="d-flex gap-3">
+            <button type="button" class="btn btn-secondary">&lt;</button>
+            <button type="button" class="btn btn-secondary" disabled>&gt;</button>
+          </c-col>
+        </c-row>
+      </c-col>
+
+  </c-card-body>
+</c-card>
+
+<app-maklumat-carian-tidak-wujud
+[maklumatCarian]="HantarMaklumatCarian"
+  (close)="closeModal()" >
+</app-maklumat-carian-tidak-wujud>
+
+<app-rekod-berjaya-dihantar
+[RekodDihantar]="HantarRekodDihantar"
+  (close)="closeModal()" >
+</app-rekod-berjaya-dihantar>
+
+<app-rekod-berjaya-disimpan
+[RekodDisimpan]="HantarRekodDisimpan"
+  (close)="closeModal()" >
+</app-rekod-berjaya-disimpan>
+

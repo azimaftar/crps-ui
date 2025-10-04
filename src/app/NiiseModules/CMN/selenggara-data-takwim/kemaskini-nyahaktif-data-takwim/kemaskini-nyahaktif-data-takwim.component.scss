@@ -1,0 +1,143 @@
+.header-section {
+  background-color: #f0f0f0;
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.header-section h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.search-bar {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.search-bar label {
+  margin-right: 10px;
+}
+
+.search-bar select {
+  padding: 5px;
+  width: 200px;
+}
+
+.search-bar button {
+  padding: 5px 15px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background-color: #555;
+}
+
+.calendar-container {
+  max-width: 900px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.header button {
+  background: none;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  background-color: #ccc;
+}
+
+.day-header {
+  background-color: #f0f0f0;
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+}
+
+.day {
+  background-color: white;
+  text-align: center;
+  padding: 10px;
+  min-height: 80px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  position: relative;
+}
+
+.day.empty {
+  background-color: #f9f9f9;
+  cursor: default;
+}
+
+.day.holiday {
+  background-color: #d0eaff;
+}
+
+.day.selected {
+  background-color: #a0cfff;
+}
+
+.day.has-event {
+  background-color: #ffebcc;
+}
+
+.holiday-name, .event-name {
+  display: block;
+  font-size: 12px;
+  color: #333;
+  margin-top: 5px;
+  word-wrap: break-word;
+}
+
+.details {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.details h3 {
+  margin-top: 0;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

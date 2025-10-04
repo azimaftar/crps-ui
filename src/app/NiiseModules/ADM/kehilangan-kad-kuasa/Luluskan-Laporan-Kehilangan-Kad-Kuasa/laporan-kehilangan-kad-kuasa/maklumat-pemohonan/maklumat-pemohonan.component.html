@@ -1,0 +1,167 @@
+<c-card>
+    <h4 class="fw-bold m-3 mt-5">
+        LAPORAN KEHILANGAN KAD KUASA
+    </h4>
+    <div class="m-3">
+        <app-stepper
+        [currentMainStep]="currentMainStep"
+        ></app-stepper>
+    </div>
+
+    <c-card-body>
+        <form cForm>
+            <h6 class="mb-3 fw-bold mt-3">Maklumat Pemohon</h6>
+            <div class="d-flex">
+                <img src="https://placehold.co/150x150" alt="Foto Pegawai" class="img-fluid mb-3" style="width: 150px; height: 150px;">
+            </div>
+            <c-row>
+                <c-col class="mb-3">
+                    <label for="nama" cLabel>Nama Penuh</label>
+                    <input type="text" class="form-control" id="nama" placeholder="Nama Penuh" disabled value="{{pegawai.nama}}">
+                </c-col>
+            </c-row>
+            <c-row [xs]="2">
+                <c-col class="mb-3">
+                    <label for="jenisDokumen" cLabel>Jenis Dokumen</label>
+                    <input type="text" class="form-control" id="jenisDokumen" placeholder="Jenis Dokumen" disabled value="{{pegawai.jenisDokumen}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="noDokumen" cLabel>No Dokumen/ ID</label>
+                    <input type="text" class="form-control" id="noDokumen" placeholder="No Dokumen/ ID" disabled value="{{pegawai.noDokumen}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="tarikhLahir" cLabel>Tarikh Lahir</label>
+                    <input type="text" class="form-control" id="tarikhLahir" placeholder="Tarikh Lahir" disabled value="{{pegawai.tarikhLahir}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="jantina" cLabel>Jantina</label>
+                    <input type="text" class="form-control" id="jantina" placeholder="Jantina" disabled value="{{pegawai.jantina}}">
+                </c-col>
+            </c-row>
+            <c-row [xs]="1">
+                <c-col class="mb-3">
+                    <label for="alamat" cLabel>Alamat</label>
+                    <input type="text" class="form-control" id="line1" placeholder="line1" disabled value="{{pegawai.alamat1}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <input type="text" class="form-control" id="line2" placeholder="line2" disabled value="{{pegawai.alamat2}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <input type="text" class="form-control" id="line3" placeholder="line3" disabled value="{{pegawai.alamat3}}">
+                </c-col>
+            </c-row>
+            <c-row [xs]="2">
+                <c-col class="mb-3">
+                    <label for="line4" cLabel>Poskod</label>
+                    <input type="text" class="form-control" id="line4" placeholder="line4" disabled value="{{pegawai.poskod}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="line5" cLabel>Bandar</label>
+                    <input type="text" class="form-control" id="line5" placeholder="line5" disabled value="{{pegawai.bandar}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="line6" cLabel>Negeri</label>
+                    <input type="text" class="form-control" id="line6" placeholder="line6" disabled value="{{pegawai.negeri}}">
+                </c-col>
+            </c-row>
+
+            <h6 class="mb-3 fw-bold mt-3">Maklumat Perkhidmatan Dan Penjawatan</h6>
+            <c-row [xs]="2">
+                <c-col class="mb-3" >
+                    <label for="pangkat" cLabel>Pangkat</label>
+                    <input type="text" class="form-control" id="pangkat" placeholder="Pangkat" disabled value="{{perkhidmatanDanPenjawatan.pangkat}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="noBadan" cLabel>Nombor Badan/ Perkhidmatan</label>
+                    <input type="text" class="form-control" id="noBadan" placeholder="Nombor Badan/ Perkhidmatan" disabled value="{{perkhidmatanDanPenjawatan.noBadan}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="tarikhMulaBerkhidmat" cLabel>Tarikh Mula Berkhidmat</label>
+                    <input type="text" class="form-control" id="tarikhMulaBerkhidmat" placeholder="Tarikh Mula Berkhidmat" disabled value="{{perkhidmatanDanPenjawatan.tarikhMulaBerkhidmat}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="tarikhLantikanPertamaSebagaiPegawaiKanan" cLabel>Tarikh Lantikan Pertama Sebagai Pegawai Kanan (Jika Berkenaan)</label>
+                    <input type="text" class="form-control" id="tarikhLantikanPertamaSebagaiPegawaiKanan" placeholder="Tarikh Lantikan Pertama Sebagai Pegawai Kanan (Jika Berkenaan)" disabled value="{{perkhidmatanDanPenjawatan.tarikhLantikanPertamaSebagaiPegawaiKanan}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="noPewartaanPegawaiKanan" cLabel>Nombor Pewartaan Pegawai Kanan</label>
+                    <input type="text" class="form-control" id="noPewartaanPegawaiKanan" placeholder="Nombor Pewartaan Pegawai Kanan">
+                </c-col>
+            </c-row>
+
+            <h6 class="mb-3 fw-bold mt-3">Maklumat Penempatan</h6>
+            <c-row [xs]="2">
+                <c-col class="mb-3">
+                    <label for="bahagian" cLabel>Bahagian</label>
+                    <input type="text" class="form-control" id="bahagian" placeholder="Bahagian" disabled value="{{maklumatPenempatan.bahagian}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="negeri" cLabel>Negeri</label>
+                    <input type="text" class="form-control" id="negeri" placeholder="Negeri" disabled value="{{maklumatPenempatan.negeri}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="cawangan" cLabel>Cawangan</label>
+                    <input type="text" class="form-control" id="cawangan" placeholder="Cawangan" disabled value="{{maklumatPenempatan.cawangan}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="unit" cLabel>Unit</label>
+                    <input type="text" class="form-control" id="unit" placeholder="Unit" disabled value="{{maklumatPenempatan.unit}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="lokasiBertugas" cLabel>Lokasi Bertugas</label>
+                    <input type="text" class="form-control" id="lokasiBertugas" placeholder="Lokasi Bertugas" disabled value="{{maklumatPenempatan.lokasiBertugas}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="tarikhBerkuatkuasa" cLabel>Tarikh Berkuatkuasa</label>
+                    <input type="text" class="form-control" id="tarikhBerkuatkuasa" placeholder="Tarikh Berkuatkuasa" disabled value="{{maklumatPenempatan.tarikhBerkuatkuasa}}">
+                </c-col>
+                <c-col class="mb-3" >
+                    <label for="jenisPenempatan" cLabel>Jenis Penempatan</label>
+                    <input type="text" class="form-control" id="jenisPenempatan" placeholder="Jenis Penempatan" disabled value="{{maklumatPenempatan.jenisPenempatan}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="tempohPenempatan" cLabel>Tempoh Penempatan</label>
+                    <input type="text" class="form-control" id="tempohPenempatan" placeholder="Tempoh Penempatan" disabled value="{{maklumatPenempatan.tempohPenempatan}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="kumpulanSyif" cLabel>Kumpulan Syif (Jika Ada)</label>
+                    <input type="text" class="form-control" id="kumpulanSyif" placeholder="Kumpulan Syif (Jika Ada)" disabled value="{{maklumatPenempatan.kumpulanSyif}}">
+                </c-col>
+            </c-row>
+             <c-row [xs]="1">
+                <c-col class="mb-3">
+                    <label for="alamat" cLabel>Alamat Pejabat</label>
+                    <input type="text" class="form-control" id="line1" placeholder="line1" disabled value="{{maklumatPenempatan.alamatPejabat1}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <input type="text" class="form-control" id="line2" placeholder="line2" disabled value="{{maklumatPenempatan.alamatPejabat2}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <input type="text" class="form-control" id="line3" placeholder="line3" disabled value="{{maklumatPenempatan.alamatPejabat3}}">
+                </c-col>
+            </c-row>
+             <c-row [xs]="2">
+             <c-col class="mb-3">
+                    <label for="PoskodPejabat" cLabel>Poskod</label>
+                    <input type="text" class="form-control" id="PoskodPejabat" placeholder="Poskod" disabled value="{{maklumatPenempatan.poskodPejabat}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="BandarPejabat" cLabel>Bandar</label>
+                    <input type="text" class="form-control" id="BandarPejabat" placeholder="Bandar" disabled value="{{maklumatPenempatan.bandarPejabat}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="NegeriPejabat" cLabel>Negeri</label>
+                    <input type="text" class="form-control" id="NegeriPejabat" placeholder="Negeri Pejabat" disabled value="{{maklumatPenempatan.negeriPejabat}}">
+                </c-col>
+                </c-row>
+        </form>
+    </c-card-body>
+    <c-card-footer>
+        <c-row>
+            <div class="d-flex justify-content-end">
+              <button class="l-custom-btn" color="secondary" (click)="navigatePreviousPage()">&lsaquo;</button>
+              <button class="r-custom-btn" color="primary" (click)="navigateNextPage()">&rsaquo;</button>
+            </div>
+        </c-row>          
+    </c-card-footer>
+</c-card>

@@ -1,0 +1,77 @@
+<c-sidebar
+  class="d-print-none sidebar sidebar-fixed border-end"
+  id="sidebarMain"
+  style="background: linear-gradient(180deg, #00BBA7 0%, #122640 100%);"
+  visible>
+  <c-sidebar-header style="height: 102px;">
+    <c-sidebar-brand style="margin-inline: auto;">
+      <button [cSidebarToggle]="'sidebar2'"
+              cHeaderToggler
+              class="btn"
+              toggle="visible"
+              style="margin-inline-start: 6px; color: white;"
+              aria-label="Toggle sidebar navigation">
+        <svg cIcon name="cilMenu" size="xl"></svg>
+      </button>
+    </c-sidebar-brand>
+  </c-sidebar-header>
+  <c-sidebar-nav class="custom-c-sidebar-nav-v2">
+    @for (item of navItems; track item.name) {
+      <li class="nav-item {{ item.class }}">
+        <a cNavLink
+           [routerLink]="item.url"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{ exact: true }"
+           [cSidebarToggle]="item.attributes?.['cSidebarToggle']"
+           [toggle]="item.attributes?.['toggle']"
+           [title]="item.name" style="border-radius: 9999px; --cui-sidebar-nav-link-active-bg: rgba(15, 23, 43, 0.4);"
+        >
+          @if (item.iconComponent?.name) {
+            <svg cIcon [name]="item.iconComponent?.name" size="xl"></svg>
+          } @else if (item.icon) {
+            <img [src]="item.icon" alt="" />
+          }
+        </a>
+        {{ item.name }}
+      </li>
+    } @empty {
+      <li class="nav-item">No navigation items found.</li>
+    }
+  </c-sidebar-nav>
+</c-sidebar>
+
+<div class="wrapper d-flex flex-column min-vh-100">
+  <app-top-nav
+    class="d-print-none header header-sticky border-0"
+    position="sticky"
+    sidebarMain="sidebarMain"
+  />
+  <c-container fluid>
+    <c-row class="justify-content-start">
+      <c-col xs="auto">
+        <c-sidebar id="sidebar2"
+                   [visible]="false" class="custom-inner-sidebar" (visibleChange)="visibleEvent($event)">
+          <!--          <ng-scrollbar style="width:98%"-->
+          <!--                        class="overflow"-->
+          <!--                        pointerEventsMethod="scrollbar"-->
+          <!--                        visibility="hover">-->
+          <!--            -->
+          <!--          </ng-scrollbar>-->
+          <c-sidebar-nav
+            class="custom-inner-sidebar-nav"
+            dropdownMode="close"
+            [navItems]="nav2Items"
+          />
+        </c-sidebar>
+      </c-col>
+      <c-col xs="10" [ngClass]="{'custom-content-area': true, 'contracted': visibleSidebar}">
+        <router-outlet />
+      </c-col>
+    </c-row>
+  </c-container>
+
+  <!-- Idle popup overlay -->
+  <app-idle-popup></app-idle-popup>
+</div>
+
+

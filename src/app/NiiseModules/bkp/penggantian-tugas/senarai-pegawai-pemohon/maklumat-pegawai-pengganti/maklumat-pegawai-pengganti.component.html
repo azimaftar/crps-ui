@@ -1,0 +1,181 @@
+<div class="container-fluid">
+  <div class="form-section">
+    <div class="row">
+      <!-- Left Side: Officer Info -->
+      <div class="col-md-9 border-end pe-4">
+        <h5>Maklumat Pegawai Pengganti</h5>
+
+        <!-- Image Placeholder -->
+        <div class="mb-3 photo-class">
+            <img src="assets/images/passport-photo.jpg" class="passport-photo" alt="Passport Photo">
+        </div>
+
+        <form class="mt-3">
+           <!-- row 1 -->
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label required">Nama Pegawai</label>
+                      <input type="text"  class="form-control" [disabled]="true" [(ngModel)]="pengganti.nama" name="nama" readonly/>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label required">Bahagian</label>
+                      <select class="form-select" [disabled]="true" [(ngModel)]="pengganti.bahagian" name="bahagian">
+                      <option *ngFor="let item of pengganti.bahagian" [value]="item.div">
+                        {{ item.div }}
+                      </option>
+                    </select>
+                  </div>
+                  </div>
+
+                  <!-- row 2 -->
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label required">Nombor Kad Pengenalan</label>
+                      <input type="text"  class="form-control" [disabled]="true" [(ngModel)]="pengganti.ic" name="ic" readonly/>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label required">Unit</label>
+                      <select class="form-select" [disabled]="true" [(ngModel)]="pengganti.unit" name="unit">
+                      <option *ngFor="let item of pengganti.unit" [value]="item.nit">
+                        {{ item.nit }}
+                      </option>
+                    </select>
+                  </div>
+                  </div>
+
+                  <!-- row 3 -->
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label required">Gred Jawatan</label>
+                      <input type="text"  class="form-control" [disabled]="true" [(ngModel)]="pengganti.gred" name="gred" readonly/>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label required">Kumpulan</label>
+                      <select class="form-select" [disabled]="true" [(ngModel)]="pengganti.group" name="group">
+                      <option *ngFor="let item of pengganti.group" [value]="item.kumpulan">
+                        {{ item.kumpulan }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Row 6 -->
+                  <div class="mb-3">
+                    <label class="form-label">Tandatangan Digital</label>
+                    <input type="text" class="form-control sign-input" [disabled]="true">
+                  </div>
+
+                  <!-- Row 7 -->
+                  <div class="mb-3">
+                    <label class="form-label fw-bold">Sokongan Penyelia</label>
+
+                    <!-- Radio buttons row -->
+                    <div class="d-flex mb-2">
+                      <!-- Radio: Lulus -->
+                      <div class="form-check d-flex align-items-center me-4">
+                        <input class="form-check-input big-square-radio" 
+                              type="radio" 
+                              id="lulus" 
+                              name="keputusan" 
+                              value="Lulus"
+                              (click)="toggleRadio('Lulus')"
+                              [(ngModel)]="keputusan">
+                        <label class="form-check-label ms-2" for="lulus">Disokong</label>
+                      </div>
+
+                      <!-- Radio: Tolak -->
+                      <div class="form-check d-flex align-items-center me-4">
+                        <input class="form-check-input big-square-radio" 
+                              type="radio" 
+                              id="tolak" 
+                              name="keputusan" 
+                              value="Tolak"
+                              (click)="toggleRadio('Tolak')"
+                              [(ngModel)]="keputusan">
+                        <label class="form-check-label ms-2" for="tolak">Tidak Disokong</label>
+                      </div>
+                      </div>
+
+                      <div *ngIf="keputusan === 'Tolak'" class="mt-3">
+                        <label for="catatan" class="form-label">Catatan</label>
+                        <textarea id="catatan"
+                                  class="form-control"
+                                  [(ngModel)]="catatan"
+                                  rows="3"></textarea>
+                      </div>
+
+                      <div class="mb-3">
+                        <label class="form-label">Tandatangan Digital</label>
+                        <input type="text" class="form-control sign-input">
+                      </div>
+                    
+
+                    <!-- Column 2: Perakuan -->
+                    <div>
+                      <label class="form-label ms-4 mt-4">Perakuan</label>
+                      <div class="form-check d-flex align-items-start">
+                        <input class="form-check-input big-square-radio mt-1"
+                              type="checkbox"
+                              id="syarat"
+                              [(ngModel)]="pengganti.setuju">
+                        <label class="form-check-label ms-2" for="syarat">
+                          Saya dengan ini bersetuju untuk mengambi alih tugas yang dinyatakan seperti dalam borang ini. 
+                          Dan akan melaksanakan tanggungjawab tersebut mengikut tarikh dan masa yang telah ditetapkan
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+        </form>
+      </div>
+
+      <!-- Right Side: Steps with vertical line -->
+      <div class="col-md-3 ps-4 border-start">
+        <div
+          class="step"
+          [class.active]="isStepActive(1)"
+          [class.completed]="isStepCompleted(1)"
+        >
+          <div class="circle">1</div>
+          <div class="label">Maklumat Pegawai Pemohon</div>
+        </div>
+        <div
+          class="step"
+          [class.active]="isStepActive(2)"
+          [class.completed]="isStepCompleted(2)"
+        >
+          <div class="circle">2</div>
+          <div class="label">Maklumat Pegawai Pengganti</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="d-flex justify-content-end mt-4 gap-2">
+      <button cButton type="button" class="btn btn-dark" (click)="showHantarSubmit()">
+        Hantar
+      </button>
+
+      <button cButton type="button" class="btn btn-dark" (click)="showHantarSimpan()">
+        Simpan
+      </button>
+
+      <button
+        class="btn btn-secondary me-2"
+        (click)="goToMaklumatPemohon()"
+        [disabled]="currentStep === 1"
+      >
+        &lt;
+      </button>
+      <button class="btn btn-dark" [disabled]="currentStep === maxStep">
+        &gt;
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<app-on-submit-popup
+  [Hantarsubmit]="HantarSubmitPopup"
+  [Hantarsimpan]="HantarSimpanPopup"
+  (close)="closeModal()">
+</app-on-submit-popup>

@@ -1,0 +1,104 @@
+<div class="container-fluid">
+    <c-row>
+        <c-col>
+            <c-card class="mb-3">
+                <c-card-body>
+                    <form>
+                        <h3 class="mb-4">Maklumat Kehilangan Dokumen</h3>
+
+                        <!-- Horizontal Stepper -->
+                        <div class="horizontal-stepper">
+                            <ul class="stepper-list d-flex align-items-center justify-content-start flex-wrap">
+                            <li
+                                class="stepper-item"
+                                *ngFor="let step of steps"
+                                [class.active]="isStepActive(step.number)">
+                                <button type="button" class="step-btn">
+                                <span class="step-number">{{ step.number }}</span>
+                                <span class="step-title">{{ step.title }}</span>
+                                </button>
+                            </li>
+                            </ul>
+                        </div>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                                <label class="form-label fw-semibold">Jenis Pengenalan</label>
+                                <input type="text" class="form-control" disabled readonly [value]="jenisPengenalan"/>
+                            </c-col>
+                            <c-col class="col-md-6">
+                                <label class="form-label fw-semibold">No Dokumen</label>
+                                <input type="text" class="form-control" disabled readonly [value]="noDokumen"/>
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                                <label class="form-label fw-semibold">No Fail JIM</label>
+                                <input type="text" class="form-control" [(ngModel)]="noFailJIM" name="noFailJIM" required maxlength="60" placeholder="Contoh: NoFailJIM123">
+                            </c-col>
+                            <c-col class="col-md-6">
+                                <label class="form-label fw-semibold">Tarikh Hilang</label>
+                                <input type="date" class="form-control" [(ngModel)]="tarikhHilang" name="tarikhHilang">
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-12">
+                                <label class="form-label fw-semibold">Sebab Hilang</label>
+                                <textarea class="form-control" rows="3" [(ngModel)]="sebabHilang" name="sebabHilang" maxlength="250" placeholder="Contoh: Alasan kehilangan dokumen."></textarea>
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                                <label class="form-label fw-semibold">Tarikh Tamat Dokumen</label>
+                                <input type="date" class="form-control" [(ngModel)]="tarikhTamatDokumen" name="tarikhTamatDokumen">
+                            </c-col>
+                            <c-col class="col-md-6">
+                                <label class="form-label fw-semibold">Agensi Pelapor</label>
+                                <input type="text" class="form-control" [(ngModel)]="agensiPelapor" name="agensiPelapor" required maxlength="60" placeholder="Contoh: Agensi Pelapor">
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                                <label class="form-label fw-semibold">Kod Nap</label>
+                                <input type="text" class="form-control" [(ngModel)]="kodNap" name="kodNap">
+                            </c-col>
+                            <c-col class="col-md-6">
+                                <label class="form-label fw-semibold">Nombor Nap</label>
+                                <input type="text" class="form-control" [(ngModel)]="noNap" name="noNap" required maxlength="60" placeholder="Contoh: NAP123">
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                                <label class="form-label fw-semibold">Kod Tindakan</label>
+                                <input type="text" class="form-control" [(ngModel)]="kodTindakan" name="kodTindakan">
+                            </c-col>
+                        </c-row>
+
+                    <!-- sahkan -->
+                    <c-row class="mb-3 mt-5 ms-1">
+                        <c-col class="col-md-6">
+                            <input class="form-check-input" type="checkbox" [(ngModel)]="sahkan" name="sahkan" required>
+                            <label class="form-check-label ms-1">Saya mengesahkan maklumat yang diberikan adalah sah dan benar.</label>
+                        </c-col>
+                    </c-row>
+
+                    </form>
+                </c-card-body>
+            </c-card>
+        </c-col>
+    </c-row>
+
+    <!-- Footer Navigation -->
+    <div class="border-top p-3 d-flex justify-content-end gap-2">
+    <button type="button" cButton color="primary" (click)="resetForm()">Set Semula</button>
+    <button type="button" cButton color="primary" (click)="submitForm()">Hantar</button>
+    <button type="button" cButton color="primary" (click)="previousStep()">
+        <svg cIcon name="cilCaretLeft" size="sm"></svg>
+    </button>
+    </div>
+</div>

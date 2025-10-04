@@ -1,0 +1,106 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="ms-4 me-4">
+      <div class="mt-4 mb-2">
+        <h3 class="mb-3"><b>PROFIL</b></h3>
+      </div>
+
+      <!-- Step Info -->
+      <reusable-tab [currentStep]="currentStep" [steps]="steps"></reusable-tab>
+      <div class="col-md-6 mb-4">
+        <p class="mb-0">{{ currentStep }}. {{ steps[currentStep - 1] }}</p>
+        <small class="text-muted">Langkah {{ currentStep }} daripada {{ steps.length }}</small>
+      </div>
+
+      <!-- Main Content -->
+      <div class="row flex-column flex-lg-row">
+        <!-- Profile Picture -->
+        <div class="col-md-2 mb-3 mb-md-0">
+          <div class="d-flex flex-column align-items-center">
+            <img src="assets/images/avatars/9.jpg" alt="Profile Image"
+              class="img-fluid rounded-2"
+              style="width: 150px; height: 150px; object-fit: cover;">
+          </div>
+        </div>
+
+        <!-- Form Fields -->
+        <div class="col-lg-10">
+          <div class="row">
+            <!-- Nama Pegawai -->
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Nama Pegawai Agensi</label>
+              <input type="text" class="form-control" [(ngModel)]="formData.agencyOfficerName" name="agencyOfficerName">
+            </div>
+
+            <!-- Kategori Wakil -->
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Kategori Wakil</label>
+              <select class="form-select" [(ngModel)]="formData.repCategory" name="repCategory">
+                <option value="Submission Officer">Submission Officer</option>
+                <option value="Endoser">Endoser</option>
+                <option value="Director">Director</option>
+              </select>
+            </div>
+
+            <!-- MyKad -->
+            <div class="col-md-6 mb-3">
+              <label class="form-label">My Kad</label>
+              <input type="text" class="form-control" [(ngModel)]="formData.officerKpNo" name="officerKpNo">
+            </div>
+
+            <!-- Jawatan -->
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Jawatan</label>
+              <input type="text" class="form-control" [(ngModel)]="formData.job" name="job">
+            </div>
+
+            <!-- Department -->
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Department/Unit/Division</label>
+              <input type="text" class="form-control" [(ngModel)]="formData.unit" name="unit">
+            </div>
+
+            <!-- No. Telefon Pejabat -->
+            <div class="col-md-6 mb-3">
+              <label class="form-label">No Telefon Pejabat</label>
+              <input type="text" class="form-control" [(ngModel)]="formData.officePhoneNo" name="officePhoneNo">
+            </div>
+
+            <!-- No. Telefon Mobile -->
+            <div class="col-md-6 mb-3">
+              <label class="form-label">No Telefon Mobile</label>
+              <input type="text" class="form-control" [(ngModel)]="formData.officerPhoneNo" name="officerPhoneNo">
+            </div>
+
+            <!-- Emel Pegawai -->
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Emel Pegawai</label>
+              <input type="text" class="form-control" [(ngModel)]="formData.officerEmail" name="officerEmail">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="row mt-4">
+        <div class="col-12">
+          <div class="d-flex justify-content-end gap-2 mb-4">
+            <button class="btn btn-outline-secondary d-flex align-items-center gap-1" type="reset" (click)="resetForm()">
+              <i class="bi bi-arrow-clockwise"></i>
+              Set Semula
+            </button>
+            <button class="btn btn-submit d-flex align-items-center gap-1" [disabled]="!isFormValid" (click)="saveForm()">
+              <i class="bi bi-check-circle"></i>
+              Simpan
+            </button>
+            <button class="btn btn-all" (click)="goToPrevious()">&lt;</button>
+            <button class="btn btn-all" (click)="goToNext()">&gt;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">

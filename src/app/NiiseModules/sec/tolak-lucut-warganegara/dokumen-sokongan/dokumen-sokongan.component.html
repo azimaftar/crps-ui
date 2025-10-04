@@ -1,0 +1,78 @@
+<!-- STEPPER -->
+<c-row class="stepper-container px-4 py-3 mb-4">
+  <c-col md="12">
+    <div class="horizontal-stepper">
+      <ul class="stepper-list d-flex align-items-center justify-content-start flex-wrap">
+        <li
+          class="stepper-item"
+          *ngFor="let step of steps"
+          [class.active]="isStepActive(step.number)">
+          <button type="button" class="step-btn">
+            <span class="step-number">{{ step.number }}</span>
+            <span class="step-title">{{ step.title }}</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </c-col>
+</c-row>
+
+<!-- FORM -->
+<div class="container-fluid">
+  <div class="card p-4">
+    <h5 class="mb-3">Senarai Dokumen</h5>
+    <div class="d-flex justify-content-end mb-3">
+      <button class="btn btn-primary" (click)="addDocument()">+ Muat Naik</button>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="table-light">
+          <tr>
+            <th style="width:5%">Bil.</th>
+            <th style="width:35%">Keterangan</th>
+            <th style="width:35%">Nama Dokumen</th>
+            <th style="width:10%">Format</th>
+            <th style="width:15%">Tindakan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let doc of documents; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>
+              <input type="text" class="form-control" [(ngModel)]="doc.keterangan" name="keterangan{{i}}" placeholder="Masukkan keterangan">
+            </td>
+            <td>
+              <input type="text" class="form-control" [(ngModel)]="doc.fileName" name="fileName{{i}}" placeholder="Nama dokumen">
+            </td>
+            <td>
+              <span *ngIf="doc.format" class="badge bg-secondary">{{ doc.format }}</span>
+            </td>
+            <td class="d-flex gap-2">
+              <button class="btn btn-outline-primary btn-sm" (click)="uploadFile(i)">Muat Naik</button>
+              <button class="btn btn-outline-danger btn-sm" (click)="deleteDocument(i)">Hapus</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <small class="text-muted">*Saiz fail maksimum: 10MB</small>
+    </div>
+
+    <input #fileInput type="file" style="display:none" (change)="onFileSelected($event)" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+
+
+
+    <!-- Buttons -->
+    <div class="d-flex justify-content-end mt-4 gap-2">
+      <button class="btn btn-outline-secondary" (click)="setSemula()">Set Semula</button>
+      <button class="btn btn-primary" (click)="simpan()">Simpan</button>
+      <button class="btn btn-success" (click)="hantar()">Hantar</button>
+
+      <!-- Arrow navigation buttons -->
+  <div class="arrow-group">
+    <button class="btn btn-arrow btn-arrow-left me-1" (click)="previousStep()" title="Previous"></button>
+    <button class="btn btn-arrow btn-arrow-right" (click)="nextStep()" title="Next"></button>
+  </div>
+    </div>
+  </div>
+</div>

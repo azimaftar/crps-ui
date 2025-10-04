@@ -1,0 +1,249 @@
+<!-- <p>maklumat-profil-ibc works!</p> -->
+ <c-card class="mb-3">  
+    <!-- HEADER PROFIL -->
+    <c-card-header class="card-header">
+      <h4 class="card-header-title">Penumpang</h4>
+    </c-card-header>
+
+    <!-- CONTENT CARD BODY -->
+    <c-card-body>
+        <c-row>
+            <!-- FORMS -->
+            <c-col md="8">
+                    <!-- FORMS START -->
+                    <form [formGroup]="profilForm" class="form" (ngSubmit)="onSubmit()">
+                        <!-- Form Title -->
+                        <!-- Replace your current h5 heading with this: -->
+            <h5 class="mb-4">
+            Maklumat Penumpang
+            <span style="font-style: italic; font-weight: 400;">(IMO FAL Form 6)</span>
+            </h5>
+                        
+                        <!-- Photo Placeholder -->
+                        <div class="photo-placeholder mb-4">
+                          <img [src]="photoUrl || 'assets/placeholder-image.png'" alt="Gambar Kapal" />
+                        </div>
+
+                        <!-- Jenis Pelawat -->
+                        <c-row class="g-3 mb-3">
+
+                          <c-col *ngIf="isWarganegara">
+                            <label cLabel for="earlydoc" class="mb-2">Awalan Dokumen</label>
+                            <input
+                              cFormControl
+                              id="earlydoc"
+                              type="text"
+                              formControlName="earlydoc"
+                              class="form-control"
+                            />
+                          </c-col>
+
+                          <c-col *ngIf="isAnakKapal">
+                            <!-- Kolum kosong -->
+                          </c-col>
+                          </c-row>
+                       
+                        <!-- Jenis Pemeriksaan dan Jenis Perjalanan -->
+                        <c-row class="g-3 mb-3">
+                          <!-- Jenis Pemeriksaan -->
+                          <c-col md="6">
+                            <label cLabel for="jenisPemeriksaan" class="mb-2">Nama Fail</label>
+                            <input
+                              cFormControl
+                              id="jenisPemeriksaan"
+                              type="text"
+                              formControlName="jenisPemeriksaan"
+                              class="form-control"
+                            />
+                          </c-col>
+                        </c-row>
+
+
+                        <!-- Jenis Dokumen dan No Dokumen -->
+                        <c-row class="g-3 mb-3">
+                          <!-- Jenis Dokumen -->
+                          <c-col md="6">
+                            <label cLabel for="docType" class="mb-2">Catatan</label>
+                            <input
+                              cFormControl
+                              id="docType"
+                              type="text"
+                              formControlName="docType"
+                              class="form-control"
+                            />
+                          </c-col>
+                        </c-row>
+
+
+                        <!-- DOKUMEN SOKONGAN -->
+            <h5 class="mt-4 mb-3">Dokumen Sokongan*</h5>
+
+            <!-- Upload Section -->
+            <c-row class="align-items-center mb-3">
+            <c-col md="8">
+                <!-- <label cLabel for="supportingDocument" class="form-label">Dokumen Sokongan*</label> -->
+                <input 
+                type="file" 
+                id="supportingDocument" 
+                (change)="onFileSelected($event)" 
+                accept=".pdf,.jpg,.png" 
+                class="form-control"
+                />
+                
+            </c-col>
+            <c-col md="4" class="text-end">
+                <button 
+                cButton 
+                type="button" 
+                color="primary" 
+                class="text-white"
+                (click)="uploadDocument()"
+                [disabled]="!selectedFile"
+                >
+                + Muat Naik
+                </button>
+            </c-col>
+            </c-row>
+
+            <!-- Table List of Uploaded Documents -->
+            <c-row>
+            <c-col>
+                <div class="table-responsive" style="border-radius: 8px;">
+                <table cTable hover class="table table-bordered text-center table-sm align-middle">
+                <thead cTableColor="light">
+                    <tr>
+                    <th scope="col">Bil.</th>
+                    <th scope="col">Keterangan</th>
+                    <th scope="col">Nama Dokumen</th>
+                    <th scope="col">Format</th>
+                    <th scope="col">Tindakan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let doc of uploadedDocuments; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>Dokumen Sokongan</td>
+                    <td>{{ doc.name }}</td>
+                    <td>{{ doc.format }}</td>
+                    <td>
+                        <button 
+                        cButton 
+                        type="button" 
+                        color="danger" 
+                        class="text-white btn-sm"
+                        (click)="removeDocument(i)"
+                        >
+                        Padam
+                        </button>
+                    </td>
+                    </tr>
+                </tbody>
+                </table>
+                <small class="text-muted mt-1 d-block">*Saiz fail maksimum: 10MB</small>
+                </div>
+            </c-col>
+            </c-row><br><br>
+            <c-row>
+            <c-col class="d-flex justify-content-end align-items-center">
+
+            <button 
+                cButton 
+                type="button" 
+                color="primary"
+                class="text-white px-4 reset-btn"
+                (click)="resetForm()">
+                Simpan
+            </button>
+            </c-col>
+            </c-row>
+            </form>
+                
+                
+
+                <c-row class="g-3 mb-3 mt-3">
+                    <c-col class="d-flex flex-column align-items-end gap-2">
+                        <!-- <button #ambilWajahIrisButton
+                            cButton 
+                            color="primary" 
+                            class="biometric-btn"
+                            [disabled]="dariCapJariEmpatPost"
+                            (click)="captureFaceAndIris()">
+                            AMBIL WAJAH & IRIS
+                        </button>
+                        <button 
+                            cButton 
+                            color="primary" 
+                            class="biometric-btn"
+                            [disabled]="dariCapJariEmpatPost"
+                            (click)="captureFingerprint()">
+                            AMBIL CAP JARI
+                        </button> -->
+                        </c-col>
+                </c-row>
+
+            </c-col>
+
+            
+        </c-row>
+        <!-- END OF CONTENT -->
+
+        <!-- FOOTER CONTENT FOR BUTTONS -->
+        <c-row class="mt-4 mb-3 footer-row">
+            <c-col class="d-flex justify-content-end align-items-center gap-2">
+            <!-- Action Buttons -->
+            <button 
+                cButton 
+                type="button" 
+                color="primary"
+                class="text-white px-4 reset-btn"
+                (click)="resetForm()">
+                Hantar
+            </button>
+
+            <!-- <button 
+                cButton 
+                type="button" 
+                color="primary"
+                class="text-white px-4 submit-btn" 
+                (click)="handleSimpanClick()">
+                SIMPAN
+            </button> -->
+
+            <!-- Navigation Buttons in separate container with margin-start -->
+            <div class="d-flex gap-2 ms-4">
+                <button
+                cButton
+                type="button"
+                color="primary"
+                class="text-white px-3 nav-btn"
+                (click)="goBack()"
+                [disabled]="isFirstStep()"
+                >
+                &lt;
+                </button>
+
+                <button
+                cButton
+                type="button"
+                color="primary"
+                class="text-white px-3 nav-btn"
+                (click)="goNext()"
+                [disabled]="isLastStep()"
+                >
+                &gt;
+                </button>
+            </div>
+            </c-col>
+        </c-row>
+    </c-card-body>
+</c-card> 
+<!-- <app-notification-modal
+  [modalTitle]="modalTitle"
+  [visible]="showModal"
+  [showBiometricModal]="showBiometricModal"
+  [showModalAlert]="showModalAlert"   
+  (close)="closeModal()"
+></app-notification-modal> -->
+
+
+

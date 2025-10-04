@@ -1,0 +1,115 @@
+<c-card>
+  <c-card-header class="bg-primary text-white">
+    PENGESAHAN LAPORAN SIASATAN
+  </c-card-header>
+
+  <c-card-body>
+    <c-row>
+      <c-col xs="12" md="9" class="order-2 order-md-1">
+        <c-row class="mt-3 mb-3">
+          <h6>Maklumat Pengesahan</h6>
+        </c-row>
+        <c-row>
+          <label class="mb-3">Tindakan Bagi Kehilangan Sebelum</label>
+        </c-row>
+        <c-row>
+          <c-col xs="12" md="6" class="mb-3 d-flex gap-1">
+            <input class="form-check-input" type="checkbox" />
+            <label> Kad Kuasa Digantung </label>
+          </c-col>
+          <c-col xs="12" md="6" class="mb-3 d-flex gap-1">
+            <input class="form-check-input" type="checkbox" />
+            <input type="radio" /> Tahun <input type="radio" /> Bulan
+          </c-col>
+        </c-row>
+        <c-row>
+          <c-col xs="12" md="6" class="mb-3 d-flex gap-1">
+            <input class="form-check-input" type="checkbox" />
+            <label> Dikenakan Amaran Berekod Bertulis </label>
+          </c-col>
+        </c-row>
+        <c-row>
+          <c-col xs="12" md="6" class="mb-3 d-flex gap-1">
+            <input class="form-check-input" type="checkbox" />
+            <label> Surcaj Dan Kad Kuasa Digantung </label>
+          </c-col>
+          <c-col xs="12" md="6" class="mb-3 d-flex gap-1">
+            <input class="form-check-input" type="checkbox" />
+            <input type="radio" /> Tahun <input type="radio" /> Bulan
+          </c-col>
+        </c-row>
+        <c-row>
+          <c-col xs="12" md="6" class="mb-3 d-flex gap-1">
+            <input class="form-check-input" type="checkbox" />
+            <label>
+              Dikenakan Amaran Bertulis Dan Direkod Ke Dalam Buku Perkhidmatan
+            </label>
+          </c-col>
+        </c-row>
+        <c-row>
+          <c-col xs="12" md="6" class="mb-3 d-flex gap-1">
+            <input class="form-check-input" type="checkbox" />
+            <label> Lain-Lain Tindaka (Nyatakan) </label>
+          </c-col>
+        </c-row>
+        <c-row>
+          <c-col xs="12" md="12" class="mb-5">
+            <textarea class="form-control" style="height: 100px"></textarea>
+          </c-col>
+        </c-row>
+        <c-row class="mb-3">
+          <label class="mb-2"> Surcaj Dan Kad Kuasa Digantung </label>
+          <c-col xs="12" md="6" class="d-flex gap-3">
+            <input type="radio" /> Siasatan Awal <input type="radio" /> Siasatan
+            Selesai
+          </c-col>
+        </c-row>
+        <c-row>
+          <c-col xs="12" md="12" class="mb-3">
+            <label>Catatan</label>
+            <textarea class="form-control" style="height: 100px"></textarea>
+          </c-col>
+        </c-row>
+      </c-col>
+
+      <c-col xs="12" md="3" class="order-1 order-md-2">
+        <!-- Loop through breadcrumb sections -->
+        <ng-container *ngFor="let section of breadcrumbSections">
+          <!-- Main Step (1, 2, 3, etc.) -->
+          <div class="d-flex align-items-center mb-3">
+            <div
+              class="step-circle me-3"
+              [ngClass]="{
+                'active-step': section.mainStep === currentMainStep
+              }"
+            >
+              {{ section.mainStep }}
+            </div>
+            <span>
+              {{ section.mainLabel }}
+            </span>
+          </div>
+        </ng-container>
+      </c-col>
+
+      <c-col
+        xs="12"
+        class="d-flex flex-wrap justify-content-end align-items-center gap-5 my-3 order-3 order-md-3"
+      >
+        <c-row>
+             <c-col>
+            <button type="button" class="btn btn-secondary">Simpan</button>
+          </c-col>
+          <c-col>
+            <button type="button" class="btn btn-secondary">Hantar</button>
+          </c-col>
+
+          <c-col class="d-flex gap-3">
+            <button type="button" class="btn btn-secondary">&lt;</button>
+            <button type="button" class="btn btn-secondary">&gt;</button>
+          </c-col>
+        </c-row>
+      </c-col>
+    </c-row>
+  </c-card-body>
+</c-card>

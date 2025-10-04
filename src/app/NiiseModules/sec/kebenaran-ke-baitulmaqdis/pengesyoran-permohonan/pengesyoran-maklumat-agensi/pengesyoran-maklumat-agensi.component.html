@@ -1,0 +1,186 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<div class="content-wrapper">
+
+  <!-- TOP STEPPER -->
+  <div class="horizontal-stepper">
+    <ul class="stepper-list">
+      <li *ngFor="let step of steps"
+          [class.active]="isStepActive(step.number)"
+          (click)="goToStep(step)">
+        <button type="button" class="step-btn">
+          <span class="step-number">{{ step.number }}</span>
+          <span class="step-title">{{ step.title }}</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="form-section disabled-form">
+    <h5 class="section-title">Maklumat Agensi Pemohon</h5>
+    <form #formRef="ngForm" id="permohonanForm">
+
+      <div class="form-grid">
+
+        <!-- Nama Agensi -->
+        <div class="full-width">
+          <label for="nama_agensi">Nama Agensi <span class="required">*</span></label>
+          <input type="text" id="nama_agensi" name="nama_agensi"
+                 placeholder="Masukkan nama agensi" ngModel required disabled readonly>
+        </div>
+
+        <!-- Alamat -->
+        <div class="alamat-box">
+          <label for="alamat">Alamat <span class="required">*</span></label>
+          <textarea id="alamat" name="alamat" rows="3"
+                    placeholder="Masukkan alamat" ngModel required disabled readonly></textarea>
+        </div>
+
+        <!-- Poskod/Bandar/Negeri -->
+        <div class="poskod-box">
+          <label for="poskod">Poskod <span class="required">*</span></label>
+          <input type="text" id="poskod" name="poskod" placeholder="Masukkan poskod" ngModel required disabled readonly>
+
+          <label for="bandar">Bandar <span class="required">*</span></label>
+          <input type="text" id="bandar" name="bandar" placeholder="Masukkan bandar" ngModel required disabled readonly>
+
+          <label for="negeri">Negeri <span class="required">*</span></label>
+          <select id="negeri" name="negeri" ngModel required disabled>
+            <option value="">-- Pilih Negeri --</option>
+            <option value="Selangor">Selangor</option>
+          </select>
+        </div>
+
+        <!-- Emel -->
+        <div class="full-width">
+          <label for="emel">E-Mel <span class="required">*</span></label>
+          <input type="email" id="emel" name="emel" placeholder="Masukkan e-mel" ngModel required disabled readonly>
+        </div>
+
+        <!-- Telefon -->
+        <div class="full-width">
+          <label for="telefon">Nombor Telefon <span class="required">*</span></label>
+          <input type="text" id="telefon" name="telefon" placeholder="Masukkan nombor telefon" ngModel required disabled readonly>
+        </div>
+
+        <!-- IC & Cari -->
+        <div class="form-grid two-col">
+          <div>
+            <label for="ic">No. Kad Pengenalan <span class="required">*</span></label>
+            <div class="search-wrapper">
+              <input type="text" id="ic" name="ic" placeholder="Masukkan No. Kad Pengenalan"
+                     [(ngModel)]="icInput" required disabled readonly>
+            </div>
+          </div>
+          <div>
+            <label for="wakil">Nama Wakil Agensi <span class="required">*</span></label>
+            <input type="text" id="wakil" name="wakil"
+                   [(ngModel)]="wakilName"
+                   placeholder="Nama wakil akan dipaparkan" readonly disabled>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Dokumen Sokongan -->
+      <h5 class="section-title">Dokumen Sokongan <span class="required">*</span></h5>
+      <table class="doc-table">
+        <thead>
+          <tr>
+            <th>Bil</th>
+            <th>Keterangan</th>
+            <th>Nama Dokumen</th>
+            <th>Format</th>
+            <th>Tindakan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let doc of documentsStep2; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ doc.keterangan }}</td>
+            <td>{{ doc.nama || '-' }}</td>
+            <td>{{ doc.format || '-' }}</td>
+            <td>
+              <button type="button" class="btn-upload">
+                <i class="fas fa-eye"></i> Papar
+              </button>
+              <input type="file" #fileInputStep2 style="display:none">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note">*Saiz fail maksimum: 10MB</p>
+
+      <!-- Maklumat Lawatan -->
+      <h5 class="section-title">Maklumat Lawatan</h5>
+      <div class="form-grid">
+        <div>
+          <label for="tarikh_mula">Tarikh Mula <span class="required">*</span></label>
+          <input type="date" id="tarikh_mula" name="tarikh_mula" ngModel required disabled readonly>
+        </div>
+        <div>
+          <label for="tarikh_akhir">Tarikh Akhir <span class="required">*</span></label>
+          <input type="date" id="tarikh_akhir" name="tarikh_akhir" ngModel required disabled readonly>
+        </div>
+        <div class="full-width">
+          <label for="tujuan">Tujuan Permohonan <span class="required">*</span></label>
+          <textarea id="tujuan" name="tujuan" placeholder="Nyatakan tujuan permohonan" ngModel required disabled readonly></textarea>
+        </div>
+        <div>
+          <label for="pejabat">Pejabat Negeri <span class="required">*</span></label>
+          <select id="pejabat" name="pejabat" ngModel required disabled>
+            <option value="">-- Pilih Negeri --</option>
+            <option value="Selangor">Selangor</option>
+          </select>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<!-- FORM ACTIONS -->
+<footer class="footer-actions">
+  <!-- <button type="reset" class="btn-secondary" form="permohonanForm" disabled>
+    <span>⟳</span>Set Semula
+  </button>
+  <button type="submit" class="btn-primary" form="permohonanForm" disabled>
+    Hantar
+  </button> -->
+  <div class="btn-group">
+    <button type="button" class="btn-nav prev" (click)="prevStep()" *ngIf="currentStep > 1">
+      <
+    </button>
+    <button type="button" class="btn-nav next" (click)="nextStep()" *ngIf="currentStep < totalSteps">
+      >
+    </button>
+  </div>
+</footer>
+
+<!-- POPUPS (unchanged) -->
+<div class="popup" *ngIf="showPopup && popupType === 'error'">
+  <div class="popup-content">
+    <div class="popup-icon error">!</div>
+    <p>{{ popupMessage }}</p>
+    <button type="button" (click)="closePopup()">OK</button>
+  </div>
+</div>
+
+<div class="popup" *ngIf="showPopup && popupType === 'confirm'">
+  <div class="popup-content">
+    <div class="popup-icon warning">!</div>
+    <p>{{ popupMessage }}</p>
+    <div>
+      <button type="button" class="btn-yes" (click)="onConfirmYes()">Ya</button>
+      <button type="button" class="btn-no" (click)="onConfirmNo()">Tidak</button>
+    </div>
+  </div>
+</div>
+
+<div class="popup" *ngIf="showPopup && popupType === 'success'">
+  <div class="popup-content">
+    <div class="popup-icon success">✔</div>
+    <p>{{ popupMessage }}</p>
+    <button type="button" (click)="closePopup()">OK</button>
+  </div>
+</div>

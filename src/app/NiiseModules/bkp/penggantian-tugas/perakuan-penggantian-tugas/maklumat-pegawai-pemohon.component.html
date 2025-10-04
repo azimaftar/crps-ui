@@ -1,0 +1,161 @@
+<div class="container-fluid">
+
+  <!-- STEPPER -->
+  <!-- <reusable-tab [currentStep]="currentStep" [steps]="steps"></reusable-tab> -->
+
+  <div class="horizontal-stepper">
+                        <ul class="stepper-list d-flex align-items-center justify-content-start flex-wrap">
+                        <li
+                            class="stepper-item"
+                            *ngFor="let step of steps"
+                            [class.active]="isStepActive(step.number)">
+                            <button 
+                                type="button" 
+                                class="step-btn">
+                                <span class="step-number">{{ step.number }}</span>
+                                <span class="step-title">{{ step.title }}</span>
+                            </button>
+                        </li>
+                        </ul>
+                    </div>
+
+  <!-- <div class="col-md-6 mb-4">
+    <p class="mb-0">{{ currentStep }}. {{ steps[currentStep - 1] }}</p>
+    <small class="text-muted">Langkah {{ currentStep }} daripada {{ steps.length }}</small>
+  </div> -->
+
+  <div class="form-section">
+    <div class="row">
+
+      <!-- Step 1 Content: Maklumat Pegawai Pemohon -->
+      <div *ngIf="currentStep === 1" class="col-md-9 pe-4">
+        <h5>Maklumat Pegawai Pemohon</h5>
+
+        <!-- Image Placeholder -->
+        <div class="mb-3 photo-class">
+          <img src="assets/images/passport-photo.jpg" class="passport-photo" alt="Passport Photo">
+        </div>
+
+        <form class="mt-3">
+          <!-- row 1 -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label required">Nama Pegawai</label>
+              <input type="text" class="form-control" [(ngModel)]="pegawai.namapegawai" name="nama"/>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label required">Bahagian</label>
+              <select class="form-select" [(ngModel)]="pegawai.bahagian" name="bahagian">
+                <option *ngFor="let item of bahagianList" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <!-- row 2 -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label required">Nombor Kad Pengenalan</label>
+              <input type="text" class="form-control" [(ngModel)]="pegawai.nokp" name="ic"/>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label required">Unit</label>
+              <select class="form-select" [(ngModel)]="pegawai.unit" name="unit">
+                <option *ngFor="let item of unitList" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <!-- row 3 -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label required">Gred Jawatan</label>
+              <input type="text" class="form-control" [(ngModel)]="pegawai.gred" name="gred"/>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label required">Kumpulan</label>
+              <select class="form-select" [(ngModel)]="pegawai.kumpulan" name="kumpulan">
+                <option *ngFor="let item of kumpulanList" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <!-- row 4 -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label required">Tarikh</label>
+              <input type="date" class="form-control" [(ngModel)]="pegawai.tarikhtugas" name="tarikh" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label required">Hari</label>
+              <input
+                type="text"
+                class="form-control"
+                id="hari"
+                [value]="pegawai.hari || 'Sila Pilih Tarikh'"
+                readonly
+              />
+            </div>
+          </div>
+
+          <!-- row 5 -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label required">Masa</label>
+              <input type="time" class="form-control" [(ngModel)]="pegawai.masatugas" name="masatugas" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label required">Lokasi Bertugas</label>
+              <input type="text" class="form-control" [(ngModel)]="pegawai.lokasitugas" name="lokasitugas"/>
+            </div>
+          </div>
+
+          <!-- Row 6 -->
+          <div class="mb-3">
+            <label class="form-label">Tandatangan Digital</label>
+            <div class="mt-2">
+              <canvas #signaturePad width="400" height="200"
+                style="border:1px solid #ccc; border-radius:8px; background:#fff;"></canvas>
+            </div>
+            <div class="mt-2">
+              <button type="button" class="btn btn-secondary btn-sm me-2" (click)="clearSignature()">Clear</button>
+              <button type="button" class="btn btn-primary btn-sm" (click)="saveSignature()">Save</button>
+            </div>
+
+            <!-- Preview signature after saving -->
+            <div *ngIf="pegawai?.tandatangan" class="mt-2">
+              <p>Preview:</p>
+              <img [src]="pegawai.tandatangan" alt="Signature Preview" style="max-width: 400px; border:1px solid #ddd;">
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Step 2 Content: Maklumat Pegawai Pengganti (child route)
+      <div *ngIf="currentStep === 2" class="col-md-9 pe-4">
+        <router-outlet></router-outlet>
+      </div> -->
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="d-flex justify-content-end mt-4">
+      <button
+        class="btn btn-secondary me-2"
+        [disabled]="currentStep === minStep">
+        &lt;
+      </button>
+      <button
+        class="btn btn-secondary me-2"
+        (click)="goToMaklumatPengganti()"
+        [disabled]="currentStep === maxStep">
+        &gt;
+      </button>
+    </div>
+  </div>
+</div>

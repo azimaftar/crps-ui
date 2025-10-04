@@ -1,0 +1,21 @@
+<!-- Horizontal Tabs Section -->
+<div class="horizontal-tabs">
+  <div class="tabs-container">
+    <ng-container *ngFor="let step of steps; index as i">
+      <div class="tab-item" [ngClass]="{
+          completed: i + 1 < currentStep,
+          active: i + 1 === currentStep
+        }">
+        <div class="step-circle">
+          <span class="tab-number">{{ i + 1 }}</span>
+        </div>
+        <div class="tab-content">
+          <!-- Use step as title -->
+          <div class="tab-title">{{ step }}</div>
+          <!-- Optional: keep description or remove -->
+          <!-- <div class="tab-description">Description for {{ step }}</div> -->
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

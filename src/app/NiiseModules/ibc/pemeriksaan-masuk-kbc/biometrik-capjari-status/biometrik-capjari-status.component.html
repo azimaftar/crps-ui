@@ -1,0 +1,85 @@
+<form class="border border-dark m-0">
+    <!-- Header -->
+    <div class="p-3 border-bottom border-dark">
+        <h6 class="m-0">
+            PEMERIKSAAN MASUK (KAUNTER MANUAL) - BAHAGIAN DATA BIOMETRIK [CAP JARI]
+        </h6>
+    </div>
+
+    <!-- Main Section -->
+    <div class="row g-0 border-top border-bottom border-dark">
+        <!-- Left Panel: Widgets (2/12) -->
+        <div class="col-lg-2 border-end border-dark p-3">
+            <c-col>
+                <c-widget-stat-a class="mb-4" color="primary" [title]="'Widget 1'"
+                    style="height: 120px;"></c-widget-stat-a>
+                <c-widget-stat-a class="mb-4" color="primary" [title]="'Widget 2'"
+                    style="height: 120px;"></c-widget-stat-a>
+                <c-widget-stat-a class="mb-4" color="primary" [title]="'Widget 3'"
+                    style="height: 120px;"></c-widget-stat-a>
+            </c-col>
+        </div>
+
+        <!-- Middle Panel: Cap Jari (7/12) -->
+        <div class="col-lg-7 border-end border-dark p-3">
+            <!-- Top Row: Cap Jari -->
+            <div class="row text-center mb-4">
+                <div class="col-12 col-md-6 mb-4 mb-md-0">
+                    <p class="fw-bold">Empat (4) Jari Kanan</p>
+                    <c-card class="mx-auto d-flex justify-content-center align-items-center"
+                        style="width: 200px; height: 150px;">
+                        <img src="" alt="CAP JARI KANAN" class="img-fluid object-fit-contain w-100 h-100" />
+                    </c-card>
+                </div>
+                <div class="col-12 col-md-6">
+                    <p class="fw-bold">Empat (4) Jari Kiri</p>
+                    <c-card class="mx-auto d-flex justify-content-center align-items-center"
+                        style="width: 200px; height: 150px;">
+                        <img src="" alt="CAP JARI KIRI" class="img-fluid object-fit-contain w-100 h-100" />
+                    </c-card>
+                </div>
+            </div>
+
+            <!-- Bottom Row: Cap Jari Ulangan -->
+            <div class="row text-center">
+                <div class="col-12 col-md-6 mb-4 mb-md-0">
+                    <p class="fw-bold">Empat (4) Jari Kanan</p>
+                    <c-card class="mx-auto d-flex justify-content-center align-items-center"
+                        style="width: 200px; height: 150px;">
+                        <img src="" alt="CAP JARI KANAN 2" class="img-fluid object-fit-contain w-100 h-100" />
+                    </c-card>
+                </div>
+                <div class="col-12 col-md-6">
+                    <p class="fw-bold">Empat (4) Jari Kiri</p>
+                    <c-card class="mx-auto d-flex justify-content-center align-items-center"
+                        style="width: 200px; height: 150px;">
+                        <img src="" alt="CAP JARI KIRI 2" class="img-fluid object-fit-contain w-100 h-100" />
+                    </c-card>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Right Panel: Status (3/12) -->
+        <div class="col-lg-3 d-flex justify-content-center align-items-center p-3">
+            <input type="text" class="form-control text-center fs-4 fw-bold" style="height: 80px; width: 70%;"
+                value="LULUS" disabled />
+        </div>
+    </div>
+
+    <!-- Footer Buttons -->
+    <div class="text-end p-3">
+        <button color="warning" class="me-3" [disabled]="statusCapjari === 'lulus'" style="margin: 10px 0;"
+            (click)="openPengecualianBiometrik()" cButton>
+            PENGECUALIAN BIOMETRIK
+        </button>
+        <button color="info" class="me-3"  style="margin: 10px 0;" cButton>
+            CARIAN BIOMETRIK
+        </button>
+        <button color="success" class="me-3" [disabled]="statusCapjari === 'gagal'" cButton (click)="openPengembara()"  style="margin: 10px 0;">
+            SIMPAN
+        </button>
+    </div>
+</form>
+
+<app-pengecualian-biometrik></app-pengecualian-biometrik>

@@ -1,0 +1,181 @@
+<c-container fluid>
+  <c-card>
+    <div class="mt-2 mb-2">
+      <h3 class="mb-2 mt-4 ms-4"><b>PERMOHONAN PERTUKARAN CAWANGAN, UNIT, GRED DAN TUGASAN BAHARU</b></h3>
+    </div>
+    <c-card-body>
+                      <!-- Step Title -->
+                <div class="text-start mb-3">
+                                  <!-- Left Side: Step Info -->
+                <reusable-tab [currentStep]="currentStep" [steps]="steps"></reusable-tab>
+                    <h5 class="mb-0"><strong>1. Permohonan Pertukaran Cawangan/ Unit</strong></h5>
+                    <small class="text-muted">Langkah 1 daripada 2</small>
+                </div>
+
+<!-- Radio button -->
+<div class="mt-3 mb-4">
+  <label><strong>Permohonan Pertukaran</strong></label><br>
+
+  <label class="me-5">
+    <input type="radio" name="pertukaran" [(ngModel)]="formData.jenisPertukaran" value="cawangan" checked disabled> Cawangan
+  </label>
+
+  <label class="me-5">
+    <input type="radio" name="pertukaran" [(ngModel)]="formData.jenisPertukaran" value="unit" disabled> Unit
+  </label>
+
+  <label>
+    <input type="radio" name="pertukaran" [(ngModel)]="formData.jenisPertukaran" value="gred" disabled> Gred
+  </label>
+</div>      
+
+<!-- Select Section -->
+<c-row class="mb-4 g-3">
+  <c-col md="6">
+    <label class="form-label">Lokasi/Negeri</label>
+    <select class="form-select" [(ngModel)]="formData.lokasi" disabled>
+      <option value="">-Sila Pilih-</option>
+      <option value="Putrajaya">Putrajaya</option>
+    </select>
+  </c-col>
+
+  <c-col md="6">
+    <label class="form-label">Tempat Bertugas/Cawangan Baharu</label>
+    <select class="form-select" [(ngModel)]="formData.tempatBertugas" disabled>
+      <option value="">-Sila Pilih-</option>
+      <option value="Cawangan Imigresen Putrajaya">Cawangan Imigresen Putrajaya</option>
+    </select>
+  </c-col>
+
+  <c-col md="6">
+    <label class="form-label">Bahagian Baharu</label>
+    <select class="form-select" [(ngModel)]="formData.bahagianBaharu" disabled>
+      <option value="">-Sila Pilih-</option>
+      <option value="Bahagian Sumber Manusia">Bahagian Sumber Manusia</option>
+    </select>
+  </c-col>
+
+  <c-col md="6">
+    <label class="form-label">Unit Baharu</label>
+    <select class="form-select" [(ngModel)]="formData.unitBaharu" disabled>
+      <option value="">-Sila Pilih-</option>
+      <option value="Unit Pentadbiran">Unit Pentadbiran</option>
+    </select>
+  </c-col>
+
+  <c-col md="6">
+    <label class="form-label">Gred</label>
+    <select class="form-select" [(ngModel)]="formData.gred" disabled>
+      <option value="">-Sila Pilih-</option>
+      <option value="N41">N41</option>
+    </select>
+  </c-col>
+
+  <c-col md="6">
+    <label class="form-label">Tarikh Mula Melapor ke Cawangan Baharu</label>
+    <input type="text" class="form-control" [(ngModel)]="formData.tarikhMula" name="tarikhMula" readonly>
+  </c-col>
+
+  <c-col md="6">
+    <label class="form-label">Tarikh Penangguhan</label>
+    <input type="text" class="form-control" [(ngModel)]="formData.tarikhPenangguhan" name="tarikhPenangguhan" readonly>
+  </c-col>
+</c-row>
+
+      <!-- Catatan Section -->
+      <c-row class="mb-4">
+        <c-col md="12">
+          <label class="form-label">Catatan</label>
+          <textarea class="form-control" rows="3" [(ngModel)]="formData.catatan" readonly
+            placeholder="Ruangan catatan pegawai"></textarea>
+        </c-col>
+      </c-row>
+
+  <!-- Scrollable Table Container -->
+  <h6 class="mb-3">Dokumen Sokongan</h6>
+  <div class="table-pagination-wrapper">
+    <div class="table-responsive table-scroll-container">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <td>Bil</td>
+            <td>Nama Dokumen</td>
+            <td>Format</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let doc of paginatedDocuments; let i = index">
+            <td>
+              {{ (currentPage - 1) * itemsPerPage + i + 1 }}
+            </td>
+            <td class="text-truncate" style="max-width: 300px;" [title]="doc.namadokumen">
+              {{ doc.namadokumen }}
+            </td>
+            <td>
+              {{ doc.format }}
+            </td>
+          </tr>
+          <tr *ngIf="paginatedDocuments.length === 0">
+            <td colspan="3" class="text-center text-muted py-4">
+              Tiada dokumen dimuat naik
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  <c-row class="mb-3 mt-3 pagination-row">
+    <c-col>
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 px-3">
+        <div class="d-flex align-items-center gap-2">
+          <select class="form-select form-select-sm" [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+          </select>
+        </div>
+
+        <div class="d-flex align-items-center flex-wrap gap-3 px-3">
+          <nav>
+            <ul class="pagination pagination-sm mb-0">
+              <li class="page-item" [class.disabled]="currentPage === 1">
+                <button class="page-link" (click)="goToPage('first')">&laquo;</button>
+              </li>
+              <li class="page-item" [class.disabled]="currentPage === 1">
+                <button class="page-link" (click)="goToPage('prev')">&lsaquo;</button>
+              </li>
+              <li class="page-item active">
+                <span class="page-link">{{ currentPage }}</span>
+              </li>
+              <li class="page-item" [class.disabled]="currentPage === totalPages">
+                <button class="page-link" (click)="goToPage('next')">&rsaquo;</button>
+              </li>
+              <li class="page-item" [class.disabled]="currentPage === totalPages">
+                <button class="page-link" (click)="goToPage('last')">&raquo;</button>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="d-flex align-items-center ms-2">
+            <small class="text-muted">Pergi ke</small>
+            <input type="number" class="form-control form-control-sm ms-2" style="width: 60px;"
+              [(ngModel)]="goToPageNumber" (keyup.enter)="goToSpecificPage()" />
+          </div>
+        </div>
+      </div>
+    </c-col>
+  </c-row>
+</div>
+        <!-- Bottom Navigation -->
+        <div class="pagination-wrapper row mt-4 pb-2 pt-2">
+          <div class="col-12">
+            <div class="d-flex flex-wrap justify-content-end">
+              <button class="btn btn-all px-3 py-1 small" (click)="goToPrevious()">&lt;</button>
+              <button class="btn btn-all px-3 py-1 small" (click)="goToNext()">&gt;</button>
+            </div>
+          </div>
+          </div>
+    </c-card-body>
+  </c-card>
+</c-container>
+

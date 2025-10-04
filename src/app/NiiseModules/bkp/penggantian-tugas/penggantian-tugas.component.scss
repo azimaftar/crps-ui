@@ -1,0 +1,316 @@
+// @import '@coreui/coreui/scss/coreui';
+.container-fluid{
+  width: 100%;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+// :host {
+//   display: block;
+//   height: 100vh;
+//   background-color: var(--cui-body-bg);
+// }
+
+  .table-section {
+        background-color: white;
+        padding: 10px;
+    }
+
+.section-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 25px;
+        color: #495057;
+  }
+  
+  h6 {
+    color: var(--cui-heading-color);
+    font-weight: 600;
+    border-bottom: 1px solid var(--cui-border-color);
+    padding-bottom: 0.5rem;
+  }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Custom scrolling for content areas
+.c-card-body {
+  overflow-y: auto;
+  
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: var(--cui-gray-100);
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: var(--cui-gray-400);
+    border-radius: 3px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--cui-gray-500);
+  }
+}
+
+//maklumat pegawai pegannti
+.form-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.form-section {
+  background-color: white;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #495057;
+}
+
+//sidebar
+.step {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 30px;
+
+  .circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #ccc;
+    color: white;
+    text-align: center;
+    line-height: 28px;
+    font-weight: bold;
+    z-index: 1;
+  }
+
+  .label {
+    margin-left: 10px;
+    color: #333;
+  }
+
+  .label {
+    margin-left: 10px;
+    color: #333;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 28px;
+    left: 13px;
+    width: 2px;
+    height: 100%;
+    background: #ccc;
+    z-index: 0;
+  }
+
+  &:last-child::before {
+    display: none;
+  }
+
+  &.active {
+    .circle {
+      background-color: black;
+    }
+
+    .label {
+      font-weight: bold;
+    }
+  }
+}
+
+.container-fluid {
+  height: 100vh;
+}
+
+.container-fluid {
+  height: 100%;
+  padding: 20px;
+}
+
+.simple-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 30px;
+  padding: 20px 0;
+  border-top: 1px solid #eee;
+}
+
+.btn-cancel {
+  padding: 8px 20px;
+  background: white;
+  border: 1px solid #ccc;
+}
+
+.btn-submit {
+  padding: 8px 20px;
+  background: #0066cc;
+  color: white;
+  border: none;
+}
+
+.btn-nav:hover {
+  background-color: #333;
+  border-color: #333;
+  color: white;
+}
+
+//footer button
+.bottom-navigation {
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem; // sama dengan `p-3` dari Bootstrap
+
+  .nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .btn {
+      margin: 0.5rem; // sama dengan `m-2`
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 14px;
+
+      &.btn-dark {
+        background-color: #333;
+        border-color: #333;
+        color: white;
+
+        &:hover {
+          background-color: #555;
+          border-color: #555;
+        }
+      }
+    }
+
+    .right-buttons {
+      display: flex;
+      gap: 10px;
+    }
+  }
+}
+
+.sign-input{
+        width: 400px;
+        height: 200px;
+}
+
+.photo-class{
+    width: 132px;
+    height: 170px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-box {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.popup-box p {
+  margin-bottom: 1rem;
+}
+
+.popup-box button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+//maklumat-pegaawai-pemohon
+.sign-input{
+        width: 400px;
+        height: 200px;
+    }
+
+    .photo-class{
+        width: 132px;
+        height: 170px;
+        object-fit: cover;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+//maklumat pegawai peganti
+
+//maklumat pegawai pegganti
+
+//permohonan gantian tugas
+
+//maklumat pegawai pengganti
+
+.sign-input{
+        width: 400px;
+        height: 200px;
+}
+
+.big-square-radio {
+  width: 30px;
+  height: 30px;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #fff;
+  border: 2px solid #999;
+  border-radius: 0;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  margin: 0;
+
+  &:checked::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 18px;
+    height: 18px;
+    background-color: #000000;
+  }
+}
+
+.form-check-label {
+  font-size: 1.1rem;
+}

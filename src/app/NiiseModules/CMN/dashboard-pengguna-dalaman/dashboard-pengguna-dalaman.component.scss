@@ -1,0 +1,218 @@
+/* User Welcome Section */
+.user-info {
+  margin-bottom: 0; 
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border: 1px solid black;
+  border-bottom: none; 
+  border-radius: 8px 8px 0 0; 
+  box-shadow: 0 0 0 1px black; 
+}
+
+/* Full dashboard box */
+.main-dashboard {
+  display: flex;
+  gap: 1.5rem;
+  border: 1px solid black;
+  border-top: none; 
+  box-shadow: 0 0 0 1px black;
+  border-radius: 0 0 8px 8px; 
+  padding: 1.5rem;
+  min-height: 600px;
+  box-sizing: border-box;
+  background-color: white;
+  margin-top: -2px; 
+}
+
+/* Left Form Pane */
+.left-pane {
+  width: 35%;
+  min-width: 320px; 
+  padding: 1rem; 
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 130px 1fr; 
+  align-items: center;
+  gap: 1rem; 
+  margin-bottom: 1rem; 
+}
+
+.form-row label {
+  font-weight: bold;
+  text-align: left;
+  white-space: nowrap;
+  padding-right: 1rem; 
+  font-size: 0.9rem; 
+}
+
+.left-pane form input,
+.left-pane form select {
+  padding: 0.5rem 0.8rem;
+  font-size: 0.9rem;
+  width: 100%; 
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+
+.form-row:last-child {
+  grid-column: 1 / -1; 
+  display: flex;
+  justify-content: flex-center; 
+  margin-top: 0.5rem;
+}
+
+.left-pane form button {
+  padding: 0.4rem 1.2rem;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  width: auto;
+  min-width: 100px;
+  margin-left: 130px; 
+}
+
+/* Right Content Pane */
+.right-pane {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0; 
+}
+
+/* Summary Cards */
+.status-summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.status-summary .card {
+  flex: 1;
+  border: 1px solid #000;
+  padding: 0.8rem 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.status-summary .card br {
+  display: block;
+  content: " ";
+  margin-top: 0.3rem;
+}
+
+/* Table Styling */
+.inbox-table {
+  overflow-x: auto;
+}
+
+.inbox-table table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+}
+
+.inbox-table th,
+.inbox-table td {
+  padding: 0.5rem 0.6rem;
+  font-size: 0.82rem;
+  border-bottom: 1px solid black;
+}
+
+.inbox-table tbody tr {
+  border-bottom: 1px solid black;
+}
+
+.inbox-table tbody tr:last-child {
+  border-bottom: 1px solid black;
+}
+
+/* Adjusted column widths */
+.col-no { width: 6%; min-width: 30px; }
+.col-tarikh { width: 18%; }
+.col-jenis { width: 23%; }
+.col-keutamaan { width: 14%; }
+.col-status { width: 14%; }
+.col-tindakan { width: 18%; }
+
+/* Table button styling */
+.inbox-table button {
+  padding: 0.4rem 0.8rem; 
+  font-size: 0.8rem;
+  background-color: black; 
+  color: white;
+  border: none;
+  border-radius: 4px;
+  width: 100px; 
+  min-width: 100px; 
+  max-width: 100px; 
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.2s;
+}
+
+.inbox-table button:hover {
+  background-color: #333; 
+}
+
+/* Pagination controls */
+.pagination-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 8px;
+  width: 100%; 
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 1px;
+  margin-left: auto; 
+}
+
+.page-nav, .page-number {
+  width: 1px; 
+  height: 15px;
+  border: 1px solid #d9d9d9;
+  background: white;
+  border-radius: 1px;
+  font-size: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #333;
+}
+
+.page-number.active {
+  background: black; 
+  color: white;
+  border-color: black;
+}
+
+.page-info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  color: #666;
+  margin-left: 10px;
+}
+
+.page-info input {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  text-align: center;
+  font-size: 9px;
+  padding: 0;
+}

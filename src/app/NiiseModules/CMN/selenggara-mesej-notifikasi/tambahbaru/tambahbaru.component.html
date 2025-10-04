@@ -1,0 +1,90 @@
+<c-modal [(visible)]="visible" [backdrop]="true" size="lg">
+  <c-modal-header>
+    <h5 class="modal-title"> {{ isEditMode ? 'Kemaskini Mesej' : 'Tambah Mesej Baharu' }}</h5>
+    <button type="button" class="btn-close" (click)="close()" aria-label="Close"></button>
+  </c-modal-header>
+
+  <c-modal-body>
+    <c-row class="mb-3 align-items-center">
+      <c-col xs="12" sm="4">
+        <label class="form-label fw-bold mb-0">Kod Mesej:</label>
+      </c-col>
+      <c-col xs="12" sm="8">
+        <input type="text" class="form-control" [(ngModel)]="newMesej.codeMsg" [readonly]="isEditMode" />
+      </c-col>
+    </c-row>
+
+    <c-row class="mb-3 align-items-center">
+      <c-col xs="12" sm="4">
+        <label class="form-label fw-bold mb-0">Jenis Mesej:</label>
+      </c-col>
+      <c-col xs="12" sm="8">
+        <!-- <select class="form-select" [(ngModel)]="newMesej.typeMsg">
+          <option [ngValue]="null" disabled>-- Sila Pilih --</option>
+          <option [value]="1">Amaran</option>
+          <option [value]="2">Ralat</option>
+          <option [value]="3">Status</option>
+          <option [value]="4">Notifikasi</option>
+        </select>
+        change to -->
+        <select class="form-select" [(ngModel)]="newMesej.typeMsg">
+          <option value="" disabled>-- Sila Pilih --</option>
+          <option *ngFor="let type of messageTypes" [value]="type.codeMsgType">
+            {{ type.descBITypeMsg }}
+          </option>
+        </select>
+
+      </c-col>
+    </c-row>
+
+    <c-row class="mb-3 align-items-start">
+      <c-col xs="12" sm="4">
+        <label class="form-label fw-bold mb-0">Keterangan Mesej Notifikasi:</label>
+      </c-col>
+      <c-col xs="12" sm="8">
+        <textarea class="form-control" rows="4" [(ngModel)]="newMesej.dtlMsg"></textarea>
+      </c-col>
+    </c-row>
+
+    <c-row class="mb-3 align-items-center">
+      <c-col xs="12" sm="4">
+        <label class="form-label fw-bold mb-0">Jenis Ralat:</label>
+      </c-col>
+      <c-col xs="12" sm="8">
+        <!-- <select class="form-select" [(ngModel)]="newMesej.typError">
+          <option [ngValue]="null" disabled>-- Sila Pilih --</option>
+          <option [value]="1">Pop-Up</option>
+          <option [value]="2">Footer</option>
+          <option [value]="3">Field</option>
+          <option [value]="4">Screen</option>
+        </select> -->
+        <select class="form-select" [(ngModel)]="newMesej.typError">
+          <option value="" disabled>-- Sila Pilih --</option>
+          <option *ngFor="let error of messageError" [value]="error.codeMsgError">
+            {{ error.descBIErrorMsg }}
+          </option>
+        </select>
+      </c-col>
+    </c-row>
+
+    <c-row class="mb-3 align-items-center">
+      <c-col xs="12" sm="4">
+        <label class="form-label fw-bold mb-0">Status:</label>
+      </c-col>
+      <c-col xs="12" sm="8">
+   
+          <select class="form-select" [(ngModel)]="newMesej.status" name="status">
+            <option value="" disabled selected>-- Sila Pilih --</option>
+            <option value="0">Aktif</option>
+            <option value="1">Tidak Aktif</option>
+          </select>
+
+      </c-col>
+    </c-row>
+  </c-modal-body>
+
+  <c-modal-footer>
+    <button class="btn btn-secondary" (click)="close()">Batal</button>
+    <button class="btn btn-primary" (click)="submit()"> {{ isEditMode ? 'Kemaskini' : 'Simpan' }}</button>
+  </c-modal-footer>
+</c-modal>

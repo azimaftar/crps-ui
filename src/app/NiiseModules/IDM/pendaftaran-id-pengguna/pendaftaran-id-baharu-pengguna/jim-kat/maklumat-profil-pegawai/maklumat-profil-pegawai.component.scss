@@ -1,0 +1,50 @@
+c-card {
+    margin: 10px;
+}
+
+.black-btn {
+    transition: all 0.2s ease-in-out;
+    transform: scale(1);
+    min-width: 110px;
+}
+
+.black-btn:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.black-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.action-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.breadcrumb-drawer {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 260px;
+    background: #ffffff !important;
+    z-index: 1000;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    padding-top: 140px;
+
+    &.open {
+        transform: translateX(0);
+    }
+
+    &.closed {
+        transform: translateX(100%);
+    }
+
+    .breadcrumb-content {
+        margin-top: 20px;
+        background-color: transparent;
+    }
+}

@@ -1,0 +1,289 @@
+<div class="container-fluid">
+    <div class="card">
+        <div class="ms-4 me-4">
+            <div class="mt-2 mb-2">
+                <h3 class="mb-2 mt-4"><b>PROFIL PEGAWAI</b></h3>
+            </div>
+            <div class="mt-4">
+                <!-- Main Content Area -->
+                <div class="row flex-column flex-lg-row">
+                    <div class="col-md-2 mb-3 mb-md-0">
+                        <div class="d-flex flex-column align-items-center">
+                            <img src="assets/images/avatars/9.jpg" alt="Profile Image" class="img-fluid"
+                                style="width: 150px; height: 150px; object-fit: cover; border: 1px solid #000;">
+                            <div class="mt-2" style="font-size: 14px;">
+                                Penilaian Risiko: <strong>Rendah</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-10">
+                        <h6 class="mb-3">Maklumat Profil Pegawai</h6>
+                        <div class="row ps-3">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Kategori Pegawai</label>
+                                    <select class="form-select" [(ngModel)]="formData.kategoriPegawai"
+                                        name="kategoriPegawai">
+                                        <option value="Pegawai JIM">Pegawai JIM</option>
+                                        <option value="Pegawai Kanan">Pegawai Kanan</option>
+                                        <option value="Pegawai Biasa">Pegawai Biasa</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ps-3">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Jenis Dokumen</label>
+                                <select class="form-select" [(ngModel)]="formData.jenisDokumen" name="jenisDokumen">
+                                    <option value="MyKad">MyKad</option>
+                                    <option value="Passport">Passport</option>
+                                    <option value="Lain-lain">Lain-lain</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">No Dokumen /ID</label>
+                                <input type="text" class="form-control" [(ngModel)]="formData.noDokumen"
+                                    name="noDokumen">
+                            </div>
+                        </div>
+                        <div class="row ps-3">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Warganegara</label>
+                                <select class="form-select" [(ngModel)]="formData.warganegara" name="warganegara">
+                                    <option value="Warganegara">Warganegara</option>
+                                    <option value="Bukan Warganegara">Bukan Warganegara</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Nama</label>
+                                <input type="text" class="form-control" [(ngModel)]="formData.nama" name="nama">
+                            </div>
+                        </div>
+                        <div class="row ps-3">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Tarikh Lahir</label>
+                                <input type="text" class="form-control" [(ngModel)]="formData.tarikhLahir"
+                                    name="tarikhLahir" placeholder="DD/MM/YYYY">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Jantina</label>
+                                <select class="form-select" [(ngModel)]="formData.jantina" name="jantina">
+                                    <option value="Lelaki">Lelaki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row ps-3">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">No. Pengenalan</label>
+                                <input type="text" class="form-control" [(ngModel)]="formData.noPengenalan"
+                                    name="noPengenalan">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">No Telefon</label>
+                                <input type="text" class="form-control" [(ngModel)]="formData.noTelefon"
+                                    name="noTelefon">
+                            </div>
+                        </div>
+                        <div class="row ps-3">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">E-mel</label>
+                                <input type="email" class="form-control" [(ngModel)]="formData.email" name="email">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Lokasi/Negeri</label>
+                                <select class="form-select" [(ngModel)]="formData.lokasi" name="lokasi">
+                                    <option value="Putrajaya">Putrajaya</option>
+                                    <option value="Kuala Lumpur">Kuala Lumpur</option>
+                                    <option value="Selangor">Selangor</option>
+                                    <option value="Johor">Johor</option>
+                                    <option value="Perak">Perak</option>
+                                    <option value="Pulau Pinang">Pulau Pinang</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row ps-3">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Tempat Bertugas/Cawangan</label>
+                                        <select class="form-select" [(ngModel)]="formData.tempatBertugas"
+                                            name="tempatBertugas">
+                                            <option value="Putrajaya">Putrajaya</option>
+                                            <option value="Kuala Lumpur">Kuala Lumpur</option>
+                                            <option value="Johor Bahru">Johor Bahru</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Unit</label>
+                                        <select class="form-select" [(ngModel)]="formData.unit" name="unit">
+                                            <option value="VPP">VPP</option>
+                                            <option value="ICT">ICT</option>
+                                            <option value="HR">HR</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Gred</label>
+                                        <select class="form-select" [(ngModel)]="formData.gred" name="gred">
+                                            <option value="KP19">KP19</option>
+                                            <option value="KP17">KP17</option>
+                                            <option value="KP15">KP15</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Bahagian</label>
+                                        <select class="form-select" [(ngModel)]="formData.bahagian" name="bahagian">
+                                            <option value="Visa, Pas dan Permit">Visa, Pas dan Permit</option>
+                                            <option value="Pengurusan Sumber Manusia">Pengurusan Sumber Manusia</option>
+                                            <option value="Teknologi Maklumat">Teknologi Maklumat</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Jawatan</label>
+                                        <select class="form-select" [(ngModel)]="formData.jawatan" name="jawatan">
+                                            <option value="Pembantu Tadbir">Pembantu Tadbir</option>
+                                            <option value="Penolong Pegawai">Penolong Pegawai</option>
+                                            <option value="Pegawai">Pegawai</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Gred (Melebihi) Gred Sedia Ada</label>
+                                        <select class="form-select" [(ngModel)]="formData.gradMelebihiAda"
+                                            name="gradMelebihiAda">
+                                            <option value="Sila Pilih-">Sila Pilih-</option>
+                                            <option value="KP22">KP22</option>
+                                            <option value="KP21">KP21</option>
+                                            <option value="KP20">KP20</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Kaedah Log Masuk</label>
+                                    <div class="d-flex gap-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                [(ngModel)]="formData.kaedahLog.capJari" name="capJari">
+                                            <label class="form-check-label">Cap Jari</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                [(ngModel)]="formData.kaedahLog.wajah" name="wajah">
+                                            <label class="form-check-label">Wajah</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                [(ngModel)]="formData.kaedahLog.otp" name="otp">
+                                            <label class="form-check-label">OTP</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Bottom Navigation -->
+            <div class="pagination-wrapper row mt-4 pb-2 pt-2">
+                <div class="col-12">
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-primary me-2"(click)="openSemak()">Semak</button>
+                        <button class="btn btn-primary me-2" (click)="showMohonanNyahaktif()">Nyahaktif ID</button>
+                        <button class="btn btn-primary" (click)="openPadamRekod()">Batal ID</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal untuk permohonan nyahaktif -->
+<c-modal [(visible)]="mohonNyahaktifVisible" class="responsive-modal">
+  <c-modal-body>
+    <ng-container>
+      <mohonan-nyahaktif (back)="closeMohonanNyahaktif()">
+      </mohonan-nyahaktif>
+    </ng-container>
+  </c-modal-body>
+</c-modal>
+
+<!-- Modal untul semak -->
+<c-modal [(visible)]="semakVisible" class="responsive-modal">
+  <c-modal-body>
+    <ng-container>
+      <semak (back)="closeSemak()">
+      </semak>
+    </ng-container>
+  </c-modal-body>
+</c-modal>
+
+<!-- Padam Rekod -->
+<c-modal [(visible)]="padamRekodVisible" class="responsive-modal">
+  <c-modal-body>
+    <div class="text-center p-4">
+      <h5 class="mb-2">Adakah anda pasti untuk memadamkan rekod?</h5>
+      <div class="d-flex justify-content-center mt-4">
+        <button class="btn btn-primary me-2" (click)="closePadamRekod()">Tidak</button>
+        <button class="btn btn-primary"(click)="openPermohonanPadamRekodBerjaya()">Ya</button>
+      </div>
+    </div>
+  </c-modal-body>
+</c-modal>
+
+<!-- Padam Rekod Berjaya -->
+<c-modal [(visible)]="permohonanPadamRekodBerjaya" class="responsive-modal">
+  <c-modal-body>
+    <div class="text-center p-4">
+      <h5 class="mb-2">Pemadaman Rekod Berjaya</h5>
+      <div class="d-flex justify-content-center mt-4">
+        <button class="btn btn-primary me-2" (click)="closePermohonanPadamRekodBerjaya()">Tutup</button>
+      </div>
+    </div>
+  </c-modal-body>
+</c-modal>
+
+<!-- Fingerprint Scanning Modal -->
+<div class="modal fade" id="fingerprintModal" tabindex="-1" aria-labelledby="fingerprintModalLabel" aria-hidden="true"
+    [class.show]="isFingerprintModalOpen" [style.display]="isFingerprintModalOpen ? 'block' : 'none'">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;">
+                <h5 class="modal-title" id="fingerprintModalLabel" style="color: #333; font-weight: bold;">IMBAS CAP
+                    JARI</h5>
+                <button type="button" class="btn-close" (click)="closeFingerprintModal()" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+                <!-- Fingerprint 1 -->
+                <div class="mb-4">
+                    <label class="form-label" style="font-weight: 600; color: #333;">Cap Jari 1 (Kanan)</label>
+                    <div class="d-flex gap-2">
+                        <input type="text" class="form-control" placeholder="Text Here"
+                            [(ngModel)]="fingerprintData.capJari1" style="border: 1px solid #ccc;">
+                        <button class="btn btn-dark" (click)="scanFingerprint('capJari1')"
+                            style="background-color: #333; border: none; min-width: 80px;">Imbas</button>
+                    </div>
+                </div>
+
+                <!-- Fingerprint 2 -->
+                <div class="mb-4">
+                    <label class="form-label" style="font-weight: 600; color: #333;">Cap Jari 2 (Kiri)</label>
+                    <div class="d-flex gap-2">
+                        <input type="text" class="form-control" placeholder="Text Here"
+                            [(ngModel)]="fingerprintData.capJari2" style="border: 1px solid #ccc;">
+                        <button class="btn btn-dark" (click)="scanFingerprint('capJari2')"
+                            style="background-color: #333; border: none; min-width: 80px;">Imbas</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="justify-content: flex-end; border-top: 1px solid #dee2e6;">
+                <button type="button" class="btn btn-secondary" (click)="completeFingerprintScan()"
+                    style="background-color: #6c757d; border: none; min-width: 100px;">Selesai</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Backdrop -->
+<div class="modal-backdrop fade" [class.show]="isFingerprintModalOpen" *ngIf="isFingerprintModalOpen">
+</div>

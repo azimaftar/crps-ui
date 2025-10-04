@@ -1,0 +1,159 @@
+<div class="container-fluid p-4">
+  <c-card class="mx-auto passport-form-card">
+    <c-card-header class="text-center border-bottom">
+      <h5 class="mb-0 fw-bold">SEMAKAN & TINDAKAN PENYELIA - MAKLUMAT PAS</h5>
+    </c-card-header>
+    
+    <c-card-body class="p-4">
+      <c-row>
+        <!-- Left Column -->
+        <c-col md="7">
+          <!-- Jenis Dokumen -->
+          <c-row class="mb-3">
+            <c-col md="6">
+              <label class="form-label">Jenis Dokumen</label>
+              <input disabled
+                type="text" 
+                class="form-control form-control-sm" 
+                value="Warganegara" 
+                readonly>
+            </c-col>
+          </c-row>
+
+          <!-- Jenis Dokumen & Jantina -->
+          <c-row class="mb-3">
+            <c-col md="6">
+              <label class="form-label">Jenis Dokumen</label>
+              <input disabled
+                type="text" 
+                class="form-control form-control-sm" 
+                value="P - Passport" 
+                readonly>
+            </c-col>
+            <c-col md="6">
+              <label class="form-label">Jantina</label>
+              <input disabled
+                type="text" 
+                class="form-control form-control-sm" 
+                value="M - Male" 
+                readonly>
+            </c-col>
+          </c-row>
+
+          <!-- No Dokumen & No Pengenalan -->
+          <c-row class="mb-3">
+            <c-col md="6">
+              <label class="form-label">No Dokumen</label>
+              <input disabled
+                type="text" 
+                class="form-control form-control-sm" 
+                [value]="formData.noDocument" 
+                readonly>
+            </c-col>
+            <c-col md="6">
+              <label class="form-label">No Pengenalan</label>
+              <input disabled
+                type="text" 
+                class="form-control form-control-sm" 
+                [value]="formData.noIdentification" 
+                readonly>
+            </c-col>
+          </c-row>
+
+          <!-- Nama -->
+          <c-row class="mb-3">
+            <c-col>
+              <label class="form-label">Nama</label>
+              <input disabled
+                type="text" 
+                class="form-control form-control-sm" 
+                [value]="formData.name" 
+                readonly>
+            </c-col>
+          </c-row>
+
+          <!-- Tarikh Dikeluarkan & Tamat Tempoh -->
+          <c-row class="mb-3">
+            <c-col md="6">
+              <label class="form-label">Tarikh Dikeluarkan</label>
+              <input disabled
+                type="text" 
+                class="form-control form-control-sm" 
+                [value]="formData.dateIssued" 
+                readonly>
+            </c-col>
+            <c-col md="6">
+              <label class="form-label">Tamat Tempoh</label>
+              <input disabled
+                type="text" 
+                class="form-control form-control-sm" 
+                [value]="formData.expiryDate" 
+                readonly>
+            </c-col>
+          </c-row>
+
+          <!-- Umur & Warganegara -->
+          <c-row class="mb-3">
+            <c-col md="6">
+              <label class="form-label">Umur</label>
+              <input disabled
+                type="text" 
+                class="form-control form-control-sm" 
+                [value]="formData.age" 
+                readonly>
+            </c-col>
+            <c-col md="6">
+              <label class="form-label">Warganegara</label>
+              <input disabled
+                type="text" 
+                class="form-control form-control-sm" 
+                [value]="formData.nationality" 
+                readonly>
+            </c-col>
+          </c-row>
+
+          <!-- Negara Pengeluar -->
+          <c-row class="mb-3">
+            <c-col md="6">
+              <label class="form-label">Negara Pengeluar</label>
+              <input disabled
+                type="text" 
+                class="form-control form-control-sm" 
+                [value]="formData.issuingCountry" 
+                readonly>
+            </c-col>
+          </c-row>
+        </c-col>
+
+        <!-- Right Column - QR Code Area -->
+        <c-col md="5">
+          <div class="d-flex justify-content-center">
+            <div class="qr-code-container">
+              <!-- QR Code placeholder with diagonal lines -->
+              <div class="qr-code-overlay">
+                <svg width="100%" height="100%" viewBox="0 0 200 200" class="diagonal-lines">
+                  <line x1="0" y1="0" x2="200" y2="200" stroke="currentColor" stroke-width="1"/>
+                  <line x1="200" y1="0" x2="0" y2="200" stroke="currentColor" stroke-width="1"/>
+                </svg>
+              </div>
+              <div class="qr-code-text">
+                <small class="fw-bold">QR VIS</small>
+              </div>
+            </div>
+          </div>
+        </c-col>
+      </c-row>
+    </c-card-body>
+
+    <!-- Print Button -->
+    <c-card-footer class="print-footer d-flex justify-content-end">
+      <button 
+        type="button" 
+        class="btn btn-dark btn-sm px-4 print-button" 
+        (click)="printPage()">
+        <i class="fa fa-print me-2" *ngIf="showPrintIcon"></i>
+        CETAK PAS
+      </button>
+    </c-card-footer>
+  </c-card>
+</div>

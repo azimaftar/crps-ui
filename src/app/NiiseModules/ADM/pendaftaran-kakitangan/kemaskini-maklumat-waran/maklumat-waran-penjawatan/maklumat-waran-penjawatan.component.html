@@ -1,0 +1,198 @@
+<div class="custom-content-wrapper">
+  <c-card>
+    <c-card-body>
+      <c-row class="my-2 mb-4">
+        <h4 class="fw-bold">MAKLUMAT WARAN PENJAWATAN</h4>
+      </c-row>
+      <c-row>
+        <c-col xs="12" md="12" class="order-2 order-md-1">
+          <c-row class="mb-2">
+            <h5 class="fw-semibold">Carian</h5>
+          </c-row>
+
+          <c-row class="mb-5">
+            <c-col xs="12" md="3">
+              <label class="form-label">Negeri</label>
+              <select id="" class="form-select"></select>
+            </c-col>
+
+            <c-col xs="12" md="3">
+              <label class="form-label">Bahagian</label>
+              <select id="" class="form-select"></select>
+            </c-col>
+
+            <c-col xs="12" md="3">
+              <label class="form-label">Jawatan</label>
+              <select id="" class="form-select"></select>
+            </c-col>
+
+            <c-col xs="12" md="3">
+              <div
+                class="d-flex justify-content-center gap-2"
+                style="margin-top: 30px"
+              >
+                <button class="custom-button">
+                  <img
+                    src="../../../../../../assets/images/find-icon.svg"
+                    alt="find"
+                    class="find-icon"
+                    style="margin-right: 5px; margin-bottom: 2px"
+                  />
+                  Carian
+                </button>
+                <button type="button" class="btn btn-primary">
+                  Daftar Tetapan Waran
+                </button>
+              </div>
+            </c-col>
+          </c-row>
+
+          <c-row class="mb-4" style="margin-top: 150px">
+            <h5 class="fw-semibold">Maklumat Waran Penjawatan</h5>
+          </c-row>
+
+          <c-container class="overflow-x-auto" style="max-width: 100vw">
+            <c-row class="align-items-end flex-md-nowrap table-responsive mb-5">
+              <table
+                class="table align-middle custom-table"
+                style="table-layout: fixed; width: 100%"
+              >
+                <colgroup>
+                  <col style="width: 200px" />
+                  <!-- Negeri -->
+                  <col style="width: 250px" />
+                  <!-- Bahagian -->
+                  <col style="width: 300px" />
+                  <!-- Cawangan -->
+                  <col style="width: 300px" />
+                  <!-- Unit -->
+                  <col style="width: 350px" />
+                  <!-- Jawatan -->
+                  <col style="width: 200px" />
+                  <!-- Gred -->
+                  <col style="width: 200px" />
+                  <!-- TBK -->
+                  <col style="width: 200px" />
+                  <!-- Kod Gaji -->
+                  <col style="width: 200px" />
+                  <!-- Kod Skim -->
+                  <col style="width: 150px" />
+                  <!-- Bilangan Jawatan -->
+                  <col style="width: 150px" />
+                  <!-- Pengisian -->
+                  <col style="width: 150px" />
+                  <!-- Kekosongan -->
+                  <col style="width: 300px" />
+                  <!-- Kenyataan -->
+                  <col style="width: 300px" />
+                  <!-- Penyandang -->
+                  <col style="width: 250px" />
+                  <!-- No Kad Pengenalan -->
+                  <col style="width: 350px" />
+                  <!-- Catatan -->
+                  <col style="width: 150px" />
+                  <!-- Tindakan -->
+                </colgroup>
+                <thead>
+                  <tr class="align-middle">
+                    <th class="py-3">Negeri</th>
+                    <th class="py-3">Bahagian</th>
+                    <th class="py-3">Cawangan</th>
+                    <th class="py-3">Unit</th>
+                    <th class="py-3">Jawatan</th>
+                    <th class="py-3">Gred</th>
+                    <th class="py-3">TBK1 / TBK2</th>
+                    <th class="py-3">Kod Gaji S.S.M</th>
+                    <th class="py-3">Kod Skim</th>
+                    <th class="py-3">Bilangan Jawatan 2025</th>
+                    <th class="py-3">Pengisian</th>
+                    <th class="py-3">Kekosongan</th>
+                    <th class="py-3">Kenyataan</th>
+                    <th class="py-3">Penyandang</th>
+                    <th class="py-3">No Kad Pengenalan</th>
+                    <th class="py-3">Catatan</th>
+                    <th class="py-3">Tindakan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="let item of tableData; let i = index"
+                    class="align-middle"
+                  >
+                    <td class="py-4">{{ item.negeri }}</td>
+                    <td class="py-4">{{ item.bahagian }}</td>
+                    <td class="py-4">{{ item.Cawangan }}</td>
+                    <td class="py-4">{{ item.unit }}</td>
+                    <td class="py-4">{{ item.jawatan }}</td>
+                    <td class="py-4">{{ item.gred }}</td>
+                    <td class="py-4">{{ item.tbk }}</td>
+                    <td class="py-4">{{ item.kodGaji }}</td>
+                    <td class="py-4">{{ item.kodSkim }}</td>
+                    <td class="py-4">{{ item.BilanganJawatan }}</td>
+                    <td class="py-4">{{ item.pengisian }}</td>
+                    <td class="py-4">{{ item.kekosongan }}</td>
+                    <td class="py-4">{{ item.kenyataan }}</td>
+                    <td class="py-4">{{ item.penyandang }}</td>
+                    <td class="py-4">{{ item.noIc }}</td>
+                    <td class="py-4">{{ item.catatan }}</td>
+                    <td class="text-center py-4">
+                      <div class="d-flex justify-content-center gap-2">
+                        <button
+                          type="button"
+                          class="custom-button"
+                          (click)="nextPage(item.kodSkim)"
+                        >
+                          <!-- <img src="../../../../../../assets/images/refresh-cw.svg" alt="update" class="UpdateIcon" style="margin-right: 5px;margin-bottom: 2px;"> -->
+                          Kemas Kini
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </c-row>
+          </c-container>
+        </c-col>
+
+        <c-col
+          xs="12"
+          class="d-flex flex-wrap justify-content-end align-items-center gap-5 my-3 order-3 order-md-3"
+        >
+          <c-row>
+            <c-col class="d-flex gap-3">
+              <button type="button" class="custom-button">
+                <img
+                  src="../../../../../../assets/images/save-44.svg"
+                  alt="save"
+                  class="saveIcon"
+                  style="margin-right: 5px; margin-bottom: 2px"
+                />
+                Simpan
+              </button>
+              <button type="button" class="btn btn-primary">
+                <img
+                  src="../../../../../../assets/images/circle-check.svg"
+                  alt="send"
+                  style="margin-right: 5px; margin-bottom: 2px"
+                />
+                Hantar
+              </button>
+            </c-col>
+          </c-row>
+        </c-col>
+      </c-row>
+    </c-card-body>
+  </c-card>
+</div>
+
+<app-rekod-berjaya-dihantar
+  [RekodDihantar]="HantarRekodDihantar"
+  (close)="closeModal()"
+>
+</app-rekod-berjaya-dihantar>
+
+<app-rekod-berjaya-disimpan
+  [RekodDisimpan]="HantarRekodDisimpan"
+  (close)="closeModal()"
+>
+</app-rekod-berjaya-disimpan>

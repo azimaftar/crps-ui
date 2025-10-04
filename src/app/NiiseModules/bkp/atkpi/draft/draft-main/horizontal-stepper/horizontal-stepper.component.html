@@ -1,0 +1,14 @@
+<!-- Horizontal Stepper -->
+<div class="horizontal-stepper">
+    <ul class="stepper-list d-flex align-items-center justify-content-start flex-wrap">
+    <li
+        class="stepper-item"
+        *ngFor="let step of steps"
+        [class.active]="isStepActive(step.number)">
+        <button type="button" class="step-btn" (click)="navigateTo(step)" [disabled]="isInvalid">
+            <span class="step-number">{{ step.number }}</span>
+            <span class="step-title">{{ step.title }}</span>
+        </button>
+    </li>
+    </ul>
+</div>

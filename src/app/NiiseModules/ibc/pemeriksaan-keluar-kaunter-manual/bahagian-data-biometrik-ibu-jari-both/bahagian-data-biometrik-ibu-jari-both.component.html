@@ -1,0 +1,55 @@
+<form class="border border-dark m-0">
+  <!-- Header -->
+  <div class="p-3 border-bottom border-dark">
+    <h6 class="m-0">
+      PEMERIKSAAN KELUAR (KAUNTER MANUAL) - BAHAGIAN DATA BIOMETRIK [CAP JARI]
+    </h6>
+  </div>
+
+  <!-- Main Content -->
+  <div class="row g-0 border-top border-bottom border-dark">
+    <!-- Partition 1: Widgets (1/6 width) -->
+    <div class="col-md-2 border-end border-dark p-3">
+      <c-col class="mt-4 w-100">
+        <c-widget-stat-a class="mb-4" color="primary" [title]="'Widget 1'" style="height: 120px;"></c-widget-stat-a>
+        <c-widget-stat-a class="mb-4" color="primary" [title]="'Widget 2'" style="height: 120px;"></c-widget-stat-a>
+      </c-col>
+    </div>
+
+    <!-- Partition 2: Cap Jari Left & Right (5/6 width) -->
+    <div class="col-md-10 p-4">
+      <div class="row text-center mb-4">
+        <!-- Cap Jari Kanan -->
+        <div class="col-md-6">
+          <p class="fw-bold"  style="margin:10px 0">Ibu Jari Kanan</p>
+          <c-card class="d-flex justify-content-center align-items-center" style="width: 200px; height: 200px; margin: auto;">
+            <img src="" alt="CAP JARI KANAN" class="img-fluid h-100 w-100 object-fit-contain" />
+          </c-card>
+        </div>
+
+        <!-- Cap Jari Kiri -->
+        <div class="col-md-6">
+          <p class="fw-bold"  style="margin:10px 0">Ibu Jari Kiri</p>
+          <c-card class="d-flex justify-content-center align-items-center" style="width: 200px; height: 200px; margin: auto;">
+            <img src="" alt="CAP JARI KIRI" class="img-fluid h-100 w-100 object-fit-contain" />
+          </c-card>
+        </div>
+      </div>
+
+      <!-- Nilai Jari Hidup -->
+      <div class="row justify-content-center mb-4">
+        <div class="col-6 col-md-4 text-center">
+          <label for="nilaiJari" class="form-label">% Nilai Jari Hidup</label>
+          <input type="text" id="nilaiJari" class="form-control text-center" placeholder="Field 1" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Buttons -->
+  <div class="text-end p-3">
+    <button cButton color="success" style="margin:10px 0" class="me-3" (click)="openCapJariStatusLulus()">OK</button>
+    <!-- <button cButton color="danger" class="me-3" (click)="openCapJariStatusGagal()">OK</button> -->
+    <button cButton color="secondary" style="margin:10px 0" class="me-3" (click)="openCapJariKiri()">RESET</button>
+  </div>
+</form>

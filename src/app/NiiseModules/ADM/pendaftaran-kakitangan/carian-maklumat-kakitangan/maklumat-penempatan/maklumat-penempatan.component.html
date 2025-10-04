@@ -1,0 +1,126 @@
+<c-card>
+  <c-card-body>
+    <c-row class="my-2">
+      <h4 class="fw-bold">MAKLUMAT PROFIL KAKITANGAN</h4>
+    </c-row>
+
+    <app-stepper
+      [currentMainStep]="currentMainStep"
+      [currentSubStep]="currentSubStep"
+    ></app-stepper>
+
+    <c-row class="my-5">
+      <c-col>
+        <c-row class="mb-3">
+          <h5 class="fw-semibold">Maklumat Penempatan</h5>
+        </c-row>
+        <c-container class="overflow-x-auto">
+          <c-row class="mb-5 table-responsive">
+            <table class="table">
+              <thead>
+                <tr class="text-center align-middle">
+                  <th class="py-3">Bil.</th>
+                  <th class="py-3">Bahagian</th>
+                  <th class="py-3">Negeri</th>
+                  <th class="py-3">Cawangan</th>
+                  <th class="py-3">Unit</th>
+                  <th class="py-3">Lokasi Bertugas</th>
+                  <th class="py-3">Tarikh Bertugas</th>
+                  <th class="py-3">Jenis Penempatan</th>
+                  <th class="py-3">Tempoh Penempatan</th>
+                  <th class="py-3">Kumpuan Syif (Jika Ada)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let item of maklumatPenempatan1; let i = index"
+                  class="text-center align-middle"
+                >
+                  <td class="py-4">{{ i + 1 }}</td>
+                  <td class="py-4">{{ item.bahagian }}</td>
+                  <td class="py-4">{{ item.negeri }}</td>
+                  <td class="py-4">{{ item.cawangan }}</td>
+                  <td class="py-4">{{ item.unit }}</td>
+                  <td class="py-4">{{ item.lokasiBertugas }}</td>
+                  <td class="py-4">{{ item.tarikhBertugas }}</td>
+                  <td class="py-4">{{ item.jenisPenempatan }}</td>
+                  <td class="py-4">{{ item.tempohPenempatan }}</td>
+                  <td class="py-4">{{ item.kumpuanSyif }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </c-row>
+        </c-container>
+
+        <c-row class="mb-3">
+          <h5 class="fw-semibold">Maklumat Penempatan</h5>
+        </c-row>
+
+        <c-container class="overflow-x-auto">
+          <c-row class="mb-5 table-responsive">
+            <table class="table">
+              <thead>
+                <tr class="text-center align-middle">
+                  <th class="py-3">Bil.</th>
+                  <th class="py-3">Negara</th>
+                  <th class="py-3">Nama Pejabat Atase</th>
+                  <th class="py-3">Fungsi Pejabat Atase</th>
+                  <th class="py-3">Tarikh Berkuatkuasa</th>
+                  <th class="py-3">Jenis Penempatan</th>
+                  <th class="py-3">Tempoh Penempatan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let item of maklumatPenempatan2; let i = index"
+                  class="text-center align-middle"
+                >
+                  <td class="py-4">{{ i + 1 }}</td>
+                  <td class="py-4">{{ item.negara }}</td>
+                  <td class="py-4">{{ item.namaPejabat }}</td>
+                  <td class="py-4">{{ item.fungsiPejabat }}</td>
+                  <td class="py-4">{{ item.tarikhBerkuatkuasa }}</td>
+                  <td class="py-4">{{ item.jenisPenempatan }}</td>
+                  <td class="py-4">{{ item.tempohPenempatan }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </c-row>
+        </c-container>
+      </c-col>
+    </c-row>
+
+    <c-row class="my-2">
+      <c-row style="border-top: 1px solid rgba(0, 0, 0, 0.1)">
+        <c-col class="d-flex gap-5 flex-shrink-0 justify-content-end py-3">
+          <div class="d-flex gap-2">
+            <button
+              type="button"
+              class="btn-custom-normalBlue fw-semibold btn btn-primary"
+              (click)="navigateClosePage()"
+            >
+              Tutup
+            </button>
+          </div>
+
+          <div class="d-flex">
+            <button
+              type="button"
+              class="btn-custom-normalWhite fw-semibold btn btn-light"
+              (click)="navigatePreviousPage()"
+            >
+              &lt;
+            </button>
+            <button
+              type="button"
+              class="btn-custom-normalWhite fw-semibold btn btn-light"
+              (click)="navigateNextPage()"
+            >
+              &gt;
+            </button>
+          </div>
+        </c-col>
+      </c-row>
+    </c-row>
+  </c-card-body>
+</c-card>

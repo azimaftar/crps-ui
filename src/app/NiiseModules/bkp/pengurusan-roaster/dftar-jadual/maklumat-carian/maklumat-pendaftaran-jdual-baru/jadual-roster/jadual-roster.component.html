@@ -1,0 +1,79 @@
+<c-container fluid>
+  <div class="form-section h-100">
+    <h2 class="section-title">Jadual Roster</h2>
+    <form cForm>
+      <c-row [gutter]="3" class="align-items-center">
+        <c-col xs="auto">
+          <label cLabel for="catatan">Cawangan:</label>
+        </c-col>
+        <c-col xs="auto">
+          <input cFormControl type="text" id="catatan" [(ngModel)]="cawangan" name="cawangan" />
+        </c-col>
+        <c-col xs="auto">
+          <label cLabel for="bahagian">Bahagian:</label>
+        </c-col>
+        <c-col xs="auto">
+          <input cFormControl type="text" id="bahagian" [(ngModel)]="bahagian" name="bahagian" />
+        </c-col>
+        <c-col xs="auto">
+          <label cLabel for="unit">Unit:</label>
+        </c-col>
+        <c-col xs="auto">
+          <input cFormControl type="text" id="unit" [(ngModel)]="unit" name="unit" />
+        </c-col>
+      </c-row>
+
+      <div class="calendar-wrapper mt-4">
+        <table class="calendar-table">
+          <thead>
+            <tr>
+              <th class="day-header">HARI</th>
+              <th *ngFor="let monthCol of monthColumns" class="month-header"
+                [attr.colspan]="monthCol.type === 'month' ? 2 : 1">
+                {{ monthCol.monthName }}
+              </th>
+              <th class="extra-header">PG</th>
+              <th class="extra-header">PTG</th>
+              <th class="extra-header">MLM</th>
+              <th class="extra-header">REHAT</th>
+              <th class="extra-header">REHAT</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of calendarData; let rowIndex = index" class="calendar-row">
+              <td class="day-cell">{{ row.day }}</td>
+              <ng-container *ngFor="let month of row.months; let colIndex = index">
+                <td class="date-cell prev-month-cell" [class.empty-cell]="isCellEmpty(row, colIndex, 'prev')"
+                  [class.selected]="isCellSelected(rowIndex, colIndex, 'prev')"
+                  (click)="!isCellEmpty(row, colIndex, 'prev') && onCellClick(rowIndex, colIndex, 'prev')">
+                  {{ row.months[colIndex].prev }}
+                </td>
+                <td class="date-cell" [class.empty-cell]="isCellEmpty(row, colIndex, 'current')"
+                  [class.selected]="isCellSelected(rowIndex, colIndex, 'current')"
+                  [class.highlighted]="isDateCellHighlighted(row, colIndex)"
+                  (click)="!isCellEmpty(row, colIndex, 'current') && onCellClick(rowIndex, colIndex, 'current')">
+                  {{ row.months[colIndex].current }}
+                </td>
+              </ng-container>
+              <td class="extra-cell extra-pg" [ngClass]="'extra-' + row.pg.toLowerCase()">
+                {{ row.pg }}
+              </td>
+              <td class="extra-cell extra-ptg" [ngClass]="'extra-' + row.ptg.toLowerCase()">
+                {{ row.ptg }}
+              </td>
+              <td class="extra-cell extra-mlm" [ngClass]="'extra-' + row.mlm.toLowerCase()">
+                {{ row.mlm }}
+              </td>
+              <td class="extra-cell extra-rehat1" [ngClass]="'extra-' + row.rehat1.toLowerCase()">
+                {{ row.rehat1 }}
+              </td>
+              <td class="extra-cell extra-rehat2" [ngClass]="'extra-' + row.rehat2.toLowerCase()">
+                {{ row.rehat2 }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </form>
+  </div>
+</c-container>

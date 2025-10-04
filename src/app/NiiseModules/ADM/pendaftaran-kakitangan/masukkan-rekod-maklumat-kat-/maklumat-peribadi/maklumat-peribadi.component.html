@@ -1,0 +1,328 @@
+<div class="custom-content-wrapper">
+  <c-card>
+    <c-card-body>
+      <c-row class="my-2">
+        <h4 class="fw-bold">MAKLUMAT PROFIL KAKITANGAN</h4>
+      </c-row>
+
+      <c-row class="my-2">
+        <c-col>
+          <ng-container *ngFor="let section of mainSteps">
+            <button
+              type="button"
+              class="btn-custom-breadcrumbADM btn btn-light d-inline-flex gap-2 fw-semibold"
+              [ngClass]="{
+                'btn-custom-breadcrumbADM-active':
+                  section.mainStep === currentMainStep
+              }"
+            >
+              <span
+                class="btn-custom-breadcrumbNoADM"
+                [ngClass]="{
+                  'btn-custom-breadcrumbNoADM-active':
+                    section.mainStep === currentMainStep
+                }"
+                >{{ section.mainStep }}</span
+              >
+              <span class="btn-custom-breadcrumbLabelADM">{{
+                section.mainLabel
+              }}</span>
+            </button>
+          </ng-container>
+        </c-col>
+      </c-row>
+
+      <c-row class="my-2">
+        <c-col class="d-flex flex-nowrap overflow-auto align-items-stretch">
+          <ng-container *ngFor="let section of subSteps">
+            <button
+              type="button"
+              class="btn-custom-breadcrumbADM btn btn-light fw-bold d-inline-flex gap-2 flex-shrink-0"
+              #subButton
+              [ngClass]="{
+                'btn-custom-breadcrumbADM-active':
+                  section.mainStep === currentMainStep &&
+                  section.subStep === currentSubStep
+              }"
+            >
+              <span
+                class="btn-custom-breadcrumbNoADM"
+                [ngClass]="{
+                  'btn-custom-breadcrumbNoADM-active':
+                    section.mainStep === currentMainStep &&
+                    section.subStep === currentSubStep
+                }"
+                >{{ section.subStep }}</span
+              >
+              <span class="btn-custom-breadcrumbLabelADM">{{
+                section.subLabel
+              }}</span>
+            </button>
+          </ng-container>
+        </c-col>
+      </c-row>
+
+
+      <c-row class="my-2 mt-3">
+        <c-row class="mb-2">
+          <h5 class="fw-semibold">Maklumat Peribadi</h5>
+        </c-row>
+
+        <c-col xs="12" md="3">
+          <img
+            src="assets/images/avatars/9.jpg"
+            alt="Avatar"
+            width="100%"
+            style="border-radius: 8px"
+          />
+        </c-col>
+
+        <!-- Personal Info Fields -->
+        <c-col xs="12" md="9">
+          <c-row>
+            <c-col md="12" class="mb-3">
+              <label class="fw-semibold">Nama Penuh</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.NamaPegawai"
+              />
+            </c-col>
+          </c-row>
+
+          <c-row>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">Jenis Dokumen</label>
+              <select class="form-select"
+                [(ngModel)]="documenttype">
+                <option value="1">Mykad</option>
+                <option value="2">Passport</option>
+                >
+              </select>
+            </c-col>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">No Dokumen</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.noDokumenID"
+              />
+            </c-col>
+          </c-row>
+
+          <c-row>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">Tarikh Lahir</label>
+              <input
+                type="date"
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.tarikhLahir"
+              />
+            </c-col>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">Jantina</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.umur"
+              />
+            </c-col>
+          </c-row>
+
+          <c-row>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">Jantina</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.jantina"
+              />
+            </c-col>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">Nombor Sijil Lahir</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.nomborSijilLahir"
+              />
+            </c-col>
+          </c-row>
+
+          <c-row>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">Negeri Lahir</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.negeriLahir"
+              />
+            </c-col>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">Status Warganegara</label>
+              <select
+                class="form-select"
+                [(ngModel)]="documenttype">
+                <option value="">Australia</option>
+              </select>
+            </c-col>
+          </c-row>
+
+          <c-row>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">Negara</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.negara"
+              />
+            </c-col>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">Bangsa</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.bangsa"
+              />
+            </c-col>
+          </c-row>
+
+          <c-row>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">Etnik</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.etnik"
+              />
+            </c-col>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">Status Bumiputera</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.statusBumipuera"
+              />
+            </c-col>
+          </c-row>
+
+          <c-row>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">Agama</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.agama"
+              />
+            </c-col>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">Status Perkahwinan</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.statusPerkahwinan"
+              />
+            </c-col>
+          </c-row>
+
+          <c-row>
+            <c-col md="12" class="mb-3">
+              <label class="fw-semibold">Alamat</label>
+              <input
+                class="form-control mb-3"
+                [(ngModel)]="maklumatPeribadi.alamat1"
+              />
+              <input
+                class="form-control mb-3"
+                [(ngModel)]="maklumatPeribadi.alamat2"
+              />
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.alamat3"
+              />
+            </c-col>
+          </c-row>
+
+          <c-row>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">Poskod</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.poskod"
+              />
+            </c-col>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">Bandar</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.bandar"
+              />
+            </c-col>
+          </c-row>
+
+          <c-row>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">Negeri</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.negeri"
+              />
+            </c-col>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">Nombor Telefon Rumah</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.nomborTelefonRumah"
+              />
+            </c-col>
+          </c-row>
+
+          <c-row>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">Nombor Telefon Pejabat</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.nomborTelefonPejabat"
+              />
+            </c-col>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">Sambungan</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.sambungan"
+              />
+            </c-col>
+          </c-row>
+
+          <c-row>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">Nombor Telefon Bimbit</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.nomborTelefonBimbit"
+              />
+            </c-col>
+            <c-col md="6" class="mb-3">
+              <label class="fw-semibold">Alamat Email</label>
+              <input
+                class="form-control"
+                [(ngModel)]="maklumatPeribadi.alamatEmail"
+              />
+            </c-col>
+          </c-row>
+        </c-col>
+
+        <c-row style="border-top: 1px solid rgba(0, 0, 0, 0.1)">
+          <c-col class="d-flex gap-5 flex-shrink-0 justify-content-end py-3">
+
+            <div class="d-flex">
+              <button
+                type="button"
+                class="btn-custom-normalWhite fw-semibold btn btn-light"
+                disabled
+              >
+                &lt;
+              </button>
+              <button
+                type="button"
+                class="btn-custom-normalWhite fw-semibold btn btn-light"
+                (click)="next()"
+              >
+                &gt;
+              </button>
+            </div>
+
+          </c-col>
+        </c-row>
+      </c-row>
+    </c-card-body>
+  </c-card>
+</div>
+

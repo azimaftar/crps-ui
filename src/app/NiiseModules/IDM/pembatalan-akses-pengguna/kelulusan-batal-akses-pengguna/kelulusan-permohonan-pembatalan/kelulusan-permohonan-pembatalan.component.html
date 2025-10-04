@@ -1,0 +1,150 @@
+<c-container fluid>
+  <div class="card">
+    <div class="ms-4 me-4">
+      <div class="mt-2 mb-2">
+        <h3 class="mb-2 mt-4"><b>PERMOHONAN PEMBATALAN ID PENGGUNA - KELULUSAN PERMOHONAN</b></h3>
+      </div>
+      <div class="row mt-4 border rounded" style="border-radius: 8px; background-color: #e0e0e0;">
+        <div class="col-md-6">
+          <div class="p-3">
+            <h6 class="mb-3"><b>Maklumat Keputusan</b></h6>
+
+            <div class="mb-3 d-flex">
+              <label class="form-label col-3 pt-2">Disahkan oleh</label>
+              <input type="text" class="form-control bg-light" value="Hanif bin Rahman" readonly>
+            </div>
+
+            <div class="mb-3 d-flex">
+              <label class="form-label col-3 pt-2">Tarikh</label>
+              <input type="text" class="form-control bg-light" value="23 September 2022" readonly>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <!-- Grade Section -->
+        <c-row class="mb-4">
+          <c-col md="6">
+            <label class="form-label">No.Permohonan</label>
+            <input type="text" class="form-control bg-light" [(ngModel)]="formData.gredSediaAda" readonly>
+          </c-col>
+        </c-row>
+
+        <c-row class="mb-4">
+          <c-col md="6">
+            <label class="form-label">Sebab Pembatalan ID Pengguna*</label>
+            <select class="form-select bg-light" [(ngModel)]="newPembatalanID.sebabPembatalan" readonly>
+              <option value="">-Sila Pilih-</option>
+              <option value="PLS">PLS</option>
+              <option value="Pasport">Pasport</option>
+              <option value="Sistem">Sistem</option>
+              <option value="Kawalan Akses">Kawalan Akses</option>
+            </select>
+          </c-col>
+          <c-col md="6">
+            <label class="form-label">Lain-lain Sebab</label>
+            <input type="text" class="form-control bg-light" [(ngModel)]="newPembatalanID.lainSebab" name="email" readonly>
+          </c-col>
+        </c-row>
+
+        <c-row class="mb-4">
+          <c-col md="6">
+            <label class="form-label">Tarikh Tamat Pembatalan*</label>
+            <input type="date" class="form-control bg-light" [(ngModel)]="newPembatalanID.tarikhTamatPembatalan" readonly>
+          </c-col>
+          <c-col md="6">
+            <label class="form-label">Catatan</label>
+            <textarea class="form-control bg-light" rows="3" [(ngModel)]="newPembatalanID.catatan"
+              placeholder="Tambah Peranan" readonly></textarea>
+          </c-col>
+        </c-row>
+
+        <!-- Dokumen Sokongan Section -->
+        <div class="table-pagination-wrapper">
+          <!-- Scrollable Table Container -->
+          <div class="table-responsive table-scroll-container">
+            <table class="table table-hover table-row">
+              <thead>
+                <tr>
+                  <th style="width: 10%;" class="table-header">Bil.</th>
+                  <th style="width: 30%;" class="table-header">Nama Dokumen</th>
+                  <th style="width: 15%;" class="table-header">Format</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let doc of uploadedDocuments; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ doc.namaFail }}</td>
+                  <td>{{ doc.format }}</td>             
+                </tr>
+                <tr *ngIf="uploadedDocuments.length === 0">
+                  <td colspan="5" class="text-center text-muted py-3">
+                    Tiada dokumen dimuat naik
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination and Controls -->
+          <div class="row mt-3 pagination-row">
+            <div class="col">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <!-- Left: Items per page -->
+                <div class="d-flex align-items-center gap-3">
+                  <select class="form-select form-select-sm rounded-pill" [(ngModel)]="itemsPerPage"
+                    (change)="onItemsPerPageChange()">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                  </select>
+                </div>
+
+                <!-- Right: Pagination and Pergi ke -->
+                <div class="d-flex align-items-center flex-wrap gap-2">
+                  <!-- Pagination -->
+                  <nav>
+                    <ul class="pagination pagination-sm mb-0">
+                      <li class="page-item" [class.disabled]="currentPage === 1">
+                        <button class="page-link" (click)="goToPage('first')">&laquo;</button>
+                      </li>
+                      <li class="page-item" [class.disabled]="currentPage === 1">
+                        <button class="page-link" (click)="goToPage('prev')">&lsaquo;</button>
+                      </li>
+                      <li class="page-item active">
+                        <span class="page-link">{{ currentPage }}</span>
+                      </li>
+                      <li class="page-item" [class.disabled]="currentPage === totalPages">
+                        <button class="page-link" (click)="goToPage('next')">&rsaquo;</button>
+                      </li>
+                      <li class="page-item" [class.disabled]="currentPage === totalPages">
+                        <button class="page-link" (click)="goToPage('last')">&raquo;</button>
+                      </li>
+                    </ul>
+                  </nav>
+
+                  <div class="d-flex align-items-center">
+                    <small class="text-muted">Pergi ke</small>
+                    <input type="number" class="form-control form-control-sm" style="width: 60px;"
+                      [(ngModel)]="goToPageNumber" (keyup.enter)="goToSpecificPage()" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="pagination-wrapper row mt-4 pb-2 pt-2">
+          <div class="col-12">
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-all me-2">Tidak Lulus</button>
+              <button class="btn btn-submit me-2">Lulus</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</c-container>

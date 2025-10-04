@@ -1,0 +1,101 @@
+.pagination .page-link.active {
+    background-color: #1461BA !important;
+    border-color: #1461BA !important;
+    color: white !important;
+  }
+  
+  .pagination .page-link:hover {
+    background-color: #e9ecef;
+  }
+  
+  .form-control:focus,
+  .form-select:focus {
+    border-color: #1461BA;
+    box-shadow: 0 0 0 0.2rem rgba(50, 31, 219, 0.25);
+  }
+  
+  .r-custom-btn {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    padding: 6px 8px;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+  
+    border-radius: 0 8px 8px 0;
+    border: 1px solid #CAD5E2;
+    background: #FFF;
+  
+    /* shadow/2xs */
+    box-shadow: 0 1px 2px 0 rgba(15, 23, 43, 0.05);
+  }
+  
+  .l-custom-btn {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    padding: 6px 8px;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    
+    border-radius: 8px 0 0 8px;
+    border: 1px solid #CAD5E2;
+    background: #FFF;
+    
+    /* shadow/2xs */
+    box-shadow: 0 1px 2px 0 rgba(15, 23, 43, 0.05);
+  }
+  
+  .r-custom-btn:hover, .l-custom-btn:hover {
+    border: 1px solid #dcdcdc;
+    background: #dcdcdc;
+  }
+  
+  .primary-custom-btn {
+    width: 200px;
+    display: flex;
+    height: 40px;
+    padding: 10px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  
+    border-radius: 8px;
+    border: 1px solid #1461BA;
+    background-color: #1461BA;
+    color: #FFF;
+  }
+  
+  .secondary-custom-btn {
+    width: 200px;
+    display: flex;
+    height: 40px;
+    padding: 10px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  
+    border-radius: 8px;
+    border: 1px solid #CAD5E2;
+    background: #FFF;
+  }
+  
+  .disabled-btn {
+    display: flex !important;
+    width: 40px !important;
+    height: 40px !important;
+    padding: 6px 8px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    aspect-ratio: 1/1 !important;
+    pointer-events: none !important;
+  
+    border: 1px solid #CAD5E2 !important;
+    color: #90A1B9 !important;
+    background: #F8FAFC !important;
+  
+    /* shadow/2xs */
+    box-shadow: 0 1px 2px 0 rgba(15, 23, 43, 0.05) !important;
+  }

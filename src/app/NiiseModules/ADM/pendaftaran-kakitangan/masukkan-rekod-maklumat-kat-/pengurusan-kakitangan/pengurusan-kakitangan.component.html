@@ -1,0 +1,66 @@
+<div class="custom-content-wrapper">    
+  <c-card style="height: 100vh;">
+    <c-card-body>
+      <c-row class="mb-2 mt-5">
+        <c-col xs="12" md="1"></c-col>
+        <c-col xs="12" md="10"><h5 class="fw-semibold">Carian Maklumat Kakitangan</h5></c-col> 
+        <c-col xs="12" md="11" class="text-end"> <button class="btn btn-primary" (click)="showHubungiJpn()">
+          <img src="../../../../../../assets/images/find_icon_white.png" alt="send" class="find-icon" style="margin-right: 5px;margin-bottom: 2px;">  
+          Carian HRMIS</button></c-col>
+      </c-row>
+      <c-row class="mb-4">
+        <c-col xs="12" md="1"></c-col>
+        <c-col xs="12" md="4">
+          <select id="" class="form-select">
+            <option value="" disabled selected hidden>- Sila Pilih -</option>
+            <option value="1">MyKad</option>
+            <option value="2">Nombor Pasport Dan Negera</option>
+            <option value="3">Local ID (bagiKAD)</option>
+          </select>
+        </c-col>
+      </c-row>
+      <c-row class="mb-4">
+        <c-col xs="12" md="1"></c-col>
+        <c-col xs="12" md="10">
+          <label class="form-label">No. Doukumen/ID*</label>
+          <input type="text" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-5 mt-5">
+        <c-col xs="12" md="11" class="d-flex justify-content-end gap-2">
+          <button type="button" class="btn btn-primary" (click)="onRegister()">
+            <img src="../../../../../../assets/images/circle-check.svg" alt="send" style="margin-right: 5px;margin-bottom: 2px;">
+            Daftar</button>
+          <button type="button" class="custom-button">
+            <img src="../../../../../../assets/images/find-icon.svg" alt="send" class="find-icon" style="margin-right: 5px;margin-bottom: 2px;">
+            Carian</button>
+        </c-col>
+      </c-row>
+    </c-card-body>
+  </c-card>
+</div>
+
+<app-hubungi-jpn
+[hubungiJpn]="HantarHubungiJpn"
+  (close)="closeModal()" >
+</app-hubungi-jpn>
+
+<app-maklumat-carian-tidak-wujud
+[maklumatCarian]="HantarMaklumatCarian"
+  (close)="closeModal()" >
+</app-maklumat-carian-tidak-wujud>
+
+<app-rekod-berjaya-dihantar
+[RekodDihantar]="HantarRekodDihantar"
+  (close)="closeModal()" >
+</app-rekod-berjaya-dihantar>
+
+<app-rekod-berjaya-disimpan
+[RekodDisimpan]="HantarRekodDisimpan"
+  (close)="closeModal()" >
+</app-rekod-berjaya-disimpan>
+
+<app-tidak-dijumpai-jpn
+[TidakDijumpaiJpn]="HantarJumpaiJpn"
+  (close)="closeModal()" >
+</app-tidak-dijumpai-jpn>

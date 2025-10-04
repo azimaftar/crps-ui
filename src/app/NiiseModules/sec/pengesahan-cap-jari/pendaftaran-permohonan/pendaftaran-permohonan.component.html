@@ -1,0 +1,110 @@
+<c-container fluid>
+    <div class="row g-0">
+        <div class="col-md-9">
+            <div class="form-section h-100">
+                <h2 class="section-title">Carian Permohonan</h2>
+
+                <!-- NEW HORIZONTAL STEPPER -->
+                <app-progress-flow [currentStep]="step" (stepChange)="onStepChange($event)" [steps]="[
+                { number: 1, title: 'Carian Permohonan' },
+                { number: 2, title: 'Maklumat Pemohon' },
+                { number: 3, title: 'Dokumen Sokongan' }
+                ]"
+                ></app-progress-flow>
+
+                <form cForm #searchForm="ngForm">
+                    <c-row class="mb-4">
+                        <c-col md="6">
+                            <label cLabel for="nama" class="form-label">Nama</label>
+                            <input cFormControl type="text" id="nama" name="nama"
+                                [(ngModel)]="searchCriteria.nama" class="form-control" />
+                        </c-col>
+                        <c-col md="6">
+                            <label cLabel for="noRujukan" class="form-label">Nombor Rujukan Permohonan</label>
+                            <input cFormControl type="text" id="noRujukan" name="noRujukan"
+                                [(ngModel)]="searchCriteria.noRujukan" class="form-control" />
+                        </c-col>
+                    </c-row>
+
+                    <c-row class="mb-4">
+                        <c-col md="12">
+                            <button cButton (click)="onSearch()" color="dark" class="search-button">
+                                Cari
+                            </button>
+                        </c-col>
+                    </c-row>
+
+                    <c-row class="mb-4">
+                        <c-col md="12">
+                            <button cButton (click)="onSubmit()"  color="dark" class="submit-button">
+                                Pendaftaran Baru
+                            </button>
+                        </c-col>
+                    </c-row>
+                </form>
+
+                <!-- UNTUK TABLE BILA TEKAN CARI  -->
+                <div class="table-section" *ngIf="showTable">
+                    <h3 class="table-title">Senarai Permohonan</h3>
+
+                    <table cTable [hover]="true" [striped]="true" responsive="true" class="document-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No. Ruj Permohonan</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Warganegara</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Tindakan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let document of documents; let i = index">
+                                <td>{{ document.noRujukan }}</td>
+                                <td>{{ document.nama }}</td>
+                                <td>{{ document.warganegara }}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">{{ document.status }}</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">{{ document.tindakan }}</button>
+                                </td>
+                            </tr>
+                            <tr *ngIf="documents.length === 0">
+                                <td colspan="8" class="text-center">Tiada data untuk dipaparkan</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <nav aria-label="Table pagination" *ngIf="showTable">
+                    <div class="pagination-custom d-flex align-items-center mt-3">
+                        <button class="btn btn-sm btn-outline-secondary me-2" (click)="previousPage()"
+                            [disabled]="currentPage === 1">
+                            &lt;
+                        </button>
+                        <span class="mx-2">{{ currentPage }}</span>
+                        <button class="btn btn-sm btn-outline-secondary ms-2" (click)="nextPage()"
+                            [disabled]="currentPage >= totalPages">
+                            &gt;
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Right section - Steps -->
+        <!-- <div class="md-3">
+                <app-progress-flow [currentStep]="step" (stepChange)="onStepChange($event)"></app-progress-flow>
+        </div> -->
+    </div>
+    <!-- Navigation Footer -->
+    <!-- <div class="bg-light border-top p-3">
+        <div class="d-flex justify-content-end align-items-center flex-wrap gap-2">
+            <button class="btn btn-back btn-dark" (click)="resetForm()">Set Semula</button>
+            <button class="btn btn-back btn-dark" (click)="previousStep()">Kembali</button>
+            <button class="btn btn-back btn-dark" (click)="previousStep()">Hantar</button>
+            <button class="btn btn-back btn-dark" (click)="previousStep()">&lt;</button>
+            <button class="btn btn-back btn-dark" (click)="nextStep()">&gt;</button>
+        </div>
+    </div>
+</c-container> -->

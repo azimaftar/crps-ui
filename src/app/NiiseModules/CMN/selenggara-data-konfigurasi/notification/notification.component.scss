@@ -1,0 +1,82 @@
+::ng-deep .modalStyling .modal-dialog {
+  display: flex;
+  align-items: center;       // Vertically center
+  justify-content: center;   // Horizontally center
+  min-height: 100vh;         // Full viewport height
+  margin: 0 auto; 
+  width: 430px;          
+  height: 275px;
+}
+
+.modalStyling .modal-content {
+  margin: auto;
+}
+.modal-message-container {
+    display: flex;
+    flex-direction: column; // Stack icon and label vertically
+    align-items: center; // Center them horizontally
+    justify-content: center; // Center vertically if needed
+    text-align: center;
+    gap: 0.5rem; // spacing between icon and label
+    padding: 1rem 0;
+}
+
+.icon-noti {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 96px;
+    height: 96px;
+    aspect-ratio: 1 / 1;
+
+    background-repeat: no-repeat;
+    background-size: auto;
+
+    background-position: 1px 1px;
+}
+
+/* Icon positions in sprite */
+.noti-berjaya {
+    // ✅ success
+    background-image: url('../../../../../../src/app/icons/success.png');
+}
+
+.noti-error {
+    background-image: url('../../../../../../src/app/icons/error.png');
+}
+
+.noti-warning {
+     background-image: url('../../../../../../src/app/icons/warning.png');
+}
+
+.noti-info {
+    background-image: url('../../../../../../src/app/icons/success.png');
+}
+
+
+.modal-message {
+    font-size: 1rem;
+    color: #333;
+    font-weight: 700;
+}
+
+.fixed-size-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 40px;
+  white-space: nowrap; /* prevent text wrapping */
+}
+
+.btn-modal {
+  display: flex;
+height: var(--_root-global-space-40, 40px);
+padding: var(--global-layout-gap-2-half, 10px) var(--global-layout-gap-6, 24px);
+justify-content: center;
+align-items: center;
+border-radius: var(--global-layout-radius-sm, 4px);
+border: 1px solid var(--color-surface-brand-primary, #1461BA);
+background: var(--color-surface-brand-primary, #1461BA);
+
+}

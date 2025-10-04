@@ -1,0 +1,161 @@
+<div class="container-fluid">
+  <!-- Main Content Area -->
+  <div class="card">
+    <div class="ms-4 me-4">
+      <div class="mt-2 mb-2">
+        <h3 class="mb-2 mt-4"><b>PERMOHONAN ID PENGGUNA - SEMAKAN PERMOHONAN</b></h3>
+      </div>
+      <div class="mt-4">
+        <reusable-tab [currentStep]="currentStep" [steps]="steps"></reusable-tab>
+        <div class="row align-items-center mb-3">
+          <!-- Left Side: Maklumat Peranan -->
+          <div class="col-md-6">
+            <p class="mb-0">2. Maklumat Penetapan Peranan</p>
+            <small class="text-muted">Langkah 2 daripada 4</small>
+          </div>
+        </div>
+        <div class="row align-items-center mb-3">
+          <!-- Left Side: Empty -->
+          <div class="col-md-6"></div>
+
+          <!-- Right Side: Tambah Peranan Button -->
+          <div class="col-md-6 text-end">
+            <button class="btn btn-all btn-md" (click)="goToPermohonanTambahPeranan()">
+              Tambah Peranan
+            </button>
+          </div>
+        </div>
+
+        <div class="table-pagination-wrapper">
+          <!-- Scrollable Table Container -->
+          <div class="table-responsive table-scroll-container">
+            <table class="table table-hover table-row">
+              <thead>
+                <tr>
+                  <th class="table-header">
+                    <input type="checkbox" class="form-check-input" (change)="toggleSelectAll($event)"
+                      [disabled]="perananList.length === 0">
+                  </th>
+                  <th>Bil</th>
+                  <th class="table-header">Bahagian</th>
+                  <th class="table-header">Unit</th>
+                  <th class="table-header">Peranan</th>
+                  <th>Tindakan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let peranan of paginatedPeranan; let i = index">
+                  <td>
+                    <input type="checkbox" class="form-check-input" [(ngModel)]="peranan.selected">
+                  </td>
+                  <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+                  <td class="text-truncate">{{ getBahagianName(peranan.bahagian) }}</td>
+                  <td class="text-truncate">{{ getUnitName(peranan.unit) }}</td>
+                  <td class="text-truncate">{{ getPerananName(peranan.peranan) }}</td>
+                  <td>
+                    <button class="btn btn-danger btn-sm" (click)="removePeranan(peranan.id)" title="Padam">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr *ngIf="paginatedPeranan.length === 0">
+                  <td colspan="6" class="text-center text-muted py-4">
+                    Tiada data peranan dijumpai
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="d-flex justify-content-end align-items-center mt-3">
+          <button class="btn btn-all me-2" (click)="deleteSelected()"
+            [disabled]="perananList.length === 0">Hapus</button>
+          <button class="btn btn-all">Simpan</button>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="pagination-wrapper row mt-4 pb-2 pt-2">
+          <div class="col-12">
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-all me-2">Tolak</button>
+              <button class="btn btn-submit me-2" disabled>Wujud ID</button>
+              <button class="btn btn-all" (click)="goToPrevious()">&lt;</button>
+              <button class="btn btn-all" (click)="goToNext()">&gt;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="penetapanPerananModal" tabindex="-1" aria-labelledby="penetapanPerananModalLabel"
+  aria-hidden="true" [class.show]="isModalOpen" [style.display]="isModalOpen ? 'block' : 'none'">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="penetapanPerananModalLabel">Penetapan Peranan</h5> <button type="button"
+          class="btn-close" (click)="closePenetapanPerananModal()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body"> <!-- Penetapan Peranan Form -->
+        <div class="row g-3 mb-4">`
+          <div class="row g-3 mb-4">
+            <div class="col-md-6">
+              <label class="form-label">Bahagian*</label>
+              <select class="form-select" [(ngModel)]="modalForm.bahagian">
+                <option *ngFor="let b of deptList" [ngValue]="b.deptCd">{{ b.deptBmDesc }}</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Unit*</label>
+              <select class="form-select" [(ngModel)]="modalForm.unit">
+                <option *ngFor="let u of unitList" [ngValue]="u.unitCd">{{ u.unitBmDesc }}</option>
+              </select>
+            </div>
+
+            <div class="col-md-12">
+              <label class="form-label">Peranan*</label>
+              <select class="form-select" [(ngModel)]="modalForm.peranan">
+                <option *ngFor="let p of roleList" [ngValue]="p.roleCd">{{ p.roleBmDesc }}</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="mb-4">
+          <h6 class="mb-3">Senarai Urusniaga</h6>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead class="table-light">
+                <tr>
+                  <th style="width: 70%;">Urusniaga</th>
+                  <th style="width: 30%; text-align: center;">Tanda</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Tambah Peranan dan Tugasan ID Pengguna</td>
+                  <td class="text-center"> <input type="checkbox" class="form-check-input"
+                      [(ngModel)]="modalForm.urusniaga.tambahPeranan"> </td>
+                </tr>
+                <tr>
+                  <td>Kemas Kini Maklumat Pengguna Dan Jawatan</td>
+                  <td class="text-center"> <input type="checkbox" class="form-check-input"
+                      [(ngModel)]="modalForm.urusniaga.kemaskiniMaklumat"> </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer"> <button type="button" class="btn btn-secondary"
+          (click)="closePenetapanPerananModal()">Tutup</button> <button type="button" class="btn btn-primary"
+          (click)="tambahPeranan()">Tambah</button> </div>
+    </div>
+  </div>
+</div> <!-- Modal Backdrop -->
+<div class="modal-backdrop fade" [class.show]="isModalOpen" *ngIf="isModalOpen" (click)="closePenetapanPerananModal()">
+</div>

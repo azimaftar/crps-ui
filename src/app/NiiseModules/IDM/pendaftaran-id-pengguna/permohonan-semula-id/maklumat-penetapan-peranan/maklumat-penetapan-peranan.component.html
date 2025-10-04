@@ -1,0 +1,139 @@
+<div class="container-fluid">
+  <!-- Main Content Area -->
+  <div class="card">
+    <div class="ms-4 me-4">
+      <div class="mt-2 mb-2">
+        <h3 class="mb-2 mt-4"><b>PERMOHONAN ID BAHARU PENGGUNA - PERMOHONAN SEMULA ID</b></h3>
+      </div>
+      <div class="mt-4">
+        <reusable-tab [currentStep]="currentStep" [steps]="steps"></reusable-tab>
+        <div class="row align-items-center mb-3">
+          <!-- Left Side: Maklumat Peranan -->
+          <div class="col-md-6">
+            <p class="mb-0">2. Maklumat Penetapan Peranan</p>
+            <small class="text-muted">Langkah 2 daripada 5</small>
+          </div>
+        </div>
+
+        <!-- Maklumat Keputusan Section -->
+        <div class="mb-4 p-3 border rounded bg-light">
+          <div class="row mb-3">
+            <div class="col-md-3">
+              <label class="form-label">Lokasi/Negeri </label>
+            </div>
+            <div class="col-md-3">
+              <input type="text" class="form-control" value="Putrajaya"
+                readonly>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-3">
+              <label class="form-label">Tempat Bertugas/Cawangan</label>
+            </div>
+            <div class="col-md-3">
+              <input type="text" class="form-control"  value="JIM HQ"
+                readonly>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-pagination-wrapper">
+          <!-- Scrollable Table Container -->
+          <div class="table-responsive table-scroll-container">
+            <table class="table table-hover table-row">
+              <thead class="">
+                <tr class="">
+                  <th>
+                    <div class="d-flex align-items-center gap-2 ps-0 pb-0 table-header">Bil</div>
+                  </th>
+                  <th class="table-header">Nama Dokumen</th>
+                  <th class="table-header">Unit</th>
+                  <th class="table-header">Peranan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let peranan of paginatedPeranan; let i = index" [class.table-active]="peranan.selected">
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      {{ (currentPage - 1) * itemsPerPage + i + 1 }}
+                    </div>
+                  </td>
+                  <td class="text-truncate" [title]="peranan.bahagian">{{ peranan.bahagian }}</td>
+                  <td class="text-truncate">{{ peranan.unit }}</td>
+                  <td class="text-truncate">{{ peranan.peranan }}</td>
+                </tr>
+                <tr *ngIf="paginatedPeranan.length === 0">
+                  <td colspan="5" class="text-center text-muted py-4">
+                    Tiada data peranan dijumpai
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination and Controls -->
+          <div class="row mt-3 pagination-row">
+            <div class="col">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <!-- Left: Items per page -->
+                <div class="d-flex align-items-center gap-3">
+                  <select class="form-select form-select-sm rounded-pill" [(ngModel)]="itemsPerPage"
+                    (change)="onItemsPerPageChange()">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                  </select>
+                </div>
+
+                <!-- Right: Pagination and Pergi ke -->
+                <div class="d-flex align-items-center flex-wrap gap-2">
+                  <!-- Pagination -->
+                  <nav>
+                    <ul class="pagination pagination-sm mb-0">
+                      <li class="page-item" [class.disabled]="currentPage === 1">
+                        <button class="page-link" (click)="goToPage('first')">&laquo;</button>
+                      </li>
+                      <li class="page-item" [class.disabled]="currentPage === 1">
+                        <button class="page-link" (click)="goToPage('prev')">&lsaquo;</button>
+                      </li>
+                      <li class="page-item active">
+                        <span class="page-link">{{ currentPage }}</span>
+                      </li>
+                      <li class="page-item" [class.disabled]="currentPage === totalPages">
+                        <button class="page-link" (click)="goToPage('next')">&rsaquo;</button>
+                      </li>
+                      <li class="page-item" [class.disabled]="currentPage === totalPages">
+                        <button class="page-link" (click)="goToPage('last')">&raquo;</button>
+                      </li>
+                    </ul>
+                  </nav>
+
+                  <div class="d-flex align-items-center">
+                    <small class="text-muted">Pergi ke</small>
+                    <input type="number" class="form-control form-control-sm" style="width: 60px;"
+                      [(ngModel)]="goToPageNumber" (keyup.enter)="goToSpecificPage()" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Navigation -->
+      <div class="pagination-wrapper row mt-4 pb-2 pt-2">
+        <div class="col-12">
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-all me-2">Hantar Permohonan</button>
+            <button class="btn btn-all me-2">Pemulangan semula</button>
+            <button class="btn btn-all me-2">Tidak Lulus</button>
+            <button class="btn btn-all me-2">Lulus</button>
+            <button class="btn btn-all" (click)="goToPrevious()">&lt;</button>
+            <button class="btn btn-all" (click)="goToNext()">&gt;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,227 @@
+
+<div class="custom-content-wrapper">    
+  <c-card>
+    <c-card-body>
+      <c-row class="my-2">
+        <h4 class="fw-bold">KEMASKINI MAKLUMAT PENDAFTARAN KENDERAAAN (TOUCH 'N GO / KAD MINYAK / BUKU LOG) </h4>
+      </c-row>
+
+      <c-row class="my-2">
+        <c-col>
+          <ng-container *ngFor="let section of mainSteps">
+            <button
+              type="button"
+              class="btn-custom-breadcrumbADM btn btn-light d-inline-flex gap-2 fw-semibold"
+              [ngClass]="{
+                'btn-custom-breadcrumbADM-active':
+                  section.mainStep === currentMainStep
+              }"
+            >
+              <span
+                class="btn-custom-breadcrumbNoADM"
+                [ngClass]="{
+                  'btn-custom-breadcrumbNoADM-active':
+                    section.mainStep === currentMainStep
+                }"
+                >{{ section.mainStep }}</span
+              >
+              <span class="btn-custom-breadcrumbLabelADM">{{
+                section.mainLabel
+              }}</span>
+            </button>
+          </ng-container>
+        </c-col>
+      </c-row>
+
+      <c-row class="my-2">
+        <c-col class="d-flex flex-nowrap overflow-auto align-items-stretch">
+          <ng-container *ngFor="let section of subSteps">
+            <button
+              type="button"
+              class="btn-custom-breadcrumbADM fw-semibold btn btn-light d-inline-flex gap-2 flex-shrink-0"
+              #subButton
+              [ngClass]="{
+                'btn-custom-breadcrumbADM-active':
+                  section.mainStep === currentMainStep &&
+                  section.subStep === currentSubStep
+              }"
+            >
+              <span
+                class="btn-custom-breadcrumbNoADM"
+                [ngClass]="{
+                  'btn-custom-breadcrumbNoADM-active':
+                    section.mainStep === currentMainStep &&
+                    section.subStep === currentSubStep
+                }"
+                >{{ section.subStep }}</span
+              >
+              <span class="btn-custom-breadcrumbLabelADM">{{
+                section.subLabel
+              }}</span>
+            </button>
+          </ng-container>
+        </c-col>
+      </c-row>
+
+      <c-row class="mb-4 mt-5">
+        <c-col xs="12" md="10">
+          <h5 class="fw-semibold">Carian Kenderaan</h5>
+        </c-col> 
+      </c-row>
+      <c-row class="mb-4">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Nombor Pendaftaran</label>
+        </c-col>
+        <c-col xs="12" md="4">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+        <c-col  md="3" class="d-flex gap-5 flex-shrink-0" (click)="ShowMaklumatCarianTidakWujud()">
+            <div class="d-flex gap-2">
+            <button type="button" class="custom-button">
+               <img src="../../../../../../assets/images/find-icon.svg" alt="find" class="find-icon" style="margin-right: 5px;margin-bottom: 2px;">
+               Carian
+            </button>
+            </div>
+        </c-col>
+      </c-row>
+
+
+    <c-row class="mt-5" style="border-top: 1px solid rgba(0, 0, 0, 0.1)">
+      <c-row class="align-items-end flex-md-nowrap mb-4">
+        <table class="table align-middle custom-table">
+            <colgroup>
+            <col style="width: 50px;" />  <!-- Kelayakan Cuti Tahun Semasa -->
+            <col style="width: 90px;" />  <!-- Kelayakan Cuti Tahun Semasa -->
+            <col style="width: 150px;" />  <!-- Baki Cuti Dibawa Ke Hadapan-->
+            <col style="width: 100px;" />  <!-- Jumlah Cuti Semasa -->
+            <col style="width: 110px;" />  <!-- Jumlah Cuti Diambil Semasa -->
+            <col style="width: 110px;" />  <!-- Jumlah Cuti Diambil Semasa -->
+            </colgroup>
+            <thead>
+            <tr class="align-middle">
+                <th class="py-3">Bil.</th>
+                <th class="py-3">No Pendaftaran</th>
+                <th class="py-3">Jenis / Jenama / Model Kenderaan</th>
+                <th class="py-3">Kementerian / Jabatan</th>
+                <th class="py-3">Bahagian / Cawangan</th>
+                <th class="py-3">Touch 'N Go / Kad Minyak / Buku Log</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr
+                *ngFor="let item of tableData; let i = index"
+                class="align-middle"
+            >
+                <td class="py-4">{{ item.bil }}</td>
+                <td class="py-4">{{ item.noPlate }}</td>
+                <td class="py-4">{{ item.model }}</td>
+                <td class="py-4">{{ item.jabatan }}</td>
+                <td class="py-4">{{ item.cawangan }}</td>
+                <td class="py-4"><button type="button" class="btn btn-primary">
+                Kemaskini
+                </button></td>                       
+            </tr>
+            </tbody>
+        </table> 
+      </c-row>
+    </c-row>
+
+      <c-row class="mb-4 mt-5">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Maklumat Touch 'N Go</label>
+        </c-col>
+      </c-row>
+      <c-row class="mb-4">
+        <c-col xs="12" md="2">
+          <label>Nombor Siri</label>
+        </c-col>
+        <c-col xs="12" md="4">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+        <c-col xs="12" md="2">
+          <label>Tarikh Luput</label>
+        </c-col>
+        <c-col xs="12" md="2">
+          <input type="date" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-4">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Maklumat kad Minyak</label>
+        </c-col>
+      </c-row>
+      <c-row class="mb-4">
+        <c-col xs="12" md="2">
+          <label>Nombor Siri</label>
+        </c-col>
+        <c-col xs="12" md="4">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+        <c-col xs="12" md="2">
+          <label>Tarikh Luput</label>
+        </c-col>
+        <c-col xs="12" md="2">
+          <input type="date" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-4">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Maklumat Buku Log</label>
+        </c-col>
+      </c-row>
+      <c-row class="mb-4">
+        <c-col xs="12" md="2">
+          <label>Nombor Siri</label>
+        </c-col>
+        <c-col xs="12" md="4">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+        <c-col xs="12" md="2">
+          <label>Tarikh Luput</label>
+        </c-col>
+        <c-col xs="12" md="2">
+          <input type="date" id="" class="form-control" />
+        </c-col>
+      </c-row>
+
+      <c-row class="mt-5" style="border-top: 1px solid rgba(0, 0, 0, 0.1)">
+        <c-col class="d-flex gap-5 flex-shrink-0 justify-content-end py-3">
+
+            <div class="d-flex gap-2">
+            <button type="button" class="btn btn-primary">
+              <img src="../../../../../../assets/images/icons8-save-30.png" alt="register" style="margin-right: 5px;margin-bottom: 2px;">
+              Simpan
+            </button>
+            <button type="button" class="custom-button" (click)="showRekodDihantar()">
+              <img src="../../../../../../assets/images/check-circle-black.svg" alt="register" class='tick-icon' style="margin-right: 5px;margin-bottom: 2px;">
+              Hantar
+            </button>
+            <button
+              type="button"
+              class="btn-custom-normalWhite fw-semibold btn btn-light"
+            >
+              &lt;
+            </button>
+            <button
+              type="button"
+              class="btn-custom-normalWhite fw-semibold btn btn-light"
+            >
+              &gt;
+            </button>
+            </div>
+
+        </c-col>
+      </c-row>
+    </c-card-body>
+  </c-card>
+</div>
+
+<app-maklumat-carian-tidak-wujud
+[maklumatCarian]="MaklumatCarianTidakWujud"
+(close)="closeModal()" >
+</app-maklumat-carian-tidak-wujud>
+
+<app-rekod-berjaya-dihantar
+[RekodDihantar]="HantarRekodDihantar"
+  (close)="closeModal()" >
+</app-rekod-berjaya-dihantar>

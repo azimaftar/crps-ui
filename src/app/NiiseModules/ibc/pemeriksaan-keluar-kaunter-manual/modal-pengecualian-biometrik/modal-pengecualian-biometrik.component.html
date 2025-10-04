@@ -1,0 +1,25 @@
+<c-modal [visible]="isVisible" (visibleChange)="onVisibleChange($event)" alignment="center" backdrop="static">
+    <c-modal-header>
+        <h5 cModalTitle style="text-align: left;">PENGECUALIAN BIOMETRIK</h5>
+        <button type="button" cButtonClose (click)="justCloseModal()" aria-label="Close">
+        </button>
+    </c-modal-header>
+    <c-modal-body style="height: 350px;">
+        <label for="senarai" style="margin: 5px">Senarai Pengecualian</label>
+        <select id="senarai" style="padding: 5px;">
+            <option value="Imbasan Wajah Gagal">Imbasan Wajah Gagal</option>
+            <option value="Tisu Jari Rosak">Tisu Jari Rosak</option>
+            <option value="OKU Tiada Jari">OKU Tiada Jari</option>
+            <option value="Wajah Tidak Sempurna">Wajah Tidak Sempurna</option>
+            <option value="OKU Tiada Penglihatan">OKU Tiada Penglihatan</option>
+            <option value="VVIP">VVIP</option>
+            <option value="Penumpang Singgahan">Penumpang Singgahan</option>
+            <option value="Anak Kapal Kargo/Penumpang Pemeriksaan Di Atas Kapal">Anak Kapal Kargo/Penumpang Pemeriksaan
+                Di Atas Kapal</option>
+            <option value="Tentera Asing Yang Bertugas">Tentera Asing Yang Bertugas</option>
+        </select>
+    </c-modal-body>
+    <button type="button" cButton color="primary" style="margin: 50px; padding: 10px 40px;" (click)="closeModal()">
+        OK
+    </button>
+</c-modal>

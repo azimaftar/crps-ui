@@ -1,0 +1,97 @@
+c-card {
+  padding: 20px;
+}
+
+.btn-custom-breadcrumbADM {
+  background-color: #ffffff;
+  border: 0px solid #cad5e2;
+  padding: 8px 12px;
+  margin: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  align-items: center;
+}
+
+.btn-custom-breadcrumbLabelADM {
+  color: #314158;
+}
+
+
+.btn-custom-breadcrumbLabelADM {
+  color: #314158;
+}
+
+.btn-custom-breadcrumbNoADM {
+  color: #ffffff;
+  background-color: #62748e;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-custom-breadcrumbADM-active {
+  background-color: #ffffff;
+  border: 1px solid #cad5e2;
+  box-shadow: 0 2px 4px rgba(0.1, 0.1, 0.1, 0.1);
+  border-radius: 4px;
+  padding: 12px 8px;
+  margin: 1px;
+  font-size: 14px;
+}
+
+.btn-custom-breadcrumbNoADM-active {
+  color: #ffffff;
+  border-radius: var(--global-layout-radius-max, 9999px);
+  background: var(
+    --brand-gradient-primary,
+    linear-gradient(
+      259deg,
+      var(--_root-color-niise-teal-500, #00bba7) 0%,
+      var(--_root-color-niise-blue-900, #122640) 98.29%
+    )
+  );
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-custom-normalWhite {
+  border: 1px solid #cad5e2;
+  background-color: #ffffff;
+  font-size: 14px;
+}
+
+.btn-custom-normalBlue {
+  border: 1px solid #cad5e2;
+  font-size: 14px;
+  padding: 10px 16px;
+}
+
+.btn-size{
+  width: 40px;
+}
+
+.custom-button {
+  background-color: white;
+  color: black;
+  border: 1px solid #CAD5E2;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.custom-button:hover {
+  background-color: #f0f0f0;
+  border-color: #a9b8c9;
+}
+
+.custom-button:active {
+  background-color: #e0e0e0;
+  border-color: #90a0b0;
+}

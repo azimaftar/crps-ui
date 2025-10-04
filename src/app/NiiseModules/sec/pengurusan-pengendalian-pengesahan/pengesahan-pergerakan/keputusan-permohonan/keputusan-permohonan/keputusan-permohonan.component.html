@@ -1,0 +1,151 @@
+<div class="horizontal-stepper">
+    <ul class="stepper-list d-flex align-items-center justify-content-start flex-wrap">
+    <li
+        class="stepper-item"
+        *ngFor="let step of steps; let i = index" 
+        [class.active]="currentStep === step.number" 
+        (click)="navigateToStep(i)">
+        <button type="button" class="step-btn" [class.disabled]="step.isAccessible === false">
+        <span class="step-number">{{ step.number }}</span>
+        <span class="step-title">{{ step.title }}</span>
+        </button>
+    </li>
+    </ul>
+</div>
+
+<c-card class="mb-3">
+    <c-card-body>
+        <form (ngSubmit)="onSubmit($event)">
+            <c-col>
+                <c-card-body>
+                    <h4 class="fw-bold mb-3">Cetak Surat Pengesahan</h4>
+                    
+                    <form>
+                        <c-row class="mb-3">
+                            <c-col>
+                                <label class="form-label fw-semibold" for="namaPemohon">
+                                    Nama Pemohon<span style="color: red;">*</span>
+                                </label>
+                                <input [class]="getFieldClass('namaPemohon')" id="namaPemohon" 
+                                        name="namaPemohon" type="text" placeholder="Nama Pemohon"
+                                        [(ngModel)]="keputusanPermohonan.namaPemohon" 
+                                        (input)="onFieldChange('namaPemohon')" required>
+                                <div *ngIf="showValidationMessages && hasFieldError('namaPemohon')" class="invalid-feedback">
+                                    {{ getFieldError('namaPemohon') }}
+                                </div>
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3">
+                            <c-col md="6">
+                                <label class="form-label fw-semibold" for="nomborKadPengenalan">
+                                    Nombor Kad Pengenalan<span style="color: red;">*</span>
+                                </label>
+                                <input [class]="getFieldClass('nomborKadPengenalan')" id="nomborKadPengenalan" 
+                                    name="nomborKadPengenalan" type="text" placeholder="Nombor Kad Pengenalan"
+                                    [(ngModel)]="keputusanPermohonan.nomborKadPengenalan" 
+                                    (input)="onFieldChange('nomborKadPengenalan')" required>
+                                <div *ngIf="showValidationMessages && hasFieldError('nomborKadPengenalan')" class="invalid-feedback">
+                                    {{ getFieldError('nomborKadPengenalan') }}
+                                </div>
+                            </c-col>
+                        </c-row>
+
+                         <c-row class="mb-3">
+                            <c-col>
+                                <label class="form-label fw-semibold" for="emelPemohon">
+                                    E-Mel<span style="color: red;">*</span>
+                                </label>
+                                <input [class]="getFieldClass('emelPemohon')" id="emelPemohon" 
+                                        name="emelPemohon" type="text" placeholder="Emel"
+                                        [(ngModel)]="keputusanPermohonan.emelPemohon" 
+                                        (input)="onFieldChange('emelPemohon')" required>
+                                <div *ngIf="showValidationMessages && hasFieldError('emelPemohon')" class="invalid-feedback">
+                                    {{ getFieldError('emelPemohon') }}
+                                </div>
+                            </c-col>
+                        </c-row>
+
+                         <c-row class="mb-3">
+                            <c-col>
+                                <label class="form-label fw-semibold" for="nomborTelefon">
+                                    Nombor Telefon<span style="color: red;">*</span>
+                                </label>
+                                <input [class]="getFieldClass('nomborTelefon')" id="nomborTelefon" 
+                                        name="nomborTelefon" type="text" placeholder="Nombor Telefon"
+                                        [(ngModel)]="keputusanPermohonan.nomborTelefon" 
+                                        (input)="onFieldChange('nomborTelefon')" required>
+                                <div *ngIf="showValidationMessages && hasFieldError('nomborTelefon')" class="invalid-feedback">
+                                    {{ getFieldError('nomborTelefon') }}
+                                </div>
+                            </c-col>
+                        </c-row>
+
+                         <c-row class="mb-3">
+                            <c-col>
+                                <label class="form-label fw-semibold" for="namaAgensi">
+                                    Nama Agensi<span style="color: red;">*</span>
+                                </label>
+                                <input [class]="getFieldClass('namaAgensi')" id="namaAgensi" 
+                                        name="namaAgensi" type="text" placeholder="Nama Agensi"
+                                        [(ngModel)]="keputusanPermohonan.namaAgensi" 
+                                        (input)="onFieldChange('namaAgensi')" required>
+                                <div *ngIf="showValidationMessages && hasFieldError('namaAgensi')" class="invalid-feedback">
+                                    {{ getFieldError('namaAgensi') }}
+                                </div>
+                            </c-col>
+                        </c-row>
+                    </form>
+                </c-card-body>
+            
+            </c-col>
+            
+            <c-row class="mt-4 mb-3">
+                <c-col class="d-flex justify-content-end align-items-center gap-2">
+                    <div class="d-flex flex-wrap gap-3 my-3">
+                        <button cButton type="button" color="secondary"
+                                class="text-white px-4 py-2 flex-grow-1 flex-md-grow-0" (click)="resetForm()">
+                            <i class="fas fa-undo me-2"></i>
+                            Set Semula
+                        </button>
+                        <button cButton type="button" color="primary" class="text-white px-4 py-2 flex-grow-1 flex-md-grow-0" 
+                            (click)="submitForm()">
+                            <i class="fas fa-save me-2"></i>
+                            Jana
+                        </button>
+                        <!-- Testing purposes -->
+                         <!-- <button cButton type="button" color="primary" class="text-white px-4 py-2 flex-grow-1 flex-md-grow-0" 
+                            (click)="downloadPengesahanLetter()">
+                            <i class="fas fa-save me-2"></i>
+                            Muat Turun
+                        </button>
+                         <button cButton type="button" color="primary" class="text-white px-4 py-2 flex-grow-1 flex-md-grow-0" 
+                            (click)="printPengesahanLetter()">
+                            <i class="fas fa-save me-2"></i>
+                            Cetak
+                        </button> -->
+                    </div>
+
+                    <div class="d-flex gap-2 ms-4">
+                        <button cButton type="button" [disabled]="!disableGoBack()" 
+                                color="primary" class="text-white px-3 nav-btn" (click)="goBack()">
+                            &lt;
+                        </button>
+                        <button cButton type="button" [disabled]="disableGoNext()" 
+                                color="primary" class="text-white px-3 nav-btn" (click)="goNext()">
+                            &gt;
+                        </button>
+                    </div>
+                </c-col>
+            </c-row>
+        </form>
+    </c-card-body>
+</c-card>
+
+<app-shared-modal
+  [visible]="modalVisible"
+  [message]="modalMessage"
+  [mode]="modalMode" 
+  (confirm)="handleConfirmSubmit()"
+  (cancel)="handleCancelModal()">
+</app-shared-modal>

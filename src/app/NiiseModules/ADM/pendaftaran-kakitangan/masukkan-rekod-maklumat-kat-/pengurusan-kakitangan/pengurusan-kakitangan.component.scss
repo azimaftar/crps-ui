@@ -1,0 +1,120 @@
+.container {
+  padding: 30px;
+  width:100%;
+  margin: 40px auto;
+  position: relative;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.hrmis-btn {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background-color: black;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.hrmis-btn:hover {
+  background-color: #333;
+  border-color: #333;
+}
+
+.hrmis-btn:focus {
+  background-color: #333;
+  border-color: #333;
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+  
+}
+
+.form-group {
+  margin: 20px 0;
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+
+    span {
+      color: red;
+    }
+  }
+
+  select
+   {
+    width: 30%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    // margin-bottom: 50px;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #000;
+    box-sizing: border-box;
+  }
+}
+
+.button-group {
+  margin-top: 40px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.button-group .btn {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.button-group .btn:hover {
+    background-color: #333;
+    border-color: #333;
+}
+
+.button-group .btn:focus {
+    background-color: #333;
+    border-color: #333;
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+}
+
+.find-icon{
+  width: 20px;
+  height: 20px;
+}
+
+.custom-button {
+  background-color: white;
+  color: black;
+  border: 1px solid #CAD5E2;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.custom-button:hover {
+  background-color: #f0f0f0;
+  border-color: #a9b8c9;
+}
+
+
+.custom-button:active {
+  background-color: #e0e0e0;
+  border-color: #90a0b0;
+}

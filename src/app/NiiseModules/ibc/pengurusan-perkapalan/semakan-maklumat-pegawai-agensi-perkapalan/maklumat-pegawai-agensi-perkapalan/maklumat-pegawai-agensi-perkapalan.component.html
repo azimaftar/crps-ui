@@ -1,0 +1,119 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="ms-4 me-4">
+      <div class="mt-2 mb-2">
+        <h3 class="mb-2 mt-4"><b>PROFIL</b></h3>
+      </div>
+      <div class="mt-4">
+        <!-- Left Side: Step Info -->
+        <reusable-tab [currentStep]="currentStep" [steps]="steps"></reusable-tab>
+        <div class="col-md-6 mb-4">
+          <p class="mb-0">{{ currentStep }}. {{ steps[currentStep - 1] }}</p>
+          <small class="text-muted">Langkah {{ currentStep }} daripada {{ steps.length }}</small>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="row flex-column flex-lg-row">
+          <div class="col-md-2 mb-3 mb-md-0">
+            <div class="d-flex flex-column align-items-center">
+              <img src="assets/images/avatars/9.jpg" alt="Profile Image" class="img-fluid rounded-2"
+                style="width: 150px; height: 150px; object-fit: cover;">
+            </div>
+          </div>
+          <div class="col-10">
+            <!-- Profile Image Section -->
+            <!-- <h6 class="mb-3">Maklumat Profil Pegawai Agensi Perkapalan</h6> -->
+            <!-- Form Fields -->
+            <!-- My Kad -->
+            <div class="row ps-3">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">My Kad</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.officerKpNo" name="officerKpNo">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Nama Pegawai Agensi</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.agencyOfficerName"
+                    name="agencyOfficerName">
+                </div>
+              </div>
+            </div>
+
+            <!-- Jawatan -->
+            <div class="row ps-3">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Jawatan</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.job" name="job">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Department/Unit/Division</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.unit" name="unit">
+                </div>
+              </div>
+            </div>
+
+            <!-- No Telefon Pejabat -->
+            <div class="row ps-3">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">No Telefon Pejabat</label>
+                  <input type="email" class="form-control" [(ngModel)]="formData.officePhoneNo" name="officePhoneNo">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">No Telefon Mobile</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.officerPhoneNo" name="officerPhoneNo">
+                </div>
+              </div>
+            </div>
+
+
+
+            <!-- Emel Pegawai -->
+            <div class="row ps-3">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Emel Pegawai</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.officerEmail" name="officerEmail">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="row mt-4">
+          <div class="col-12">
+            <div class="d-flex justify-content-end gap-2 mb-4">
+              <!-- Reset Button -->
+              <button class="btn btn-outline-secondary d-flex align-items-center gap-1" type="reset"
+                (click)="resetForm()">
+                <i class="bi bi-arrow-clockwise"></i>
+                Set Semula
+              </button>
+
+              <!-- Save Button -->
+              <button class="btn btn-submit d-flex align-items-center gap-1" [disabled]="!isFormValid"
+                (click)="saveForm()">
+                <i class="bi bi-check-circle"></i>
+                Simpan
+              </button>
+              <button class="btn btn-all" (click)="goToPrevious()" disabled>
+                &lt;
+              </button>
+              <button class="btn btn-all" (click)="goToNext()">
+                &gt;
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">

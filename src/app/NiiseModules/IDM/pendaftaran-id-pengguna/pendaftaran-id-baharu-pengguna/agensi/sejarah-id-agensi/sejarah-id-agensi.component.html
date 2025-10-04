@@ -1,0 +1,162 @@
+<div class="d-flex" style="width: 100%;">
+    <div class="flex-grow-1" [style.marginRight.px]="isBreadcrumbOpen ? 260 : 0">
+        <c-card>
+            <c-card-header class="bg-primary text-white">PENDAFTARAN ID BAHARU PENGGUNA</c-card-header>
+            <c-card-body class="row">
+                <div class="col-12 col-md-12 order-2 order-md-1">
+                    <div class="text-start mb-3">
+                        <h5 class="mb-0"><strong>4. Sejarah ID</strong></h5>
+                        <small class="text-muted">Langkah 4 daripada 4</small>
+                    </div>
+                    <div class="col-12 d-flex align-items-end justify-content-end">
+                        <button type="button" class="btn btn-dark black-btn">
+                            + Muat Naik
+                        </button>
+                    </div>
+                    <div class="col-12 table-responsive mb-3">
+                        <table class="table">
+                            <thead>
+                                <tr class="align-middle">
+                                    <th class="py-4">Bil.</th>
+                                    <th class="py-4">Tarikh</th>
+                                    <th class="py-4">Perkara</th>
+                                    <th class="py-4">Tempat Bertugas/Cawangan</th>
+                                    <th class="py-4">Dilaksanakan Oleh</th>
+                                    <th class="py-4">Diluluskan Oleh</th>
+                                    <th class="py-4">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngIf="sejarah.length > 0; else noData">
+                                    <tr class="align-middle py-4" *ngFor="let sejarah of sejarah">
+                                        <td class="py-4">{{ sejarah.bil }}</td>
+                                        <td class="py-4">{{ sejarah.tarikh }}</td>
+                                        <td class="py-4">{{ sejarah.perkara }}</td>
+                                        <td class="py-4">{{ sejarah.tempat }}</td>
+                                        <td class="py-4">{{ sejarah.dilaksanakan }}</td>
+                                        <td class="py-4">{{ sejarah.diluluskan }}</td>
+                                        <td class="py-4">{{ sejarah.status }}</td>
+                                    </tr>
+                                </ng-container>
+                                <ng-template #noData>
+                                    <tr>
+                                        <td colspan="5" class="text-center py-4">Tiada data.</td>
+                                    </tr>
+                                </ng-template>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <div class="d-flex align-items-center">
+                            <select class="form-select form-select-sm" style="width: 70px;">
+                                <option>10</option>
+                                <option>25</option>
+                                <option>50</option>
+                                <option>100</option>
+                            </select>
+                        </div>
+
+                        <!-- Pagination (right side) -->
+                        <div class="d-flex align-items-center justify-content-center gap-2 mt-3">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination pagination-sm mb-0">
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0)">&laquo;</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0)">&lsaquo;</a>
+                                    </li>
+                                    <li class="page-item active">
+                                        <a class="page-link" href="javascript:void(0)">1</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0)">2</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0)">&rsaquo;</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0)">&raquo;</a>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                            <span class="ms-2">Pergi ke</span>
+                            <input type="text" class="form-control form-control-sm ms-1" style="width: 50px;" />
+                        </div>
+                    </div>
+                </div>
+            </c-card-body>
+        </c-card>
+
+        <!-- Action Buttons -->
+        <div class="d-flex justify-content-end mt-3 mb-3 position-relative" style="margin-right: 9px;">
+            <div class="d-flex gap-3">
+                <button class="btn btn-dark black-btn mt-1">Set Semula</button>
+                <button class="btn btn-dark black-btn mt-1" (click)="onSimpanClick()">Hantar</button>
+                <button class="btn btn-dark action-btn mt-1" (click)="openBreadcrumb()" [disabled]="isBreadcrumbOpen">
+                    &lt;
+                </button>
+                <button class="btn btn-dark action-btn mt-1" (click)="closeBreadcrumb()" [disabled]="!isBreadcrumbOpen">
+                    &gt;
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breadcrumb Navigation (right side) -->
+    <div class="breadcrumb-drawer" [class.open]="isBreadcrumbOpen" [class.closed]="!isBreadcrumbOpen">
+        <app-breadcrumb-agensi [activeStep]="activeStep"></app-breadcrumb-agensi>
+    </div>
+</div>
+
+<!-- Modal Markup -->
+<c-modal [(visible)]="visible" size="lg">
+    <c-modal-header>
+        <strong>Pilh Kod PTJ</strong>
+        <button type="button" class="btn-close" aria-label="Close" (click)="visible = false"></button>
+    </c-modal-header>
+
+    <c-modal-body>
+        <div class="col-12 table-responsive mb-3">
+            <table class="table">
+                <thead>
+                    <tr class="align-middle">
+                        <th><input type="checkbox" [(ngModel)]="selectAll"/></th>
+                        <th class="py-4">Bil.</th>
+                        <th class="py-4">Cawangan</th>
+                        <th class="py-4">Kod PTJ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="align-middle py-4" *ngFor="let modalPer of modalPeranan">
+                        <td>
+                            <input type="checkbox" [(ngModel)]="modalPer.checklist" />
+                        </td>
+                        <td class="py-4">{{ modalPer.bil }}</td>
+                        <td class="py-4">{{ modalPer.cawangan }}</td>
+                        <td class="py-4">{{ modalPer.kod }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </c-modal-body>
+
+    <c-modal-footer>
+        <button class="btn btn-dark black-btn" (click)="visible = false">Tutup</button>
+        <button class="btn btn-dark black-btn" (click)="visible = false">Tambah</button>
+    </c-modal-footer>
+</c-modal>
+
+<c-modal [(visible)]="confirmVisible" size="sm" backdrop="static" keyboard="false">
+    <c-modal-header class="border border-secondary">
+        Icon Here
+    </c-modal-header>
+    <c-modal-body>Pendaftaran anda telah berjaya dihantar.</c-modal-body>
+    <c-modal-footer class="d-flex justify-content-center">
+        <button class="btn btn-dark black-btn" (click)="confirmSave(false)">
+            Ya
+        </button>
+    </c-modal-footer>
+</c-modal>

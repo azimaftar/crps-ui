@@ -1,0 +1,201 @@
+<c-card class="mb-3">
+    <c-card-body>
+        <c-row>
+            <!-- Main Content Column -->
+            <c-col md="9">
+                <h5 class="mb-4">{{ pageTitle }}</h5>
+
+                <!-- Search Section -->
+                <div class="form-group">
+                    <c-row class="mb-3">
+                        <c-col md="6">
+                            <label for="category">Kategori Carian</label>
+                            <select id="category" class="form-select" [(ngModel)]="selectedCategory">
+                                <option *ngFor="let category of categories" [value]="category">
+                                    {{ category }}
+                                </option>
+                            </select>
+                        </c-col>
+                    </c-row>
+
+                    <!-- Warganegara Search -->
+                    <c-row class="mb-3" *ngIf="isWarganegara">
+                        <c-col md="6">
+                            <label for="identification">No Pengenalan</label>
+                            <div class="d-flex gap-2">
+                                <input id="identificationNumber" type="text" class="form-control"
+                                    [(ngModel)]="identificationNumber" placeholder="Masukkan No Pengenalan"
+                                    maxlength="12" pattern="^[0-9]{12}$" inputmode="numeric"
+                                    (input)="enforce12DigitLimit($event)" />
+                                <c-col class="col-4 ms-auto">
+                                    <button cButton color="primary" class="w-100" (click)="onSubmit()">Cari</button>
+                                </c-col>
+                            </div>
+                        </c-col>
+                    </c-row>
+
+                    <!-- Warga Asing Search -->
+                    <div *ngIf="isAsing">
+                        <c-row class="mb-3">
+                            <c-col md="6">
+                                <label for="details">Nama</label>
+                                <input id="details" type="text" class="form-control" [(ngModel)]="name"
+                                    placeholder="Masukkan Nama" />
+                            </c-col>
+                        </c-row>
+                        <c-row class="mb-3">
+                            <c-col md="6">
+                                <label for="nationality">Warganegara</label>
+                                <select id="nationality" class="form-select" [(ngModel)]="nationality">
+                                    <option value="" disabled hidden>Pilih Warganegara</option>
+                                    <option *ngFor="let country of nationalities" [value]="country">
+                                        {{ country }}
+                                    </option>
+                                </select>
+                            </c-col>
+                        </c-row>
+                        <c-row class="mb-3">
+                            <c-col md="6">
+                                <label for="dob">Tarikh Lahir</label>
+                                <input id="dob" type="date" class="form-control" [(ngModel)]="dob" />
+                            </c-col>
+                        </c-row>
+                        <c-row>
+                            <c-col class="col-4 ms-auto">
+                                <button cButton color="primary" class="w-100" (click)="onSubmit()">Cari</button>
+                            </c-col>
+                        </c-row>
+                    </div>
+
+                    <!-- Nombor Rujukan Search -->
+                    <c-row class="mb-3" *ngIf="isRujukan">
+                        <c-col md="6">
+                            <label for="fid">Nombor Rujukan Permohonan</label>
+                            <div class="d-flex gap-2">
+                                <input id="fid" type="text" class="form-control"
+                                    [(ngModel)]="fid" placeholder="Masukkan No Rujukan Permohonan" />
+                                <c-col class="col-4 ms-auto">
+                                    <button cButton color="primary" class="w-100" (click)="onSubmit()">Cari</button>
+                                </c-col>
+                            </div>
+                        </c-col>
+                    </c-row>
+                </div>
+                <!-- Always show the table -->
+                <ng-container *ngTemplateOutlet="resultTable"></ng-container>
+            </c-col>
+
+            <c-col md="3" class="px-4 py-3 mt-3 stepper-container">
+                <ul class="stepper-list">
+                    <li class="stepper-item" *ngFor="let step of steps; let i = index"
+                        [class.active]="isStepActive(step.number)">
+                        <div class="stepper-content">
+
+                            <!-- Clickable Step (Only for step number 1) -->
+                            <ng-container *ngIf="step.number === 1; else nonClickableStep">
+                                <span (click)="navigateToStep1()" class="step-number step-link"
+                                    [class.active]="isStepActive(step.number)">
+                                    {{ step.number }}
+                                </span>
+                                <span (click)="navigateToStep1()" class="step-title step-link"
+                                    [class.active]="isStepActive(step.number)">
+                                    {{ step.title }}
+                                </span>
+                            </ng-container>
+
+                            <!-- Non-clickable Step -->
+                            <ng-template #nonClickableStep>
+                                <span class="step-number" [class.active]="isStepActive(step.number)">
+                                    {{ step.number }}
+                                </span>
+                                <span class="step-title" [class.active]="isStepActive(step.number)">
+                                    {{ step.title }}
+                                </span>
+                            </ng-template>
+
+                        </div>
+
+                        <!-- Add line only if not the last step -->
+                        <div *ngIf="i < steps.length - 1" class="stepper-line"></div>
+                    </li>
+                </ul>
+            </c-col>
+
+
+        </c-row>
+
+        <!-- Reusable Table Template -->
+        <ng-template #resultTable>
+            <br>
+            <div class="table-responsive mt-4" style="max-width: 100%; overflow-x: auto;">
+                <div class="form-group col-6 d-flex align-items-center" *ngIf="isAsing">
+                    <label>Carian No.Dokumen</label>
+                    <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="Masukkan No.Dokumen">
+                </div>
+                <table cTable class="table search-results-table mb-0" style="min-width: 1000px;">
+
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th *ngIf="isWarganegara">No K/P</th>
+                            <th *ngIf="isAsing">Nama</th>
+                            <th *ngIf="isRujukan">Nama & No Rujukan</th>
+                            <th>No Dokumen</th>
+                            <th *ngIf="isWarganegara">W/N</th>
+                            <th *ngIf="isAsing || isRujukan">Warganegara</th>
+                            <th *ngIf="isWarganegara">Nama</th>
+                            <th *ngIf="isAsing || isRujukan">Tarikh Lahir</th>
+                            <th>Status</th>
+                            <th>Tindakan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngIf="searchResults.length > 0; else noResultsRow">
+                            <tr *ngFor="let item of searchResults; let i = index">
+                                <th scope="row">{{ i + 1 }}</th>
+                                <td *ngIf="isWarganegara">{{ item.kpNo }}</td>
+                                <td *ngIf="isAsing">{{ item.name }}</td>
+                                <td *ngIf="isRujukan">{{ item.fid }}</td>
+                                <td>{{ item.docNum }}</td>
+                                <td>{{ item.nationality }}</td>
+                                <td *ngIf="isWarganegara">{{ item.name }}</td>
+                                <td *ngIf="isAsing || isRujukan">{{ item.dob }}</td>
+                                <td>{{ item.recstat || '-' }}</td>
+                                <td>
+
+                                    <button cButton color="primary" size="sm" class="me-2" (click)="kemasKini(item)">
+                                        <svg cIcon name="cilPen" size="sm"></svg>
+                                    </button>
+
+                                    <button cButton color="primary" size="sm" class="me-2">
+                                        <svg cIcon name="cilScreenDesktop" size="sm"></svg>
+                                    </button>
+
+                                    <button cButton color="primary" size="sm" class="me-2">
+                                        <svg cIcon name="cilTrash" size="sm"></svg>
+                                    </button>
+
+                                </td>
+
+                            </tr>
+                        </ng-container>
+
+                        <!-- Fallback message when no results -->
+                        <ng-template #noResultsRow>
+                            <tr>
+                                <td colspan="6" class="text-center">
+                                    Tiada maklumat dijumpai berdasarkan carian anda.
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </tbody>
+                </table>
+            </div>
+        </ng-template>
+
+    </c-card-body>
+</c-card>
+
+<app-shared-modal [visible]="modalVisible" [message]="modalMessage" [mode]="modalMode" (confirm)="handleConfirmSubmit()"
+    (cancel)="handleCancelModal()">
+</app-shared-modal>

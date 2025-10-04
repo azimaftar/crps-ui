@@ -1,0 +1,181 @@
+<div class="d-flex" style="width: 100%;">
+    <div class="flex-grow-1" [style.marginRight.px]="isBreadcrumbOpen ? 260 : 0">
+        <c-card>
+            <c-card-header class="bg-primary text-white">PENDAFTARAN ID BAHARU PENGGUNA</c-card-header>
+            <c-card-body class="row">
+                <div class="col-12 col-md-12 order-2 order-md-1">
+                    <div class="text-start mb-3">
+                        <h5 class="mb-0"><strong>2. Maklumat Penetapan Peranan</strong></h5>
+                        <small class="text-muted">Langkah 2 daripada 5</small>
+                    </div>
+                    <div class="col-12 d-flex align-items-end justify-content-end">
+                        <button type="button" class="btn btn-dark black-btn" (click)="visible = true">
+                            Tambah Peranan
+                        </button>
+                    </div>
+                    <div class="col-12 table-responsive mb-3">
+                        <table class="table">
+                            <thead>
+                                <tr class="align-middle">
+                                    <th><input type="checkbox" [(ngModel)]="selectAll" (change)="toggleAll()" /></th>
+                                    <th class="py-4">Bil.</th>
+                                    <th class="py-4">Bahagian</th>
+                                    <th class="py-4">Unit</th>
+                                    <th class="py-4">Peranan</th>
+                                    <th class="py-4">Tindakan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="align-middle py-4" *ngFor="let mainPer of mainPeranan">
+                                    <td>
+                                        <input type="checkbox" [(ngModel)]="mainPer.checklist" />
+                                    </td>
+                                    <td class="py-4">{{ mainPer.bil }}</td>
+                                    <td class="py-4">{{ mainPer.bahagian }}</td>
+                                    <td class="py-4">{{ mainPer.unit }}</td>
+                                    <td class="py-4">{{ mainPer.peranan }}</td>
+                                    <td class="py-4">Icon Here</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <div class="d-flex align-items-center">
+                            <select class="form-select form-select-sm" style="width: 70px;">
+                                <option>10</option>
+                                <option>25</option>
+                                <option>50</option>
+                                <option>100</option>
+                            </select>
+                        </div>
+
+                        <!-- Pagination (right side) -->
+                        <div class="d-flex align-items-center justify-content-center gap-2 mt-3">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination pagination-sm mb-0">
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0)">&laquo;</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0)">&lsaquo;</a>
+                                    </li>
+                                    <li class="page-item active">
+                                        <a class="page-link" href="javascript:void(0)">1</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0)">2</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0)">&rsaquo;</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0)">&raquo;</a>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                            <span class="ms-2">Pergi ke</span>
+                            <input type="text" class="form-control form-control-sm ms-1" style="width: 50px;" />
+                        </div>
+                    </div>
+
+                    <div class="col-12 d-flex align-items-end justify-content-end gap-2 mt-5">
+                        <button type="button" class="btn btn-dark black-btn" (click)="hapusModel()">Hapus</button>
+                        <button type="button" class="btn btn-dark black-btn">Simpan</button>
+                    </div>
+                </div>
+            </c-card-body>
+        </c-card>
+
+        <!-- Action Buttons -->
+        <div class="d-flex justify-content-end mt-3 mb-3 position-relative" style="margin-right: 9px;">
+            <div class="d-flex gap-3">
+                <button class="btn btn-dark black-btn mt-1">Set Semula</button>
+                <button class="btn btn-dark black-btn mt-1">Hantar</button>
+                <button class="btn btn-dark action-btn mt-1" (click)="openBreadcrumb()" [disabled]="isBreadcrumbOpen">
+                    &lt;
+                </button>
+                <button class="btn btn-dark action-btn mt-1" (click)="closeBreadcrumb()" [disabled]="!isBreadcrumbOpen">
+                    &gt;
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breadcrumb Navigation (right side) -->
+    <div class="breadcrumb-drawer" [class.open]="isBreadcrumbOpen" [class.closed]="!isBreadcrumbOpen">
+        <app-breadcrumb [activeStep]="activeStep"></app-breadcrumb>
+    </div>
+</div>
+
+<!-- Modal Markup -->
+<c-modal [(visible)]="visible" size="lg">
+    <c-modal-header>
+        <strong>Penetapan Peranan</strong>
+        <button type="button" class="btn-close" aria-label="Close" (click)="visible = false"></button>
+    </c-modal-header>
+
+    <c-modal-body>
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Bahagian*</label>
+                <select class="form-select">
+                    <option>-Sila Pilih-</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Unit*</label>
+                <select class="form-select">
+                    <option>-Sila Pilih-</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Peranan*</label>
+                <select class="form-select">
+                    <option>-Sila Pilih-</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <strong>Senarai Urusniaga</strong>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Urusniaga</th>
+                        <th class="text-center">Tanda</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let modalPer of modalPeranan">
+                        <td>{{ modalPer.name }}</td>
+                        <td class="text-center">
+                            <input type="checkbox" [(ngModel)]="modalPer.checklist" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </c-modal-body>
+
+    <c-modal-footer>
+        <button class="btn btn-dark black-btn" (click)="visible = false">Tutup</button>
+        <button class="btn btn-dark black-btn" (click)="visible = false">Tambah</button>
+    </c-modal-footer>
+</c-modal>
+
+<!-- Originally was meant for Simpan button, but the text doesnt make sense. -->
+<c-modal [(visible)]="confirmVisible" size="sm" backdrop="static" keyboard="false">
+    <c-modal-header class="border border-secondary">
+        <!-- Image or Anything here based on SDS -->
+        Icon Here
+    </c-modal-header>
+    <c-modal-body> Adakah anda pasti ingin memadamkan rekod? </c-modal-body>
+    <c-modal-footer>
+        <button class="btn btn-dark black-btn" (click)="confirmSave(false)">
+            Tidak
+        </button>
+        <button class="btn btn-dark black-btn" (click)="confirmSave(true)">Ya</button>
+    </c-modal-footer>
+</c-modal>

@@ -1,0 +1,96 @@
+<div class="container-fluid">
+  <div class="form-section">
+    <div class="row">
+      <!-- Left Side: Officer Info -->
+      <div class="col-md-9 border-end pe-4">
+        <h5>Carian Biometrik</h5>
+
+        <form class="mt-3" > <!-- Optional if you handle submission -->
+
+          <div class="row mb-3">
+            <div class="col-md-6 d-flex align-items-center">  
+              <div class="photo-class">
+                <img src="assets/images/face.jpg" class="face-image" alt="face">
+              </div>
+            </div>
+
+            <div class="col-md-6 d-flex align-items-center">
+              <label class="form-label required">
+                % Pengecaman Wajah
+              </label>
+              <input type="text"  class="form-control" />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6"> 
+                <div class="photo-class">
+                  <img src="assets/images/iris.jpg" class="iris-image" alt="iris">
+                </div>
+            </div>
+            <div class="col-md-6 d-flex align-items-center">
+              <label class="form-label required">
+                % Pengecaman Iris
+              </label>
+              <input type="text"  class="form-control" />
+            </div>
+          </div>
+
+
+
+          <!-- Submit Button -->
+          <div class="row mb-3 justify-content-end">
+            <div class="col-auto">
+              <button type="button" class="btn btn-primary" style="width: 100px;" (click)="showHantarSubmit()">
+                Hantar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Right Side: Steps with vertical line -->
+      <div class="col-md-3 ps-4 border-start">
+        <div
+          class="step"
+          [class.active]="isStepActive(1)"
+          [class.completed]="isStepCompleted(1)"
+        >
+          <div class="circle">1</div>
+          <div class="label">Carian Profil</div>
+        </div>
+        <div
+          class="step"
+          [class.active]="isStepActive(2)"
+          [class.completed]="isStepCompleted(2)"
+        >
+          <div class="circle">2</div>
+          <div class="label">Profil Individu</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="d-flex justify-content-end mt-4">
+      <button
+        class="btn btn-secondary me-2"
+        (click)="goToPreviousStep()"
+        [disabled]="currentStep === 1"
+      >
+        &lt;
+      </button>
+      <button
+        class="btn btn-dark"
+        (click)="goToMaklumatPengganti()"
+        [disabled]="currentStep === maxStep"
+      >
+        &gt;
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-popup
+  [Hantarsubmit]="HantarSubmitPopup"
+  (close)="closeModal()">
+</app-popup>

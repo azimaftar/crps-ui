@@ -1,0 +1,86 @@
+<!-- Trigger buttons -->
+<!-- <button (click)="openPopup('Tiada Surat Kemudahan')" class="btn btn-primary me-2">
+  Here IBC W005
+</button>
+
+<button (click)="openPopup('Sekatan SLTD')" class="btn btn-primary me-2">
+  Here IBC W006
+</button>
+
+<button (click)="openPopup('RAE Julat Skor Risiko Sederhana/Tinggi')" class="btn btn-primary me-2">
+  Here IBC S056
+</button>
+
+<button (click)="openPopup('Sila ke Kaunter Manual')" class="btn btn-primary">
+  Here IBC N006
+</button> -->
+
+<!-- ONLY ONE popup block -->
+<!-- <div class="popup-overlay d-flex justify-content-center align-items-center" *ngIf="showPopup">
+  <div class="popup-content text-center p-4 bg-white rounded shadow">
+    <div class="popup-icon display-4 mb-3">⚠️</div>
+    <p class="popup-message fs-5">{{ popupMessage }}</p>
+    <button (click)="closePopup()" class="btn btn-primary mt-3">OK</button>
+  </div>
+</div> -->
+<!-- Trigger Buttons -->
+
+<button
+  (click)="openModalWithMessage('Tiada Surat Kemudahan')"
+  [cModalToggle]="verticallyCenteredModal.id"
+  cButton
+  color="primary"
+  class="me-2"
+>
+  Here IBC W005
+</button>
+
+<button
+  (click)="openModalWithMessage('Sekatan SLTD')"
+  [cModalToggle]="verticallyCenteredModal.id"
+  cButton
+  color="primary"
+  class="me-2"
+>
+  Here IBC W006
+</button>
+
+<button
+  (click)="openModalWithMessage('RAE Julat Skor Risiko Sederhana/Tinggi')"
+  [cModalToggle]="verticallyCenteredModal.id"
+  cButton
+  color="primary"
+  class="me-2"
+>
+  Here IBC S056
+</button>
+
+<button
+  (click)="openModalWithMessage('Sila ke Kaunter Manual')"
+  [cModalToggle]="verticallyCenteredModal.id"
+  cButton
+  color="primary"
+>
+  Here IBC N006
+</button>
+
+<!-- Modal -->
+<c-modal #verticallyCenteredModal alignment="center" id="verticallyCenteredModal">
+  <c-modal-header>
+    <h5 cModalTitle>Makluman</h5>
+    <button [cModalToggle]="verticallyCenteredModal.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <div class="text-center fs-5 d-flex flex-column align-items-center">
+      <div class="display-4 mb-2">⚠️</div>
+      <div>{{ popupMessage }}</div>
+    </div>
+
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="verticallyCenteredModal.id" cButton color="secondary">
+      OK
+    </button>
+    <!-- <button cButton color="primary">Understood</button> -->
+  </c-modal-footer>
+</c-modal>

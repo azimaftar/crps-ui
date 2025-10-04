@@ -1,0 +1,93 @@
+<c-card>
+    <h4 class="fw-bold m-3 mt-5">
+        KELULUSAN LAPORAN KEJADIAN
+    </h4>
+    <div class="m-3">
+        <app-stepper
+        [currentMainStep]="currentMainStep"
+        [currentSubStep]="currentSubStep"
+        ></app-stepper>
+    </div>
+    <c-card-body class="px-5">
+        <form [formGroup]="form">
+            <c-row>
+                <h6 class="fw-bold mb-3">Kelulusan Laporan Kejadian</h6>
+            </c-row>
+            <c-row>
+                <c-col md="2" xs="12">
+                    <label for="statusPengesahan" cLabel>Status Pengesahan</label>
+                </c-col>
+                <c-col md="6" class="d-flex gap-4">
+                    <c-form-check>
+                        <input cFormCheckInput type="radio" value="sah" name="statusPengesahan" formControlName="statusPengesahan" id="statusPengesahanSah" />
+                        <label cFormCheckLabel for="statusPengesahanSah">Sah</label>
+                      </c-form-check>
+                      
+                      <c-form-check>
+                        <input cFormCheckInput type="radio" value="tidakSah" name="statusPengesahan" formControlName="statusPengesahan" id="statusPengesahanTidakSah" />
+                        <label cFormCheckLabel for="statusPengesahanTidakSah">Tidak Sah</label>
+                      </c-form-check>                      
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="2" xs="12">
+                    <label for="catatan" cLabel>Catatan</label>
+                </c-col>
+                <c-col md="9">
+                    <textarea class="form-control" id="catatan" formControlName="catatan" rows="3"></textarea>
+                </c-col>
+            </c-row>
+        </form>
+    </c-card-body>
+    <c-card-footer>
+        <c-row>
+            <div class="d-flex justify-content-end">
+                <button color="primary" class="primary-custom-btn w-auto px-4 me-2" (click)="SimpanRekod(form)">
+                    <c-icon name="cilCheckCircle" class="me-2"></c-icon>
+                    Simpan</button>
+                <button color="primary" class="primary-custom-btn w-auto px-4 me-2" (click)="HantarRekod(form)">
+                    Hantar</button>
+                <button class="l-custom-btn rounded-3" (click)="navigatePreviousPage()">&lsaquo;</button>
+                <!-- <button class="r-custom-btn disabled-btn" disabled>&rsaquo;</button> -->
+            </div>
+        </c-row>
+    </c-card-footer>
+  </c-card>
+  
+  <app-modal-component
+    [visible]="simpanRekodModal"
+    title=""
+    message="Rekod Telah Berjaya Disimpan"
+    mode="ok"
+    icon="tick"
+    (close)="closeSimpanRekodModal()"
+  ></app-modal-component>
+  
+  <app-modal-component
+    [visible]="hantarRekodModal"
+    title=""
+    message="Rekod Telah Berjaya Dihantar"
+    mode="ok"
+    icon="tick"
+    (close)="closeHantarRekodModal()"
+  ></app-modal-component>
+  
+  <!-- Medan Mandatori Modal -->
+  <app-modal-component
+    [visible]="medanMandatoriVisible"
+    title=""
+    message="Medan Mandatori diperlukan"
+    mode="ok"
+    icon="danger"
+    (close)="medanMandatoriModalconfirm()"
+  ></app-modal-component>
+
+  <!-- Rekod Telah Dihantar untuk Pengesahan Modal -->
+  <app-modal-component
+    [visible]="pengesahanDihantarModal"
+    title=""
+    message="Rekod Telah Dihantar Untuk Pengesahan"
+    mode="ok"
+    icon="tick"
+    (close)="pengesahanDihantarModalconfirm()"
+  ></app-modal-component>

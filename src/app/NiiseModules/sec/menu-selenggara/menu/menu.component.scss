@@ -1,0 +1,611 @@
+/* Horizontal Stepper */
+.horizontal-stepper {
+  width: 1070px;
+  height: 40px;
+  background: var(--color-surface-off-white, rgba(248, 250, 252, 1));
+  border-radius: var(--global-layout-radius-md, 8px);
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  padding: 0;
+  /* figma says no padding */
+  gap: 0;
+  /* figma says gap = none */
+  opacity: 1;
+}
+
+.horizontal-stepper .stepper-list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.horizontal-stepper .step-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  padding: 6px 14px;
+  background: #f9f9f9;
+  font-size: 0.9rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.horizontal-stepper .step-number {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  color: #000;
+  font-size: 0.8rem;
+  line-height: 22px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.horizontal-stepper .active .step-btn {
+  border: none;
+  /* remove border */
+  background: #fff;
+  /* keep background */
+  color: #000000;
+  /* keep text color */
+  font-weight: bold;
+  /* keep bold text */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* add shadow */
+  transition: box-shadow 0.3s ease;
+  /* smooth effect */
+}
+
+.horizontal-stepper .active .step-number {
+  background: linear-gradient(258.77deg, #00BBA7 0%, #122640 98.29%);
+  color: #fff;
+}
+
+.stepper-list {
+  list-style: none;
+  /* removes the bullets */
+  margin: 0;
+  /* reset default margin */
+  padding: 0;
+  /* reset default padding */
+}
+
+.is-invalid {
+  border-color: #dc3545 !important;
+  /* Bootstrap red */
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+  /* subtle red glow */
+}
+
+//Dropdown
+.custom-dropdown {
+  width: 664px;
+  height: 40px;
+
+  padding: var(--gap-2, 8px) var(--gap-3, 12px);
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--color-outline-base, #CAD5E2);
+  background: var(--color-surface-white, #ffffff);
+
+  /* Typography for wording */
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-weight: 400;
+  font-size: var(--font-size-body-md, 14px);
+  line-height: 150%;
+  letter-spacing: 0;
+  color: var(--color-text-primary, #1D293D);
+
+  /* Remove default select arrow */
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+
+  /* Custom arrow (20x20) */
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 7.5L10 12.5L15 7.5' stroke='%231D293D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px 20px;
+
+  box-sizing: border-box;
+}
+
+/* Invalid state */
+.custom-dropdown.is-invalid {
+  border-color: red;
+}
+
+//header
+.custom-header {
+  font-family: var(--font-heading, 'Inter', sans-serif);
+  /* fallback font */
+  font-weight: 700;
+  /* Bold */
+  font-style: normal;
+  /* not italic */
+  font-size: var(--font-size-h4, 24px);
+  /* adjust px if your design system says different */
+  line-height: 120%;
+  /* 1.2 */
+  letter-spacing: 0;
+  color: var(--color-text-primary, #1D293D);
+  margin-bottom: 1rem;
+  /* keeps your existing .mb-4 spacing */
+}
+
+//label
+.custom-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  /* body font */
+  font-weight: 600;
+  /* Semi Bold */
+  font-style: normal;
+  font-size: var(--font-size-body-md, 14px);
+  /* fallback 14px */
+  line-height: 150%;
+  /* 1.5 */
+  letter-spacing: 0;
+  color: var(--color-text-primary, #1D293D);
+
+  display: inline-block;
+  /* ensures margins/paddings work as expected */
+  margin-top: 0.75rem;
+  /* keeps your .mt-3 spacing */
+}
+
+.custom-section-label {
+  font-family: 'Inter', sans-serif;
+  /* directly Inter, since Figma specifies */
+  font-weight: 700;
+  /* Bold */
+  font-style: normal;
+  font-size: 14px;
+  line-height: 110%;
+  /* 1.1 */
+  letter-spacing: 0;
+  text-transform: uppercase;
+  /* ALL CAPS */
+  color: var(--color-text-primary, #1D293D);
+
+  margin: 0;
+  /* ensures no extra spacing */
+  display: inline-block;
+}
+
+.dropdown-wrapper {
+  width: 1070px; //1312
+  height: 120px;
+  background: var(--color-surface-off-white, rgba(248, 250, 252, 1));
+  border-radius: var(--global-layout-radius-md, 8px);
+
+  padding: var(--global-layout-gap-4, 16px);
+  gap: 16px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* vertically center the row */
+  opacity: 1;
+}
+
+
+
+ //button
+.custom-btn {
+  width: 139px;
+  height: 40px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  /* spacing between icon and text */
+
+  padding: var(--gap-2-5, 6px) var(--gap-4, 16px);
+  /* gap/2-half ~ 6px, gap/4 ~ 16px based on naming */
+
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--color-surface-brand-primary, #1461BA);
+  background: var(--color-surface-brand-primary, #1461BA);
+
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 150%;
+  color: #fff;
+  cursor: pointer;
+
+  transition: background 0.2s ease, transform 0.15s ease;
+
+  &:hover {
+    background: darken(#1461BA, 5%);
+    /* or use var(--color-surface-brand-hover) if available */
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    background: darken(#1461BA, 10%);
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    background: #ccc;
+    border-color: #ccc;
+    cursor: not-allowed;
+  }
+}
+
+
+//row
+.custom-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  /* ✅ stretch to parent container */
+  max-width: 100%;
+  /* ✅ prevent overflow */
+  height: 40px;
+  gap: 10px;
+  padding: 0;
+  /* optional: control spacing */
+  box-sizing: border-box;
+  /* ensures padding is included */
+}
+
+//table
+.custom-table-container {
+  border: 1px solid var(--color-outline-lighter, rgba(241, 245, 249, 1));
+  border-radius: var(--global-layout-radius-md, 8px);
+  overflow: hidden;
+  /* makes border-radius apply to table */
+  max-width: 1312px;
+  /* follow Figma width */
+  margin: 0 auto;
+  /* center the table */
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  /* keeps columns aligned */
+}
+
+.custom-table thead {
+  background: var(--color-surface-white, #fff);
+  height: 48px;
+  /* Figma spec */
+  border-top: 1px solid var(--color-outline-lighter, rgba(241, 245, 249, 1));
+}
+
+.custom-table th {
+  font-family: var(--global-font-family-label, Inter);
+  font-weight: 400;
+  /* Regular */
+  font-size: var(--global-font-size-label-md, 14px);
+  line-height: 110%;
+  letter-spacing: 0;
+  color: var(--color-text-tertiary, rgba(98, 116, 142, 1));
+  background: var(--color-surface-white, #fff);
+
+  text-align: left;
+  vertical-align: middle;
+  /* Figma spec */
+  padding: 12px 16px;
+
+  height: 48px;
+  /* keep consistent header height */
+  white-space: nowrap;
+}
+
+
+.custom-table td {
+  font-family: var(--global-font-family-label, Inter);
+  font-weight: 400;
+  /* Regular */
+  font-size: var(--global-font-size-label-md, 14px);
+  line-height: 110%;
+  letter-spacing: 0;
+  color: var(--color-text-primary, rgba(29, 41, 61, 1));
+
+  background: var(--color-surface-white, #fff);
+
+  padding: 12px 16px;
+  border-top: 1px solid var(--color-outline-lighter, rgba(241, 245, 249, 1));
+  vertical-align: middle;
+  white-space: nowrap;
+  /* prevents text wrapping unless you want multi-line */
+}
+
+
+.custom-table tbody tr:hover {
+  background: rgba(241, 245, 249, 0.4);
+  /* subtle hover effect */
+}
+
+//table button
+/* Shared button styles */
+.action-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--global-layout-radius-md, 8px);
+  background: var(--color-surface-white, #fff);
+  border: 1px solid var(--color-outline-base, rgba(202, 213, 226, 1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-right: 8px;
+  /* spacing between buttons */
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.action-btn svg {
+  width: 20px;
+  height: 20px;
+  opacity: 1;
+  color: var(--color-text-primary, rgba(29, 41, 61, 1));
+}
+
+/* Hover effect */
+.action-btn:hover {
+  background: rgba(241, 245, 249, 0.6);
+}
+
+/* Lupus (destructive button) */
+.action-btn-danger {
+  border: 1px solid var(--color-outline-status-error-muted, rgba(252, 165, 165, 1));
+}
+
+.action-btn-danger svg {
+  color: rgba(220, 38, 38, 1);
+  /* red icon */
+}
+
+.action-btn-danger:hover {
+  background: rgba(254, 226, 226, 0.6);
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  /* center horizontally */
+  align-items: center;
+  gap: 8px;
+  /* space between buttons */
+}
+
+
+//form
+
+//label
+.custom-form-label {
+  width: 200px;
+  height: 21px;
+  font-family: var(--global-font-family-body, 'Inter', sans-serif);
+  font-weight: 600;
+  /* Semi Bold */
+  font-style: normal;
+  font-size: var(--global-font-size-body-md, 14px);
+  line-height: 150%;
+  letter-spacing: 0;
+  color: var(--color-text-primary, rgba(29, 41, 61, 1));
+  opacity: 1;
+}
+
+
+//footer
+.action-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5rem 1rem;
+  z-index: 500;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.15);
+
+  .nav-buttons {
+    display: flex;
+    gap: 0px;
+    align-items: center;
+  }
+
+  /* ===== Main Action Button (Simpan/Kemaskini/etc.) ===== */
+  .action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-width: 120px;
+    height: 40px;
+
+    padding: 4px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(20, 97, 186, 1);
+    background: rgba(20, 97, 186, 1);
+    color: #fff;
+
+    font-family: var(--font-family-action, 'Inter', sans-serif);
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 100%;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      color: #fff;
+      /* force icon white */
+    }
+
+    &:hover:not(:disabled) {
+      background: #135bb6;
+      border-color: #135bb6;
+    }
+
+    &:disabled {
+      background: #ccc;
+      border-color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+
+  /* ===== Navigation Buttons (Kembali / Seterusnya) ===== */
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 8px;
+    border: 1px solid rgba(202, 213, 226, 1);
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      color: rgba(29, 41, 61, 1);
+    }
+
+    &:hover:not(:disabled) {
+      background: #f8fafc;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .prev-btn {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  .next-btn {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+}
+
+/* ================================
+   Responsive overrides (non-destructive)
+   - Only overrides widths/flow for small screens
+   - Keeps desktop/large-screen design exactly as-is
+   ================================ */
+
+/* Tablet and below: make containers fluid and allow horizontal scroll on tight widths */
+@media (max-width: 1200px) {
+  .horizontal-stepper {
+    width: 100%;
+    max-width: 1070px;
+    overflow-x: auto; /* allow horizontal scroll if needed */
+  }
+
+  .dropdown-wrapper {
+    width: 100%;
+    max-width: 1070px;
+  }
+
+  .custom-dropdown {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .custom-table-container {
+    max-width: 100%;
+  }
+
+  .custom-header-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+/* Smaller tablets / large phones */
+@media (max-width: 768px) {
+  .horizontal-stepper .stepper-list {
+    gap: 0.5rem;
+    padding: 6px 8px;
+  }
+
+  .horizontal-stepper .step-btn {
+    padding: 5px 10px;
+    font-size: 0.85rem;
+  }
+
+  .custom-table thead,
+  .custom-table th,
+  .custom-table td {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .action-btn {
+    width: 36px;
+    height: 36px;
+    margin-right: 6px;
+  }
+
+  .custom-header {
+    font-size: 22px;
+  }
+}
+
+/* Phones: stack/resize where needed, keep look identical but usable */
+@media (max-width: 576px) {
+  .horizontal-stepper .stepper-list {
+    gap: 0.4rem;
+  }
+
+  .horizontal-stepper .step-btn {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+
+  .custom-header-row {
+    align-items: flex-start;
+  }
+
+  .custom-btn {
+    width: 100%;
+    max-width: 220px;
+  }
+
+  /* Allow the table to scroll horizontally on very small screens without changing table markup */
+  .custom-table-container {
+    overflow-x: auto;
+  }
+
+  .custom-table {
+    table-layout: auto;
+    min-width: 600px; /* ensures columns don't collapse too tightly; tweak if needed */
+  }
+
+  .custom-table th,
+  .custom-table td {
+    white-space: normal;
+  }
+}

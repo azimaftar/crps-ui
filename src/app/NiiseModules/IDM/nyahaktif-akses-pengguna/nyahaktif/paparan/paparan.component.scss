@@ -1,0 +1,12 @@
+::ng-deep .responsive-modal .modal-dialog {
+  max-width: 80vw;   /* 80% of screen width */
+  width: auto;
+  height: auto;
+  max-height: 80vh;  /* 80% of screen height */
+}
+
+::ng-deep .responsive-modal .modal-content {
+  height: 100%;
+  overflow-y: auto;  /* scroll inside if content too big */
+  border-radius: 12px;
+}

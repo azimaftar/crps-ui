@@ -1,0 +1,216 @@
+<c-card class="mb-3">  
+    <!-- HEADER PROFIL (UNCHANGED) -->
+    <c-card-header class="card-header">
+      <h4 class="card-header-title">Semakan Pemakluman Jangka Tiba</h4>
+    </c-card-header>
+
+    <!-- CONTENT CARD BODY (UNCHANGED) -->
+    <c-card-body>
+        <c-row>
+            <!-- FORMS (EXPANDED TO FIT TABLE) -->
+            <c-col md="12">
+                    <!-- FORMS START (UNCHANGED) -->
+                    <form [formGroup]="profilForm" class="form" (ngSubmit)="onSubmit()">
+                        <!-- Form Title (UNCHANGED) -->
+                        <h5 class="mb-4">
+                        Maklumat Jangkaan Ketibaan Kapal
+                        </h5>
+                        
+                        <!-- Photo Placeholder (UNCHANGED) -->
+                        <div class="photo-placeholder mb-4">
+                          <img [src]="photoUrl || 'assets/placeholder-image.png'" alt="Gambar Kapal" />
+                        </div>
+
+                        <!-- SENARAI PENUMPANG -->
+                        <div class="table-section"><br><br>
+                        <h6 class="section-title mb-3 text-center">Senarai Penumpang Gelap dilarang Masuk</h6>
+                        <div class="table-responsive">
+                            <table class="table table-bordered" style="width: 100%; font-size: 16px;">
+                                <thead class="table-light">
+                                    <tr style="height: 60px;">
+                                        <th style="width: 8%; padding: 15px; vertical-align: middle;">Bil.</th>
+                                        <th style="width: 20%; padding: 15px; vertical-align: middle;">Nama</th>
+                                        <th style="width: 15%; padding: 15px; vertical-align: middle;">Jantina</th>
+                                        <th style="width: 22%; padding: 15px; vertical-align: middle;">Tarikh lahir</th>
+                                        <th style="width: 20%; padding: 15px; vertical-align: middle;">Warganegara</th>
+                                        <th style="width: 15%; padding: 15px; vertical-align: middle;">Status Penumpang</th>
+                                        <th style="width: 15%; padding: 15px; vertical-align: middle;">Status Pemeriksaan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let ship of shipList; let i = index" style="height: 50px;">
+                                        <td class="text-center" style="padding: 15px; vertical-align: middle;">{{ i + 1 }}.</td>
+                                        <td style="padding: 15px; vertical-align: middle;">{{ ship.namaKapal }}</td>
+                                        <td style="padding: 15px; vertical-align: middle;">{{ ship.noImo }}</td>
+                                        <td style="padding: 15px; vertical-align: middle;">{{ ship.noRasmi }}</td>
+                                        <td style="padding: 15px; vertical-align: middle;">{{ ship.jawatan }}</td>
+                                        <td style="padding: 15px; vertical-align: middle;">{{ ship.jawatan }}</td>
+                                        <td style="padding: 15px; vertical-align: middle;">{{ ship.jawatan }}</td>
+                                    </tr>
+                                    <!-- Default rows if no data (UNCHANGED) -->
+                                    <tr *ngIf="shipList.length === 0" style="height: 50px;">
+                                        <td class="text-center" style="padding: 15px; vertical-align: middle;">1.</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Maritim</td>
+                                        <td style="padding: 15px; vertical-align: middle;">2181554</td>
+                                        <td style="padding: 15px; vertical-align: middle;">NBC0971</td>
+                                        <td style="padding: 15px; vertical-align: middle;">12 April 2025, 10.00 A.M.</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Aktif</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Semak</td>
+                                    </tr>
+                                    <tr *ngIf="shipList.length <= 1" style="height: 50px;">
+                                        <td class="text-center" style="padding: 15px; vertical-align: middle;">2.</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Blackhawk</td>
+                                        <td style="padding: 15px; vertical-align: middle;">9120303</td>
+                                        <td style="padding: 15px; vertical-align: middle;">NBC1100</td>
+                                        <td style="padding: 15px; vertical-align: middle;">12 April 2025, 10.00 A.M.</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Sakit</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Semak</td>
+                                    </tr>
+                                    <tr *ngIf="shipList.length <= 2" style="height: 50px;">
+                                        <td class="text-center" style="padding: 15px; vertical-align: middle;">3.</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Maverick</td>
+                                        <td style="padding: 15px; vertical-align: middle;">3465435</td>
+                                        <td style="padding: 15px; vertical-align: middle;">NBC1050</td>
+                                        <td style="padding: 15px; vertical-align: middle;">12 April 2025, 10.00 A.M.</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Mati</td>
+                                        <td style="padding: 15px; vertical-align: middle;">NTL</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ANAK KAPAL -->
+                        <div class="table-section"><br><br>
+                        <h6 class="section-title mb-3 text-center">Anak kapal yang hit SL/ SLTD/ RAE</h6>
+                        <div class="table-responsive">
+                            <table class="table table-bordered" style="width: 100%; font-size: 16px;">
+                                <thead class="table-light">
+                                    <tr style="height: 60px;">
+                                        <th style="width: 8%; padding: 15px; vertical-align: middle;">Bil.</th>
+                                        <th style="width: 20%; padding: 15px; vertical-align: middle;">Nama Kapal</th>
+                                        <th style="width: 15%; padding: 15px; vertical-align: middle;">Jawatan</th>
+                                        <th style="width: 22%; padding: 15px; vertical-align: middle;">No. Pasport</th>
+                                        <th style="width: 20%; padding: 15px; vertical-align: middle;">Warganegara</th>
+                                        <th style="width: 15%; padding: 15px; vertical-align: middle;">Melengkapkan e-IMM.26</th>
+                                        <th style="width: 15%; padding: 15px; vertical-align: middle;">Sign On</th>
+                                        <th style="width: 15%; padding: 15px; vertical-align: middle;">Sign Off</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let ship of shipList; let i = index" style="height: 50px;">
+                                        <td class="text-center" style="padding: 15px; vertical-align: middle;">{{ i + 1 }}.</td>
+                                        <td style="padding: 15px; vertical-align: middle;">{{ ship.namaKapal }}</td>
+                                        <td style="padding: 15px; vertical-align: middle;">{{ ship.noImo }}</td>
+                                        <td style="padding: 15px; vertical-align: middle;">{{ ship.noRasmi }}</td>
+                                        <td style="padding: 15px; vertical-align: middle;">{{ ship.jawatan }}</td>
+                                        <td style="padding: 15px; vertical-align: middle;">{{ ship.jawatan }}</td>
+                                        <td style="padding: 15px; vertical-align: middle;">{{ ship.jawatan }}</td>
+                                    </tr>
+                                    <!-- Default rows if no data (UNCHANGED) -->
+                                    <tr *ngIf="shipList.length === 0" style="height: 50px;">
+                                        <td class="text-center" style="padding: 15px; vertical-align: middle;">1.</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Maritim</td>
+                                        <td style="padding: 15px; vertical-align: middle;">2181554</td>
+                                        <td style="padding: 15px; vertical-align: middle;">NBC0971</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Malaysia</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Ya</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Ya</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Tidak</td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- PENGEMBARA -->
+                        <div class="table-section"><br><br>
+                        <h6 class="section-title mb-3 text-center">Pengembara yang hit SL/ SLTD/ RAE</h6>
+                        <div class="table-responsive">
+                            <table class="table table-bordered" style="width: 100%; font-size: 16px;">
+                                <thead class="table-light">
+                                    <tr style="height: 60px;">
+                                        <th style="width: 8%; padding: 15px; vertical-align: middle;">Bil.</th>
+                                        <th style="width: 20%; padding: 15px; vertical-align: middle;">Nama Kapal</th>
+                                        <th style="width: 15%; padding: 15px; vertical-align: middle;">Jawatan</th>
+                                        <th style="width: 22%; padding: 15px; vertical-align: middle;">No. Pasport</th>
+                                        <th style="width: 20%; padding: 15px; vertical-align: middle;">Warganegara</th>
+                                        <th style="width: 15%; padding: 15px; vertical-align: middle;">Melengkapkan e-IMM.26</th>
+                                        <th style="width: 15%; padding: 15px; vertical-align: middle;">Sign On</th>
+                                        <th style="width: 15%; padding: 15px; vertical-align: middle;">Sign Off</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let ship of shipList; let i = index" style="height: 50px;">
+                                        <td class="text-center" style="padding: 15px; vertical-align: middle;">{{ i + 1 }}.</td>
+                                        <td style="padding: 15px; vertical-align: middle;">{{ ship.namaKapal }}</td>
+                                        <td style="padding: 15px; vertical-align: middle;">{{ ship.noImo }}</td>
+                                        <td style="padding: 15px; vertical-align: middle;">{{ ship.noRasmi }}</td>
+                                        <td style="padding: 15px; vertical-align: middle;">{{ ship.jawatan }}</td>
+                                        <td style="padding: 15px; vertical-align: middle;">{{ ship.jawatan }}</td>
+                                    </tr>
+                                    <!-- Default rows if no data (UNCHANGED) -->
+                                    <tr *ngIf="shipList.length === 0" style="height: 50px;">
+                                        <td class="text-center" style="padding: 15px; vertical-align: middle;">1.</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Maritim</td>
+                                        <td style="padding: 15px; vertical-align: middle;">2181554</td>
+                                        <td style="padding: 15px; vertical-align: middle;">NBC0971</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Malaysia</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Ya</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Tidak</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Ya</td>
+                                    </tr>
+                                    <tr *ngIf="shipList.length <= 1" style="height: 50px;">
+                                        <td class="text-center" style="padding: 15px; vertical-align: middle;">2.</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Blackhawk</td>
+                                        <td style="padding: 15px; vertical-align: middle;">9120303</td>
+                                        <td style="padding: 15px; vertical-align: middle;">NBC1100</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Malaysia</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Tidak</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Tidak</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Ya</td>
+                                    </tr>
+                                    <tr *ngIf="shipList.length <= 2" style="height: 50px;">
+                                        <td class="text-center" style="padding: 15px; vertical-align: middle;">3.</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Maverick</td>
+                                        <td style="padding: 15px; vertical-align: middle;">3465435</td>
+                                        <td style="padding: 15px; vertical-align: middle;">NBC1050</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Malaysia</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Ya</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Ya</td>
+                                        <td style="padding: 15px; vertical-align: middle;">Tidak</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                    </form>
+            </c-col>       
+        </c-row>
+        <!-- END OF CONTENT (UNCHANGED) -->
+
+        <!-- FOOTER CONTENT FOR BUTTONS (UNCHANGED) -->
+        <c-row class="mt-4 mb-3 footer-row">
+            <c-col class="d-flex justify-content-end align-items-center gap-2">
+            <!-- Action Buttons (UNCHANGED) -->
+            <c-row class="g-3 mb-3 mt-3 justify-content-end">
+                <c-col class="d-flex justify-content-end gap-2">
+                    <!-- <button
+                        cButton 
+                        color="primary"
+                        class="biometric-btn">
+                        Kembali
+                    </button>
+                    <button 
+                        cButton 
+                        color="primary"
+                        class="biometric-btn">
+                        Simpan
+                    </button> -->
+                </c-col>
+            </c-row>
+            </c-col>
+        </c-row>
+    </c-card-body>
+</c-card>

@@ -1,0 +1,30 @@
+.dashboard-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  // padding: 10px;
+}
+
+.dashboard-columns {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.frame-column {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: calc(100% / 3); /* 3 columns per screen */
+}
+.frame-card {
+  height: 300px;
+  scroll-snap-align: start;
+}
+
+iframe {
+  width: 100%;
+  height: 150%;
+  border: none;
+  border-radius: 6px;
+}

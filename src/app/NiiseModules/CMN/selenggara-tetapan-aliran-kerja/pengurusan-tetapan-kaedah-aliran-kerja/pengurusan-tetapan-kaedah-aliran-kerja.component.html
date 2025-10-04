@@ -1,0 +1,217 @@
+<div class="container">
+  <div class="header">PENGURUSAN TETAPAN KAEDAH ALIRAN KERJA</div>
+
+  <!-- 🔎 Search Section -->
+  <div class="search-section">
+    <div class="search-row">
+      <label>Bahagian/Unit :</label>
+      <select [(ngModel)]="searchUnit">
+        <option value="">-- Pilih --</option>
+        <option value="PPA">PPA</option>
+        <option value="ESD">ESD</option>
+        <option value="VPP">VPP</option>
+        <option value="BKP">BKP</option>
+        <option value="PTD">PTD</option>
+      </select>
+    </div>
+
+    <div class="search-row">
+      <label>Transaksi :</label>
+      <input type="text" [(ngModel)]="searchTransaksi" placeholder="Cari transaksi..."
+             (keyup.enter)="performSearch()" />
+
+      <label style="margin-left: 40px">Aliran Kerja :</label>
+      <input type="text" [(ngModel)]="searchAliran" placeholder="Cari aliran..."
+             (keyup.enter)="performSearch()" />
+
+      <button class="btn-search" (click)="performSearch()">CARI</button>
+      <!-- <button class="clear-search" *ngIf="isSearchActive" (click)="clearSearch()">CLEAR</button> -->
+    </div>
+  </div>
+
+  <!-- Search Results Info -->
+  <div class="search-results-info" *ngIf="isSearchActive">
+    <strong>Hasil Carian:</strong> {{ totalRecords }} rekod dijumpai
+  </div>
+
+  <div class="table-controls">
+    <button class="btn-library" (click)="openLibrary()">+ LIBRARY</button>
+    <button class="btn-tambah" *ngIf="showTambahButton" (click)="openTambahForm()">+ TAMBAH</button>
+  </div>
+
+  <!-- 📑 Table -->
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Bahagian/Unit</th>
+        <th>Transaksi</th>
+        <th>Aliran Kerja</th>
+        <th>Kaedah</th>
+        <th>Status</th>
+        <th>Tindakan</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of pageData; let i = index">
+        <td>{{ (currentPage - 1) * recordsPerPage + i + 1 }}</td>
+        <td>{{ item.unit }}</td>
+        <td class="description">{{ item.transaksi }}</td>
+        <td>{{ item.aliran }}</td>
+        <td style="white-space: pre-line;">{{ item.kaedah }}</td>
+        <td>
+          <span [ngClass]="{'status-aktif': item.status === 'AKTIF', 'status-nyahaktif': item.status === 'NYAHAKTIF'}">
+            {{ item.status }}
+          </span>
+        </td>
+        <td>
+          <button class="btn-action btn-kemas-kini" (click)="kemasKini(item.id)">KEMAS KINI</button>
+
+          <!-- Tindakan ikut status -->
+          <button *ngIf="item.status === 'AKTIF'" class="btn-action btn-nyahaktif" (click)="confirmNyahAktif(item)">
+            NYAHAKTIF
+          </button>
+
+          <button *ngIf="item.status === 'NYAHAKTIF'" class="btn-action btn-aktifkan" (click)="aktifSemula(item.id)">
+            AKTIFKAN
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="pageData.length === 0">
+        <td colspan="7" class="no-results">
+          {{ isSearchActive ? 'Tiada rekod dijumpai.' : 'Tiada data untuk dipaparkan.' }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    <div class="pagination-left">
+      <span>Jumlah rekod: <strong>{{ totalRecords }}</strong></span>
+      <span style="margin-left: 20px;">Paparan per halaman:</span>
+      <select [(ngModel)]="recordsPerPage" (change)="changeRecordsPerPage(recordsPerPage)">
+        <option [ngValue]="10">10</option>
+        <option [ngValue]="25">25</option>
+        <option [ngValue]="50">50</option>
+      </select>
+    </div>
+    <div id="paginationControls">
+      <a href="#" *ngIf="currentPage > 1" (click)="goToPage(currentPage - 1)">&laquo;</a>
+      <a href="#" *ngFor="let page of [].constructor(totalPages); let idx = index"
+         [class.current]="currentPage === (idx+1)"
+         (click)="goToPage(idx+1)">
+         {{ idx+1 }}
+      </a>
+      <a href="#" *ngIf="currentPage < totalPages" (click)="goToPage(currentPage + 1)">&raquo;</a>
+    </div>
+  </div>
+</div>
+
+<!-- 📝 Edit Modal -->
+<div class="modal" *ngIf="isEditModalOpen">
+  <div class="modal-content">
+    <h3>Kemas Kini Rekod</h3>
+    <form *ngIf="editItem">
+      <label>Bahagian/Unit</label>
+      <input type="text" [(ngModel)]="editItem.unit" name="unit" disabled />
+
+      <label>Transaksi</label>
+      <textarea [(ngModel)]="editItem.transaksi" name="transaksi" disabled></textarea>
+
+      <label>Aliran Kerja</label>
+      <input type="text" [(ngModel)]="editItem.aliran" name="aliran" disabled />
+
+      <label>Kaedah</label>
+      <select [(ngModel)]="editItem.kaedah" name="kaedah">
+        <option value="TUNTUTAN">TUNTUTAN</option>
+        <option value="TUGASAN MANUAL">TUGASAN MANUAL</option>
+        <option value="EDARAN AUTO">EDARAN AUTO</option>
+      </select>
+
+      <label>Status</label>
+      <select [(ngModel)]="editItem.status" name="status">
+        <option value="AKTIF">AKTIF</option>
+        <option value="NYAHAKTIF">NYAHAKTIF</option>
+      </select>
+
+      <div class="modal-actions">
+        <button type="button" (click)="simpanKemasKini()">SIMPAN</button>
+        <button type="button" (click)="tutupModal()">BATAL</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ➕ Modal Tambah -->
+<div class="modal" *ngIf="isTambahModalOpen">
+  <div class="modal-content">
+    <h3>Tambah Aliran Kerja Baru</h3>
+    <form>
+      <label>Bahagian/Unit</label>
+      <select [(ngModel)]="newItem.unit" name="unit">
+        <option value="PPA">PPA</option>
+        <option value="ESD">ESD</option>
+        <option value="VPP">VPP</option>
+        <option value="BKP">BKP</option>
+        <option value="PTD">PTD</option>
+      </select>
+
+      <label>Transaksi</label>
+      <textarea [(ngModel)]="newItem.transaksi" name="transaksi"></textarea>
+
+      <label>Aliran Kerja</label>
+      <input type="text" [(ngModel)]="newItem.aliran" name="aliran" />
+
+      <label>Kaedah</label>
+      <select [(ngModel)]="newItem.kaedah" name="kaedah">
+        <option value="TUNTUTAN">TUNTUTAN</option>
+        <option value="TUGASAN MANUAL">TUGASAN MANUAL</option>
+        <option value="EDARAN AUTO">EDARAN AUTO</option>
+      </select>
+
+      <label>Status</label>
+      <select [(ngModel)]="newItem.status" name="status">
+        <option value="AKTIF">AKTIF</option>
+        <option value="NYAHAKTIF">NYAHAKTIF</option>
+      </select>
+
+      <div class="modal-actions">
+        <button type="button" (click)="simpanTambah()">SIMPAN</button>
+        <button type="button" (click)="tutupModal()">BATAL</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 🚨 Modal Carian -->
+<div class="modal" *ngIf="isSearchModalOpen">
+  <div class="modal-content">
+    <p>Tiada Rekod Dijumpai. Teruskan kemasukan data.</p>
+    <div class="modal-actions">
+      <button (click)="continueTambah()">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ Modal Berjaya -->
+<div class="modal" *ngIf="isSuccessModalOpen">
+  <div class="modal-content">
+    <p>{{ successMessage }}</p>
+    <div class="modal-actions">
+      <button (click)="isSuccessModalOpen = false">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- ⚠️ Modal NyahAktif -->
+<div class="modal" *ngIf="isConfirmNyahAktifOpen">
+  <div class="modal-content">
+    <p>Data akan dinyahaktif. Adakah anda pasti?</p>
+    <div class="modal-actions">
+      <button (click)="proceedNyahAktif()">YA</button>
+      <button (click)="isConfirmNyahAktifOpen = false">TIDAK</button>
+    </div>
+  </div>
+  
+</div>

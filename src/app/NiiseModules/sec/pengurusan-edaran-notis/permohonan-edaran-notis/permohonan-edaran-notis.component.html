@@ -1,0 +1,106 @@
+<c-card class="mb-3">
+  <c-card-body>
+    <c-row>
+      <!-- Main Content Column -->
+      <c-col md="9">
+        <h5 class="mb-4">Senarai Notis Edaran</h5>
+
+        <!-- Align button and input to the right -->
+        <div class="d-flex justify-content-end gap-2 mb-3">
+          <button 
+            cButton 
+            color="primary" 
+            [routerLink]="['permohonan-baru']">
+            Permohonan Baru
+          </button>
+          <input 
+            class="form-control"
+            id="searchReferences"
+            type="text"
+            style="max-width: 250px;" />
+        </div>
+
+        <!-- Reusable Table -->
+          <ng-container *ngTemplateOutlet="resultTable"></ng-container>
+      </c-col>
+
+      <!-- Stepper Column -->
+      <c-col md="3" class="px-4 py-3 mt-3 stepper-container">
+        <!-- Stepper logic here (optional) -->
+      </c-col>
+    </c-row>
+
+    <!-- Reusable Table Template -->
+    <ng-template #resultTable>
+      <br>
+      <div class="table-responsive mt-4" style="max-width: 100%; overflow-x: auto;">
+        <table
+          cTable
+          class="table search-results-table mb-0"
+          style="min-width: 1000px;">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Notis Amaran</th>
+              <th>ID Notis</th>
+              <th>Tarikh Wujud</th>
+              <th>Status</th>
+              <th>Tindakan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- If data exists, show rows -->
+            <ng-container *ngIf="searchResults.length > 0; else noResultsRow">
+              <tr *ngFor="let item of searchResults; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ item.maklumatKes | slice:0:25 }}...</td>
+                <td>{{ item.notisID || '-' }}</td>
+                <td>{{ item.tarikhHantarPermohonan || '-' }}</td>
+                <td>{{ item.statusPermohonan || '-' }}</td>
+                <td>
+                  <!-- Pen button: only visible if Draf -->
+                  <button 
+                    cButton 
+                    color="primary" 
+                    size="sm" 
+                    class="me-2" 
+                    [style.visibility]="item.statusPermohonan === 'Draf' ? 'visible' : 'hidden'">
+                    <svg cIcon name="cilPen" size="sm"></svg>
+                  </button>
+
+                  <!-- Screen button: always visible -->
+                  <button 
+                    cButton 
+                    color="primary" 
+                    size="sm" 
+                    class="me-2">
+                    <svg cIcon name="cilScreenDesktop" size="sm"></svg>
+                  </button>
+
+                  <!-- Trash button: visible if Draf or Baru -->
+                  <button 
+                    cButton 
+                    color="primary" 
+                    size="sm" 
+                    class="me-2" 
+                    [style.visibility]="(item.statusPermohonan === 'Draf' || item.statusPermohonan === 'Baru') ? 'visible' : 'hidden'">
+                    <svg cIcon name="cilTrash" size="sm"></svg>
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+
+            <!-- No results fallback -->
+            <ng-template #noResultsRow>
+              <tr>
+                <td colspan="6" class="text-center">
+                  Tiada maklumat dijumpai berdasarkan carian anda.
+                </td>
+              </tr>
+            </ng-template>
+          </tbody>
+        </table>
+      </div>
+    </ng-template>
+  </c-card-body>
+</c-card>

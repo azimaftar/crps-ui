@@ -1,0 +1,223 @@
+<c-container class="p-3">
+    <c-card>
+        <c-card-header>
+            PEMERIKSAAN MASUK (EGATE) - IMBASAN DOKUMEN PERJALANAN [PASPORT]
+        </c-card-header>
+
+        <c-card-body>
+            <c-row>
+                <!-- Left Side: Tabs -->
+                <c-col class="col-12 col-md-4 p-3 border-end" style="border-right: 1px solid #ccc;">
+
+                    <!-- TAB 1 -->
+                    <c-tabs [(activeItemKey)]="activeTab1">
+                        <c-card class="text-center mb-4">
+                            <c-card-header>
+                                <c-tabs-list class="card-header-tabs" variant="tabs">
+                                    @for (tab of tabs; track tab) {
+                                    <button [itemKey]="tab" cTab [disabled]="disabledTabs['group1'].includes(tab)">
+                                        {{ tab }}
+                                    </button>
+                                    }
+                                </c-tabs-list>
+                            </c-card-header>
+                            <c-card-body>
+                                <c-tabs-content>
+                                    @for (panel of tabs; track panel) {
+                                    <c-tab-panel [itemKey]="panel">
+                                        <ng-container
+                                            *ngTemplateOutlet="cardImageTemplate; context: { $implicit: panel }" />
+                                    </c-tab-panel>
+                                    }
+                                </c-tabs-content>
+                            </c-card-body>
+                        </c-card>
+                    </c-tabs>
+
+                    <!-- TAB 2 -->
+                    <c-tabs [(activeItemKey)]="activeTab2">
+                        <c-card class="text-center mb-4">
+                            <c-card-header>
+                                <c-tabs-list class="card-header-tabs" variant="tabs">
+                                    @for (tab of tabs; track tab) {
+                                    <button [itemKey]="tab" cTab [disabled]="disabledTabs['group2'].includes(tab)">
+                                        {{ tab }}
+                                    </button>
+                                    }
+                                </c-tabs-list>
+                            </c-card-header>
+                            <c-card-body>
+                                <c-tabs-content>
+                                    @for (panel of tabs; track panel) {
+                                    <c-tab-panel [itemKey]="panel">
+                                        <ng-container
+                                            *ngTemplateOutlet="cardImageTemplate; context: { $implicit: panel }" />
+                                    </c-tab-panel>
+                                    }
+                                </c-tabs-content>
+                            </c-card-body>
+                        </c-card>
+                    </c-tabs>
+
+                    <!-- TAB 3 -->
+                    <c-tabs [(activeItemKey)]="activeTab3">
+                        <c-card class="text-center">
+                            <c-card-header>
+                                <c-tabs-list class="card-header-tabs" variant="tabs">
+                                    @for (tab of tabs; track tab) {
+                                    <button [itemKey]="tab" cTab [disabled]="disabledTabs['group3'].includes(tab)">
+                                        {{ tab }}
+                                    </button>
+                                    }
+                                </c-tabs-list>
+                            </c-card-header>
+                            <c-card-body>
+                                <c-tabs-content>
+                                    @for (panel of tabs; track panel) {
+                                    <c-tab-panel [itemKey]="panel">
+                                        <ng-container
+                                            *ngTemplateOutlet="cardImageTemplate; context: { $implicit: panel }" />
+                                    </c-tab-panel>
+                                    }
+                                </c-tabs-content>
+                            </c-card-body>
+                        </c-card>
+                    </c-tabs>
+
+                    <!-- Shared Image Template -->
+                    <ng-template #cardImageTemplate let-tab>
+                        <div class="text-center">
+                            <img [src]="tabImages[tab]" [alt]="tab" style="max-height: 200px;" class="img-fluid" />
+                            <p cCardText>{{ tab }} image</p>
+                        </div>
+                    </ng-template>
+
+                </c-col>
+
+                <!-- Right Side: Pasport Details -->
+                <c-col class="col-12 col-md-8 p-3">
+                    <!-- Imej Pasport -->
+                    <c-row class="justify-content-center">
+                        <c-col class="col-6 col-sm-4 col-md-3 mb-3">
+                            <div class="border rounded p-2 text-center" style="width: 150px; height: 180px;">
+                                <img src="image1.jpg" alt="Image 1" class="img-fluid" style="max-height: 150px;" />
+                            </div>
+                        </c-col>
+                        <c-col class="col-auto">
+                            <div class="border rounded p-2 text-center" style="width: 150px; height: 180px;">
+                                <img src="image2.jpg" alt="Image 2" class="img-fluid" style="max-height: 150px;" />
+                            </div>
+                        </c-col>
+                    </c-row>
+
+                    <br>
+
+                    <!-- Maklumat Dokumen Perjalanan -->
+                    <c-row class="p-3">
+                        <form cForm [formGroup]="maklumatDokumenPerjalanan">
+
+                            <!-- Form Title -->
+                            <h5 class="mb-4">Maklumat Dokumen Perjalanan</h5>
+
+                            <!-- Jenis Dokumen, Jantina, Umur -->
+                            <c-row class="g-3 mb-3 mt-3">
+                                <!-- Jenis Dokumen -->
+                                <c-col class="col-12 col-md-4">
+                                    <label cLabel for="docType" class="mb-2">Jenis Dokumen</label>
+                                    <input cFormControl id="docType" type="text" formControlName="docType"
+                                        class="form-control" />
+                                </c-col>
+
+                                <!-- Jantina-->
+                                <c-col class="col-12 col-md-4">
+                                    <label cLabel for="gender" class="mb-2">Jantina</label>
+                                    <input cFormControl id="gender" type="text" formControlName="gender"
+                                        class="form-control" />
+                                </c-col>
+
+                                <!-- Umur -->
+                                <c-col class="col-12 col-md-4">
+                                    <label cLabel for="age" class="mb-2">Umur</label>
+                                    <input cFormControl id="age" type="text" formControlName="age"
+                                        class="form-control" />
+                                </c-col>
+                            </c-row>
+
+                            <!-- No Dokumen, No Pengenalan, Tarikh Tamat -->
+                            <c-row class="g-3 mb-3 mt-3">
+                                <!-- No Dokumen -->
+                                <c-col class="col-12 col-md-4">
+                                    <label cLabel for="docNo" class="mb-2">No Dokumen</label>
+                                    <input cFormControl id="docNo" type="text" formControlName="docNo"
+                                        class="form-control" />
+                                </c-col>
+
+                                <!-- No Pengenalan -->
+                                <c-col class="col-12 col-md-4">
+                                    <label cLabel for="kpNo" class="mb-2">No Pengenalan</label>
+                                    <input cFormControl id="kpNo" type="text" formControlName="kpNo"
+                                        class="form-control" />
+                                </c-col>
+
+                                <!-- Tarikh Tamat -->
+                                <c-col class="col-12 col-md-4">
+                                    <label cLabel for="expiryDate" class="mb-2">Tarikh Tamat</label>
+                                    <input cFormControl id="expiryDate" type="text" formControlName="expiryDate"
+                                        class="form-control" />
+                                </c-col>
+                            </c-row>
+
+                            <!-- Nama, Warganegara -->
+                            <c-row class="g-3 mb-3 mt-3">
+                                <!-- Nama -->
+                                <c-col class="col-12 col-md-8">
+                                    <label cLabel for="name" class="mb-2">Nama</label>
+                                    <input cFormControl id="name" type="text" formControlName="name"
+                                        class="form-control" />
+                                </c-col>
+
+                                <!-- Warganegara -->
+                                <c-col class="col-12 col-md-4">
+                                    <label cLabel for="nationality" class="mb-2">Warganegara</label>
+                                    <input cFormControl id="nationality" type="text" formControlName="nationality"
+                                        class="form-control" />
+                                </c-col>
+                            </c-row>
+
+                            <!-- Tarikh Dikeluarkan, Negara Pengeluar -->
+                            <c-row class="g-3 mb-3 mt-3">
+                                <!-- Tarikh Dikeluarkan -->
+                                <c-col class="col-12 col-md-4">
+                                    <label cLabel for="issueDatePassport" class="mb-2">Tarikh Dikeluarkan</label>
+                                    <input cFormControl id="issueDatePassport" type="text"
+                                        formControlName="issueDatePassport" class="form-control" />
+                                </c-col>
+
+                                <!-- Empty -->
+                                <c-col class="col-12 col-md-4">
+                                    <!-- Empty Column -->
+                                </c-col>
+
+                                <!-- Negara Pengeluar -->
+                                <c-col class="col-12 col-md-4">
+                                    <label cLabel for="countryIssue" class="mb-2">Negara Pengeluar</label>
+                                    <input cFormControl id="countryIssue" type="text" formControlName="countryIssue"
+                                        class="form-control" />
+                                </c-col>
+                            </c-row>
+
+
+                        </form>
+                    </c-row>
+                </c-col>
+            </c-row>
+        </c-card-body>
+    </c-card>
+</c-container>
+
+<!-- MODAL -->
+<app-modal-notifikasi-standard 
+  [visible]="showModal" 
+  [responseCode]="currentResponseCode"
+  *ngIf="currentResponseCode !== ''">
+</app-modal-notifikasi-standard>

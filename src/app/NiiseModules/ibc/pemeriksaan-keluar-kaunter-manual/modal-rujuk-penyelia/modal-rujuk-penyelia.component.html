@@ -1,0 +1,66 @@
+<!-- CoreUI Modal -->
+<c-modal 
+  [visible]="isVisible"
+  (visibleChange)="onVisibleChange($event)"
+  alignment="center"
+  backdrop="static">
+  
+  <c-modal-header>
+    <h5 cModalTitle>Rujuk Penyelia</h5>
+    <button 
+      type="button"
+      cButtonClose
+      (click)="closeModal()"
+      aria-label="Close">
+    </button>
+  </c-modal-header>
+  
+  <c-modal-body class="px-4">
+    <!-- Photo Section -->
+    <div class="text-center mb-3">
+      <div class="photo-placeholder mx-auto border" 
+           style="width: 120px; height: 120px; background-color: #f8f9fa;">
+        <!-- Photo content can go here -->
+      </div>
+    </div>
+    
+    <!-- Form Section -->
+    <c-row>
+      <c-col xs="12">
+        <div class="mb-3">
+          <label for="catatan" class="form-label">Catatan</label>
+          <input  
+            id="catatan"
+            type="text"
+            cFormControl
+            class="form-control"
+            [(ngModel)]="catatan"
+            placeholder="Catatan">
+        </div>
+      </c-col>
+    </c-row>
+  </c-modal-body>
+  
+  <c-modal-footer class="px-4">
+    <button 
+      type="button"
+      cButton
+      color="dark"
+      (click)="openKeputusanModal()">
+      Rujuk Penyelia
+    </button>
+    <button 
+      type="button"
+      cButton
+      color="dark"
+      (click)="openKeputusanModal()">
+      Keputusan
+    </button>
+  </c-modal-footer>
+</c-modal>
+
+<!-- Child Modal Component -->
+<!-- <app-modal-keputusan-ntl 
+  (onSimpan)="onKeputusanSimpan($event)"
+  (onClose)="onKeputusanClose()">
+</app-modal-keputusan-ntl> -->

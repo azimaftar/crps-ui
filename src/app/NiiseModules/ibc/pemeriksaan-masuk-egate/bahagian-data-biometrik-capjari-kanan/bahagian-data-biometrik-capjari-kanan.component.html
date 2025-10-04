@@ -1,0 +1,36 @@
+<!-- Using CoreUI Angular components -->
+<c-card style="border: 1px solid #000; margin: 0; text-align: center;" >
+    <c-card-header>
+        <h6 style="margin: 18px 0 10px 30px;" >PEMERIKSAAN MASUK (EGATE) - BAHAGIAN DATA BIOMETRIK [CAP JARI] </h6>
+    </c-card-header>
+    
+    <c-card-body style="border-top: 1px solid #000 ;border-bottom: 1px solid #000; padding: 1rem; height: 400px;">
+        <c-row>
+            <c-col md="5" >
+                <p style="margin: 5% 0 2% 0;" >Jari Telunjuk Kanan</p>
+            </c-col>
+        </c-row>
+        <c-row style="margin-left: 20%; " >
+            <c-col md="3">
+                <c-card style="margin: auto;">
+                    <c-card-body style="text-align: center; padding: 60px 30px; height: 200px;" >
+                        <img 
+                        src="" alt="CAP JARI KANAN" cImg>
+                    </c-card-body>
+                </c-card>
+            </c-col>
+            <c-col md="5" style="margin-top: auto; margin-bottom: auto;">
+                <c-row>
+                    <label cLabel for="fingerQuality" >% Nilai Jari Hidup</label>
+                </c-row>
+                <input 
+                cFormControl 
+                type="text" 
+                id="fingerQuality" 
+                placeholder="87%"
+                style="width: 10rem; margin: 5px 0; margin-left: 20%;"
+                disabled>
+                </c-col>
+        </c-row>
+    </c-card-body>
+</c-card>

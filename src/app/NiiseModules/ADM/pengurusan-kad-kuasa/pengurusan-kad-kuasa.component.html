@@ -1,0 +1,196 @@
+<c-card>
+  <c-card-body>
+    <!-- Parent 1 -->
+    <c-row class="g-5" *ngIf="parent1">
+      <c-col xs="12" md="6" lg="6">
+        <c-card
+          (click)="onCardClickParent('Permohonan Kad Kuasa')"
+          style="cursor: pointer"
+        >
+          <c-card-body
+            class="d-flex justify-content-center align-items-center"
+            style="min-height: 150px"
+          >
+            <img src="your-logo.png" alt="LOGO" class="img-fluid" />
+          </c-card-body>
+          <c-card-footer class="bg-secondary text-center text-white">
+            Permohonan Kad Kuasa
+          </c-card-footer>
+        </c-card>
+      </c-col>
+
+      <c-col xs="12" md="6" lg="6">
+        <c-card
+          (click)="onCardClickParent('Kehilangan Kad Kuasa')"
+          style="cursor: pointer"
+        >
+          <c-card-body
+            class="d-flex justify-content-center align-items-center"
+            style="min-height: 150px"
+          >
+            <img src="your-logo.png" alt="LOGO" class="img-fluid" />
+          </c-card-body>
+          <c-card-footer class="bg-secondary text-center text-white">
+            Kehilangan Kad Kuasa
+          </c-card-footer>
+        </c-card>
+      </c-col>
+
+      <c-col xs="12" md="6" lg="6">
+        <c-card
+          (click)="onCardClickParent('Penggantungan/ Batal Penggantungan Kad Kuasa')"
+          style="cursor: pointer"
+        >
+          <c-card-body
+            class="d-flex justify-content-center align-items-center"
+            style="min-height: 150px"
+          >
+            <img src="your-logo.png" alt="LOGO" class="img-fluid" />
+          </c-card-body>
+          <c-card-footer class="bg-secondary text-center text-white">
+            Penggantungan/ Batal Penggantungan Kad Kuasa
+          </c-card-footer>
+        </c-card>
+      </c-col>
+
+      <c-col xs="12" md="6" lg="6">
+        <c-card
+          (click)="onCardClickParent('Pemulangan Dan Perampasan Kad Kuasa')"
+          style="cursor: pointer"
+        >
+          <c-card-body
+            class="d-flex justify-content-center align-items-center"
+            style="min-height: 150px"
+          >
+            <img src="your-logo.png" alt="LOGO" class="img-fluid" />
+          </c-card-body>
+          <c-card-footer class="bg-secondary text-center text-white">
+            Pemulangan Dan Perampasan Kad Kuasa
+          </c-card-footer>
+        </c-card>
+      </c-col>
+
+      <c-col xs="12" md="6" lg="6">
+        <c-card
+          (click)="onCardClickParent('Pelupasan Kad Kuasa')"
+          style="cursor: pointer"
+        >
+          <c-card-body
+            class="d-flex justify-content-center align-items-center"
+            style="min-height: 150px"
+          >
+            <img src="your-logo.png" alt="LOGO" class="img-fluid" />
+          </c-card-body>
+          <c-card-footer class="bg-secondary text-center text-white">
+            Pelupasan Kad Kuasa
+          </c-card-footer>
+        </c-card>
+      </c-col>
+    </c-row>
+
+    <!-- Child 1 -->
+    <c-row class="g-5" *ngIf="child1">
+      <c-col xs="12" md="6" lg="6">
+        <c-card
+          (click)="onCardClickChild('Permohonan')"
+          style="cursor: pointer"
+        >
+          <c-card-body
+            class="d-flex justify-content-center align-items-center"
+            style="min-height: 150px"
+          >
+            <img src="your-logo.png" alt="LOGO" class="img-fluid" />
+          </c-card-body>
+          <c-card-footer class="bg-secondary text-center text-white">
+            Permohonan
+          </c-card-footer>
+        </c-card>
+      </c-col>
+
+      <c-col xs="12" md="6" lg="6">
+        <c-card
+          (click)="onCardClickChild('Jana Dan Cetak Senarai Permohonan Kad Kuasa')"
+          style="cursor: pointer"
+        >
+          <c-card-body
+            class="d-flex justify-content-center align-items-center"
+            style="min-height: 150px"
+          >
+            <img src="your-logo.png" alt="LOGO" class="img-fluid" />
+          </c-card-body>
+          <c-card-footer class="bg-secondary text-center text-white">
+            Jana Dan Cetak Senarai Permohonan Kad Kuasa
+          </c-card-footer>
+        </c-card>
+      </c-col>
+
+      <c-col xs="12" md="6" lg="6">
+        <c-card
+          (click)="onCardClickChild('Kemas Kini Nombor Siri Kad Kuasa')"
+          style="cursor: pointer"
+        >
+          <c-card-body
+            class="d-flex justify-content-center align-items-center"
+            style="min-height: 150px"
+          >
+            <img src="your-logo.png" alt="LOGO" class="img-fluid" />
+          </c-card-body>
+          <c-card-footer class="bg-secondary text-center text-white">
+            Kemas Kini Nombor Siri Kad Kuasa
+          </c-card-footer>
+        </c-card>
+      </c-col>
+
+      <c-col xs="12" md="6" lg="6">
+        <c-card
+          (click)="onCardClickChild('Semakan Kualiti Kad Kuasa')"
+          style="cursor: pointer"
+        >
+          <c-card-body
+            class="d-flex justify-content-center align-items-center"
+            style="min-height: 150px"
+          >
+            <img src="your-logo.png" alt="LOGO" class="img-fluid" />
+          </c-card-body>
+          <c-card-footer class="bg-secondary text-center text-white">
+            Semakan Kualiti Kad Kuasa
+          </c-card-footer>
+        </c-card>
+      </c-col>
+
+      <c-col xs="12" md="6" lg="6">
+        <c-card
+          (click)="onCardClickChild('Jenis Penerimaan Kad Kuasa')"
+          style="cursor: pointer"
+        >
+          <c-card-body
+            class="d-flex justify-content-center align-items-center"
+            style="min-height: 150px"
+          >
+            <img src="your-logo.png" alt="LOGO" class="img-fluid" />
+          </c-card-body>
+          <c-card-footer class="bg-secondary text-center text-white">
+            Jenis Penerimaan Kad Kuasa
+          </c-card-footer>
+        </c-card>
+      </c-col>
+
+      <c-col xs="12" md="6" lg="6">
+        <c-card
+          (click)="onCardClickChild('Serahan Kad Kuasa')"
+          style="cursor: pointer"
+        >
+          <c-card-body
+            class="d-flex justify-content-center align-items-center"
+            style="min-height: 150px"
+          >
+            <img src="your-logo.png" alt="LOGO" class="img-fluid" />
+          </c-card-body>
+          <c-card-footer class="bg-secondary text-center text-white">
+            Serahan Kad Kuasa
+          </c-card-footer>
+        </c-card>
+      </c-col>
+    </c-row>
+  </c-card-body>
+</c-card>

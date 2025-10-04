@@ -1,0 +1,416 @@
+<!-- <p>maklumat-profil-ibc works!</p> -->
+ <c-card class="mb-3">  
+    <!-- HEADER PROFIL -->
+    <c-card-header class="card-header">
+      <h4 class="card-header-title">Anak Kapal (dan Supernumerary)</h4>
+    </c-card-header>
+
+    <!-- CONTENT CARD BODY -->
+    <c-card-body>
+        <c-row>
+            <!-- FORMS -->
+            <c-col md="8">
+                    <!-- FORMS START -->
+                    <form [formGroup]="profilForm" class="form" (ngSubmit)="onSubmit()">
+                        <!-- Form Title -->
+                        <!-- Replace your current h5 heading with this: -->
+            <h5 class="mb-4">
+            Maklumat Anak Kapal - 
+            <span style="font-style: italic; font-weight: 400;">(IMO FAL Form 5)</span>
+            </h5>
+                        
+                        <!-- Photo Placeholder -->
+                        <div class="photo-placeholder mb-4">
+                          <img [src]="photoUrl || 'assets/placeholder-image.png'" alt="Gambar Kapal" />
+                        </div>
+
+                        <!-- Jenis Pelawat -->
+                        <c-row class="g-3 mb-3">
+
+                          <c-col *ngIf="isWarganegara">
+                            <label cLabel for="earlydoc" class="mb-2">Awalan Dokumen</label>
+                            <input
+                              cFormControl
+                              id="earlydoc"
+                              type="text"
+                              formControlName="earlydoc"
+                              class="form-control"
+                            />
+                          </c-col>
+
+                          <c-col *ngIf="isAnakKapal">
+                            <!-- Kolum kosong -->
+                          </c-col>
+                          </c-row>
+                       
+                        <c-row class="g-3 mb-3">
+                          <c-col>
+                            <label cLabel for="jenisPemeriksaan" class="mb-2">Nama Anak Kapal</label>
+                            <input
+                              cFormControl
+                              id="jenisPemeriksaan"
+                              type="text"
+                              formControlName="jenisPemeriksaan"
+                              class="form-control"
+                            />
+                          </c-col>
+                          
+                        </c-row>
+
+
+                        <!-- Jenis Dokumen dan No Dokumen -->
+                        <c-row class="g-3 mb-3">
+                          <!-- Jenis Dokumen -->
+                          <c-col md="6">
+                            <label cLabel for="docType" class="mb-2">Jawatan</label>
+                            <input
+                              cFormControl
+                              id="docType"
+                              type="text"
+                              formControlName="docType"
+                              class="form-control"
+                            />
+                          </c-col>
+                          
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+                        <c-col md="6">
+                        <label cLabel for="pasport" class="mb-2">No. Pasport</label>
+                        <input
+                            cFormControl
+                            id="pasport"
+                            type="text"
+                            formControlName="pasport"
+                            class="form-control"
+                        />
+                        </c-col>
+                        <c-col md="6">
+                        <label cLabel for="tarikhTamat" class="mb-2">Tarikh Tamat</label>
+                        <input
+                            cFormControl
+                            id="tarikhTamat"
+                            type="date"
+                            formControlName="tarikhTamat"
+                            class="form-control"
+                        />
+                        </c-col>
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+                        <c-col md="6">
+                        <label cLabel for="bukuPelaut" class="mb-2">Buku Pelaut <i>(Seaman Book)</i></label>
+                        <input
+                            cFormControl
+                            id="bukuPelaut"
+                            type="text"
+                            formControlName="bukuPelaut"
+                            class="form-control"
+                        />
+                        </c-col>
+                        <c-col md="6">
+                        <label cLabel for="tarikhTamat" class="mb-2">Tarikh Tamat</label>
+                        <input
+                            cFormControl
+                            id="tarikhTamat"
+                            type="date"
+                            formControlName="tarikhTamat"
+                            class="form-control"
+                        />
+                        </c-col>
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+                        <c-col md="6">
+                        <label cLabel for="warganegara" class="mb-2">Warganegara</label>
+                        <input
+                            cFormControl  
+                            id="warganegara"
+                            type="text"
+                            formControlName="warganegara"
+                            class="form-control"
+                        />
+                        </c-col>
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+                          <c-col>
+                            <label cLabel for="entryDate" class="mb-2">Tarikh Lahir</label>
+                            <input
+                            cFormControl
+                            id="entryDate"
+                            type="datetime-local"
+                            formControlName="entryDate"
+                            class="form-control"
+                            />
+                            </c-col>
+
+                          <c-col>
+                            <label cLabel for="entryTime" class="mb-2">Tempat Lahir</label>
+                            <input
+                              cFormControl
+                              id="entryTime"
+                              type="text"
+                              formControlName="entryTime"
+                              class="form-control"
+                            />
+                          </c-col>
+                        </c-row>
+
+                        <!-- In your template -->
+                        <label cFormLabel>Melengkapkan e-IMM.26</label>
+                        <div class="d-flex gap-3">
+                          <c-form-check inline>
+                            <input 
+                              cFormCheckInput 
+                              type="radio" 
+                              id="IMM1" 
+                              formControlName="IMM1" 
+                              value="ya"
+                            />
+                            <label cFormCheckLabel for="yaRadio">Ya</label>
+                          </c-form-check>
+                          <c-form-check inline>
+                            <input 
+                              cFormCheckInput 
+                              type="radio" 
+                              id="IMM1" 
+                              formControlName="IMM1" 
+                              value="tidak"
+                            />
+                            <label cFormCheckLabel for="tidakRadio">Tidak</label>
+                          </c-form-check>
+                        </div><br>
+
+                        <div class="d-flex gap-5">
+                        <div>
+                            <label cFormLabel>Sign On</label>
+                            <div class="d-flex gap-3">
+                            <c-form-check inline>
+                                <input 
+                                cFormCheckInput 
+                                type="radio" 
+                                id="signOn" 
+                                formControlName="signOn" 
+                                value="ya"
+                                />
+                                <label cFormCheckLabel for="signOnYa">Ya</label>
+                            </c-form-check>
+                            <c-form-check inline>
+                                <input 
+                                cFormCheckInput 
+                                type="radio" 
+                                id="signOn" 
+                                formControlName="signOn" 
+                                value="tidak"
+                                />
+                                <label cFormCheckLabel for="signOnTidak">Tidak</label>
+                            </c-form-check>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label cFormLabel>Sign Off</label>
+                            <div class="d-flex gap-3">
+                            <c-form-check inline>
+                                <input 
+                                cFormCheckInput 
+                                type="radio" 
+                                id="signOff" 
+                                formControlName="signOff" 
+                                value="ya"
+                                />
+                                <label cFormCheckLabel for="signOffYa">Ya</label>
+                            </c-form-check>
+                            <c-form-check inline>
+                                <input 
+                                cFormCheckInput 
+                                type="radio" 
+                                id="signOff" 
+                                formControlName="signOff" 
+                                value="tidak"
+                                />
+                                <label cFormCheckLabel for="signOffTidak">Tidak</label>
+                            </c-form-check>
+                            </div>
+                        </div>
+                        </div><br>
+
+                        <c-row class="g-3 mb-3">
+
+                          <c-col md="6">
+                          <label cLabel for="statusAnakKapal" class="mb-2">Status Anak Kapal</label>
+                          <select
+                            cFormControl
+                            id="statusAnakKapal"
+                            formControlName="statusAnakKapal"
+                            class="form-select"
+                          >
+                            <option value="" disabled selected>-Sila Pilih-</option>
+                            <option value="Aktif">Aktif</option>
+                            <option value="Sakit">Sakit</option>
+                            <option value="Mati">Mati</option>
+                            <option value="LawatanPelabuhan">Lawatan Pelabuhan</option>
+                            <option value="KetinggalanKapal">Ketinggalan Kapal</option>
+                            <option value="MemoPeriksa">Memo Periksa Keluar Telah Dikeluarkan</option>
+                            <option value="Batal">Batal</option>
+                            <option value="KematianAnakKapal">Kematian Anak Kapal</option>
+                            <!-- Add more options as needed -->
+                          </select>
+                        </c-col>
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+
+                          <c-col md="6">
+                          <label cLabel for="kpNo" class="mb-2">Status Pemeriksaan</label>
+                          <select
+                            cFormControl
+                            id="kpNo"
+                            formControlName="kpNo"
+                            class="form-select"
+                          >
+                            <option value="" disabled selected>-Sila Pilih-</option>
+                            <option value="Belum">Belum</option>
+                            <option value="Semak">Semak</option>
+                            <option value="NTL">NTL</option>
+                            <!-- Add more options as needed -->
+                          </select>
+                        </c-col>
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+                          <c-col>
+                            <label cLabel for="namaAnakKapal" class="mb-2">Nama Anak Kapal</label>
+                            <input
+                              cFormControl
+                              id="namaAnakKapal"
+                              type="text"
+                              formControlName="namaAnakKapal"
+                              class="form-control"
+                            />
+                          </c-col>                          
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+                          <c-col md="6">
+                            <label cLabel for="hubunganAnakKapal" class="mb-2">Hubungan dengan Anak Kapal</label>
+                            <input
+                              cFormControl
+                              id="hubunganAnakKapal"
+                              type="text"
+                              formControlName="hubunganAnakKapal"
+                              class="form-control"
+                            />
+                          </c-col>                        
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+                        <c-col md="6">
+                        <label cLabel for="pasport" class="mb-2">No. Pasport</label>
+                        <input
+                            cFormControl
+                            id="pasport"
+                            type="text"
+                            formControlName="pasport"
+                            class="form-control"
+                        />
+                        </c-col>
+                        <c-col md="6">
+                        <label cLabel for="tarikhTamat2" class="mb-2">Tarikh Tamat</label>
+                        <input
+                            cFormControl
+                            id="tarikhTamat2"
+                            type="date"
+                            formControlName="tarikhTamat2"
+                            class="form-control"
+                        />
+                        </c-col>
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+                        <c-col md="6">
+                        <label cLabel for="warganegara" class="mb-2">Warganegara</label>
+                        <input
+                            cFormControl  
+                            id="warganegara"
+                            type="text"
+                            formControlName="warganegara"
+                            class="form-control"
+                        />
+                        </c-col>
+                        </c-row>
+
+                        <label cFormLabel>Melengkapkan e-IMM.26</label>
+                        <div class="d-flex gap-3">
+                          <c-form-check inline>
+                            <input 
+                              cFormCheckInput 
+                              type="radio" 
+                              id="IMM2" 
+                              formControlName="IMM2" 
+                              value="ya"
+                            />
+                            <label cFormCheckLabel for="yaRadio">Ya</label>
+                          </c-form-check>
+                          <c-form-check inline>
+                            <input 
+                              cFormCheckInput 
+                              type="radio" 
+                              id="IMM2" 
+                              formControlName="IMM2" 
+                              value="tidak"
+                            />
+                            <label cFormCheckLabel for="tidakRadio">Tidak</label>
+                          </c-form-check>
+                        </div><br>
+
+                        <c-row class="g-3 mb-3">
+
+                          <c-col md="6">
+                          <label cLabel for="kpNo" class="mb-2">Status Supernumerary</label>
+                          <select
+                            cFormControl
+                            id="statusSupernumerary"
+                            formControlName="statusSupernumerary"
+                            class="form-select"
+                          >
+                            <option value="" disabled selected>-Sila Pilih-</option>
+                            <option value="Aktif">Aktif</option>
+                            <option value="Sakit">Sakit</option>
+                            <option value="Mati">Mati</option>
+                            <!-- Add more options as needed -->
+                          </select>
+                        </c-col>
+                        </c-row>
+            </form>
+            </c-col>       
+        </c-row>
+        <!-- END OF CONTENT -->
+
+        <!-- FOOTER CONTENT FOR BUTTONS -->
+        <c-row class="mt-4 mb-3 footer-row">
+            <c-col class="d-flex justify-content-end align-items-center gap-2">
+            <!-- Action Buttons -->
+            <c-row class="g-3 mb-3 mt-3 justify-content-end">
+    <c-col class="d-flex justify-content-end gap-2">
+        <button
+            cButton 
+            color="primary"
+            class="biometric-btn">
+            Kembali
+        </button>
+        <button 
+            cButton 
+            color="primary"
+            class="biometric-btn">
+            Simpan
+        </button>
+    </c-col>
+</c-row>
+
+            
+            </c-col>
+        </c-row>
+    </c-card-body>
+</c-card>

@@ -1,0 +1,149 @@
+<div class="container-fluid">
+
+  <div class="row g-0">
+
+    <!-- Left Form -->
+    <div class="col-md-9">
+      <div class="form-section">
+        <h2 class="section-title"> Carian Permohonan </h2>
+
+        <!-- Search Form -->
+        <form #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm)" >
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="carian" class="form-label">Kategori Carian</label>
+              <input
+              type="text"
+              id="carian"
+              name="carian"
+              [(ngModel)]="searchCriteria.carian"
+              class="form-control"
+              />
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="noRujukan" class="form-label">Nombor Rujukan Permohonan</label>
+              <input
+              type="text"
+              id="noRujukan"
+              name="noRujukan"
+              [(ngModel)]="searchCriteria.noRujukan"
+              class="form-control"
+              />
+            </div>
+          </div>
+
+          <!-- Cari Button -->
+          <div class="text-end">
+            <button type="button" class="btn btn-dark" (click)="onSearch()">
+            Cari
+            </button>
+          </div>
+        </form>
+
+        <!-- Result Table -->
+         <div class="table-section" *ngIf="showTable">
+          <h3 class="table-title">Senarai Permohonan</h3>
+
+          <div class="table-responsive">
+            <table class="table table-hover table-striped document-table">
+              <thead>
+                <tr>
+                  <th scope="col">No. Ruj Permohonan</th>
+                  <th scope="col">Nama</th>
+                  <th scope="col">Warganegara</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Tindakan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let document of documents; let i = index">
+                  <td>{{ document.noRujukan }}</td>
+                  <td>{{ document.nama }}</td>
+                  <td>{{ document.warganegara }}</td>
+                  <td>
+                    <button type="button" class="btn btn-sm btn-primary">
+                      {{ document.status }}
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-primary"
+                      (click)="onTindakan(document)"
+                    >
+                      {{ document.tindakan }}
+                    </button>
+                  </td>
+                </tr>
+
+                <tr *ngIf="documents.length === 0">
+                  <td colspan="5" class="text-center">Tiada data untuk dipaparkan</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+            <!-- <table cTable [hover]="true" [striped]    ="true" responsive="true" class="document-table">
+                <thead>
+                  <tr>
+                    <th scope="col">No. Ruj Permohonan</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Warganegara</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Tindakan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let document of documents; let i = index">
+                    <td>{{ document.noRujukan }}</td>
+                    <td>{{ document.nama }}</td>
+                    <td>{{ document.warganegara }}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary">{{ document.status }}</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" (click)="onTindakan(document)">{{ document.tindakan }}</button>
+                    </td>
+                  </tr>
+                  <tr *ngIf="documents.length === 0">
+                      <td colspan="8" class="text-center">Tiada data untuk dipaparkan</td>
+                  </tr>
+                </tbody>
+            </table>
+         </div> -->
+
+         <!-- Navigation - Right Section -->
+        <!-- <div class="col-md-3 ps-4 border-start">
+          <div
+            class="step"
+            [class.active]="isStepActive(1)"
+            [class.completed]="isStepCompleted(1)"
+          >
+            <div class="circle">1</div>
+            <div class="label">Carian Permohonan</div>
+          </div>
+          <div
+            class="step"
+            [class.active]="isStepActive(2)"
+            [class.completed]="isStepCompleted(2)"
+          >
+            <div class="circle">2</div>
+            <div class="label">Maklumat Permohonan</div>
+          </div>
+          <div
+            class="step"
+            [class.active]="isStepActive(3)"
+            [class.completed]="isStepCompleted(3)"
+          >
+            <div class="circle">3</div>
+            <div class="label">Keputusan Permohonan</div>
+          </div>
+      </div> -->
+      </div>
+
+      </div> <!-- Form-section -->
+    </div> <!-- column -->
+  </div> <!-- row -->
+

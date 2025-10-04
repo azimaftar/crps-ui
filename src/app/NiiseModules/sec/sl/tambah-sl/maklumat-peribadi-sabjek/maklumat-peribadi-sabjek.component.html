@@ -1,0 +1,226 @@
+<c-tabs [activeItemKey]="kategoriPermohonan" (activeItemKeyChange)="handleChange($event)">
+  <c-tabs-list variant="tabs">
+    <button cTab itemKey="0">Individu</button>
+    <button cTab itemKey="1">Kastam</button>
+    <button cTab itemKey="2">LHDN</button>
+  </c-tabs-list>
+
+  <c-tabs-content>
+    <c-tab-panel class="p-3" itemKey="0">
+      <ng-container *ngTemplateOutlet="formTemplate; context: { showCompanyFields: false }"></ng-container>
+    </c-tab-panel>
+
+    <c-tab-panel class="p-3" itemKey="1">
+      <ng-container *ngTemplateOutlet="formTemplate; context: { showCompanyFields: true }"></ng-container>
+    </c-tab-panel>
+
+    <c-tab-panel class="p-3" itemKey="2">
+      <ng-container *ngTemplateOutlet="formTemplate; context: { showCompanyFields: false, showLhdnFields: true }"></ng-container>
+    </c-tab-panel>
+  </c-tabs-content>
+</c-tabs>
+
+<!-- Reusable Template for Form -->
+<ng-template #formTemplate let-showCompanyFields="showCompanyFields" let-showLhdnFields="showLhdnFields">
+  <div class="container-fluid">
+    <c-row>
+      <c-col md="9">
+        <c-card class="mb-3">
+          <c-card-body>
+            <form>
+              <h5 class="mb-4">Maklumat Peribadi Subjek</h5>
+
+              <!-- IC + Jenis Pengenalan -->
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Jenis Pengenalan*</label>
+                  <select class="form-select" [(ngModel)]="jenisPengenalan" name="jenisPengenalan">
+                    <option value="" disabled selected>Sila pilih jenis pengenalan</option>
+                    <option value="ic">Kad Pengenalan Malaysia</option>
+                    <option value="passport">Pasport</option>
+                    <option value="police_id">Kad Pengenalan Polis</option>
+                    <option value="military_id">Kad Pengenalan Tentera</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">No. Kad Pengenalan*</label>
+                  <input type="text" class="form-control" [(ngModel)]="nomborKadPengenalan" name="nomborKadPengenalan" (ngModelChange)="fetchIdentityData()" maxlength="12" placeholder="Contoh: 980323106245">
+                </div>
+              </div>
+
+              <!-- Nama -->
+               <div class="row mb-3">
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Nama*</label>
+                <input type="text" class="form-control" [(ngModel)]="nama" name="nama" (ngModelChange)="fetchIdentityData()" required maxlength="60" placeholder="Contoh: Anuar Bin Rozman">
+              </div>
+              </div>
+
+              <!-- No Dokumen + Jenis Dokumen -->
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Jenis Dokumen</label>
+                  <select class="form-select" [(ngModel)]="jenisDokumen" name="jenisDokumen">
+                    <option value="" disabled selected>Sila pilih jenis dokumen</option>
+                    <option *ngFor="let dokumen of dokumenList">{{ dokumen }}</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">No. Dokumen</label>
+                  <input type="text" class="form-control" [(ngModel)]="nomborDokumen" name="nomborDokumen" maxlength="20" placeholder="Contoh: A800211">
+                </div>
+              </div>
+
+              <!-- Warganegara + Bangsa -->
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Warganegara*</label>
+                  <select class="form-select" [(ngModel)]="warganegara" name="warganegara">
+                    <option value="" disabled selected>Sila pilih warganegara</option>
+                    <option *ngFor="let negara of warganegaraList" [value]="negara.code">
+                      {{ negara.name }}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Bangsa</label>
+                  <select class="form-select" [(ngModel)]="bangsa" name="bangsa">
+                    <option value="" disabled selected>Sila pilih bangsa</option>
+                    <option *ngFor="let b of bangsaList">{{ b }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Tarikh Lahir + Jantina -->
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Tarikh Lahir*</label>
+                  <input type="date" class="form-control" [(ngModel)]="tarikhLahir" name="tarikhLahir">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Jantina</label>
+                  <select class="form-select" [(ngModel)]="jantina" name="jantina">
+                    <option value="" disabled selected>Sila pilih jantina</option>
+                    <option value="L">Lelaki</option>
+                    <option value="P">Perempuan</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Negara Lahir + Tempat Lahir -->
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Negara Lahir</label>
+                  <select class="form-select" [(ngModel)]="negaraLahir" name="negaraLahir">
+                    <option value="" disabled selected>Sila pilih negara lahir</option>
+                    <option *ngFor="let negara of warganegaraList" [value]="negara.code">
+                      {{ negara.name }}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Tempat Lahir*</label>
+                  <input type="text" class="form-control" [(ngModel)]="tempatLahir" name="tempatLahir" maxlength="20" placeholder="Contoh: Ampang Selangor">
+                </div>
+              </div>
+
+              <!-- Unik ID + Biometrik -->
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Unik ID</label>
+                  <input type="text" class="form-control" [(ngModel)]="fid" name="fid" maxlength="30" placeholder="Contoh: UID230398">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold">Data Biometrik</label>
+                  <input type="text" class="form-control" [(ngModel)]="dataBiometrik" name="dataBiometrik" readonly>
+                </div>
+              </div>
+
+              <!-- Catatan -->
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Catatan Fizikal (Jika Ada)</label>
+                <textarea class="form-control" rows="3" [(ngModel)]="catatanFizikal" name="catatanFizikal" maxlength="250" placeholder="Contoh: Kecacatan fizikal atau parut khas"></textarea>
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-semibold">Catatan Tambahan</label>
+                <textarea class="form-control" rows="3" [(ngModel)]="catatanTambahan" name="catatanTambahan" maxlength="250" placeholder="Masukkan maklumat tambahan jika perlu"></textarea>
+              </div>
+
+              <!-- Company Fields -->
+              <div *ngIf="showCompanyFields">
+                <!-- No Syarikat -->
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label class="form-label fw-semibold mb-0 label-inline">No Syarikat</label>
+                    <input type="text" class="form-control" [(ngModel)]="nomborSyarikat" name="nomborSyarikat" maxlength="30" placeholder="Contoh: SY0123">
+                  </div>
+                </div>
+
+                <!-- Nama Syarikat -->
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label class="form-label fw-semibold mb-0 label-inline">Nama Syarikat</label>
+                    <input type="text" class="form-control" [(ngModel)]="namaSyarikat" name="namaSyarikat" maxlength="60" placeholder="Contoh: Heitech Padu Sdn Bhd">
+                  </div>
+                </div>
+
+                <!-- Tarikh Surat Agensi -->
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label class="form-label fw-semibold mb-0 label-inline">Tarikh Surat Agensi</label>
+                    <input type="date" class="form-control" [(ngModel)]="tarikhSuratAgensi" name="tarikhSuratAgensi">
+                  </div>
+                </div>
+              </div>
+
+
+              <!-- Tarikh Sijil Agensi (Only for LHDN) -->
+              <div *ngIf="showLhdnFields" class="row mb-3">
+                <div class="col-md-6">
+                  <label class="form-label fw-semibold mb-0 label-inline">Tarikh Sijil Agensi (Sijil Sekatan)</label>
+                  <input type="date" class="form-control" [(ngModel)]="tarikhSijilAgensi" name="tarikhSijilAgensi">
+                </div>
+              </div>
+
+              <!-- sahkan -->
+              <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" [(ngModel)]="sahkan" name="sahkan" required>
+                <label class="form-check-label">Saya mengesahkan maklumat yang diberikan adalah sah dan benar.</label>
+              </div>
+            </form>
+          </c-card-body>
+        </c-card>
+      </c-col>
+
+      <!-- Right Column: Stepper -->
+      <c-col md="3" class="px-4 py-3 mt-2 stepper-container">
+        <ul class="stepper-list">
+          <li
+            class="stepper-item"
+            *ngFor="let step of steps; let i = index"
+            [class.active]="isStepActive(step.number)">
+            <div class="stepper-content">
+              <span class="step-number" [class.active]="isStepActive(step.number)">
+                {{ step.number }}
+              </span>
+              <span class="step-title" [class.active]="isStepActive(step.number)">
+                {{ step.title }}
+              </span>
+            </div>
+
+            <!-- Step Line -->
+            <div *ngIf="i < steps.length - 1" class="stepper-line"></div>
+          </li>
+        </ul>
+      </c-col>
+    </c-row>
+
+    <!-- Footer Buttons -->
+    <div class="border-top p-3 d-flex justify-content-end gap-2">
+      <button type="button" cButton color="primary" (click)="resetForm()">Set Semula</button>
+      <button type="button" cButton color="primary" (click)="nextStep()">
+        <svg cIcon name="cilCaretRight" size="sm"></svg>
+      </button>
+    </div>
+  </div>
+</ng-template>

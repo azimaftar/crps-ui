@@ -1,0 +1,53 @@
+<!-- <p>modal-notifikasi-maklumat-pas works!</p> -->
+
+<!-- Modal -->
+<c-modal #maklumatPasModal [visible]="visible" alignment="center" backdrop="static">
+  <c-modal-header class="justify-content-center border-0">
+    <h5 cModalTitle class="text-center">
+      <div class="d-flex flex-column align-items-center">
+        <div style="width: 100px; height: 90px; border: 1px solid #999; margin: 20px 0;"></div>
+        Pemeriksaan Masuk Berjaya!
+      </div>
+    </h5>
+  </c-modal-header>
+  
+  <c-modal-body>
+    <!-- Jenis Pas -->
+    <c-row class="justify-content-center mb-3">
+      <c-col xs="5" class="text-end fw-semibold">
+        <label cLabel>Jenis Pas</label>
+      </c-col>
+      <c-col xs="5">
+        <input 
+          cFormControl 
+          type="text" 
+          value="Visa Transit" 
+          readonly />
+      </c-col>
+    </c-row>
+
+    <!-- Tarikh Tamat Pas -->
+    <c-row class="justify-content-center mb-4">
+      <c-col xs="5" class="text-end fw-semibold">
+        <label cLabel>Tarikh Tamat Pas</label>
+      </c-col>
+      <c-col xs="5">
+        <input 
+          cFormControl 
+          type="text" 
+          value="21 Mac 2025" 
+          readonly />
+      </c-col>
+    </c-row>
+
+    <!-- Footer note using CoreUI Typography -->
+    <c-row>
+      <c-col>
+        <p class="small text-muted text-center mb-0">
+          Sila Keluar dari Laluan eGate.<br />
+          Kod QR &amp; e-Digital Stamping akan dihantar ke e-mel anda.
+        </p>
+      </c-col>
+    </c-row>
+  </c-modal-body>
+</c-modal>

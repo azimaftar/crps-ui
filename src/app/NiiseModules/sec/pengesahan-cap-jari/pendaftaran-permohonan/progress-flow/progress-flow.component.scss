@@ -1,0 +1,57 @@
+/* Horizontal Stepper */
+.horizontal-stepper {
+  background-color: #F6F6F6;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 12px;
+  width: 100%;
+}
+.horizontal-stepper .stepper-list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.horizontal-stepper .step-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  padding: 6px 14px;
+  background: #f9f9f9;
+  font-size: 0.9rem;
+  color: #333;
+  cursor: pointer;
+}
+.horizontal-stepper .step-number {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  color: #000;
+  font-size: 0.8rem;
+  line-height: 22px;
+  text-align: center;
+  font-weight: 600;
+}
+.horizontal-stepper .active .step-btn {
+  border: none;                 /* remove border */
+  background: #fff;          /* keep background */
+  color: #000000;               /* keep text color */
+  font-weight: bold;            /* keep bold text */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* add shadow */
+  transition: box-shadow 0.3s ease; /* smooth effect */
+}
+.horizontal-stepper .active .step-number {
+  background: linear-gradient(258.77deg, #00BBA7 0%, #122640 98.29%);
+  color: #fff;
+}
+.stepper-list {
+  list-style: none;   /* removes the bullets */
+  margin: 0;          /* reset default margin */
+  padding: 0;         /* reset default padding */
+}

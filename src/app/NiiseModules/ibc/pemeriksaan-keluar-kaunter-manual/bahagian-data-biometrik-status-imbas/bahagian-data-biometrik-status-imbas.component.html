@@ -1,0 +1,82 @@
+<form class="border border-dark m-0">
+  <!-- Header -->
+  <div class="py-3 px-4 border-bottom border-dark">
+    <h6 class="m-0">PEMERIKSAAN MASUK (KAUNTER MANUAL) - BAHAGIAN DATA BIOMETRIK [WAJAH & IRIS]</h6>
+  </div>
+
+  <!-- Main Sections -->
+  <div class="row g-0 border-top border-bottom border-dark">
+    <!-- Partition 1: Widgets -->
+    <div class="col-12 col-md-2 border-end border-dark p-3 d-flex flex-column align-items-center">
+      <c-col class="mt-4 w-100">
+        <c-widget-stat-a class="mb-3" color="primary" [title]="'Widget 1'" style="height: 100px;"></c-widget-stat-a>
+        <c-widget-stat-a class="mb-3" color="primary" [title]="'Widget 2'" style="height: 100px;"></c-widget-stat-a>
+        <c-widget-stat-a class="mb-3" color="primary" [title]="'Widget 3'" style="height: 100px;"></c-widget-stat-a>
+      </c-col>
+    </div>
+
+    <!-- Partition 2: Face & Iris -->
+    <div class="col-12 col-md-6 border-end border-dark p-4">
+      <!-- Wajah Section -->
+      <div class="d-flex flex-wrap gap-4 align-items-start mb-5">
+        <div class="border rounded p-2" style="width: 200px;">
+          <div class="border rounded p-5 text-center">
+            <img src="" alt="WAJAH" class="img-fluid" />
+          </div>
+        </div>
+        <div class="flex-grow-1 mt-4">
+          <label for="wajah" class="form-label">% Pengecaman Wajah</label>
+          <input type="text" id="wajah" class="form-control" placeholder="Field 1" />
+        </div>
+      </div>
+
+      <!-- Iris Section -->
+      <div class="d-flex flex-wrap gap-4 align-items-start mb-4">
+        <div class="border rounded p-2" style="width: 200px;">
+          <div class="border rounded p-5 text-center">
+            <img src="" alt="IRIS" class="img-fluid" />
+          </div>
+        </div>
+        <div class="flex-grow-1 mt-4">
+          <label for="iris" class="form-label">% Pengecaman Iris</label>
+          <input type="text" id="iris" class="form-control" placeholder="Field 1" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Partition 3: Status -->
+    <div class="col-12 col-md-4 p-4 d-flex justify-content-center align-items-center">
+      <input type="text"
+             class="form-control text-center fs-5"
+             style="width: 70%; height: 100px;"
+             value="STATUS IMBASAN"
+             disabled />
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="text-end py-3 px-4" >
+    <button class="btn btn-secondary me-2" style="margin: 10px 0;"
+            (click)="openPengecualianBiometrik()"
+            [disabled]="statusImbas !== 'imbas' && statusImbas !== 'gagal'">
+      PENGECUALIAN BIOMETRIK
+    </button>
+    <button class="btn btn-success me-2" style="margin: 10px 0;"
+            (click)="openCapJari()"
+            [disabled]="statusImbas !== 'sah'"
+            *ngIf="statusImbas !== 'imbas'">
+      SAH BIOMETRIK
+    </button>
+    <button class="btn btn-primary me-2" style="margin: 10px 0;"
+            (click)="openCapJari()"
+            [disabled]="statusImbas !== 'simpan'"
+            *ngIf="statusImbas !== 'imbas'">
+      SIMPAN
+    </button>
+    <!-- <button type="button" class="btn btn-dark me-2" (click)="openKeputusanImbasanGagal()" *ngIf="statusImbas === 'imbas'" style="margin: 10px 0;">IMBAS</button> -->
+     <!-- <button type="button" class="btn btn-dark me-2" (click)="openKeputusanImbasanLulusSah()" *ngIf="statusImbas === 'imbas'" style="margin: 10px 0;">IMBAS</button> -->
+    <button type="button" class="btn btn-dark me-2" (click)="openKeputusanImbasanLulusSimpan()" *ngIf="statusImbas === 'imbas'" style="margin: 10px 0;">IMBAS</button>
+  </div>
+</form>
+
+<!-- <app-pengecualian-biometrik></app-pengecualian-biometrik> -->

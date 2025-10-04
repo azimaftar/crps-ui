@@ -1,0 +1,12 @@
+<div class="step" [class.active]="isStepActive(1)" [class.completed]="isStepCompleted(1)" (click)="setStep(1)">
+    <div class="circle">1</div>
+    <div class="label">Maklumat Peribadi Subjek</div>
+</div>
+<div class="step" [class.active]="isStepActive(2)" [class.completed]="isStepCompleted(2)" (click)="setStep(2)">
+    <div class="circle">2</div>
+    <div class="label">Maklumat Tindakan</div>
+</div>
+<div class="step" [class.active]="isStepActive(3)" [class.completed]="isStepCompleted(3)" (click)="setStep(3)">
+    <div class="circle">3</div>
+    <div class="label">Dokumen Sokongan</div>
+</div>

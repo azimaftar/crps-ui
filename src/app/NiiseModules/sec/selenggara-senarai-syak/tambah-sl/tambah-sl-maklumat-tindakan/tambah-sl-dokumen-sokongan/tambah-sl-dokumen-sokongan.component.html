@@ -1,0 +1,88 @@
+<div class="container-fluid">
+    <c-row>
+        <c-col>
+            <c-card class="mb-3">
+                <c-card-body>
+                    <form>
+                        <h3 class="mb-4">Dokumen Sokongan</h3>
+
+                        <div class="horizontal-stepper">
+                            <ul class="stepper-list d-flex align-items-center justify-content-start flex-wrap">
+                            <li
+                                class="stepper-item"
+                                *ngFor="let step of steps"
+                                [class.active]="isStepActive(step.number)">
+                                <button type="button" class="step-btn">
+                                <span class="step-number">{{ step.number }}</span>
+                                <span class="step-title">{{ step.title }}</span>
+                                </button>
+                            </li>
+                            </ul>
+                        </div>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-12">
+                                <div class="table-responsive">
+                                <table cTable hover class="table align-middle">
+                                    <thead>
+                                    <tr>
+                                        <th>Bil.</th>
+                                        <th>Keterangan</th>
+                                        <th>Nama Dokumen</th>
+                                        <th>Format</th>
+                                        <th>Tindakan</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let doc of documents; let i = index">
+                                        <td>{{ i + 1 }}</td>
+
+                                        <!-- Keterangan -->
+                                        <td class="align-middle">
+                                        {{ doc.keterangan }}
+                                        </td>
+
+                                        <!-- Nama Dokumen -->
+                                        <td>
+                                        <span *ngIf="doc.fileName" class="text-dark fw-semibold">
+                                            {{ doc.fileName }}
+                                        </span>
+                                        <span *ngIf="!doc.fileName" class="text-muted">
+                                            Tiada fail dipilih
+                                        </span>
+                                        </td>
+
+                                        <!-- Format -->
+                                        <td>
+                                        <span *ngIf="doc.format" class="badge text-bg-secondary">
+                                            {{ doc.format }}
+                                        </span>
+                                        </td>
+
+                                        <!-- Tindakan -->
+                                        <td>
+                                        <button type="button" cButton color="primary" (click)="uploadFile(i)">
+                                            + Muat Naik
+                                        </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <small class="text-muted">*Saiz fail maksimum: 10MB</small>
+                                </div>
+                            </c-col>
+                        </c-row>
+                    </form>
+                </c-card-body>
+                <!-- Footer Navigation -->
+                <div class="border-top p-3 d-flex justify-content-end gap-2">
+                <button type="button" cButton color="primary" (click)="resetForm()">Set Semula</button>
+                <button type="button" cButton color="primary" (click)="submitForm()">Hantar</button>
+                <button type="button" cButton color="primary" (click)="previousStep()">
+                    <svg cIcon name="cilCaretLeft" size="sm"></svg>
+                </button>
+                </div>
+            </c-card>
+        </c-col>
+    </c-row>
+</div>

@@ -1,0 +1,383 @@
+<div class="horizontal-stepper">
+    <ul class="stepper-list d-flex align-items-center justify-content-start flex-wrap">
+    <li
+        class="stepper-item"
+        *ngFor="let step of steps; let i = index" 
+        [class.active]="currentStep === step.number" 
+        (click)="navigateToStep(i)">
+        <button type="button" class="step-btn" [class.disabled]="step.isAccessible === false">
+        <span class="step-number">{{ step.number }}</span>
+        <span class="step-title">{{ step.title }}</span>
+        </button>
+    </li>
+    </ul>
+</div>
+
+<c-card class="mb-3">
+    <c-card-body>
+        <form (ngSubmit)="onSubmit($event)">
+            <c-col md="12">
+                <div *ngIf="(sectionNumber != 2)">
+                    <h4 class="mb-4 fw-semibold">Maklumat Pemohon</h4>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" for="kategoriPermohonan">
+                            Kategori Permohonan<span style="color: red;">*</span>
+                        </label>
+                        <select [class]="getSelectClass('applCat')" id="kategoriPermohonan" name="kategoriPermohonan" (change)="onChangeCat($event); 
+                                onFieldChange('applCat')" [(ngModel)]="formData.applCat" style="width: 70%;" required>
+                            <option value="">-Sila Pilih-</option>
+                            <option value="Pengesahan Pergerakan">Pengesahan Pergerakan</option>
+                            <option value="Pengesahan Cap Keselamatan">Pengesahan Cap Keselamatan</option>
+                            <option value="Pengesahan Pas">Pengesahan Pas</option>
+                            <option value="Pengesahan Senarai Syak">Pengesahan Senarai Syak</option>
+                        </select>
+                        <div *ngIf="showValidationMessages && hasFieldError('applCat')" class="invalid-feedback d-block">
+                            {{ getFieldError('applCat') }}
+                        </div>
+                    </div>
+
+                    <c-row class="mb-3">
+                        <c-col md="6">
+                            <label class="form-label fw-semibold" for="pejabatNegeri">
+                                Pejabat Negeri<span style="color: red;">*</span>
+                            </label>
+                            <select [class]="getSelectClass('officeState')" id="pejabatNegeri" name="pejabatNegeri" [(ngModel)]="formData.officeState" 
+                                    (change)="onFieldChange('officeState')" style="width: 90%;" required>
+                                <option value="">-Sila Pilih-</option>
+                                <option value="16 - Putrajaya">16 - Putrajaya</option>
+                            </select>
+                            <div *ngIf="showValidationMessages && hasFieldError('officeState')" class="invalid-feedback d-block">
+                                {{ getFieldError('officeState') }}
+                            </div>
+                        </c-col>
+                        <c-col md="6" *ngIf="formData.applCat == 'Pengesahan Pas'">
+                            <label class="form-label fw-semibold" for="bahagian">
+                                Bahagian
+                            </label>
+                            <select class="form-select" id="bahagian" name="bahagian" [(ngModel)]="formData.bahagian" style="width: 90%;">
+                                <option value="">-Sila Pilih-</option>
+                                <option value="Bahagian 1">Bahagian 1</option>
+                            </select>
+                        </c-col>
+                    </c-row>
+                </div>
+
+                <div *ngIf="formData.applCat &&
+                        (((formData.applCat == 'Pengesahan Pergerakan') && (sectionNumber == 1)) ||
+                        (formData.applCat == 'Pengesahan Cap Keselamatan') ||
+                        (formData.applCat == 'Pengesahan Pas') ||
+                        (formData.applCat == 'Pengesahan Senarai Syak'))">
+
+                    <div class="mb-4">
+                        <h4 class="mb-4 fw-semibold mt-4">Maklumat Surat</h4>
+                        
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" for="noRujukan">
+                                No. Rujukan<span style="color: red;">*</span>
+                            </label>
+                            <input [class]="getFieldClass('refNo')" id="noRujukan" name="noRujukan" type="text" style="width: 50%;" placeholder="No. Rujukan" 
+                                [(ngModel)]="formData.refNo" (input)="onFieldChange('refNo')" required>
+                            <div *ngIf="showValidationMessages && hasFieldError('refNo')" class="invalid-feedback">
+                                {{ getFieldError('refNo') }}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" for="tarikhSurat">
+                                Tarikh Surat<span style="color: red;">*</span>
+                            </label>
+                            <input [class]="getFieldClass('letterDate')" id="tarikhSurat" name="tarikhSurat" type="date" style="width: 40%;" 
+                                [(ngModel)]="formData.letterDate" (change)="onFieldChange('letterDate')" required>
+                            <div *ngIf="showValidationMessages && hasFieldError('letterDate')" class="invalid-feedback">
+                                {{ getFieldError('letterDate') }}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" for="namaPegawai">
+                                Nama Pegawai Pemohon<span style="color: red;">*</span>
+                            </label>
+                            <input [class]="getFieldClass('officerName')" id="namaPegawai" name="namaPegawai" type="text" style="width: 80%;" 
+                                placeholder="Nama Pegawai Pemohon" [(ngModel)]="formData.officerName" (input)="onFieldChange('officerName')" required>
+                            <div *ngIf="showValidationMessages && hasFieldError('officerName')" class="invalid-feedback">
+                                {{ getFieldError('officerName') }}
+                            </div>
+                        </div>
+
+                        <c-row class="mb-3">
+                            <c-col md="6">
+                                <label class="form-label fw-semibold">Alamat<span style="color: red;">*</span></label>
+                                <input [class]="getFieldClass('address1')" type="text" placeholder="Alamat Baris 1" [(ngModel)]="formData.address1" name="alamat1" 
+                                    (input)="onFieldChange('address1')" required class="mb-2">
+                                <div *ngIf="showValidationMessages && hasFieldError('address1')" class="invalid-feedback d-block">
+                                    {{ getFieldError('address1') }}
+                                </div>
+                                
+                                <input [class]="getFieldClass('address2')" type="text" placeholder="Alamat Baris 2" [(ngModel)]="formData.address2" name="alamat2" 
+                                    (input)="onFieldChange('address2')" required class="mb-2">
+                                <div *ngIf="showValidationMessages && hasFieldError('address2')" class="invalid-feedback d-block">
+                                    {{ getFieldError('address2') }}
+                                </div>
+                                
+                                <input class="form-control" type="text" placeholder="Alamat Baris 3" [(ngModel)]="formData.address3" name="alamat3">
+                            </c-col>
+                            <c-col md="6">
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold" for="poskod">
+                                        Poskod<span style="color: red;">*</span>
+                                    </label>
+                                    <input [class]="getFieldClass('poskod')" id="poskod" name="poskod" type="text" required placeholder="Poskod" 
+                                        style="width: 80%;" [(ngModel)]="formData.poskod" (input)="onFieldChange('poskod')">
+                                    <div *ngIf="showValidationMessages && hasFieldError('poskod')" class="invalid-feedback">
+                                        {{ getFieldError('poskod') }}
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="form-label fw-semibold" for="bandar">
+                                        Bandar<span style="color: red;">*</span>
+                                    </label>
+                                    <select [class]="getSelectClass('bandar')" id="bandar" name="bandar" required style="width: 80%;" [(ngModel)]="formData.bandar" 
+                                            (change)="onFieldChange('bandar')">
+                                        <option value="">-Sila Pilih-</option>
+                                        <option value="Mantin">Mantin</option>
+                                    </select>
+                                    <div *ngIf="showValidationMessages && hasFieldError('bandar')" class="invalid-feedback">
+                                        {{ getFieldError('bandar') }}
+                                    </div>
+                                </div>
+                            </c-col>
+                        </c-row>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" for="emel">E-Mel</label>
+                            <input [class]="getFieldClass('emel')" id="emel" name="emel" type="email" style="width: 60%;" placeholder="E-Mel" [(ngModel)]="formData.emel"
+                                (input)="onFieldChange('emel')">
+                            <div *ngIf="showValidationMessages && hasFieldError('emel')" class="invalid-feedback">
+                                {{ getFieldError('emel') }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="formData.applCat == 'Pengesahan Pergerakan' && sectionNumber == 1" class="mb-4">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" for="tujuanPermohonan">Tujuan Permohonan</label>
+                            <textarea class="form-control" id="tujuanPermohonan" name="tujuanPermohonan" style="width: 85%;" [(ngModel)]="formData.applPurpose"
+                                placeholder="Sila masukkan tujuan permohonan">
+                            </textarea>
+                        </div>
+                    </div>
+
+                    <div *ngIf="formData.applCat === 'Pengesahan Cap Keselamatan'" class="mb-4">
+                        <h4 class="mb-4 fw-semibold mt-4">Butiran Maklumat Cap Keselamatan</h4>
+                        <c-row class="mb-3">
+                            <c-col md="6">
+                                <label class="form-label fw-semibold" for="nomborCapKeselamatan">
+                                    Nombor Cap Keselamatan
+                                </label>
+                                <input class="form-control" id="nomborCapKeselamatan" name="nomborCapKeselamatan" type="text" placeholder="Nombor Cap Keselamatan" 
+                                    [(ngModel)]="formData.stampNo">
+                            </c-col>
+                            <c-col md="6">
+                                <label class="form-label fw-semibold" for="nomborDokumen">
+                                    Nombor Dokumen Perjalanan
+                                </label>
+                                <input class="form-control" id="nomborDokumen" name="nomborDokumen" type="text" placeholder="Nombor Dokumen Perjalanan" 
+                                    [(ngModel)]="formData.docNo"> 
+                            </c-col>
+                        </c-row>
+                    </div>
+
+                    <div *ngIf="formData.applCat == 'Pengesahan Pas' || formData.applCat == 'Pengesahan Senarai Syak'" class="mb-4">
+                        <h5 class="mb-4 fw-semibold mt-4">Maklumat Orang Yang Dikehendaki</h5>
+                        
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" for="nama">Nama<span style="color: red;">*</span></label>
+                            <input [class]="getFieldClass('name')" id="nama" name="nama" type="text" style="width: 70%;"placeholder="Nama" [(ngModel)]="formData.name" 
+                                (input)="onFieldChange('name')" required>
+                            <div *ngIf="showValidationMessages && hasFieldError('name')" class="invalid-feedback">
+                                {{ getFieldError('name') }}
+                            </div>
+                        </div>
+
+                        <c-row class="mb-3">
+                            <c-col md="6">
+                                <label class="form-label fw-semibold" for="noKadPengenalan">
+                                    No. Kad Pengenalan<span style="color: red;">*</span>
+                                </label>
+                                <input [class]="getFieldClass('kpNo')" id="noKadPengenalan" name="noKadPengenalan" type="text" placeholder="No. Kad Pengenalan" 
+                                    [(ngModel)]="formData.kpNo" (input)="onFieldChange('kpNo')" required>
+                                <div *ngIf="showValidationMessages && hasFieldError('kpNo')" class="invalid-feedback">
+                                    {{ getFieldError('kpNo') }}
+                                </div>
+                            </c-col>
+                            <c-col md="6">
+                                <label class="form-label fw-semibold" for="warganegara">
+                                    Warganegara<span style="color: red;">*</span>
+                                </label>
+                                <select [class]="getSelectClass('citizenship')" id="warganegara" name="warganegara" [(ngModel)]="formData.citizenship" 
+                                        (change)="onFieldChange('citizenship')" required>
+                                    <option value="">-Sila Pilih-</option>
+                                    <option *ngFor="let negara of warganegaraList" [value]="negara.code">
+                                        {{ negara.name }}
+                                    </option>
+                                </select>
+                                <div *ngIf="showValidationMessages && hasFieldError('citizenship')" class="invalid-feedback">
+                                    {{ getFieldError('citizenship') }}
+                                </div>
+                            </c-col>
+                        </c-row>
+                    </div>
+
+                    <div *ngIf="formData.applCat === 'Pengesahan Pas'" class="mb-4">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" for="nomborDokumen">
+                                Nombor Dokumen<span style="color: red;">*</span>
+                            </label>
+                            <input [class]="getFieldClass('docNo')" id="nomborDokumen" name="nomborDokumen" type="text" style="width: 60%;" placeholder="Nombor Dokumen" 
+                                [(ngModel)]="formData.docNo" (input)="onFieldChange('docNo')" required>
+                            <div *ngIf="showValidationMessages && hasFieldError('docNo')" class="invalid-feedback">
+                                {{ getFieldError('docNo') }}
+                            </div>
+                        </div>
+                        <c-row class="mb-3">
+                            <c-col md="6">
+                                <label class="form-label fw-semibold" for="jenisPas">
+                                    Jenis Pas<span style="color: red;">*</span>
+                                </label>
+                                <select [class]="getSelectClass('pasType')" id="jenisPas" name="jenisPas" [(ngModel)]="formData.pasType" (change)="onFieldChange('pasType')" 
+                                    required>
+                                    <option value="">-Sila Pilih-</option>
+                                    <option value="Pas Pekerja Asing">Pas Pekerja Asing</option>
+                                </select>
+                                <div *ngIf="showValidationMessages && hasFieldError('pasType')" class="invalid-feedback">
+                                    {{ getFieldError('pasType') }}
+                                </div>
+                            </c-col>
+                        </c-row>
+                    </div>
+                </div>
+
+                <div *ngIf="(formData.applCat === 'Pengesahan Pergerakan') && (sectionNumber === 2)">
+                    <h4 class="mb-4 fw-semibold mt-4">Maklumat Pergerakan</h4>
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" for="tempohMaklumatPergerakan">
+                            Tempoh Maklumat Pergerakan<span style="color: red;">*</span>
+                        </label>
+                        <input [class]="getFieldClass('tempohMaklumatPergerakan')" id="tempohMaklumatPergerakan" name="tempohMaklumatPergerakan" type="text" 
+                            style="width: 60%;" placeholder="Tempoh Maklumat Pergerakan" [(ngModel)]="formData.tempohMaklumatPergerakan" 
+                            (input)="onFieldChange('tempohMaklumatPergerakan')" required>
+                        <div *ngIf="showValidationMessages && hasFieldError('tempohMaklumatPergerakan')" class="invalid-feedback">
+                            {{ getFieldError('tempohMaklumatPergerakan') }}
+                        </div>
+                    </div>
+
+                    <c-row class="mb-3">
+                        <c-col md="6">
+                            <label class="form-label fw-semibold" for="tarikhMulaPergerakan">
+                                Tarikh Mula Pergerakan<span style="color: red;">*</span>
+                            </label>
+                            <input [class]="getFieldClass('moveStartDt')" id="tarikhMulaPergerakan" name="tarikhMulaPergerakan" type="date" 
+                                [(ngModel)]="formData.moveStartDt" (change)="onFieldChange('moveStartDt')" required>
+                            <div *ngIf="showValidationMessages && hasFieldError('moveStartDt')" class="invalid-feedback">
+                                {{ getFieldError('moveStartDt') }}
+                            </div>
+                        </c-col>
+                        <c-col md="6">
+                            <label class="form-label fw-semibold" for="tarikhAkhirPergerakan">
+                                Tarikh Akhir Pergerakan<span style="color: red;">*</span>
+                            </label>
+                            <input [class]="getFieldClass('moveEndDt')" id="tarikhAkhirPergerakan" name="tarikhAkhirPergerakan" type="date" 
+                                [(ngModel)]="formData.moveEndDt" (change)="onFieldChange('moveEndDt')" required>
+                            <div *ngIf="showValidationMessages && hasFieldError('moveEndDt')" class="invalid-feedback">
+                                {{ getFieldError('moveEndDt') }}
+                            </div>
+                        </c-col>
+                    </c-row>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" for="maklumatPergerakanTerakhir">
+                            Maklumat Pergerakan Terakhir
+                        </label>
+                        <input class="form-control" id="maklumatPergerakanTerakhir" name="maklumatPergerakanTerakhir" type="text" style="width: 80%;" 
+                            placeholder="Maklumat Pergerakan Terakhir" [(ngModel)]="formData.maklumatPergerakanTerakhir">
+                    </div>
+
+                    <h5 class="mb-4 fw-semibold mt-4">Maklumat Orang Yang Dikehendaki</h5>
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" for="nama2">Nama<span style="color: red;">*</span></label>
+                        <input [class]="getFieldClass('name')" id="nama2" name="nama2" type="text" style="width: 70%;"placeholder="Nama" 
+                            [(ngModel)]="formData.name" (input)="onFieldChange('name')" required>
+                        <div *ngIf="showValidationMessages && hasFieldError('name')" class="invalid-feedback">
+                            {{ getFieldError('name') }}
+                        </div>
+                    </div>
+
+                    <c-row class="mb-3">
+                        <c-col md="6">
+                            <label class="form-label fw-semibold" for="noKadPengenalan2">
+                                No. Kad Pengenalan<span style="color: red;">*</span>
+                            </label>
+                            <input [class]="getFieldClass('kpNo')" id="noKadPengenalan2" name="noKadPengenalan2" type="text" placeholder="No. Kad Pengenalan" 
+                                [(ngModel)]="formData.kpNo" (input)="onFieldChange('kpNo')" required>
+                            <div *ngIf="showValidationMessages && hasFieldError('kpNo')" class="invalid-feedback">
+                                {{ getFieldError('kpNo') }}
+                            </div>
+                        </c-col>
+                        <c-col md="6">
+                            <label class="form-label fw-semibold" for="warganegara2">
+                                Warganegara<span style="color: red;">*</span>
+                            </label>
+                            <select [class]="getSelectClass('citizenship')" id="warganegara2" name="warganegara2" [(ngModel)]="formData.citizenship" 
+                                    (change)="onFieldChange('citizenship')" required>
+                                <option value="">-Sila Pilih-</option>
+                                <option *ngFor="let negara of warganegaraList" [value]="negara.code">
+                                    {{ negara.name }}
+                                </option>
+                            </select>
+                            <div *ngIf="showValidationMessages && hasFieldError('citizenship')" class="invalid-feedback">
+                                {{ getFieldError('citizenship') }}
+                            </div>
+                        </c-col>
+                    </c-row>
+                </div>
+            </c-col>
+            
+            <c-row class="mt-4 mb-3">
+                <c-col class="d-flex justify-content-end align-items-center gap-2">
+                    <div class="d-flex flex-wrap gap-3 my-3">
+                        <button cButton type="button" color="secondary" class="text-white px-4 py-2 flex-grow-1 flex-md-grow-0" (click)="resetForm()">
+                            <i class="fas fa-undo me-2"></i>
+                            Set Semula
+                        </button>
+
+                        <button type="submit" class="btn btn-primary" (click)="onSubmit($event)" [disabled]="isSubmitting || !formComplete()" [class.loading]="isSubmitting">
+                            <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2" role="status"></span>
+                                {{ isSubmitting ? 'Menghantar...' : 'Hantar' }}
+                        </button>                            
+                    </div>
+
+                    <div class="d-flex gap-2 ms-4">
+                        <button cButton type="button" [disabled]="!disableGoBack(sectionNumber)" color="primary" class="text-white px-3 nav-btn" 
+                            (click)="goBack(sectionNumber)">
+                            &lt;
+                        </button>
+                        <button cButton type="button" [disabled]="disableGoNext()" color="primary" class="text-white px-3 nav-btn" (click)="goNext(sectionNumber)">
+                            &gt;
+                        </button>
+                    </div>
+                </c-col>
+            </c-row>
+        </form>
+    </c-card-body>
+</c-card>
+
+<app-shared-modal
+  [visible]="modalVisible"
+  [message]="modalMessage"
+  [mode]="modalMode" 
+  (confirm)="handleConfirmSubmit()"
+  (cancel)="handleCancelModal()">
+</app-shared-modal>

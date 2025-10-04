@@ -1,0 +1,321 @@
+c-card {
+    margin: 1px;
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .btn {
+        white-space: nowrap;
+    }
+
+    table {
+        thead {
+            background-color: #0d6efd;
+            color: white;
+
+            th {
+                border-color: 1px solid #dee2e6;
+            }
+        }
+    }
+}
+
+/* Remove border between header and body */
+c-card-header {
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+/* Optionally remove card border or shadow too */
+c-card {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+:host ::ng-deep .datatable-scroll table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #dee2e6;
+}
+
+:host ::ng-deep .datatable-body-row:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+:host ::ng-deep .datatable-body-row:hover {
+    background-color: #e9ecef;
+}
+
+.bg-custom-gray {
+    background-color: hsl(0, 0%, 100%);
+}
+
+.bg-custom-gray2 {
+  
+    gap: 20px;
+}
+
+/* Styling for Header Rows */
+:host ::ng-deep .datatable-header {
+    background-color: #FFFFFF;
+    /* Dark background for the header */
+    color: #62748E;
+
+    /* Bold header text */
+}
+
+:host ::ng-deep .datatable-header .datatable-header-cell {
+    padding: 12px;
+    text-align: center;
+    /* Center align text */
+    font-size: 14px;
+    /* Font size for header cells */
+    border: 1px solid #FFFFFF;
+    /* Border for header cells */
+}
+
+/* Styling for body rows */
+:host ::ng-deep .datatable-body-cell {
+    padding: 12px;
+    font-size: 14px;
+    text-align: left;
+    /* Left align for body cells */
+    border: 1px solid #FFFFFF;
+}
+
+.style-1 {
+    display: block;
+    width: auto;
+    /* Hug width */
+    height: auto;
+    /* Hug height */
+    padding: 0;
+    /* No extra space unless needed */
+    font-family: 'Inter', sans-serif;
+    font-weight: 550; //bold 500
+    font-size: 14px;
+    line-height: 1.2;
+    /* Not 0 – keeps it legible */
+    letter-spacing: 0;
+    margin-bottom: 6px;
+    color: #1D293D;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-search {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    /* space between icon and text */
+    width: 139px;
+    height: 40px;
+    padding: 8px 12px;
+    background-color: #D9E9FF;
+    color: #1461BA;
+    border: 1px solid #D9E9FF;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.btn-search i,
+.btn-search .icon {
+    font-size: 16px;
+    line-height: 1;
+}
+
+.btn-search:active {
+    background-color: #004080;
+    transform: scale(0.98);
+}
+
+.btn-search:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #1461BA;
+}
+
+.form-control {
+    width: 322px;
+    height: 40px;
+    padding: 8px 12px;
+    /* top/bottom: 8px, left/right: 12px */
+    border: 1px solid #CAD5E2;
+    border-radius: 8px;
+    /* assuming you meant "inside" as a rounded look */
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #1D293D;
+    background-color: #f9faff;
+    box-sizing: border-box;
+}
+
+// .form-control:focus {
+//   outline: none;
+//   border-color: #0d3b7d;          /* Darker blue on focus */
+//   box-shadow: 0 0 5px 2px rgba(20, 97, 186, 0.4);
+//   background-color: white;
+// }
+
+.form-select {
+    width: 322px;
+    height: 40px;
+    padding: 8px 12px;
+    /* top/bottom: 8px, left/right: 12px */
+    border: 1px solid #CAD5E2;
+    border-radius: 8px;
+    /* assuming you meant "inside" as a rounded look */
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #1D293D;
+    background-color: #f9faff;
+    box-sizing: border-box;
+}
+
+.btn-add {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    /* space between icon and text */
+    width: 139px;
+    height: 40px;
+    padding: 8px 12px;
+    background-color: #1461BA;
+    color: #FFFFFF;
+    border: 1px solid #1461BA;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    user-select: none;
+}
+
+/* Green badge for 'Aktif' */
+.status-badge-active {
+    background-color: #F0FDF4;
+    color: #027A48;
+}
+
+/* Red badge for all other statuses */
+.status-badge-inactive {
+    background-color: #FDECEA;
+    color: #dc3545;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 2px;
+}
+
+.status-dot-active {
+    background-color: #22C55E;
+}
+
+.status-dot-inactive {
+    background-color: #bd2a39;
+}
+
+::ng-deep .modal-notification3 .modal-dialog {
+  display: flex;
+  align-items: center;       // Vertically center
+  justify-content: center;   // Horizontally center
+  min-height: 100vh;         // Full viewport height
+  margin: 0 auto; 
+  width: 430px;          
+  height: 275px;
+}
+
+.modal-notification3 .modal-content {
+  margin: auto;
+}
+.modal-message-container {
+    display: flex;
+    flex-direction: column; // Stack icon and label vertically
+    align-items: center; // Center them horizontally
+    justify-content: center; // Center vertically if needed
+    text-align: center;
+    gap: 0.5rem; // spacing between icon and label
+    padding: 1rem 0;
+}
+
+// .icon-noti {
+//     width: 48px;
+//     height: 48px;
+//     background-image: url('../../../../../src/icons/icon-72x72.png');
+//     background-repeat: no-repeat;
+//     background-size: auto;
+//     display: inline-block;
+// }
+.icon-noti {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 96px;
+    height: 96px;
+    aspect-ratio: 1 / 1;
+
+    background-repeat: no-repeat;
+    background-size: auto;
+
+    background-position: 1px 1px;
+}
+
+/* Icon positions in sprite */
+.noti-berjaya {
+    // ✅ success
+    background-image: url('../../../../../src/app/icons/success.png');
+}
+
+.noti-error {
+    background-image: url('../../../../../src/app/icons/error.png');
+}
+
+.noti-warning {
+     background-image: url('../../../../../src/app/icons/warning.png');
+}
+
+.noti-info {
+    background-image: url('../../../../../src/app/icons/success.png');
+}
+
+.modal-message {
+    font-size: 1rem;
+    color: #333;
+    font-weight: 700;
+}
+
+.fixed-size-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 40px;
+  white-space: nowrap; /* prevent text wrapping */
+}

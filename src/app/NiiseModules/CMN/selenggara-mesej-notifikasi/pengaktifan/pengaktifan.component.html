@@ -1,0 +1,18 @@
+<c-modal class="modal-notification3" [(visible)]="visible" [backdrop]="true" size="sm">
+
+
+    <c-modal-body>
+        <c-row class="modal-message-container">
+            <span class="icon-noti" [ngClass]="iconClass"></span>
+            <label>{{ newMesej.status=== '0' ? 'Anda Yakin Untuk Menyahaktif?' : 'Anda Yakin Untuk Mengaktifkan?'
+                }}</label>
+
+        </c-row>
+        <div class="text-center mt-3 d-flex justify-content-center gap-3">
+            <button class="btn btn-primary fixed-size-btn"  (click)="submit()">Ya</button>
+            <button class="btn btn-default fixed-size-btn" (click)="close()">Tidak</button>
+        </div>
+    </c-modal-body>
+
+
+</c-modal>

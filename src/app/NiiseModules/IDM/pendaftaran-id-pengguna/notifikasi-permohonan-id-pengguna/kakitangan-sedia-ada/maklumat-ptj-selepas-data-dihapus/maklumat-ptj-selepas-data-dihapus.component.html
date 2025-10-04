@@ -1,0 +1,275 @@
+<c-container fluid>
+    <c-row>
+        <!-- Main Content Area -->
+        <c-col md="8">
+            <c-card>
+                <c-card-header class="bg-light mt-2 mb-2">
+                    <h6 class="mb-2 mt-2">PERMOHONAN ID PENGGUNA - SEMAKAN PERMOHONAN</h6>
+                </c-card-header>
+                <c-card-body>
+                    <c-row class="align-items-center mb-3">
+                        <!-- Left Side: Section title -->
+                        <c-col md="6">
+                            <p class="mb-0">3. Maklumat PTJ</p>
+                            <small class="text-muted">Langkah 3 daripada 5</small>
+                        </c-col>
+
+                        <!-- Right Side: Pilih Kod PTJ Button -->
+                        <c-col md="6" class="text-end">
+                            <button class="btn btn-outline-primary btn-sm" (click)="showCodeSelection = true">
+                                Pilih Kod PTJ
+                            </button>
+                        </c-col>
+                    </c-row>
+
+                    <!-- Scrollable Table Container -->
+                    <div class="table-responsive table-scroll-container">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="d-flex align-items-center gap-2 ps-0 pb-0">
+                                            <input type="checkbox" class="form-check-input" />
+                                            Bil
+                                        </div>
+                                    </th>
+                                    <th>Kod PTJ</th>
+                                    <th>Cawangan</th>
+                                    <th>Tindakan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of paginatedPTJ; let i = index"
+                                    [class.table-active]="item.selected">
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <input type="checkbox" class="form-check-input"
+                                                [(ngModel)]="item.selected" />
+                                            {{ (currentPage - 1) * itemsPerPage + i + 1 }}
+                                        </div>
+                                    </td>
+                                    <td class="text-truncate">{{ item.kod }}</td>
+                                    <td class="text-truncate">{{ item.cawangan }}</td>
+                                    <td>
+                                        <button class="btn btn-danger btn-sm" (click)="removePTJ(item.id)"
+                                            title="Padam">
+                                            <i class="cil-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="paginatedPTJ.length === 0">
+                                    <td colspan="4" class="text-center text-muted py-4">
+                                        Tiada data PTJ dijumpai
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination and Controls -->
+                    <c-row class="mt-3">
+                        <c-col>
+                            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                                <!-- Left: Items per page -->
+                                <div class="d-flex align-items-center gap-3">
+                                    <select class="form-select form-select-sm" [(ngModel)]="itemsPerPage"
+                                        (change)="onItemsPerPageChange()">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                    </select>
+                                </div>
+
+                                <!-- Right: Pagination and Pergi ke -->
+                                <div class="d-flex align-items-center flex-wrap gap-2">
+                                    <!-- Pagination -->
+                                    <nav>
+                                        <ul class="pagination pagination-sm mb-0">
+                                            <li class="page-item" [class.disabled]="currentPage === 1">
+                                                <button class="page-link" (click)="goToPage('first')">&laquo;</button>
+                                            </li>
+                                            <li class="page-item" [class.disabled]="currentPage === 1">
+                                                <button class="page-link" (click)="goToPage('prev')">&lsaquo;</button>
+                                            </li>
+                                            <li class="page-item active">
+                                                <span class="page-link">{{ currentPage }}</span>
+                                            </li>
+                                            <li class="page-item" [class.disabled]="currentPage === totalPages">
+                                                <button class="page-link" (click)="goToPage('next')">&rsaquo;</button>
+                                            </li>
+                                            <li class="page-item" [class.disabled]="currentPage === totalPages">
+                                                <button class="page-link" (click)="goToPage('last')">&raquo;</button>
+                                            </li>
+                                        </ul>
+                                    </nav>
+
+                                    <div class="d-flex align-items-center ms-2">
+                                        <small class="text-muted">Pergi ke</small>
+                                        <input type="number" class="form-control form-control-sm ms-2"
+                                            style="width: 60px;" [(ngModel)]="goToPageNumber"
+                                            (keyup.enter)="goToSpecificPage()" />
+                                    </div>
+                                </div>
+                            </div>
+                        </c-col>
+                    </c-row>
+                </c-card-body>
+            </c-card>
+        </c-col>
+
+        <!-- Sidebar Steps -->
+        <c-col md="4">
+            <c-card>
+                <c-card-body>
+                    <div class="steps-container">
+                        <ng-container *ngFor="let step of [1,2,3,4,5]">
+                            <div class="step-item" [ngClass]="{ completed: step < 3, active: step === 3 }">
+                                <div class="step-circle">
+                                    <span class="step-number">{{ step }}</span>
+                                </div>
+                                <div class="step-content">
+                                    <div class="step-title">Langkah {{ step }}</div>
+                                    <div class="step-description">
+                                        {{
+                                        [
+                                        'Maklumat Profil Pegawai',
+                                        'Maklumat Penetapan Peranan',
+                                        'Maklumat PTJ',
+                                        'Dokumen Sokongan',
+                                        'Sejarah ID'
+                                        ][step - 1]
+                                        }}
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </c-card-body>
+            </c-card>
+        </c-col>
+    </c-row>
+
+    <!-- Bottom Navigation -->
+    <c-row class="mt-4">
+        <c-col>
+            <div class="d-flex justify-content-end gap-2">
+                <button class="btn btn-dark" (click)="goToPrevious()">Tolak</button>
+                <button class="btn btn-secondary" (click)="showWujudID()">Wujud ID</button>
+                <button class="btn btn-dark" (click)="goToPrevious()">&lt;</button>
+                <button class="btn btn-dark" (click)="goToNext()">&gt;</button>
+            </div>
+        </c-col>
+    </c-row>
+
+    <!-- PTJ Selection Modal -->
+    <div class="modal fade" [class.show]="showCodeSelection" [style.display]="showCodeSelection ? 'block' : 'none'"
+        tabindex="-1" *ngIf="showCodeSelection">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header border-bottom">
+                    <h5 class="modal-title">Pilih Kod PTJ</h5>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body p-0">
+                    <!-- Table Container -->
+                    <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light sticky-top">
+                                <tr>
+                                    <th style="width: 80px;">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <input type="checkbox" class="form-check-input"
+                                                [checked]="isAllModalItemsSelected()"
+                                                (change)="toggleSelectAllModal($event)" />
+                                            Bil.
+                                        </div>
+                                    </th>
+                                    <th>Cawangan</th>
+                                    <th style="width: 120px;">Kod PTJ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of paginatedModalPTJ; let i = index"
+                                    [class.table-active]="item.tempSelected">
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <input type="checkbox" class="form-check-input"
+                                                [(ngModel)]="item.tempSelected" />
+                                            {{ (modalCurrentPage - 1) * modalItemsPerPage + i + 1 }}
+                                        </div>
+                                    </td>
+                                    <td>{{ item.cawangan }}</td>
+                                    <td>{{ item.kod }}</td>
+                                </tr>
+                                <tr *ngIf="paginatedModalPTJ.length === 0">
+                                    <td colspan="3" class="text-center text-muted py-4">
+                                        Tiada data PTJ dijumpai
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Modal Pagination -->
+                    <div class="border-top p-3">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                            <!-- Left: Items per page -->
+                            <div class="d-flex align-items-center gap-2">
+                                <select class="form-select form-select-sm" style="width: auto;"
+                                    [(ngModel)]="modalItemsPerPage" (change)="onModalItemsPerPageChange()">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                </select>
+                            </div>
+
+                            <!-- Right: Pagination and Pergi ke -->
+                            <div class="d-flex align-items-center flex-wrap gap-2">
+                                <!-- Pagination -->
+                                <nav>
+                                    <ul class="pagination pagination-sm mb-0">
+                                        <li class="page-item" [class.disabled]="modalCurrentPage === 1">
+                                            <button class="page-link" (click)="goToModalPage('first')">&laquo;</button>
+                                        </li>
+                                        <li class="page-item" [class.disabled]="modalCurrentPage === 1">
+                                            <button class="page-link" (click)="goToModalPage('prev')">&lsaquo;</button>
+                                        </li>
+                                        <li class="page-item active">
+                                            <span class="page-link">{{ modalCurrentPage }}</span>
+                                        </li>
+                                        <li class="page-item" *ngIf="modalCurrentPage < modalTotalPages">
+                                            <span class="page-link">{{ modalCurrentPage + 1 }}</span>
+                                        </li>
+                                        <li class="page-item" [class.disabled]="modalCurrentPage === modalTotalPages">
+                                            <button class="page-link" (click)="goToModalPage('next')">&rsaquo;</button>
+                                        </li>
+                                        <li class="page-item" [class.disabled]="modalCurrentPage === modalTotalPages">
+                                            <button class="page-link" (click)="goToModalPage('last')">&raquo;</button>
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                                <div class="d-flex align-items-center ms-2">
+                                    <small class="text-muted">Pergi ke</small>
+                                    <input type="number" class="form-control form-control-sm ms-2" style="width: 60px;"
+                                        [(ngModel)]="modalGoToPageNumber" (keyup.enter)="goToSpecificModalPage()" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" (click)="closeModal()">Tutup</button>
+                    <button type="button" class="btn btn-dark" (click)="addSelectedPTJ()">Tambah</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Backdrop -->
+    <div class="modal-backdrop fade show" *ngIf="showCodeSelection" (click)="closeModal()"></div>
+</c-container>

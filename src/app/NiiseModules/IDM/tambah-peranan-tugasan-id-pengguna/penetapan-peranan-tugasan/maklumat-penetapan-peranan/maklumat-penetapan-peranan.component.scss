@@ -1,0 +1,121 @@
+/* Table styles */
+.table-scroll-container {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.table-row {
+  transition: background-color 0.2s ease;
+  border-bottom: #F1F5F9;
+
+  &:hover {
+    background-color: rgba(0, 123, 255, 0.05);
+  }
+}
+
+.table-header {
+  overflow: hidden;
+  color: var(--color-text-tertiary, #62748E);
+  text-overflow: ellipsis;
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Table + pagination wrapper */
+.table-pagination-wrapper {
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid #F1F5F9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Pagination section */
+.pagination-row {
+  border-top: 1px solid #dee2e6;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  background-color: #F8FAFC;
+}
+
+.pagination {
+  .page-link {
+    color: #495057;
+  }
+
+  .page-item.active .page-link {
+    background-color: #000;
+    border-color: #000;
+    color: #dee2e6;
+  }
+}
+
+/* Responsive pagination */
+@media (max-width: 768px) {
+  .pagination .page-link {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Card */
+.card {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+/* Buttons */
+.btn {
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn-all {
+  background-color: white;
+  border-color: #CAD5E2;
+
+  &:hover {
+    background-color: #CAD5E2;
+    border-color: #CAD5E2;
+  }
+}
+
+.btn-submit {
+  background-color: #1461BA;
+  border-color: #1461BA;
+  color: white;
+}
+
+.btn-submit:hover {
+  background-color: #1461BA;
+  border-color: #1461BA;
+}
+
+/* Form controls */
+.form-control:focus,
+.form-select:focus {
+  outline: none;
+}
+
+.form-select-sm:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.form-control-sm:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}

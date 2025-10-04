@@ -1,0 +1,394 @@
+<c-tabs [activeItemKey]="'profile'" (activeItemKeyChange)="handleChange($event)">
+  <c-tabs-list variant="tabs">
+    <button cTab itemKey="date">Tarikh</button>
+    <button cTab itemKey="name">Nama</button>
+    <button cTab itemKey="nationality">Kewarganegaraan</button>
+  </c-tabs-list>
+
+  <c-tabs-content>
+    <!-- Tarikh Tab -->
+    <c-tab-panel class="p-3" itemKey="date">
+      <c-card class="mb-3">
+        <c-card-body>
+          <c-row>
+            <c-col md="9">
+              <h5 class="mb-4">{{ pageTitle }}</h5>
+
+              <c-row class="mb-3">
+                <c-col md="6">
+                  <label for="tarikhMulaPergerakan">Tarikh / Tahun Mula Pergerakan</label>
+                  <input
+                    id="tarikhMulaPergerakan"
+                    type="date"
+                    class="form-control"
+                    [(ngModel)]="tarikhMulaPergerakan" />
+                </c-col>
+              </c-row>
+
+              <c-row class="mb-3">
+                <c-col md="6">
+                  <label for="tarikhAkhirPergerakan">Tarikh / Tahun Akhir Pergerakan</label>
+                  <input
+                    id="tarikhAkhirPergerakan"
+                    type="date"
+                    class="form-control"
+                    [(ngModel)]="tarikhAkhirPergerakan" />
+                </c-col>
+              </c-row>
+
+              <c-row>
+                <c-col class="col-4 ms-auto">
+                  <button cButton color="primary" class="w-100" (click)="onSubmit()">Cari</button>
+                </c-col>
+              </c-row>
+
+              <!-- Reusable Table -->
+              <ng-container *ngIf="searchResults?.length">
+                <ng-container *ngTemplateOutlet="resultTable"></ng-container>
+              </ng-container>
+
+              <!-- Warning message, ONLY show for 'date' tab -->
+              <div *ngIf="selectedTabValue === 'date' && showWarning" class="alert alert-warning mt-3">
+                {{ warningMessage }}
+              </div>
+
+              <!-- No results message -->
+              <div *ngIf="noResultsFound" class="alert alert-warning mt-3">
+                Tiada maklumat dijumpai berdasarkan carian anda.
+              </div>
+            </c-col>
+
+          <!-- Stepper Column -->
+          <c-col md="3" class="px-4 py-3 mt-3 stepper-container">
+            <ul class="stepper-list">
+              <li
+                class="stepper-item"
+                *ngFor="let step of steps; let i = index"
+                [class.active]="isStepActive(step.number)">
+                <div class="stepper-content">
+
+                  <!-- Clickable Step (Only for step number 1) -->
+                  <ng-container *ngIf="step.number === 1; else nonClickableStep">
+                    <span (click)="navigateToStep1()" class="step-number step-link" [class.active]="isStepActive(step.number)">
+                      {{ step.number }}
+                    </span>
+                    <span (click)="navigateToStep1()" class="step-title step-link" [class.active]="isStepActive(step.number)">
+                      {{ step.title }}
+                    </span>
+                  </ng-container>
+
+                  <!-- Non-clickable Step -->
+                  <ng-template #nonClickableStep>
+                    <span class="step-number" [class.active]="isStepActive(step.number)">
+                      {{ step.number }}
+                    </span>
+                    <span class="step-title" [class.active]="isStepActive(step.number)">
+                      {{ step.title }}
+                    </span>
+                  </ng-template>
+
+                </div>
+
+                <!-- Add line only if not the last step -->
+                <div *ngIf="i < steps.length - 1" class="stepper-line"></div>
+              </li>
+            </ul>
+          </c-col>
+          </c-row>
+        </c-card-body>
+      </c-card>
+    </c-tab-panel>
+
+    <!-- Nama Tab -->
+    <c-tab-panel class="p-3" itemKey="name">
+      <c-card class="mb-3">
+        <c-card-body>
+          <c-row>
+            <c-col md="9">
+              <h5 class="mb-4">Senarai Permohonan Pergerakan Keluar / Masuk</h5>
+
+              <c-row class="mb-3">
+                <c-col md="6">
+                  <label for="name">Nama</label>
+                  <input
+                    id="name"
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="name"
+                    (input)="generateNameBirthDate()"
+                    placeholder="Masukkan Nama" />
+                </c-col>
+
+                <c-col md="6">
+                  <label for="identificationNumber">No Pengenalan</label>
+                  <input
+                    id="identificationNumber"
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="identificationNumber"
+                    placeholder="Masukkan No Pengenalan"
+                    maxlength="12"
+                    pattern="^[0-9]{12}$"
+                    inputmode="numeric"
+                    (input)="enforce12DigitLimit($event)" />
+                </c-col>
+              </c-row>
+
+              <c-row class="mb-3">
+                <c-col md="6">
+                  <label for="nameBirthDate">Kombinasi Nama dan Tarikh Lahir</label>
+                  <input
+                    id="nameBirthDate"
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="nameBirthDate"
+                    placeholder="Kombinasi Nama dan Tarikh Lahir"
+                    readonly />
+                </c-col>
+              </c-row>
+
+              <c-row>
+                <c-col class="col-4 ms-auto">
+                  <button cButton color="primary" class="w-100" (click)="onSubmit()">Cari</button>
+                </c-col>
+              </c-row>
+
+              <ng-container *ngIf="searchResults?.length">
+                <ng-container *ngTemplateOutlet="resultTable"></ng-container>
+              </ng-container>
+
+              <!-- Warning message, ONLY show for 'name' tab -->
+              <div *ngIf="selectedTabValue === 'name' && showWarning" class="alert alert-warning mt-3">
+                {{ warningMessage }}
+              </div>
+
+              <div *ngIf="noResultsFound" class="alert alert-warning mt-3">
+                Tiada maklumat dijumpai berdasarkan carian anda.
+              </div>
+            </c-col>
+
+            <!-- Stepper Column -->
+          <c-col md="3" class="px-4 py-3 mt-3 stepper-container">
+            <ul class="stepper-list">
+              <li
+                class="stepper-item"
+                *ngFor="let step of steps; let i = index"
+                [class.active]="isStepActive(step.number)">
+                <div class="stepper-content">
+
+                  <!-- Clickable Step (Only for step number 1) -->
+                  <ng-container *ngIf="step.number === 1; else nonClickableStep">
+                    <span (click)="navigateToStep1()" class="step-number step-link" [class.active]="isStepActive(step.number)">
+                      {{ step.number }}
+                    </span>
+                    <span (click)="navigateToStep1()" class="step-title step-link" [class.active]="isStepActive(step.number)">
+                      {{ step.title }}
+                    </span>
+                  </ng-container>
+
+                  <!-- Non-clickable Step -->
+                  <ng-template #nonClickableStep>
+                    <span class="step-number" [class.active]="isStepActive(step.number)">
+                      {{ step.number }}
+                    </span>
+                    <span class="step-title" [class.active]="isStepActive(step.number)">
+                      {{ step.title }}
+                    </span>
+                  </ng-template>
+
+                </div>
+
+                <!-- Add line only if not the last step -->
+                <div *ngIf="i < steps.length - 1" class="stepper-line"></div>
+              </li>
+            </ul>
+          </c-col>
+          </c-row>
+        </c-card-body>
+      </c-card>
+    </c-tab-panel>
+
+    <!-- Nationality Tab -->
+    <c-tab-panel class="p-3" itemKey="nationality">
+      <c-card class="mb-3">
+        <c-card-body>
+
+          <c-row>
+            <c-col md="9">
+              <h5 class="mb-4">Senarai Permohonan Pergerakan Keluar / Masuk</h5>
+
+              <c-row class="mb-3">
+                <c-col md="6">
+                  <label for="nationality">Warganegara</label>
+                  <select
+                    id="nationality"
+                    class="form-select"
+                    [(ngModel)]="nationality">
+                    <option value="" disabled hidden>Pilih Warganegara</option>
+                    <option *ngFor="let country of nationalities" [value]="country">{{ country }}</option>
+                  </select>
+                </c-col>
+              </c-row>
+
+              <c-row class="mb-3">
+                <c-col md="6">
+                  <label for="birthdate">Tarikh Lahir</label>
+                  <input
+                    id="birthdate"
+                    type="date"
+                    class="form-control"
+                    [(ngModel)]="birthdate" />
+                </c-col>
+              </c-row>
+
+              <c-row class="mb-3">
+                <c-col md="6">
+                  <label for="passportNumber">No Pasport</label>
+                  <input
+                    id="passportNumber"
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="passportNumber"
+                    placeholder="Masukkan No Pasport" />
+                </c-col>
+              </c-row>
+
+              <c-row>
+                <c-col class="col-4 ms-auto">
+                  <button cButton color="primary" class="w-100" (click)="onSubmit()">Cari</button>
+                </c-col>
+              </c-row>
+
+              <ng-container *ngIf="searchResults?.length">
+                <ng-container *ngTemplateOutlet="resultTable"></ng-container>
+              </ng-container>
+
+              <!-- Warning message, ONLY show for 'nationality' tab -->
+              <div *ngIf="selectedTabValue === 'nationality' && showWarning" class="alert alert-warning mt-3">
+                {{ warningMessage }}
+              </div>
+
+              <div *ngIf="noResultsFound" class="alert alert-warning mt-3">
+                Tiada maklumat dijumpai berdasarkan carian anda.
+              </div>
+              
+            </c-col>
+
+          <!-- Stepper Column -->
+          <c-col md="3" class="px-4 py-3 mt-3 stepper-container">
+            <ul class="stepper-list">
+              <li
+                class="stepper-item"
+                *ngFor="let step of steps; let i = index"
+                [class.active]="isStepActive(step.number)">
+                <div class="stepper-content">
+
+                  <!-- Clickable Step (Only for step number 1) -->
+                  <ng-container *ngIf="step.number === 1; else nonClickableStep">
+                    <span (click)="navigateToStep1()" class="step-number step-link" [class.active]="isStepActive(step.number)">
+                      {{ step.number }}
+                    </span>
+                    <span (click)="navigateToStep1()" class="step-title step-link" [class.active]="isStepActive(step.number)">
+                      {{ step.title }}
+                    </span>
+                  </ng-container>
+
+                  <!-- Non-clickable Step -->
+                  <ng-template #nonClickableStep>
+                    <span class="step-number" [class.active]="isStepActive(step.number)">
+                      {{ step.number }}
+                    </span>
+                    <span class="step-title" [class.active]="isStepActive(step.number)">
+                      {{ step.title }}
+                    </span>
+                  </ng-template>
+
+                </div>
+
+                <!-- Add line only if not the last step -->
+                <div *ngIf="i < steps.length - 1" class="stepper-line"></div>
+              </li>
+            </ul>
+          </c-col>
+          </c-row>
+
+          <!-- Reusable Table Template -->
+          <ng-template #resultTable>
+          <br>  
+          <h5 class="mb-4">Senarai Permohonan</h5>
+            <table class="table mt-4" *ngIf="searchResults.length > 0">
+              <thead>
+                <tr *ngIf="selectedTabValue === 'name'">
+                  <th></th>
+                  <th>No K/P</th>
+                  <th>No Dokumen</th>
+                  <th>W/N</th>
+                  <th>Nama</th>
+                  <th>Status</th>
+                  <th>Tindakan</th>
+                </tr>
+                <tr *ngIf="selectedTabValue === 'date'">
+                  <th></th>
+                  <th>Nama</th>
+                  <th>Tarikh Mula</th>
+                  <th>Tarikh Akhir</th>
+                  <th>Status</th>
+                  <th>Tindakan</th>
+                </tr>
+                <tr *ngIf="selectedTabValue === 'nationality'">
+                  <th></th>
+                  <th>Nama</th>
+                  <th>No Dokumen</th>
+                  <th>Warganegara</th>
+                  <th>Tarikh Lahir</th>
+                  <th>Status</th>
+                  <th>Tindakan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngIf="selectedTabValue === 'name'">
+                  <tr *ngFor="let item of searchResults; let i = index">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ item.noPengenalan }}</td>
+                    <td>{{ item.noDokumen }}</td>
+                    <td>{{ item.wn }}</td>
+                    <td>{{ item.nama }}</td>
+                    <td>{{ item.status }}</td>
+                    <td>
+                      <button cButton color="primary" size="sm" (click)="onRowAction(item)">Papar</button>
+                    </td>
+                  </tr>
+                </ng-container>
+                <ng-container *ngIf="selectedTabValue === 'date'">
+                  <tr *ngFor="let item of searchResults; let i = index">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ item.nama }}</td>
+                    <td>{{ item.tarikhMulaPergerakan }}</td>
+                    <td>{{ item.tarikhAkhirPergerakan }}</td>
+                    <td>{{ item.status }}</td>
+                    <td>
+                      <button cButton color="primary" size="sm" (click)="onRowAction(item)">Papar</button>
+                    </td>
+                  </tr>
+                </ng-container>
+                <ng-container *ngIf="selectedTabValue === 'nationality'">
+                  <tr *ngFor="let item of searchResults; let i = index">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ item.nama }}</td>
+                    <td>{{ item.noDokumen }}</td>
+                    <td>{{ item.wn }}</td>
+                    <td>{{ item.birthDate }}</td>
+                    <td>{{ item.status }}</td>
+                    <td>
+                      <button cButton color="primary" size="sm" (click)="onRowAction(item)">Papar</button>
+                    </td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+          </ng-template>
+        </c-card-body>
+      </c-card>
+    </c-tab-panel>
+  </c-tabs-content>
+</c-tabs>

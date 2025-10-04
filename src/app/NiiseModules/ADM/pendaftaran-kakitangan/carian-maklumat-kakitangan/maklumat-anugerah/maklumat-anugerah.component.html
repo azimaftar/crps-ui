@@ -1,0 +1,75 @@
+<c-card>
+  <c-card-body>
+    <c-row class="my-2">
+      <h4 class="fw-bold">MAKLUMAT PROFIL KAKITANGAN</h4>
+    </c-row>
+
+    <app-stepper
+      [currentMainStep]="currentMainStep"
+      [currentSubStep]="currentSubStep"
+    ></app-stepper>
+
+    <c-row class="my-5">
+      <c-row class="mb-3">
+        <h5 class="fw-bold">Maklumat Anugerah</h5>
+      </c-row>
+      <c-container class="overflow-x-auto">
+        <c-row class="mb-5 table-responsive">
+          <table class="table">
+            <thead>
+              <tr class="text-center align-middle">
+                <th class="py-3">Bil.</th>
+                <th class="py-3">Jenis Anugerah</th>
+                <th class="py-3">Tarikh Penganugerahan</th>
+                <th class="py-3">Darjah Kurniaan/ Kebesaran</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let item of maklumatAnugerah1; let i = index"
+                class="text-center align-middle"
+              >
+                <td class="py-4">{{ i + 1 }}</td>
+                <td class="py-4">{{ item.jenisAnugerah }}</td>
+                <td class="py-4">{{ item.tarikhPenganugerahan }}</td>
+                <td class="py-4">{{ item.darjahKurniaanKebesaraan }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </c-row>
+      </c-container>
+    </c-row>
+    <c-row>
+      <c-row style="border-top: 1px solid rgba(0, 0, 0, 0.1)">
+        <c-col class="d-flex gap-5 flex-shrink-0 justify-content-end py-3">
+          <div class="d-flex gap-2">
+            <button
+              type="button"
+              class="btn-custom-normalBlue fw-semibold btn btn-primary"
+              (click)="navigateClosePage()"
+            >
+              Tutup
+            </button>
+          </div>
+
+          <div class="d-flex">
+            <button
+              type="button"
+              class="btn-custom-normalWhite fw-semibold btn btn-light"
+              (click)="navigatePreviousPage()"
+            >
+              &lt;
+            </button>
+            <button
+              type="button"
+              class="btn-custom-normalWhite fw-semibold btn btn-light"
+              (click)="navigateNextPage()"
+            >
+              &gt;
+            </button>
+          </div>
+        </c-col>
+      </c-row>
+    </c-row>
+  </c-card-body>
+</c-card>

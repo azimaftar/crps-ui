@@ -1,0 +1,21 @@
+<c-modal
+  [visible]="show"
+  (close)="handleClose()"
+  alignment="center"
+>
+  <c-modal-header>
+    <h5 cModalTitle>{{ title }}</h5>
+    <button type="button" (click)="handleClose()" class="btn-close"></button>
+  </c-modal-header>
+
+  <c-modal-body>
+    <ng-content></ng-content>
+  </c-modal-body>
+
+  <c-modal-footer>
+    <button type="button" cButton color="secondary" (click)="handleClose()">
+      Close
+    </button>
+  </c-modal-footer>
+</c-modal>
+

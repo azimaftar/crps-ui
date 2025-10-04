@@ -1,0 +1,113 @@
+<div class="container-fluid">
+    <div class="card">
+        <div class="ms-4 me-4">
+            <div class="mt-2 mb-2">
+                <h3 class="mb-2 mt-4"><b>PERMOHONAN ID BAHARU PENGGUNA - PERMOHONAN SEMULA ID</b></h3>
+            </div>
+            <div class="mt-4">
+                        <!-- Left Side: Section title -->
+                        <reusable-tab [currentStep]="currentStep" [steps]="steps"></reusable-tab>
+                        <div class="col-md-6 mb-4">
+                            <p class="mb-0">3. Maklumat PTJ</p>
+                            <small class="text-muted">Langkah 3 daripada 5</small>
+                        </div>
+                          <!-- Scrollable Table Container -->
+                    <div class="table-responsive table-scroll-container">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="d-flex align-items-center gap-2 ps-0 pb-0">
+                                            Bil
+                                        </div>
+                                    </th>
+                                    <th>Kod PTJ</th>
+                                    <th>Cawangan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of paginatedPTJ; let i = index"
+                                    [class.table-active]="item.selected">
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2">
+                                            {{ (currentPage - 1) * itemsPerPage + i + 1 }}
+                                        </div>
+                                    </td>
+                                    <td class="text-truncate">{{ item.kod }}</td>
+                                    <td class="text-truncate">{{ item.cawangan }}</td>
+                                </tr>
+                                <tr *ngIf="paginatedPTJ.length === 0">
+                                    <td colspan="4" class="text-center text-muted py-4">
+                                        Tiada data PTJ dijumpai
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                     <!-- Pagination and Controls -->
+                     <c-row class="mt-3">
+                        <c-col>
+                            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                                <!-- Left: Items per page -->
+                                <div class="d-flex align-items-center gap-3">
+                                    <select class="form-select form-select-sm" [(ngModel)]="itemsPerPage"
+                                        (change)="onItemsPerPageChange()">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                    </select>
+                                </div>
+
+                                <!-- Right: Pagination and Pergi ke -->
+                                <div class="d-flex align-items-center flex-wrap gap-2">
+                                    <!-- Pagination -->
+                                    <nav>
+                                        <ul class="pagination pagination-sm mb-0">
+                                            <li class="page-item" [class.disabled]="currentPage === 1">
+                                                <button class="page-link" (click)="goToPage('first')">&laquo;</button>
+                                            </li>
+                                            <li class="page-item" [class.disabled]="currentPage === 1">
+                                                <button class="page-link" (click)="goToPage('prev')">&lsaquo;</button>
+                                            </li>
+                                            <li class="page-item active">
+                                                <span class="page-link">{{ currentPage }}</span>
+                                            </li>
+                                            <li class="page-item" [class.disabled]="currentPage === totalPages">
+                                                <button class="page-link" (click)="goToPage('next')">&rsaquo;</button>
+                                            </li>
+                                            <li class="page-item" [class.disabled]="currentPage === totalPages">
+                                                <button class="page-link" (click)="goToPage('last')">&raquo;</button>
+                                            </li>
+                                        </ul>
+                                    </nav>
+
+                                    <div class="d-flex align-items-center ms-2">
+                                        <small class="text-muted">Pergi ke</small>
+                                        <input type="number" class="form-control form-control-sm ms-2"
+                                            style="width: 60px;" [(ngModel)]="goToPageNumber"
+                                            (keyup.enter)="goToSpecificPage()" />
+                                    </div>
+                                </div>
+                            </div>
+                        </c-col>
+                    </c-row>
+                        </div>
+
+                    
+
+            <!-- Bottom Navigation -->
+            <div class="pagination-wrapper row mt-4 pb-2 pt-2">
+                <div class="col-12">
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-all me-2">Hantar Permohonan</button>
+                        <button class="btn btn-all me-2">Pemulangan semula</button>
+                        <button class="btn btn-all me-2">Tidak Lulus</button>
+                        <button class="btn btn-all me-2">Lulus</button>
+                        <button class="btn btn-all" (click)="goToPrevious()">&lt;</button>
+                        <button class="btn btn-all" (click)="goToNext()">&gt;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>

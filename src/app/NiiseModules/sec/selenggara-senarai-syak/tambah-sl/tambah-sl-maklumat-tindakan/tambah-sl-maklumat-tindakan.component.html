@@ -1,0 +1,165 @@
+<div class="container-fluid">
+    <c-row>
+        <c-col>
+            <c-card class="mb-3">
+                <c-card-body>
+                    <form>
+                        <h3 class="mb-4">Maklumat Tindakan</h3>
+
+                        <!-- Horizontal Stepper -->
+                        <div class="horizontal-stepper">
+                            <ul class="stepper-list d-flex align-items-center justify-content-start flex-wrap">
+                            <li
+                                class="stepper-item"
+                                *ngFor="let step of steps"
+                                [class.active]="isStepActive(step.number)">
+                                <button type="button" class="step-btn">
+                                <span class="step-number">{{ step.number }}</span>
+                                <span class="step-title">{{ step.title }}</span>
+                                </button>
+                            </li>
+                            </ul>
+                        </div>
+                        <!-- Kod NAP/NAS & Nombor NAP/NAS -->
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                                <label class="form-label required fw-semibold">Kod NAP/NAS*</label>
+                                <select class="form-select" [(ngModel)]="kodNapNas" name="kodNapNas">
+                                <option value="" disabled selected>Sila pilih Kod NAP/NAS</option>
+                                <option *ngFor="let kodNapNas of kodNapNasList">{{ kodNapNas }}</option>
+                                </select>
+                            </c-col>
+                            <c-col class="col-md-6">
+                                <label class="form-label required fw-semibold">Nombor NAP/NAS*</label>
+                                <input type="text" class="form-control" [(ngModel)]="nomborNapNas" name="nomborNapNas" placeholder="Contoh: NAS1234">
+                            </c-col>
+                        </c-row>
+                        <!-- Kod Tindakan & Tarikh NAP/NAS -->
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                                <label class="form-label required fw-semibold">Kod Tindakan*</label>
+                                <select class="form-select" [(ngModel)]="kodTindakan" name="kodTindakan">
+                                <option value="" disabled selected>Sila pilih Kod Tindakan</option>
+                                <option *ngFor="let kodTindakan of kodTindakanList">{{ kodTindakan }}</option>
+                                </select>
+                            </c-col>
+                            <c-col class="col-md-6">
+                                <label class="form-label required fw-semibold">Tarikh NAP/NAS*</label>
+                                <input type="date" class="form-control" [(ngModel)]="tarikhNapNas" name="tarikhNapNas">
+                            </c-col>
+                        </c-row>
+                        <!-- Tarikh Kuatkuasa & Tempat Kesalahan -->
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                                <label class="form-label fw-semibold">Tarikh Kuatkuasa</label>
+                                <input type="date" class="form-control" [(ngModel)]="tarikhKuatkuasa" name="tarikhKuatkuasa">
+                            </c-col>
+                            <c-col class="col-md-6">
+                                <label class="form-label fw-semibold">Tempat Kesalahan</label>
+                                <input type="text" class="form-control" [(ngModel)]="tempatKesalahan" name="tempatKesalahan" placeholder="Contoh: Kuala Lumpur">
+                            </c-col>
+                        </c-row>
+                        <!-- Pilih Tempoh & Tarikh Tamat Kes -->
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                                <label class="form-label fw-semibold">Pilih Tempoh</label>
+                                <select [(ngModel)]="pilihTempoh" name="pilihTempoh" class="form-select">
+                                <option [ngValue]="0" disabled selected>Sila pilih tempoh</option>
+                                <option *ngFor="let tempoh of pilihTempohList; let i = index" [ngValue]="i + 1">
+                                    {{ tempoh }}
+                                </option>
+                                </select>
+                            </c-col>
+                            <c-col class="col-md-6">
+                                <label class="form-label fw-semibold">Tarikh Tamat Kes</label>
+                                <input type="date" class="form-control" [(ngModel)]="tarikhTamatKes" name="tarikhTamatKes">
+                            </c-col>
+                        </c-row>
+                        <!-- No Fail Imigresen & No Agensi -->
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                                <label class="form-label required fw-semibold">No. Fail Imigresen*</label>
+                                <input type="text" class="form-control" [(ngModel)]="nomborFailImigresen" name="nomborFailImigresen" placeholder="Contoh: IM1234">
+                            </c-col>
+                            <c-col class="col-md-6">
+                                <label class="form-label required fw-semibold">No. Agensi*</label>
+                                <input type="text" class="form-control" [(ngModel)]="nomborAgensi" name="nomborAgensi" placeholder="Contoh: AG1234">
+                            </c-col>
+                        </c-row>
+                        <!-- Nombor Rujukan Agensi & Agensi Pelapor -->
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                                <label class="form-label fw-semibold">Nombor Rujukan Agensi</label>
+                                <input type="text" class="form-control" [(ngModel)]="nomborRujukanAgensi" name="nomborRujukanAgensi" placeholder="Contoh: NoRujAG1234">
+                            </c-col>
+                            <c-col class="col-md-6">
+                                <label class="form-label fw-semibold">Agensi Pelapor</label>
+                                <input type="text" class="form-control" [(ngModel)]="agensiPelapor" name="agensiPelapor" placeholder="Contoh: Kementerian Dalam Negeri">
+                            </c-col>
+                        </c-row>
+                        <!-- Arahan Khusus -->
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-12">
+                                <label class="form-label fw-semibold">Arahan Khusus (jika ada)</label>
+                                <textarea class="form-control" rows="3" [(ngModel)]="arahanKhusus" name="arahanKhusus" placeholder="Contoh: Arahan Khusus"></textarea>
+                            </c-col>
+                        </c-row>
+                        <!-- Nama Pegawai & No Telefon Pegawai -->
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                                <label class="form-label fw-semibold">Nama Pegawai Untuk Dihubungi</label>
+                                <input type="text" class="form-control" [(ngModel)]="namaPegawai" name="namaPegawai" placeholder="Contoh: Mazlina Binti Abdul Karim">
+                            </c-col>
+                            <c-col class="col-md-6">
+                                <label class="form-label fw-semibold">No Telefon Pegawai Untuk Dihubungi</label>
+                                <input type="text" class="form-control" [(ngModel)]="nomborTelefonPegawai" name="nomborTelefonPegawai" placeholder="Contoh: 01125817870">
+                            </c-col>
+                        </c-row>
+                        <!-- Maklumat Agensi -->
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-12">
+                                <label class="form-label fw-semibold">Maklumat Agensi</label>
+                                <textarea class="form-control" rows="3" [(ngModel)]="maklumatAgensi" name="maklumatAgensi" placeholder="Contoh: Maklumat Agensi"></textarea>
+                            </c-col>
+                        </c-row>
+                        <!-- E-mel Agensi -->
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                                <label class="form-label fw-semibold">E-Mel Agensi</label>
+                                <input type="email" class="form-control" [(ngModel)]="emelAgensi" name="emelAgensi" placeholder="Contoh: anuarrozman2303@gmail.com">
+                            </c-col>
+                        </c-row>
+                        <!-- Keterangan Kes -->
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-12">
+                                <label class="form-label fw-semibold">Keterangan Kes</label>
+                                <textarea class="form-control" rows="3" [(ngModel)]="keteranganKes" name="keteranganKes" placeholder="Contoh: Keterangan Kes"></textarea>
+                            </c-col>
+                        </c-row>
+                        <!-- Cawangan -->
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                                <label class="form-label fw-semibold">Cawangan</label>
+                                <input
+                                type="text"
+                                class="form-control"
+                                [value]="kategoriPermohonan"
+                                disabled>
+                            </c-col>
+                        </c-row>
+                    </form>
+                </c-card-body>
+                <!-- Footer Buttons Inside Card -->
+                <div class="border-top p-3 d-flex justify-content-end gap-2">
+                    <button type="button" cButton color="primary" (click)="resetForm()">Set Semula</button>
+                    <button type="button" cButton color="primary" (click)="previousStep()">
+                        <svg cIcon name="cilCaretLeft" size="sm"></svg>
+                    </button>
+                    <button type="button" cButton color="primary" (click)="nextStep()">
+                        <svg cIcon name="cilCaretRight" size="sm"></svg>
+                    </button>
+                </div>
+            </c-card>
+        </c-col>
+    </c-row>
+</div>

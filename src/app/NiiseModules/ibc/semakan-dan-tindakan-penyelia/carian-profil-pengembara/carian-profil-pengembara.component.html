@@ -1,0 +1,109 @@
+<!-- Search Form Section -->
+<div class="search-section">
+  <div class="header">
+    <h3>SEMAKAN & TINDAKAN PENYELIA</h3>
+  </div>
+
+  <div class="form-content">
+    <!-- Document Type Selection -->
+    <div class="form-group">
+      <label for="documentType">Jenis Dokumen</label>
+      <select id="documentType" [(ngModel)]="selectedDocumentType" class="form-control">
+        <option value="Pilih" disabled selected>--Pilih--</option>
+        <option value="Passport">Passport</option>
+        <option value="ABTC">Kad ABTC</option>
+      </select>
+    </div>
+
+    <button class="btn-import" (click)="onImbas()">Imbas Dokumen</button>
+
+    <div class="or-divider">ATAU</div>
+
+    <!-- Menu Transaction -->
+    <div class="form-group">
+      <label for="menuTransaksi">Menu Transaksi</label>
+      <input type="text" id="menuTransaksi" [(ngModel)]="selectedTransaction" class="form-control" readonly>
+    </div>
+
+    <div class="form-group">
+      <label for="documentType">Jenis Pelawat</label>
+      <select id="documentType" [(ngModel)]="visitorType" class="form-control">
+        <option value="Pilih" disabled selected>--Pilih--</option>
+        <option value="1">Warganegara</option>
+        <option value="2">Warganegara Asing</option>
+        <option value="3">Penduduk Tetap</option>
+      </select>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="button-group">
+      <button class="btn-primary" (click)="onSemak()">Semak</button>
+      <button class="btn-secondary" (click)="onReset()">Set Semula</button>
+    </div>
+  </div>
+</div>
+
+<!-- Results Table Section -->
+<div class="table-section" *ngIf="showTable">
+  <h4 class="table-title">Senarai Pengembara bagi Semakan dan Tindakan Penyelia</h4>
+
+  <div class="table-container">
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th rowspan="2">Bil.</th>
+          <th rowspan="2">Nama Pegawai</th>
+          <th rowspan="2">Tarikh</th>
+          <th rowspan="2">Masa</th>
+          <th rowspan="2">No. Dokumen</th>
+          <th rowspan="2">Nama</th>
+          <th rowspan="2">Tarikh Lahir</th>
+          <th colspan="6" class="center-header">Carian Dokumen</th>
+        </tr>
+        <tr>
+          <th>Jantina</th>
+          <th>Negara Pengeluar</th>
+          <th>Warganegara</th>
+          <th>Tarikh Tamat Sahlaku</th>
+          <th>No Pengenalan</th>
+          <th>Jenis Dokumen</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of pengembaraRecords">
+          <td>
+            <!-- <input type="radio" name="selectedRecord" [value]="record.bil"> -->
+            {{ record.bil }}
+          </td>
+          <td>{{ record.namaPegawai }}</td>
+          <td>{{ record.tarikh }}</td>
+          <td>{{ record.masa }}</td>
+          <td>
+            <!-- <a href="#" (click)="onUidClick(record.uid)">
+    {{ record.noDokumen }}
+  </a> -->
+            <a [routerLink]="['/ibc/semakan-dan-tindakan-penyelia/maklumat-profil-pegawai']"
+              [queryParams]="{ uid: record.uid }">
+              {{ record.noDokumen }}
+            </a>
+
+          </td>
+          <td>{{ record.namaPengembara }}</td>
+          <td>{{ record.tarikhLahir }}</td>
+          <td>{{ record.jantina }}</td>
+          <td>{{ record.negaraPengeluar }}</td>
+          <td>{{ record.warganegara }}</td>
+          <td>{{ record.tarikhTamat }}</td>
+          <td>{{ record.noKp }}</td>
+          <td>{{ record.jenisDokumen }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    <button class="page-btn active">1</button>
+    <button class="page-btn">></button>
+  </div>
+</div>

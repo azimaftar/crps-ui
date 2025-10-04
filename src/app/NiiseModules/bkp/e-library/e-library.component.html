@@ -1,0 +1,72 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+
+<c-card>
+    <c-container>
+        <c-row>
+            <c-col md="12" class="p-4">
+                 <!-- Horizontal Stepper -->
+                <div class="horizontal-stepper">
+                    <ul class="stepper-list d-flex align-items-center justify-content-start flex-wrap">
+                    <li
+                        class="stepper-item"
+                        *ngFor="let step of steps"
+                        (click)="navigateTo(step)"
+                        [class.active]="isStepActive(step.number)">
+                        <button type="button" class="step-btn">
+                        <span class="step-number">{{ step.number }}</span>
+                        <span class="step-title">{{ step.title }}</span>
+                        </button>
+                    </li>
+                    </ul>
+                </div><br>
+                <h3 class="section-title2">Pilih Folder</h3>
+                <form cForm class="row g-3">
+                    <!-- Row 1 -->
+                    <div class="form-group5 d-flex align-items-center2">
+                        <label class="form-label required">Folder</label>
+
+                        <select class="form-group5 form-control" [(ngModel)]="selectedFolder" name="selectedFolder">
+                        <option selected disabled>Sila Pilih</option>
+                        <option>Nota Bantuan Pembelajaran</option>
+                            <option>Slaid pembentangan</option>
+                            <option>Video ceramah/ taklimat </option>
+                            <option>Video pembelajaran/ awareness/ promosi/ animasi pembelajaran </option>
+                            <option>Dokumen Kumpulan Inovasi dan Kreativiti (KIK) </option>
+                            <option>Senarai SME/ Pakar yang boleh dirujuk </option>
+                            <option>Akta-akta berkaitan </option>
+                            <option>Pekeliling Imigresen Malaysia (PIM)</option>
+                            <option>Pekeliling Imigresen Malaysia Terhad (PIMT)</option>
+                            <option>Arahan Tetap Ketua Pengarah Imigresen (ATKPI)</option>
+                            <option>Arahan Pentadbiran </option>
+                            <option>Arahan Imigresen</option>
+                            <option>Default value: </option>
+                            <option>-Sila Pilih-</option>
+                        </select>
+                    </div>
+                </form>
+            </c-col>
+        </c-row>
+    </c-container>
+    <!-- Navigation Footer -->
+    <div class="bg-light border-top p-3">
+        <div class="d-grid gap-2 d-md-flex justify-content-center">
+            <!--#1461BA-->
+            <button cButton (click)="navNext()" class="blue-btn" style="white-space: normal;"
+                    [disabled]="!selectedFolder">
+                <i class="fa fa-upload"></i>Muat Naik
+            </button>
+            <button cButton color="dark" class="blue-btn" (click) = "goCreate()" style="white-space: normal; background-color: #1461BA; border-color: #1461BA; color: #fff;">
+                <i class="fa fa-plus"></i>Create Folder
+            </button>
+
+
+            <!-- <div class="ms-auto d-flex gap-2">
+                <button cButton color="dark" class="btn-back" (click)="previousStep()">&lt;</button>
+                <button cButton color="dark" class="btn-back" (click)="nextStep()">&gt;</button>
+            </div> -->
+        </div>
+    </div>
+</c-card>

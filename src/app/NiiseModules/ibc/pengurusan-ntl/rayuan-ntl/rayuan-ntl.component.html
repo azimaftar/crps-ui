@@ -1,0 +1,58 @@
+<div class="text-center mb-4">
+  <img src="assets/logo/niise_logo.png" />
+</div>
+
+<form
+  cForm
+  style="border: 2px solid #000000; padding: 16px; border-radius: 6px"
+>
+  <fieldset>
+    <div class="text-center mb-4">
+      <img src="assets/logo/niise_logo.png" />
+    </div>
+    <h5>Rayuan NTL</h5>
+    <div class="row g-3 mt-3">
+      
+      <!-- No Passport Field -->
+      <div class="col-12 col-md-4">
+        <label cLabel for="noPassport">No Passport</label>
+        <input
+          cFormControl
+          id="noPassport"
+          type="text"
+          name="noPassport"
+          #noPassport
+          required
+        />
+      </div>
+
+      <!-- Warganegara Field -->
+      <div class="col-12 col-md-4">
+        <label cLabel for="warganegara">Warganegara</label>
+        <input
+          cFormControl
+          id="warganegara"
+          type="text"
+          name="warganegara"
+          #warganegara
+          required
+        />
+      </div>
+
+      <!-- Submit Button -->
+      <div class="col-12 col-md-4 d-flex align-items-end ml-2">
+        <button cButton type="submit" class="w-50 light" (click)="toNextPage()">
+          Carian
+        </button>
+      </div>
+    </div>
+
+    <!-- Show the modal only when showModal is true -->
+    <app-notification-modal
+      [modalTitle]="modalTitle"
+      [visible]="showModal"
+      (close)="closeModal()"
+      [showModalAlert]="showModalAlert"
+    ></app-notification-modal>
+  </fieldset>
+</form>

@@ -1,0 +1,113 @@
+<c-container fluid>
+  <div class="card">
+    <div class="ms-4 me-4">
+      <div class="mt-2 mb-2">
+        <h3 class="mb-2 mt-4"><b>PERMOHONAN PERTUKARAN CAWANGAN, UNIT, GRED DAN TUGASAN BAHARU - KELULUSAN</b></h3>
+      </div>
+
+      <!-- Step Title -->
+      <div class="mt-4">
+        <reusable-tab [currentStep]="currentStep" [steps]="steps"></reusable-tab>
+        <c-row class="align-items-center mb-3">
+          <c-col md="6">
+            <p class="mb-0"><b>3. Maklumat Penetapan Peranan</b></p>
+            <small class="text-muted">Langkah 3 daripada 5</small>
+          </c-col>
+        </c-row>
+
+      <!-- Penetapan Peranan Section -->
+      <div class="mb-4">
+        <h6 class="mb-3">Penetapan Peranan (Baharu)</h6>
+        <div class="table-responsive">
+          <table class="table table-row">
+            <thead>
+              <tr>
+                <th style="width: 10%;" class="table-header">Bil.</th>
+                <th style="width: 30%;" class="table-header">Bahagian</th>
+                <th style="width: 30%;" class="table-header">Unit</th>
+                <th style="width: 30%;" class="table-header">Peranan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let peranan of pagedPerananList; let i = index">
+                <!-- nombor global berdasarkan page -->
+                <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+                <td>{{ peranan.bahagian }}</td>
+                <td>{{ peranan.unit }}</td>
+                <td>{{ peranan.peranan }}</td>
+              </tr>
+              <tr *ngIf="newPerananList.length === 0">
+                <td colspan="4" class="text-center text-muted py-3">
+                  Tiada peranan ditambah
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <!-- Pagination and Controls -->
+      <c-row class="mt-3 pagination-row">
+        <c-col>
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+
+            <!-- Left: Items per page -->
+            <div class="d-flex align-items-center gap-2">
+              <select class="form-select form-select-sm" [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+              </select>
+            </div>
+
+            <!-- Right: Pagination and go-to -->
+            <div class="d-flex align-items-center flex-wrap gap-2">
+              <!-- Pagination -->
+              <nav>
+                <ul class="pagination pagination-sm mb-0">
+                  <li class="page-item" [class.disabled]="currentPage === 1">
+                    <button class="page-link" (click)="goToPage('first')">&laquo;</button>
+                  </li>
+                  <li class="page-item" [class.disabled]="currentPage === 1">
+                    <button class="page-link" (click)="goToPage('prev')">&lsaquo;</button>
+                  </li>
+                  <li class="page-item active">
+                    <span class="page-link">{{ currentPage }}</span>
+                  </li>
+                  <li class="page-item" [class.disabled]="currentPage === totalPages">
+                    <button class="page-link" (click)="goToPage('next')">&rsaquo;</button>
+                  </li>
+                  <li class="page-item" [class.disabled]="currentPage === totalPages">
+                    <button class="page-link" (click)="goToPage('last')">&raquo;</button>
+                  </li>
+                </ul>
+              </nav>
+
+              <!-- Go To -->
+              <div class="d-flex align-items-center ms-2">
+                <small class="text-muted">Pergi ke</small>
+                <input type="number" class="form-control form-control-sm ms-2" style="width: 60px;"
+                  [(ngModel)]="goToPageNumber" (keyup.enter)="goToSpecificPage()" />
+              </div>
+            </div>
+          </div>
+        </c-col>
+      </c-row>
+
+        <!-- Bottom Navigation -->
+        <div class="pagination-wrapper row mt-4 pb-2 pt-2">
+          <div class="col-12">
+            <div class="d-flex flex-wrap justify-content-end">
+              <button class="btn btn-all me-2">Pemulangan Semula</button>
+              <button class="btn btn-all me-2">Tolak</button>
+              <button class="btn btn-submit me-2" (click)="goToNext()">Lulus</button>
+              <button class="btn btn-all px-3 py-1 small" (click)="goToPrevious()">&lt;</button>
+              <button class="btn btn-all px-3 py-1 small" (click)="goToNext()">&gt;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</c-container>

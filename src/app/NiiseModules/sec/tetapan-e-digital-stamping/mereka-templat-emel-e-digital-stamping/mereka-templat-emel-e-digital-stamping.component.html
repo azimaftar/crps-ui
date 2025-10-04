@@ -1,0 +1,57 @@
+<c-card>
+    <c-container>
+        <c-row>
+            <c-col md="9" class="p-4" style="border-right: 1px solid #ddd;">
+                <h3 class="mb-4">Mereka Templat E-Mel e-Digital Stamping</h3>
+                <c-col xl="12">
+                    <c-card class="mb-4">
+                        <div class="compose-body">
+                            <div class="input-group">
+                                <input type="text" class="input-field" placeholder=" " id="recipients"
+                                    (focus)="onToFieldFocus()">
+                                <label class="input-label" for="recipients">To</label>
+                                <div class="cc-bcc-links" *ngIf="showCcBccLinks">
+                                    <span class="cc-bcc-link" *ngIf="!showCcField" (click)="showCc()">Cc</span>
+                                    <span class="cc-bcc-link" *ngIf="!showBccField" (click)="showBcc()">Bcc</span>
+                                </div>
+                            </div>
+                            <div class="input-group" *ngIf="showCcField">
+                                <input type="text" class="input-field" placeholder=" " id="cc">
+                                <label class="input-label" for="cc">Cc</label>
+                            </div>
+                            <div class="input-group" *ngIf="showBccField">
+                                <input type="text" class="input-field" placeholder=" " id="bcc">
+                                <label class="input-label" for="bcc">Bcc</label>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" class="input-field" placeholder=" " id="subject">
+                                <label class="input-label" for="subject">Subject</label>
+                            </div>
+                        </div>
+                    </c-card>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button cButton color="primary" class="me-md-2">Papar</button>
+                    </div>
+                </c-col>
+            </c-col>
+            <c-col md="3">
+                <div class="form-section h-100 p-4">
+                    <app-progress-flow [currentStep]="step" (stepChange)="onStepChange($event)"></app-progress-flow>
+                </div>
+            </c-col>
+        </c-row>
+    </c-container>
+     <div class="bg-light border-top p-3">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <button cButton color="primary" class="me-md-2 text-wrap" style="white-space: normal;" (click)="navigateToTetapanEdigital()">
+                Kembali
+            </button>
+
+            <div class="ms-auto d-flex gap-2">
+                <button cButton color="secondary">Simpan</button>
+                <button cButton color="secondary">Hantar</button>
+                <button cButton color="dark" class="btn-back" (click)="navigateToTetapanEdigital()">&lt;</button>
+            </div>
+        </div>
+    </div>
+</c-card>

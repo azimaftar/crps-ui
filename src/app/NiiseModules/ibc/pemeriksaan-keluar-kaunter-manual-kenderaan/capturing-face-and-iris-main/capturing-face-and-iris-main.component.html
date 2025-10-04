@@ -1,0 +1,157 @@
+<div class="d-flex flex-column" style="min-height: 50vh;">
+  <!-- Kandungan utama: widget + tengah + kanan -->
+  <div class="d-flex flex-row flex-grow-1">
+    <!-- KIRI: Widgets -->
+<div class="d-flex flex-column justify-content-between p-3" style="width: 20%; max-width: 200px; margin-right: 2px;">
+      <!-- widget 1 -->
+      <c-widget-stat-e [title]="'Widget Title'" [value]="'1,123'" style="width: 100%">
+        <c-chart [data]="data[0]" [options]="barOptions" class="mx-auto" height="40" width="80" />
+      </c-widget-stat-e>
+
+      <!-- widget 2 -->
+      <c-widget-stat-e [title]="'Widget Title'" [value]="'1,123'" style="width: 100%">
+        <c-chart [data]="data[0]" [options]="barOptions" class="mx-auto" height="40" width="80" />
+      </c-widget-stat-e>
+
+      <!-- widget 3 -->
+      <c-widget-stat-e [title]="'Widget Title'" [value]="'1,123'" style="width: 100%">
+        <c-chart [data]="data[0]" [options]="barOptions" class="mx-auto" height="40" width="80" />
+      </c-widget-stat-e>
+    </div>
+
+<!-- TENGAH: Gambar + Widget -->
+<div class="d-flex flex-column align-items-center gap-5 p-4 bg-white flex-grow-1">
+  <!-- Baris 1: Gambar Wajah -->
+  <div class="d-flex flex-row align-items-center gap-4">
+    <img 
+      [src]="photoUrl || 'assets/placeholder-image.png'" 
+      alt="Wajah" 
+      style="width: 200px; height: 200px; object-fit: cover; border: 1px solid #000; border-radius: 8px;"
+    />
+   <div style="width: 250px;">
+  <label style="font-weight: bold; font-size: 1rem; display: block; margin-bottom: 0.5rem;">
+    % Pengecaman Wajah
+  </label>
+
+  <div style="
+    width: 100%;
+    height: 24px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  ">
+    <div 
+      [style.width]="getPercentage(irisValue)"
+      style="
+        background-color: #0d6efd; /* Biru */
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 0.85rem;
+        transition: width 0.3s ease;
+      ">
+      {{ WajahValue }}
+    </div>
+  </div>
+</div>
+  </div>
+
+  <!-- Baris 2: Gambar Iris -->
+  <div class="d-flex flex-row align-items-center gap-4">
+    <img 
+      [src]="photoUrl || 'assets/placeholder-image.png'" 
+      alt="Iris" 
+      style="width: 200px; height: 200px; object-fit: cover; border: 1px solid #000; border-radius: 8px;"
+    />
+<div style="width: 250px;">
+  <label style="font-weight: bold; font-size: 1rem; display: block; margin-bottom: 0.5rem;">
+    % Pengecaman Iris
+  </label>
+
+  <div style="
+    width: 100%;
+    height: 24px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  ">
+    <div 
+      [style.width]="getPercentage(irisValue)"
+      style="
+        background-color: #0d6efd; /* Biru */
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 0.85rem;
+        transition: width 0.3s ease;
+      ">
+      {{ irisValue }}
+    </div>
+  </div>
+</div>
+
+</div>
+
+</div>
+  <!-- KANAN: Status Imbasan -->
+  <div class="d-flex flex-column justify-content-center align-items-center p-4" style="width: 250px; background-color: white; margin-left: 2px;">
+    <div class="w-100 text-center py-2 rounded"
+      [style.background-color]="statusColor"
+      style="color: white;">
+      {{ statusMessage }}
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER --> 
+<div class="d-flex justify-content-end align-items-center px-4 py-3"
+     style="background-color: #ffffff; border-top: 2px solid #dee2e6; max-width: 95vw;">
+  <div class="d-flex gap-2">
+    <!-- PENGECUALIAN BIOMETRIK -->
+<button class="btn btn-dark"
+        style="width: 280px;"
+        (click)="onDisyakiPalsuClick()"
+        id="pengecualianbiometrik"
+        [disabled]="statusMessage === 'LULUS'">
+  PENGECUALIAN BIOMETRIK
+</button>
+<!-- SAH BIOMETRIK -->
+<button *ngIf="showSahBiometrikButton"
+        class="btn btn-dark"
+        style="width: 200px;"
+        (click)="onSahBiometrikClick()"
+        id="sahbiometrik"
+        [disabled]="disableSahBiometrikButton">
+  SAH BIOMETRIK
+</button>
+
+
+<button class="btn btn-dark"
+        style="width: 180px;"
+        (click)="isImbasanSelesai ? onSimpanClick() : onImbasanClick()"
+        id="imbas"
+        [disabled]="statusImbasan === 'GAGAL' || disableSimpanButton">
+  {{ isImbasanSelesai ? 'SIMPAN' : 'IMBAS' }}
+</button>
+
+  </div>
+</div>
+
+
+  <!-- Modal -->
+  <app-notification-modal
+    [modalTitle]="modalTitle"
+    [visible]="showModal"
+    [showBiometricModal]="showBiometricModal"
+    [showModalAlert]="showModalAlert"
+    (close)="closeModal()"
+  ></app-notification-modal>
+</div>

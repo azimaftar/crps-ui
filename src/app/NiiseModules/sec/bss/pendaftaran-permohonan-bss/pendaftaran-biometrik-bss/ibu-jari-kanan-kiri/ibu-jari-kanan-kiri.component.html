@@ -1,0 +1,77 @@
+<!-- Show this only when card is hidden -->
+<!-- <c-card-body *ngIf="!showClockOutCard">
+    <c-col>
+        <button class="btn btn-dark btn-search" (click)="toggleClockOutCard()">Clock Out</button>
+    </c-col>
+</c-card-body> -->
+
+<!-- Show this card only when button is clicked -->
+<!-- <c-card *ngIf="showClockOutCard"> -->
+<c-card-body>
+    <c-row>
+        <h5>Carian Biometrik</h5>
+    </c-row>
+
+    <c-row>
+        <c-col>
+            <h4>Ibu Jari Kiri</h4>
+            <c-row>
+                <c-col class="d-flex justify-content-start">
+                    <div
+                        style="border: 1px solid #ccc; border-radius: 6px; padding:60px 30px; text-align: center; height: 200px;">
+
+                        <!-- If showing fingerprint image -->
+                        <img *ngIf="fingerprintImage" [src]="fingerprintImage" alt="Fingerprint Scan"
+                            class="img-fluid rounded shadow" style="height: 100%;" />
+
+                        <!-- If still scanning, show video feed -->
+                        <video *ngIf="!fingerprintImage" #video autoplay muted playsinline
+                            class="img-fluid rounded shadow" style="height: 100%;">
+                        </video>
+                    </div>
+                </c-col>
+
+            </c-row>
+        </c-col>
+        <c-col>
+            <h4>Ibu Jari Kanan</h4>
+            <c-row>
+                <c-col class="d-flex justify-content-start">
+                    <div
+                        style="border: 1px solid #ccc; border-radius: 6px; padding:60px 30px; text-align: center; height: 200px;">
+
+                        <!-- If showing fingerprint image -->
+                        <img *ngIf="fingerprintImage" [src]="fingerprintImage" alt="Fingerprint Scan"
+                            class="img-fluid rounded shadow" style="height: 100%;" />
+
+                        <!-- If still scanning, show video feed -->
+                        <video *ngIf="!fingerprintImage" #video autoplay muted playsinline
+                            class="img-fluid rounded shadow" style="height: 100%;">
+                        </video>
+                    </div>
+                </c-col>
+
+                <c-col md="2"></c-col>
+            </c-row>
+        </c-col>
+    </c-row>
+    <c-row class="justify-content-center">
+        <c-col md="4" class="text-center">
+            <label class="form-label">% Nilai Hidup</label>
+            <input type="text" class="form-control text-center" disabled>
+        </c-col>
+    </c-row>
+    <c-row>
+        <!-- <c-col>
+            <button class="btn btn-dark btn-search m-2 " (click)="null">Ambil Wajah & Iris</button>
+            <button class="btn btn-dark btn-search m-2" (click)="openModal()">Pengecualian Biometrik</button>
+        </c-col> -->
+        <c-col>
+            <button class="btn btn-dark btn-search mt-5" (click)="null">Reset</button>
+        </c-col>
+        <c-col>
+            <button class="btn btn-dark btn-search mt-5" (click)="resultjari()">OK</button>
+        </c-col>
+    </c-row>
+</c-card-body>
+<!-- </c-card> -->

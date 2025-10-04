@@ -1,0 +1,36 @@
+<c-card>
+    <h4 class="fw-bold m-3 mt-5">
+      LAPORAN SIASATAN KEHILANGAN KAD KUASA
+    </h4>
+    <div class="m-3">
+        <app-stepper
+        [currentMainStep]="currentMainStep"
+        ></app-stepper>
+    </div>
+    <c-card-body class="px-5">
+      <c-row class="mb-3">
+          <h6 class="fw-bold">Maklumat Laporan Siasatan Kehilangan Kad Kuasa</h6>
+      </c-row>
+      <c-row class="p-3">
+        <h6 class="mb-3">Laporan Siasatan Dari Lembaga Tatatertib</h6>
+        <c-col class="rounded-3 border border-secondary">
+          <iframe
+            src="sample_laporan.pdf"
+            width="100%"
+            height="500px"
+            title="[Maklumat Laporan Siasatan]"
+            style="border: none;"
+            ></iframe>
+        </c-col>
+      </c-row>
+    </c-card-body>
+  
+    <c-card-footer>
+        <c-row>
+            <div class="d-flex justify-content-end">
+                <button class="l-custom-btn" (click)="navigatePreviousPage()">&lsaquo;</button>
+                <button class="r-custom-btn" (click)="navigateNextPage()">&rsaquo;</button>
+            </div>
+        </c-row>          
+    </c-card-footer>
+</c-card>

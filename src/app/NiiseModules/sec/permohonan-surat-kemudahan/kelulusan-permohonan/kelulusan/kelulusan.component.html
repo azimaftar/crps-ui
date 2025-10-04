@@ -1,0 +1,151 @@
+<c-card class="mb-3">
+    <!-- CONTENT CARD BODY -->
+    <c-card-body>
+        <c-row>
+            <!-- FORMS -->
+            <c-col md="9">
+                <!-- FORMS START -->
+                <!-- Form Title -->
+                <h5 class="mb-4">
+                    Kelulusan Permohonan
+                    <span class="badge bg-info ms-2" *ngIf="isViewMode"></span>
+                </h5>
+                <select cSelect id="lulusDropdown" name="lulusOption" [value]="selectedLulusOption" [disabled]="isViewMode"
+                    (change)="onLulusOptionChange($event)" style="margin-left: 10px; width: 30%;">
+                    <option value="">Sila Pilih</option>
+                    <option value="lulus">Lulus</option>
+                    <option value="tidak_lulus">Tidak Lulus</option>
+                    <option value="jkrim">Ke Mesyuarat JKRIM</option>
+                </select>
+
+                <!-- Catatan textarea -->
+                <div class="col-md-12">
+                    <label class="form-label" style="margin-top: 30px;">
+                        Catatan (Jika Tolak)
+                    </label>
+                    <textarea type="text" style="width: 70%;" class="form-control" [value]="catatan"
+                        [readonly]="isViewMode" (input)="onCatatanChange($event)"
+                        placeholder="Masukkan catatan jika permohonan ditolak...">
+                    </textarea>
+                </div>
+
+                <!-- Form inputs for Nama Pengesyor and Tarikh -->
+                <div class="mb-3 row" style="margin-top: 20px;">
+                    
+                    <div class="col-md-6">
+                        <label class="form-label">Nama Pelulus <span class="text-danger">*</span></label>
+                        <input type="text" style="width: 85%;" class="form-control" [value]="namaPelulus"
+                            [readonly]="isViewMode" (input)="onNamaPelulusChange($event)"
+                            placeholder="Masukkan nama pelulus">
+                    </div>
+
+                    
+                    <div class="col-md-6">
+                        <label class="form-label">Tarikh Kelulusan <span class="text-danger">*</span></label>
+                        <input type="date" style="width: 70%;" class="form-control" [value]="tarikhKelulusan"
+                            [readonly]="isViewMode" (input)="onTarikhKelulusanChange($event)">
+                    </div>
+                </div>
+            </c-col>
+
+            <!-- STEPPER -->
+            <c-col md="3" class="px-4 py-3 mt-3 stepper-container">
+                <ul class="stepper-list">
+                    <li class="stepper-item" [class.active]="currentStep === step.number"
+                        *ngFor="let step of steps; let i = index">
+                        <div class="stepper-content">
+                            <span class="step-number" [class.active]="currentStep === step.number">
+                                {{ step.number }}
+                            </span>
+                            <span class="step-title" [class.active]="currentStep === step.number">
+                                {{ step.title }}
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </c-col>
+        </c-row>
+        <!-- END OF CONTENT -->
+
+        <!-- FOOTER CONTENT FOR BUTTONS -->
+        <c-row class="mt-4 mb-3">
+    <c-col class="d-flex justify-content-end align-items-center gap-2 flex-wrap">
+        <!-- View Mode - Simple Back Button -->
+        <div class="d-flex gap-2" *ngIf="isViewMode">
+            <button type="button" class="btn btn-primary text-white px-3" (click)="goBack()">
+                &lt; 
+            </button>
+        </div>
+
+        <!-- Edit Mode - Full Action Buttons -->
+        <div class="d-flex gap-2 flex-wrap justify-content-end" *ngIf="!isViewMode">
+            <!-- Action Buttons -->
+            <div class="d-flex gap-2 flex-wrap">
+                <button cButton type="button" color="primary" class="text-white px-3 px-sm-4 reset-btn"
+                    (click)="resetForm()">
+                    <span class="d-none d-sm-inline">Set Semula</span>
+                    <span class="d-inline d-sm-none">Reset</span>
+                </button>
+
+                <button cButton type="button" color="primary" class="text-white px-3 px-sm-4 save-btn" 
+                    (click)="saveForm()">
+                    Simpan
+                </button>
+
+                <button cButton type="button" color="primary" class="text-white px-3 px-sm-4 submit-btn"
+                    (click)="onSubmit()">
+                    Hantar
+                </button>
+            </div>
+
+            <!-- Navigation Button -->
+            <div class="d-flex gap-2 ms-0 ms-sm-4">
+                <button cButton type="button" color="primary" class="text-white px-3 nav-btn"
+                    (click)="goBack()">
+                    &lt; 
+                </button>
+            </div>
+        </div>
+    </c-col>
+</c-row>
+    </c-card-body>
+</c-card>
+
+<!-- CoreUI Modal -->
+<c-modal 
+  [visible]="modalVisible" 
+  (visibleChange)="modalVisible = $event"
+  backdrop="static"
+  keyboard="false">
+  
+  <c-modal-body class="text-center">
+    <!-- Success Icon -->
+    <div class="mb-3" *ngIf="!modalMessage.includes('mandatori')">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="28" stroke="#28a745" stroke-width="4" fill="#d4edda"/>
+        <path d="M20 32L28 40L44 24" stroke="#28a745" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    
+    <!-- Error Icon -->
+    <div class="mb-3" *ngIf="modalMessage.includes('mandatori')">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="28" stroke="#dc3545" stroke-width="4" fill="#f8d7da"/>
+        <path d="M32 20v16M32 44h.01" stroke="#dc3545" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    
+    <p class="mb-0">{{ modalMessage }}</p>
+  </c-modal-body>
+  
+  <c-modal-footer class="justify-content-center">
+    <button 
+      type="button" 
+      cButton 
+      color="primary"
+      (click)="onModalOk()"
+      class="px-4">
+      OK
+    </button>
+  </c-modal-footer>
+</c-modal>

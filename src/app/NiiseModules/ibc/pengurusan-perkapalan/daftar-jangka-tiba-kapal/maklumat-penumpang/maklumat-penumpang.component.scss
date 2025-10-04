@@ -1,0 +1,62 @@
+/* Buttons */
+.btn {
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn-all {
+  background-color: white;
+  border-color: #CAD5E2;
+}
+
+.btn-all:hover {
+  background-color: #CAD5E2;
+  border-color: #CAD5E2;
+}
+
+.btn-submit {
+  background-color: #1461BA;
+  border-color: #1461BA;
+  color: white;
+} 
+/* Form controls */
+.form-control,
+.form-select {
+  outline: none;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+/* Card */
+.card {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px),
+(max-width: 576px) {
+  .profile-image-container {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.footer-row {
+    border-top: 1px solid var(--cui-border-color, #dee2e6);
+    padding-top: 1rem;
+    margin-top: 2rem !important;
+    
+}

@@ -1,0 +1,172 @@
+<c-row>
+    <!-- MAIN CONTENT -->
+    <c-col md="9" class="pe-0">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Maklumat Tindakan</h5>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Kod Nap/Nas*<span class="text-danger">*</span></label>
+                                        <select class="form-select">
+                                            <!-- Add options here -->
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Nombor Nap/Nas*<span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Kod Tindakan<span class="text-danger">*</span></label>
+                                        <select class="form-select">
+                                            <!-- Add options here -->
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Tarikh NAP/NAS*<span
+                                                class="text-danger">*</span></label>
+                                        <input type="date" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Tarikh Kuatkuasa<span
+                                                class="text-danger">*</span></label>
+                                        <input type="date" class="form-control">
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Tempat Kesalahan</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-5">
+                                        <label class="form-label">Pilih Tempoh<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Tarikh Tamat Kes</label>
+                                        <input type="date" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">No. Fail Imigresn*<span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="col-md-3"></div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">No. Fail Agensi*<span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="col-md-3"></div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Nombor Rujukan Agensi</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Agensi Pelapor<span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Arahan Khusus(Jika Ada)</label>
+                                    <textarea class="form-control" rows="2"></textarea>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Nama Pengawai untuk Dihubungi</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">No Telefon Pengawai untuk Dihubungi</label>
+                                    <input type="text" class="form-control">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Maklumat Agensi</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="mb-3 col-6">
+                                    <label class="form-label">Emel Agensi</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Keterangan Kes</label>
+                                    <textarea class="form-control" rows="2"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- footer -->
+        <div class="bottom-navigation d-flex justify-content-end p-3">
+            <div class="nav-buttons d-flex align-items-center">
+                <button class="btn btn-reset btn-dark m-2" (click)="onReset()">Set Semula</button>
+                <button class="btn btn-back btn-dark m-2" disabled>Hantar</button>
+                <div class="right-buttons">
+                    <button class="btn btn-back btn-dark m-2" (click)="goToPreviousSection()">
+                        &lt;
+                    </button>
+                    <button class="btn btn-next btn-dark m-2" (click)="goToNextSection()">
+                        &gt;
+                    </button>
+                </div>
+            </div>
+        </div>
+    </c-col>
+    
+    <!-- STEPPER -->
+    <c-col md="3" class="px-4 py-3 mt-3 stepper-container">
+        <ul class="stepper-list">
+            <li 
+            class="stepper-item"
+            [class.active]="currentStep === step.number"
+            *ngFor="let step of steps; let i = index">
+            <div class="stepper-content">
+                <span 
+                class="step-number"
+                [class.active]="currentStep === step.number">
+                {{ step.number }}
+                </span>
+                <span 
+                class="step-title"
+                [class.active]="currentStep === step.number">
+                {{ step.title }}
+                </span>
+            </div>
+            </li>
+        </ul>
+    </c-col>
+</c-row>

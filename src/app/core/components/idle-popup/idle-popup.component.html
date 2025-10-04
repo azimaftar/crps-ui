@@ -1,0 +1,21 @@
+<div class="idle-backdrop" *ngIf="visible">
+  <div class="idle-modal">
+
+    <!-- Idle popup -->
+    <ng-container *ngIf="popupType === 'idle'">
+      <h3>Inactive Warning</h3>
+      <p>You’ve been inactive. Your session will end in <b>{{ countdown }}</b> seconds.</p>
+    </ng-container>
+
+    <!-- Token expiry popup -->
+    <ng-container *ngIf="popupType === 'token'">
+      <h3>Session Expiring</h3>
+      <p>Your token will expire in <b>{{ countdown }}</b> seconds.</p>
+    </ng-container>
+
+    <div class="actions">
+      <button class="btn-keep" (click)="staySignedIn()">Stay Signed In</button>
+      <button class="btn-logout" (click)="logout()">Logout</button>
+    </div>
+  </div>
+</div>

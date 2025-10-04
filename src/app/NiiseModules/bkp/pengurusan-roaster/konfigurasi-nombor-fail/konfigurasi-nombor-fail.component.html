@@ -1,0 +1,69 @@
+<c-container fluid>
+  <div class="form-section h-100">
+    <h2 class="section-title2">Maklumat Lokasi</h2>
+
+    <form cForm [formGroup]="configForm">
+      <!-- Cawangan Row -->
+      <c-row class="form-group5 d-flex align-items-center2">
+        <c-col md="12">
+          <label cLabel class="form-label">Cawangan*</label>
+          <select cSelect formControlName="cawangan" class="form-select">
+            <option value="IM 101/CAWANGAN">IM 101/CAWANGAN</option>
+          </select>
+        </c-col>
+      </c-row>
+      <!-- First Row of Input Fields -->
+      <c-row class="form-group5 d-flex align-items-center2">
+        <c-col md="6">
+          <label cLabel class="form-label">Field 1*</label>
+          <input cFormControl type="text" formControlName="field1" class="form-control" />
+        </c-col>
+        <c-col md="6">
+          <label cLabel class="form-label">Field 2*</label>
+          <input cFormControl type="text" formControlName="field2" class="form-control" />
+        </c-col>
+      </c-row>
+
+      <!-- Second Row of Input Fields -->
+      <c-row class="form-group5 d-flex align-items-center2">
+        <c-col md="6">
+          <label cLabel class="form-label">Field 3*</label>
+          <input cFormControl type="text" formControlName="field3" class="form-control" />
+        </c-col>
+        <c-col md="6">
+          <label cLabel class="form-label">Field 4*</label>
+          <input cFormControl type="text" formControlName="field4" class="form-control" />
+        </c-col>
+      </c-row>
+
+      <!-- Third Row of Input Fields -->
+      <c-row class="form-group5 d-flex align-items-center2">
+        <c-col md="6">
+          <label cLabel class="form-label">Field 5*</label>
+          <input cFormControl type="text" formControlName="field5" class="form-control" />
+        </c-col>
+        <c-col md="6">
+          <label cLabel class="form-label">Field 6*</label>
+          <input cFormControl type="text" formControlName="field6" class="form-control" />
+        </c-col>
+      </c-row>
+
+      <!-- Button Row -->
+      <c-row>
+        <c-col md="12" >
+          <button cButton color="dark" class="set-semula-button" type="button" (click)="onSetSemula()">
+            Set Semula
+          </button>
+          <button cButton color="dark" class="blue-btn" type="button" (click)="onHantar()">
+            Hantar
+          </button>
+          <button cButton color="dark" class="blue-btn" type="button" (click)="onSimpan()">
+            Simpan
+          </button>
+        </c-col>
+      </c-row>
+    </form>
+  </div>
+  <app-modal-simpan [isSuccessModalVisible]="showModalSimpan" (modalClosed)="onModalSimpanClosed()"></app-modal-simpan>
+    <app-modal-hantar [isSuccessModalVisible]="showModalHantar" (modalClosed)="onModalHantarClosed()"></app-modal-hantar>
+</c-container>

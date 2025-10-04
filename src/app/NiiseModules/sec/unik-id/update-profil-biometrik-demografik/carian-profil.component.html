@@ -1,0 +1,173 @@
+<div class="container-fluid">
+  <div class="form-section">
+    <div class="row">
+      <!-- Left Side: Officer Info -->
+      <div class="col-md-9 border-end pe-4">
+        <h5>Carian Profil</h5>
+
+        <form class="mt-3">
+
+          <div class="mb-3">
+<div class="d-flex mb-2">
+  <div class="form-check d-flex align-items-center me-4">
+    <input
+      class="form-check-input big-square-radio"
+      type="radio"
+      id="demografik"
+      name="typecarian"
+      value="demografik"
+      [(ngModel)]="typecarian"
+    />
+    <label class="form-check-label ms-2" for="demografik"
+      >Carian Demografik</label
+    >
+  </div>
+
+  <div class="form-check d-flex align-items-center me-4">
+    <input
+      class="form-check-input big-square-radio"
+      type="radio"
+      id="biometrik"
+      name="typecarian"
+      value="biometrik"
+      [(ngModel)]="typecarian"
+    />
+    <label class="form-check-label ms-2" for="biometrik"
+      >Carian Biometrik</label
+    >
+  </div>
+</div>
+
+<!-- ✅ Show Demografik Section only if "demografik" is selected -->
+<div *ngIf="typecarian === 'demografik'">
+
+  <!-- Row 1: Dropdown -->
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label class="form-label required">Kategori Carian</label>
+      <select
+        class="form-select"
+        [(ngModel)]="selectedCategory"
+        [ngModelOptions]="{ standalone: true }"
+      >
+        <option value="warganegara">Warganegara / Penduduk Tetap</option>
+        <option value="nowarganegara">Bukan Warganegara</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Row 2: Dynamic Label -->
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label class="form-label required">
+        {{ categoryMap[selectedCategory] || 'papar nama jenis' }}
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="searchvalue.carian"
+        name="carian"
+      />
+    </div>
+  </div>
+
+  <!-- Search Button -->
+  <div class="row mb-3 justify-content-end">
+    <div class="col-auto">
+      <button
+        type="button"
+        class="btn btn-primary"
+        style="width: 100px"
+        (click)="cariLoadTable()"
+      >
+        Cari
+      </button>
+    </div>
+  </div>
+
+  <!-- Senarai Profil -->
+  <h5 class="mb-3">Senarai Profil Individu</h5>
+  <div class="table-responsive" *ngIf="showTable">
+    <table class="table table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>No K/P</th>
+          <th>No Dokumen</th>
+          <th>W/N</th>
+          <th style="width: 35%">Name</th>
+          <th>Jantina</th>
+          <th class="text-center">Tindakan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let profil of senaraiProfil">
+          <td>{{ profil.noKP }}</td>
+          <td>{{ profil.noDokumen }}</td>
+          <td>{{ profil.wn }}</td>
+          <td>{{ profil.nama }}</td>
+          <td>{{ profil.jantina }}</td>
+          <td class="text-center">
+            <button
+              class="btn btn-sm btn-primary"
+              (click)="openDetail(profil)"
+            >
+              Lihat
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ✅ Show Biometrik Component only if "biometrik" is selected -->
+<app-biometrik *ngIf="typecarian === 'biometrik'"></app-biometrik>
+    
+
+      <!-- Right Side: Steps with vertical line -->
+      <div class="col-md-3 ps-4 border-start">
+        <div
+          class="step"
+          [class.active]="isStepActive(1)"
+          [class.completed]="isStepCompleted(1)"
+        >
+          <div class="circle">1</div>
+          <div class="label">Carian Profil</div>
+        </div>
+        <div
+          class="step"
+          [class.active]="isStepActive(2)"
+          [class.completed]="isStepCompleted(2)"
+        >
+          <div class="circle">2</div>
+          <div class="label">Maklumat Profil Individu</div>
+        </div>
+        <div
+          class="step"
+          [class.active]="isStepActive(3)"
+          [class.completed]="isStepCompleted(3)"
+        >
+          <div class="circle">2</div>
+          <div class="label">Maklumat Profil Terperinci</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="d-flex justify-content-end mt-4">
+      <button
+        class="btn btn-secondary me-2"
+        (click)="goToPreviousStep()"
+        [disabled]="currentStep === 1"
+      >
+        &lt;
+      </button>
+      <button
+        class="btn btn-dark"
+        (click)="goToNextStep()"
+        [disabled]="currentStep === maxStep"
+      >
+        &gt;
+      </button>
+    </div>
+

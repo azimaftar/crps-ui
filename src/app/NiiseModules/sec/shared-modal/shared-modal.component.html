@@ -1,0 +1,40 @@
+<c-modal [(visible)]="visible" [backdrop]="true" [keyboard]="true">
+  <c-modal-body>
+    <div class="d-flex flex-column align-items-center text-center">
+      <!-- Image placeholder -->
+      <div class="mb-3" style="font-size: 48px; font-weight: bold;">X</div>
+      <!-- Replace above line with this and use correct path for the image -->
+      <!-- <img src="assets/images/success-icon.png" alt="Success Icon" style="width: 80px;" class="mb-3" /> -->
+
+      <!-- Centered message -->
+      <div style="font-size: 1.2rem;">
+        {{ message }}
+      </div>
+    </div>
+  </c-modal-body>
+
+  <c-modal-footer class="justify-content-center">
+    <!-- Mode: OK -->
+    <ng-container *ngIf="mode === 'ok'">
+      <button 
+        cButton color="primary" 
+        (click)="onConfirm()">
+        Ok
+      </button>
+    </ng-container>
+
+    <!-- Mode: Confirm -->
+    <ng-container *ngIf="mode === 'confirm'">
+      <button 
+        cButton color="primary" 
+        (click)="onConfirm()">
+        Ya
+      </button>
+      <button 
+        cButton color="secondary" 
+        (click)="onCancel()">
+        Tidak
+      </button>
+    </ng-container>
+  </c-modal-footer>
+</c-modal>

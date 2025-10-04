@@ -1,0 +1,226 @@
+<c-card>
+  <c-card-header class="bg-primary text-white"
+    >PERMOHONAN ID PENGGUNA - SEMAKAN PERMOHONAN</c-card-header
+  >
+  <c-card-body class="row">
+    <div class="col-12 col-md-9 order-2 order-md-1">
+      <div class="row mb-3">
+        <h6>3. Maklumat PTJ</h6>
+        <small class="ms-2 text-muted">Langkah 3 daripada 5</small>
+      </div>
+      <div class="col-12 d-flex align-items-end justify-content-end">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="visible = true"
+        >
+          Pilih Kod PTJ
+        </button>
+      </div>
+      <div class="col-12 table-responsive mb-3">
+        <table class="table">
+          <thead>
+            <tr class="align-middle">
+              <th>
+                <input
+                  type="checkbox"
+                  [(ngModel)]="selectAll"
+                  (change)="toggleAll()"
+                />
+              </th>
+              <th class="py-4">Bil.</th>
+              <th class="py-4">Kod PTJ</th>
+              <th class="py-4">Cawangan</th>
+              <th class="py-4">Tindakan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="align-middle" *ngFor="let mainptj of mainkodPTJ">
+              <td class="py-4">
+                <input type="checkbox" [(ngModel)]="mainptj.checklist" />
+              </td>
+              <td class="py-4">{{ mainptj.bil }}</td>
+              <td class="py-4">{{ mainptj.kodPTJ }}</td>
+              <td class="py-4">{{ mainptj.cawangan }}</td>
+              <td class="py-4">icon here</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-12 d-flex align-items-end justify-content-end gap-2 mb-5">
+        <button type="button" class="btn btn-secondary" (click)="hapusModel()">
+          Hapus
+        </button>
+        <button type="button" class="btn btn-secondary">Simpan</button>
+      </div>
+
+      <div class="row">
+        <div
+          class="col-12 col-md-4 align-items-start justify-content-start mb-2"
+        >
+          <select id="" class="form-select form-select-sm" style="width: 60px">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+          </select>
+        </div>
+        <nav class="col-12 col-md-5">
+          <ul class="pagination justify-content-end">
+            <li>
+              <a
+                class="page-link text-dark"
+                href="#/notifikasi"
+                aria-label="Previous"
+              >
+                <span aria-hidden="true">&laquo;&laquo;</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="page-link text-dark"
+                href="#/notifikasi"
+                aria-label="FirstPage"
+              >
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li><a class="page-link text-dark" href="#/notifikasi">1</a></li>
+            <li><a class="page-link text-dark" href="#/notifikasi">2</a></li>
+            <li><a class="page-link text-dark" href="#/notifikasi">3</a></li>
+            <li>
+              <a
+                class="page-link text-dark"
+                href="#/notifikasi"
+                aria-label="Next"
+              >
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="page-link text-dark"
+                href="#/notifikasi"
+                aria-label="LastPage"
+              >
+                <span aria-hidden="true">&raquo;&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div
+          class="col-12 col-md-3 d-flex align-items-start justify-content-end gap-2"
+        >
+          <label class="form-label">Pergi ke</label>
+          <input
+            type="number"
+            class="form-control form-control-sm"
+            style="width: 50px"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-12 col-md-3 d-flex flex-column position-relative ps-4 order-1 order-md-2"
+      style="max-width: 250px"
+    >
+      <ng-container *ngFor="let step of steps; let i = index">
+        <div class="d-flex align-items-start mb-3 position-relative">
+          <div
+            class="rounded-circle d-flex justify-content-center align-items-center"
+            [ngClass]="{
+              'bg-dark text-white': currentStep === i + 1,
+              'bg-light border': currentStep !== i + 1
+            }"
+            style="width: 30px; height: 30px; z-index: 1"
+          >
+            {{ i + 1 }}
+          </div>
+
+          <!-- Step Labels -->
+          <div class="ms-2">
+            <div>
+              <strong>Langkah {{ i + 1 }}</strong>
+            </div>
+            <div>{{ step.label }}</div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div
+      class="d-flex flex-wrap justify-content-end align-items-center gap-3 my-3 order-3 order-md-3"
+    >
+      <div class="d-flex gap-2">
+        <button type="button" class="btn btn-secondary">Tolak</button>
+        <button type="button" class="btn btn-secondary">Wujud ID</button>
+      </div>
+
+      <div class="d-flex gap-2">
+        <button type="button" class="btn btn-secondary">&lt;</button>
+        <button type="button" class="btn btn-secondary">&gt;</button>
+      </div>
+    </div>
+  </c-card-body>
+</c-card>
+
+<!-- Modal Markup -->
+<c-modal [(visible)]="visible" size="lg">
+  <c-modal-header>
+    <strong>Pilih Kod PTJ</strong>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="visible = false"
+    ></button>
+  </c-modal-header>
+
+  <c-modal-body>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="text-center"><input type="checkbox" /></th>
+            <th>Bil.</th>
+            <th>Cawangan</th>
+            <th>Kod PTJ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let modalptj of modalkodPTJ">
+            <td class="text-center">
+              <input type="checkbox" [(ngModel)]="modalptj.checklist" />
+            </td>
+            <td>{{ modalptj.bil }}</td>
+            <td>{{ modalptj.cawangan }}</td>
+            <td>{{ modalptj.kodPTJ }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </c-modal-body>
+
+  <c-modal-footer>
+    <button class="btn btn-secondary" (click)="visible = false">Tutup</button>
+    <button class="btn btn-secondary" (click)="visible = false">Tambah</button>
+  </c-modal-footer>
+</c-modal>
+
+<!-- Originally was meant for Simpan button, but the text doesnt make sense. -->
+<c-modal
+  [(visible)]="confirmVisible"
+  size="sm"
+  backdrop="static"
+  keyboard="false"
+>
+  <c-modal-header class="border border-secondary">
+    <!-- Image or Anything here based on SDS -->
+    Icon Here
+  </c-modal-header>
+  <c-modal-body> Adakah anda pasti ingin memadamkan rekod? </c-modal-body>
+  <c-modal-footer>
+    <button class="btn btn-secondary" (click)="confirmSave(false)">
+      Tidak
+    </button>
+    <button class="btn btn-secondary" (click)="confirmSave(true)">Ya</button>
+  </c-modal-footer>
+</c-modal>

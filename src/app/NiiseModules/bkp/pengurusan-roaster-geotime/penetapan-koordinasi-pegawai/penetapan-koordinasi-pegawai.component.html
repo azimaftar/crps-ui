@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <div class="form-section">
+    <h5 class="section-title">Maklumat Kekunci Carian</h5>
+    <form>
+      <!-- Row 1 -->
+    <div class="form-group5 d-flex align-items-center2">
+      <label for="bahagian">Bahagian*</label>
+      <select class="form-control" name="bahagian">
+        <option value="">Sila Pilih</option>
+        <option>Bahagian Imigresen</option>
+      </select>
+    </div>
+
+      <!-- Row 2 -->
+
+          <div class="form-group5 d-flex align-items-center2">
+      <label for="unit">Unit*</label>
+      <select class="form-control" name="unit">
+        <option value="">Sila Pilih</option>
+        <option>Unit Pemeriksaan</option>
+      </select>
+    </div>
+
+      <!-- Row 3 -->
+          <div class="form-group5 d-flex align-items-center2">
+      <label for="kumpulan">Kumpulan*</label>
+      <select class="form-control" name="kumpulan">
+        <option value="">Sila Pilih</option>
+        <option>13</option>
+      </select>
+    </div>
+
+      <!-- Row 4 -->
+      <div class="form-group5 d-flex align-items-center2">
+        <label class="form-label">Nama Pegawai</label>
+        <input type="text" class="form-control" value="Azmi" />
+      </div>
+
+      <!-- Row 5: Two-Column Layout -->
+      <div class="form-group5 d-flex align-items-center2">
+        <div class="col-md-6">
+          <label class="form-label required">Nombor Kad Pengenalan*</label>
+          <input type="text" class="form-control" value="781213-14-5776" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label required">Gred Jawatan*</label>
+          <input type="text" class="form-control" value="Pegawai Tadbir" />
+        </div>
+      </div>
+
+      <!-- Cari Button -->
+      <div class="text-end">
+        <button type="button" class="blue-btn" (click)="onSearch()">
+          Cari
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Not found Popup -->
+<div class="popup-overlay" *ngIf="showNotFoundPopup">
+  <div class="popup-box">
+    <p>Maklumat carian tidak wujud. Sila masukkan kunci carian lain.</p>
+    <button (click)="closePopup()">Okay</button>
+  </div>
+</div>

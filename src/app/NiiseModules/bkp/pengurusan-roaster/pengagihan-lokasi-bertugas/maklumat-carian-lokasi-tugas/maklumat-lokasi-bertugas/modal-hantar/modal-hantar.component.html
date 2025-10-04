@@ -1,0 +1,31 @@
+<c-modal 
+    [visible]="isSuccessModalVisible" 
+    (visibleChange)="onVisibleChange($event)" 
+    id="successModal" 
+    size="lg"
+    centered="true" 
+    [backdrop]="true">
+
+    <c-modal-header class="modal-header-custom">
+        <div class="modal-icon-container">
+            <div class="modal-square-icon">
+                <div class="modal-check-line-1"></div>
+                <div class="modal-check-line-2"></div>
+            </div>
+        </div>
+    </c-modal-header>
+
+    <c-modal-body class="modal-body-custom">
+        <p class="modal-message">
+            Rekod telah berjaya dihantar.
+        </p>
+    </c-modal-body>
+
+    <c-modal-footer class="modal-footer-custom">
+        <div class="modal-button-container">
+            <button type="button" class="modal-ok-button" (click)="onSuccessModalOk()">
+                OK
+            </button>
+        </div>
+    </c-modal-footer>
+</c-modal>

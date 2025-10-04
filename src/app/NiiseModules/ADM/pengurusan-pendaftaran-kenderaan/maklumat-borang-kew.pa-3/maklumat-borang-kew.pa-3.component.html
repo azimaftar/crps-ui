@@ -1,0 +1,363 @@
+<div class="custom-content-wrapper">    
+  <c-card>
+    <c-card-body>
+      <c-row class="my-2">
+        <h4 class="fw-bold">PENDAFTARAN KENDERAAN</h4>
+      </c-row>
+
+      <c-row class="my-2">
+        <c-col>
+          <ng-container *ngFor="let section of mainSteps">
+            <button
+              type="button"
+              class="btn-custom-breadcrumbADM btn btn-light d-inline-flex gap-2 fw-semibold"
+              [ngClass]="{
+                'btn-custom-breadcrumbADM-active':
+                  section.mainStep === currentMainStep
+              }"
+            >
+              <span
+                class="btn-custom-breadcrumbNoADM"
+                [ngClass]="{
+                  'btn-custom-breadcrumbNoADM-active':
+                    section.mainStep === currentMainStep
+                }"
+                >{{ section.mainStep }}</span
+              >
+              <span class="btn-custom-breadcrumbLabelADM">{{
+                section.mainLabel
+              }}</span>
+            </button>
+          </ng-container>
+        </c-col>
+      </c-row>
+
+      <c-row class="my-2">
+        <c-col class="d-flex flex-nowrap overflow-auto align-items-stretch">
+          <ng-container *ngFor="let section of subSteps">
+            <button
+              type="button"
+              class="btn-custom-breadcrumbADM btn btn-light fw-semibold d-inline-flex gap-2 flex-shrink-0"
+              #subButton
+              [ngClass]="{
+                'btn-custom-breadcrumbADM-active':
+                  section.mainStep === currentMainStep &&
+                  section.subStep === currentSubStep
+              }"
+            >
+              <span
+                class="btn-custom-breadcrumbNoADM"
+                [ngClass]="{
+                  'btn-custom-breadcrumbNoADM-active':
+                    section.mainStep === currentMainStep &&
+                    section.subStep === currentSubStep
+                }"
+                >{{ section.subStep }}</span
+              >
+              <span class="btn-custom-breadcrumbLabelADM">{{
+                section.subLabel
+              }}</span>
+            </button>
+          </ng-container>
+        </c-col>
+      </c-row>
+
+      <c-row class="mb-4 mt-5">
+        <c-col xs="12" md="10">
+          <h5 class="fw-semibold">Maklumat Borang KEW.PA-3</h5>
+        </c-col> 
+      </c-row>
+      <c-row class="mb-4 mt-5" style="border-bottom: 1px solid rgba(0, 0, 0, 0.1)">
+        <c-col  md="3" class="d-flex gap-5 flex-shrink-0">
+            <button type="button" class="custom-button mb-4">
+               <img src="../../../../../../assets/images/file-upload-icon.svg" alt="upload" class="upload-icon" style="margin-right: 5px;margin-bottom: 2px;">
+               Muatnaik
+            </button>
+        </c-col> 
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Nombor Siri Pendaftaran</label>
+        </c-col>
+        <c-col xs="12" md="4">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Kementerian/ Jabatan</label>
+        </c-col>
+        <c-col xs="12" md="9">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+      </c-row>
+            <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Bahagian/ Cawangan</label>
+        </c-col>
+        <c-col xs="12" md="9">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Kod National</label>
+        </c-col>
+        <c-col xs="12" md="4">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Keterangan Aset</label>
+        </c-col>
+        <c-col xs="12" md="4">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Kategori</label>
+        </c-col>
+        <c-col xs="12" md="4">
+          <select
+            class="form-select"
+            [(ngModel)]="documentType">
+          </select>
+        </c-col>
+        <c-col xs="12" md="2">
+          <label class="fw-semibold">Sub Kategori</label>
+        </c-col>
+        <c-col xs="12" md="3">
+            <select
+              class="form-select"
+              [(ngModel)]="documentType">
+            </select>
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Jenis</label>
+        </c-col>
+        <c-col xs="12" md="5">
+            <select
+              class="form-select"
+              [(ngModel)]="documentType">
+            </select>
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Jenama</label>
+        </c-col>
+        <c-col xs="12" md="5">
+            <select
+              class="form-select"
+              [(ngModel)]="documentType">
+            </select>
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Model</label>
+        </c-col>
+        <c-col xs="12" md="5">
+            <select
+              class="form-select"
+              [(ngModel)]="documentType">
+            </select>
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Buatan</label>
+        </c-col>
+        <c-col xs="12" md="5">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Jenis Enjin</label>
+        </c-col>
+        <c-col xs="12" md="5">
+            <select
+              class="form-select"
+              [(ngModel)]="documentType">
+            </select>
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Nombor Enjin</label>
+        </c-col>
+        <c-col xs="12" md="5">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Nombor Casis</label>
+        </c-col>
+        <c-col xs="12" md="5">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Siri Pembuat</label>
+        </c-col>
+        <c-col xs="12" md="3">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Nombor Pendaftaran</label>
+        </c-col>
+        <c-col xs="12" md="3">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Harga Perolehan Asal (RM)</label>
+        </c-col>
+        <c-col xs="12" md="3">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Tarikh Perolehan</label>
+        </c-col>
+        <c-col xs="12" md="3">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+        <c-col xs="12" md="1"></c-col>
+        <c-col xs="12" md="2">
+          <label class="fw-semibold">Tarikh Diterima</label>
+        </c-col>
+        <c-col xs="12" md="3">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Nombor Pesanan Rasmi Kerajaan</label>
+        </c-col>
+        <c-col xs="12" md="3">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+        <c-col xs="12" md="1"></c-col>
+        <c-col xs="12" md="2">
+          <label class="fw-semibold">Nombor Kontak</label>
+        </c-col>
+        <c-col xs="12" md="3">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Tempoh Jaminan</label>
+        </c-col>
+        <c-col xs="12" md="3">
+            <select
+              class="form-select"
+              [(ngModel)]="documentType">
+            </select>
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Nama Pembekal</label>
+        </c-col>
+        <c-col xs="12" md="5">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Alamat</label>
+        </c-col>
+        <c-col xs="12" md="5">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3"></c-col>
+        <c-col xs="12" md="5">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3"></c-col>
+        <c-col xs="12" md="5">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Poskod</label>
+        </c-col>
+        <c-col xs="12" md="2">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Bandar</label>
+        </c-col>
+        <c-col xs="12" md="4">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-5">
+        <c-col xs="12" md="3">
+          <label class="fw-semibold">Negeri</label>
+        </c-col>
+        <c-col xs="12" md="4">
+          <input type="text" id="" class="form-control" />
+        </c-col>
+      </c-row>
+      <c-row>
+        <c-col md="3" class="mb-3">
+        <label class="fw-semibold mb-2">Catatan</label>
+        </c-col>
+        <c-col md="9" class="mb-3">
+        <textarea class="form-control" rows="5" placeholder="">
+        </textarea>
+        </c-col>
+      </c-row>
+
+      <c-row class="mt-5" style="border-top: 1px solid rgba(0, 0, 0, 0.1)">
+        <c-col class="d-flex gap-5 flex-shrink-0 justify-content-end py-3">
+
+            <div class="d-flex gap-2">
+            <button type="button" class="btn btn-primary">
+              <img src="../../../../../../assets/images/icons8-save-30.png" alt="register" style="margin-right: 5px;margin-bottom: 2px;">
+              Simpan
+            </button>
+            <button type="button" class="custom-button">
+              <img src="../../../../../../assets/images/check-circle-black.svg" alt="register" class='tick-icon' style="margin-right: 5px;margin-bottom: 2px;">
+              Hantar
+            </button>
+            <button
+              type="button"
+              class="btn-custom-normalWhite fw-semibold btn btn-light"
+            >
+              &lt;
+            </button>
+            <button
+              type="button"
+              class="btn-custom-normalWhite fw-semibold btn btn-light"
+            >
+              &gt;
+            </button>
+            </div>
+
+        </c-col>
+      </c-row>
+    </c-card-body>
+  </c-card>
+</div>

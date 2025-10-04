@@ -1,0 +1,179 @@
+/* Horizontal Tabs Container */
+.horizontal-tabs {
+  padding-right: 0px;
+  margin-bottom: 30px;
+}
+
+/* Tabs Title (if needed) */
+.tabs-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #343a40;
+  margin: 0;
+}
+
+/* Tabs Scroll Container */
+.tabs-container {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px;
+  scroll-behavior: smooth;
+  background-color: #F8FAFC;
+  border-radius: 8px;
+}
+
+/* Custom Scrollbar for WebKit Browsers */
+.tabs-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.tabs-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 0px;
+}
+
+.tabs-container::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+}
+
+/* Individual Tab Item */
+.tab-item {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 16px;
+  min-width: 200px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.tab-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Completed Tab */
+.tab-item.completed {
+  background-color: white;
+  color: #1D293D;
+}
+
+.tab-item.completed .tab-number {
+  background: var(--brand-gradient-primary,
+      linear-gradient(259deg,
+        var(--_root-color-niise-teal-500, #00bba7) 0%,
+        var(--_root-color-niise-blue-900, #122640) 98.29%))
+  }
+
+  /* Active Tab */
+  .tab-item.active {
+    background-color: white;
+    border-color: #dee2e6;
+    border: 2px solid #dee2e6;
+    color: #1D293D;
+    transform: scale(1.05);
+    animation: tabActivate 0.3s ease;
+  }
+
+  .tab-item.active .tab-number {
+    background: var(--brand-gradient-primary,
+      linear-gradient(259deg,
+        var(--_root-color-niise-teal-500, #00bba7) 0%,
+        var(--_root-color-niise-blue-900, #122640) 98.29%))
+  }
+
+  /* Tab Step Number */
+  .tab-number {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    margin-right: 12px;
+    background-color: #62748E;
+    color: white;
+    transition: all 0.3s ease;
+  }
+
+  /* Tab Content (Title & Description) */
+  .tab-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .tab-title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .tab-description {
+    font-size: 12px;
+    opacity: 0.8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Responsive Styling */
+  @media (max-width: 768px) {
+    .horizontal-tabs {
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .tabs-container {
+      gap: 8px;
+    }
+
+    .tab-item {
+      flex-shrink: 1;
+    }
+
+    .tab-item.active {
+      transform: scale(1.02);
+    }
+
+    .tab-title,
+    .tab-description {
+      white-space: normal;
+      overflow: visible;
+      text-overflow: unset;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .horizontal-tabs {
+      padding: 10px;
+    }
+
+    .tab-item {
+      padding: 6px 12px;
+    }
+
+    .tab-number {
+      width: 25px;
+      height: 25px;
+      font-size: 12px;
+      margin-right: 8px;
+    }
+
+    .tab-title {
+      font-size: 13px;
+    }
+
+    .tab-description {
+      font-size: 11px;
+    }
+  }

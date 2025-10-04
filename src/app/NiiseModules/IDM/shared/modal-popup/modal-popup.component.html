@@ -1,0 +1,37 @@
+<div class="modal-backdrop" *ngIf="show"></div>
+
+<div class="modal" tabindex="-1" *ngIf="show">
+  <div class="modal-dialog modal-centered">
+    <div class="modal-content">
+
+      <!-- Header with CoreUI icon -->
+      <div class="modal-header flex-column align-items-center border-0">
+            <img *ngIf="iconPath" [src]="iconPath" alt="icon" class="icon-img">
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body text-center">
+        <h6 *ngIf="title" ><b>{{ title }}</b></h6>
+        <p *ngIf="message" >{{ message }}</p>
+      </div>
+
+      <!-- Conditional Comment Section -->
+      <div *ngIf="showComment" class="mx-4">
+        <!-- <label for="comment" class="form-label">Comment</label> -->
+        <textarea id="comment" [(ngModel)]="commentText" class="form-control" rows="3" [placeholder]="commentPlaceholder"></textarea>
+      </div>
+
+      <!-- Footer -->
+      <div class="modal-footer justify-content-center">
+        <button *ngFor="let btn of buttons"
+                type="button"
+                class="btn"
+                [ngClass]="btn.class || 'btn-secondary'"
+                (click)="onButtonClick(btn.action)">
+          {{ btn.label }}
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

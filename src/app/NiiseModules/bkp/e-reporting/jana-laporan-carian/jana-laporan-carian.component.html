@@ -1,0 +1,151 @@
+<div class="container p-3">
+
+  <!-- Search form -->
+  <div class="section-title">
+      <h2 class="section-title2">Maklumat Carian</h2>
+  </div>
+  <form #reportForm="ngForm" (ngSubmit)="cariLaporan()">
+
+    <!-- Modul -->
+    <div class="form-group5 d-flex align-items-center2">
+      <label>Modul</label>
+      <select class="form-control" [(ngModel)]="modul" name="modul" required>
+        <option value="">-- Semua --</option>
+        <option>Bahagian Perkhidmatan</option>
+      </select>
+    </div>
+
+    <!-- Transaksi -->
+    <div class="form-group5 d-flex align-items-center2">
+      <label>Transaksi</label>
+      <select class="form-control" [(ngModel)]="transaksi" name="transaksi" required>
+        <option value="">-- Semua --</option>
+        <option value="pekeliling">Penyediaan Dokumen Pekeliling</option>
+        <option value="dokumen">Pendaftaran Masuk Dokumen</option>
+        <option value="capaian">Capaian Maklumat</option>
+        <option value="vaksin">Pengurusan Vaksin</option>
+        <option value="kehadiran">Kehadiran Pegawai</option>
+      </select>
+    </div>
+
+    <!-- Jenis Laporan -->
+    <div class="form-group5 d-flex align-items-center2">
+      <label>Jenis Laporan</label>
+      <select class="form-control" [(ngModel)]="jenisLaporan" name="jenisLaporan" [disabled]="!transaksi" required>
+        <option value="">-- Pilih Jenis Laporan --</option>
+        <ng-container *ngFor="let option of currentJenisLaporan">
+          <option [value]="option.value">{{ option.label }}</option>
+        </ng-container>
+      </select>
+    </div>
+
+    <!-- Tarikh Mula -->
+    <div class="form-group5 d-flex align-items-center2">
+      <label for="tarikhMula" class="form-label">Tarikh Mula</label>
+      <input 
+        type="date" 
+        id="tarikhMula" 
+        class="form-control" 
+        [(ngModel)]="tarikhMula" 
+        name="tarikhMula" 
+        required>
+    </div>
+
+    <!-- Tarikh Akhir -->
+    <div class="form-group5 d-flex align-items-center2">
+      <label for="tarikhAkhir" class="form-label">Tarikh Akhir</label>
+      <input 
+        type="date" 
+        id="tarikhAkhir" 
+        class="form-control" 
+        [(ngModel)]="tarikhAkhir" 
+        name="tarikhAkhir" 
+        required>
+    </div>
+
+    <!-- Buttons -->
+    <div class="d-grid gap-2 d-md-flex justify-content-center mb-3">
+      <button type="button" class="set-semula-button" (click)="resetForm(reportForm)">
+        Set Semula
+      </button>
+      <button type="submit" class="blue-btn">
+        Cari
+      </button>
+    </div>
+
+    <!-- Alert for no results -->
+    <div *ngIf="showNoResults" class="alert alert-warning text-center">
+      <i class="icon-warning me-2"></i>
+      Maklumat carian tidak wujud
+    </div>
+  </form>
+
+  <!-- Report 2.5.1: Accept/Reject Summary -->
+  <div *ngIf="resultData && resultData.length > 0 && isAcceptRejectReport()" class="mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3>Laporan Setuju/Tolak Vaksin</h3>
+      <div>
+        <!-- <button class="btn btn-danger me-2" (click)="downloadPdf()">
+          <i class="icon-download"></i> Muat Turun PDF
+        </button>
+        <button class="btn btn-success" (click)="downloadExcel()">
+          <i class="icon-download"></i> Muat Turun Excel
+        </button> -->
+      </div>
+    </div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Bil</th>
+          <th>Nama Vaksin</th>
+          <th>Jumlah Pegawai Terima</th>
+          <th>Jumlah Pegawai Tolak</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of resultData; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ row.vaccName }}</td>
+          <td>{{ row.acceptCount || 0 }}</td>
+          <td>{{ row.rejectCount || 0 }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Report 2.5.2: Accepted Vaccine Details -->
+  <div *ngIf="resultData && resultData.length > 0 && isAcceptedVaccineReport()" class="mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3>Laporan Penerimaan Vaksin</h3>
+      <div>
+        <!-- <button class="btn btn-danger me-2" (click)="downloadPdf()">
+          <i class="icon-download"></i> Muat Turun PDF
+        </button>
+        <button class="btn btn-success" (click)="downloadExcel()">
+          <i class="icon-download"></i> Muat Turun Excel
+        </button> -->
+      </div>
+    </div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Bil</th>
+          <th>UID</th>
+          <th>Nama Vaksin</th>
+          <th>Tarikh Vaksin</th>
+          <th>Status Terima</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of resultData; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ row.uid }}</td>
+          <td>{{ row.vaccName }}</td>
+          <td>{{ row.dateVacc | date:'dd/MM/yyyy' }}</td>
+          <td>{{ row.vaccTaken === 'Y' ? 'Ya' : 'Tidak' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

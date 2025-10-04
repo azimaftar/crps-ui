@@ -1,0 +1,143 @@
+<!-- Replace your entire form content with this: -->
+<c-card class="mb-3">  
+    <!-- HEADER PROFIL -->
+    <c-card-header class="card-header">
+      <h4 class="card-header-title">Daftar Jangka Tiba Kapal</h4>
+    </c-card-header>
+
+    <!-- CONTENT CARD BODY -->
+    <c-card-body>
+        <!-- MAIN CONTENT SECTION -->
+        <div class="main-section mb-4">
+            <h6 class="section-title mb-3">Maklumat Kapal</h6>
+            
+            <c-row class="g-4 align-items-start">
+                <!-- LEFT SIDE - IMAGE PLACEHOLDER -->
+                <c-col md="2">
+                    <div class="ship-image-placeholder">
+                        <div class="placeholder-content">
+                            <!-- X mark in corners -->
+                            <div class="corner-mark top-left"></div>
+                            <div class="corner-mark top-right"></div>
+                            <div class="corner-mark bottom-left"></div>
+                            <div class="corner-mark bottom-right"></div>
+                        </div>
+                    </div>
+                </c-col>
+<c-row>
+                <!-- RIGHT SIDE - FORM INPUTS -->
+                <c-col md="10">
+                    <form [formGroup]="profilForm" class="ship-form">
+                        <c-row class="g-3">
+                            <!-- Nama Kapal -->
+                            <c-col md="4">
+                                <div class="form-group">
+                                    <label cLabel for="namaKapal" class="form-label">Nama Kapal</label>
+                                    <input
+                                        cFormControl
+                                        id="namaKapal"
+                                        type="text"
+                                        formControlName="jenisPemeriksaan"
+                                        class="form-control"
+                                        placeholder="BAHAGIA RAYA"
+                                    />
+                                </div>
+                            </c-col>
+                            </c-row>
+                            <c-row class="g-3">
+                            <!-- No. IMO -->
+                            <c-col md="3">
+                                <div class="form-group">
+                                    <label cLabel for="noImo" class="form-label">No. IMO</label>
+                                    <input
+                                        cFormControl
+                                        id="noImo"
+                                        type="text"
+                                        formControlName="docType"
+                                        class="form-control"
+                                        placeholder="9814275"
+                                    />
+                                </div>
+                            </c-col>
+                            </c-row>
+                            <!-- No. Rasmi -->
+                            <c-col md="3">
+                                <div class="form-group">
+                                    <label cLabel for="noRasmi" class="form-label">No. Rasmi</label>
+                                    <input
+                                        cFormControl
+                                        id="noRasmi"
+                                        type="text"
+                                        formControlName="docNo"
+                                        class="form-control"
+                                        placeholder="326737"
+                                    />
+                                </div>
+                            </c-col>
+
+                            <c-row>
+
+                            <!-- Hantar Button -->
+                            <c-col md="2" class="d-flex align-items-end">
+                                <button 
+                                    cButton 
+                                    type="button" 
+                                    color="dark"
+                                    class="hantar-btn w-100"
+                                    (click)="addShipToTable()">
+                                    Hantar
+                                </button>
+                            </c-col>
+                            </c-row>                      
+                    </form>
+                </c-col>
+                </c-row>
+            </c-row>
+        </div>
+
+        <!-- SHIP INFORMATION TABLE -->
+        <div class="table-section">
+            <h6 class="section-title mb-3 text-center">Maklumat Kapal</h6>
+            
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width: 60px;">Bil.</th>
+                            <th>Nama Kapal</th>
+                            <th style="width: 150px;">No. IMO</th>
+                            <th style="width: 150px;">No. Rasmi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ship of shipList; let i = index">
+                            <td class="text-center">{{ i + 1 }}.</td>
+                            <td>{{ ship.namaKapal }}</td>
+                            <td>{{ ship.noImo }}</td>
+                            <td>{{ ship.noRasmi }}</td>
+                        </tr>
+                        <!-- Default rows if no data -->
+                        <tr *ngIf="shipList.length === 0">
+                            <td class="text-center">1.</td>
+                            <td>BAHAGIA RAYA</td>
+                            <td>9814275</td>
+                            <td>326737</td>
+                        </tr>
+                        <tr *ngIf="shipList.length <= 1">
+                            <td class="text-center">2.</td>
+                            <td>Tun Walju</td>
+                            <td>7625911</td>
+                            <td>645231</td>
+                        </tr>
+                        <tr *ngIf="shipList.length <= 2">
+                            <td class="text-center">3.</td>
+                            <td>S.Oliver</td>
+                            <td>9310465</td>
+                            <td>756324</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </c-card-body>
+</c-card>

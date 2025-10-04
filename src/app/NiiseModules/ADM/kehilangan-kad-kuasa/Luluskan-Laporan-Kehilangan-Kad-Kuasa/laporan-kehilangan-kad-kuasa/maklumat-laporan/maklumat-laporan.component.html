@@ -1,0 +1,70 @@
+<c-card>
+    <h4 class="fw-bold m-3 mt-5">
+        LAPORAN KEHILANGAN KAD KUASA
+    </h4>
+    <div class="m-3">
+        <app-stepper
+        [currentMainStep]="currentMainStep"
+        ></app-stepper>
+    </div>
+
+    <c-card-body>
+        <form cForm>
+            <h6 class="mb-3 fw-bold mt-3">Maklumat Laporan Kehilangan Kad Kuasa</h6>
+        
+            <c-row [xs]="2">
+                 <c-col class="mb-3">
+                    <label for="BilanganKehilangan" cLabel>Bilangan Kehilangan</label>
+                    <input type="text" class="form-control" id="BilanganKehilangan" placeholder="Bilangan Kehilangan" disabled value="{{maklumatLaporan.bilanganKehilangan}}">
+                </c-col>
+            </c-row>
+            <c-row [xs]="1">
+                <c-col class="mb-3">
+                    <label for="SebabKehilangan" cLabel>Sebab Kehilangan</label>
+                    <textarea class="form-control" id="SebabKehilangan" placeholder="Sebab Kehilangan" disabled value="{{maklumatLaporan.sebabKehilangan}}"> </textarea>
+                </c-col>
+                <c-row [xs]="2">
+                <c-col class="mb-3">
+                    <label for="IbuPejabatKontinjen" cLabel>Nama Ibu Pejabat Kontinjen Polis</label>
+                    <input type="text" class="form-control" id="IbuPejabatKontinjen" placeholder="Ibu Pejabat Kontinjen Polis" disabled value="{{maklumatLaporan.ibuPejabatKontinjen}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="IbuPejabatDaerah" cLabel>Nama Ibu Pejabat Daerah Polis</label>
+                    <input type="text" class="form-control" id="IbuPejabatDaerah" placeholder="Ibu Pejabat Daerah Polis" disabled value="{{maklumatLaporan.ibuPejabatDaerah}}">
+                </c-col>
+                <c-col class="mb-3">
+                    <label for="NomborLaporan" cLabel>Nombor Laporan Polis</label>
+                    <input type="text" class="form-control" id="NomborLaporan" placeholder="Nombor Laporan Polis" disabled value="{{maklumatLaporan.nomborLaporan}}">
+                </c-col>
+                 <c-col class="mb-3">
+                    <label for="TarikhLaporan" cLabel>Tarikh Laporan Polis</label>
+                    <input type="text" class="form-control" id="TarikhLaporan" placeholder="Tarikh Laporan Polis" disabled value="{{maklumatLaporan.tarikhLaporan}}">
+                </c-col>
+                </c-row>
+            </c-row>
+            <c-row [xs]="1">
+
+            </c-row>
+            <c-row [xs]="2">
+                <c-col class="mb-3">
+                    <label for="NomborRujukan" cLabel>Nombor Rujukan Fail Surat</label>
+                    <input type="text" class="form-control" id="NomborRujukan" placeholder="Nombor Rujukan Fail Surat" disabled value="{{maklumatLaporan.nomborRujukanFail}}">
+                </c-col>
+                </c-row>
+               <c-row [xs]="1">
+                <c-col class="mb-3">
+                    <label for="TindakanKehilangan" cLabel>Tindakan Bagi Kehilangan Sebelum</label>
+                    <textarea class="form-control" id="TindakanKehilangan" placeholder="Tindakan Bagi Kehilangan Sebelum" disabled value="{{maklumatLaporan.tindakanKehilangan}}"> </textarea>
+                </c-col>
+            </c-row>
+        </form>
+    </c-card-body>
+    <c-card-footer>
+        <c-row>
+            <div class="d-flex justify-content-end">
+              <button class="l-custom-btn" color="secondary" (click)="navigatePreviousPage()">&lsaquo;</button>
+              <button class="r-custom-btn" color="primary" (click)="navigateNextPage()">&rsaquo;</button>
+            </div>
+        </c-row>          
+    </c-card-footer>
+</c-card>

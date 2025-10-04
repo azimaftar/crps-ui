@@ -1,0 +1,11 @@
+<c-card class="item-card" title="{{title}}" [ngStyle]="{'background-color': bgColor, 'color': ftColor}">
+  <c-card-body>
+    <h3>{{title}}</h3>
+    <div style="height: 150px; overflow: hidden;">
+      <div *ngFor="let item of menuData">
+        <p (click)="handleClick(item.url)" class="clickable">- {{ item.name }}</p>
+      </div>
+    </div>
+    <p (click)="handleClick(url)" class="clickable">more...</p>
+  </c-card-body>
+</c-card>

@@ -1,0 +1,117 @@
+<div class="container-fluid">
+
+  <!-- STEPPER -->
+  <!-- <reusable-tab [currentStep]="currentStep" [steps]="steps"></reusable-tab> -->
+
+  <div class="horizontal-stepper">
+                        <ul class="stepper-list d-flex align-items-center justify-content-start flex-wrap">
+                        <li
+                            class="stepper-item"
+                            *ngFor="let step of steps"
+                            [class.active]="isStepActive(step.number)">
+                            <button 
+                                type="button" 
+                                class="step-btn">
+                                <span class="step-number">{{ step.number }}</span>
+                                <span class="step-title">{{ step.title }}</span>
+                            </button>
+                        </li>
+                        </ul>
+                    </div>
+  
+
+
+  <div class="form-section">
+    <div class="row">
+      <!-- Full Width: Officer Info -->
+      <div class="col-12 pe-4">
+        <h5>Maklumat Pegawai Pengganti</h5>
+
+        <!-- Image Placeholder -->
+        <div class="mb-3 photo-class text-center">
+          <img src="assets/images/passport-photo.jpg" class="passport-photo" alt="Passport Photo">
+        </div>
+
+        <form class="mt-3">
+          <!-- row 1 -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label required">Nama Pegawai</label>
+              <input type="text" class="form-control" [(ngModel)]="pegawai.namapegawai" name="nama" readonly />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label required">Bahagian</label>
+              <select class="form-select" [(ngModel)]="pegawai.bahagian" name="bahagian">
+                <option *ngFor="let item of bahagianList" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <!-- row 2 -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label required">Nombor Kad Pengenalan</label>
+              <input type="text" class="form-control" [(ngModel)]="pegawai.nokp" name="ic" readonly />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label required">Unit</label>
+              <select class="form-select" [(ngModel)]="pegawai.unit" name="unit">
+                <option *ngFor="let item of unitList" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <!-- row 3 -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label required">Gred Jawatan</label>
+              <input type="text" class="form-control" [(ngModel)]="pegawai.gred" name="gred" readonly />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label required">Kumpulan</label>
+              <select class="form-select" [(ngModel)]="pegawai.kumpulan" name="kumpulan">
+                <option *ngFor="let item of kumpulanList" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="d-flex justify-content-end mt-4 gap-2">
+      <button cButton type="button" class="btn btn-dark" (click)="showHantarSubmit()">
+        Hantar
+      </button>
+
+      <button cButton type="button" class="btn btn-dark" (click)="showHantarSimpan()">
+        Simpan
+      </button>
+    </div>
+
+    <div class="d-flex justify-content-end mt-4">
+      <button class="btn btn-secondary me-2"
+              (click)="goToPreviousStep()"
+              [disabled]="currentStep === minStep">
+        &lt;
+      </button>
+      <button class="btn btn-secondary me-2"
+              [disabled]="currentStep === maxStep">
+        &gt;
+      </button>
+    </div>
+  </div>
+
+
+<!-- Popup -->
+<app-on-submit-popup
+  [Hantarsubmit]="HantarSubmitPopup"
+  [Hantarsimpan]="HantarSimpanPopup"
+  (close)="closeModal()">
+</app-on-submit-popup>

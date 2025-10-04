@@ -1,0 +1,72 @@
+{
+  "/CMN": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+    "/api/v1/ADM": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+    "/idm": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+    "/api": {
+    "target": "http://localhost:2000",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/api/v1/bkp": {
+    "target": "http://localhost:8080",
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/realms/niise/protocol/openid-connect/token": {
+    "target": "https://niisemobile-auth-dev.awanheitech.com",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/ibc-services/v1/api/v1/ibc": {
+    "target": "https://niiseapis-dev.awanheitech.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/idm-services/v1/IDM": {
+    "target": "https://niiseapis-dev.awanheitech.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+    "/adm-services/v1/ADM": {
+    "target": "https://niiseapis-dev.awanheitech.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/cmn-services/v1/CMN": {
+    "target": "https://niiseapis-dev.awanheitech.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/bkp-services/v1/BKP": {
+    "target": "https://niiseapis-dev.awanheitech.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/sec-services/v1/SEC": {
+    "target": "https://niiseapis-dev.awanheitech.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

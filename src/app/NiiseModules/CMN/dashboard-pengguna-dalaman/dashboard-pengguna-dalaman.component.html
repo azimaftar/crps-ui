@@ -1,0 +1,119 @@
+<!-- User Welcome Section -->
+<section class="user-info">
+  <h2>Welcome, Muhamad Haris</h2>
+  <p>Jabatan: Jabatan Imigresen Malaysia</p>
+  <p>Peranan: Pegawai Jim</p>
+  <p>E-mel: haris&#64;jimi.gov.my</p>
+  <p>Log Masuk Terakhir: 9 Julai 2025, 10.30 Pagi</p>
+</section>
+
+<section class="main-dashboard">
+  <!-- Left: Form -->
+  <div class="left-pane">
+    <h3>Carian Permohonan</h3>
+    <form (submit)="onSearch()">
+
+      <div class="form-row">
+        <label>Tarikh Permohonan</label>
+        <input type="date" [(ngModel)]="search.tarikhPermohonan" name="tarikhPermohonan" />
+      </div>
+
+      <div class="form-row">
+        <label>Jenis Permohonan</label>
+        <select [(ngModel)]="search.jenisPermohonan" name="jenisPermohonan">
+          <option value="">Pilih Jenis</option>
+          <option value="visa">Visa</option>
+          <option value="permit">Permit</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label>Keutamaan</label>
+        <select [(ngModel)]="search.keutamaan" name="keutamaan">
+          <option value="">Pilih Keutamaan</option>
+          <option>Tinggi</option>
+          <option>Sederhana</option>
+          <option>Rendah</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label>Status</label>
+        <select [(ngModel)]="search.status" name="status">
+          <option value="">Pilih Status</option>
+          <option>Semakan</option>
+          <option>Selesai</option>
+          <option>Tolak</option>
+          <option>Dalam Proses</option>
+          <option>Lulus</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <button type="submit">CARI</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Right: Summary + Table -->
+  <div class="right-pane">
+    <div class="status-summary">
+      <div class="card">12<br>Semakan</div>
+      <div class="card">7<br>Selesai</div>
+      <div class="card">2<br>Tolak</div>
+    </div>
+
+    <div class="inbox-table">
+      <h3>My Inbox</h3>
+      <table>
+        <thead>
+          <tr>
+            <th class="col-no">No</th>
+            <th class="col-tarikh">Tarikh Permohonan</th>
+            <th class="col-jenis">Jenis Permohonan</th>
+            <th class="col-keutamaan">Keutamaan</th>
+            <th class="col-status">Status</th>
+            <th class="col-tindakan">Tindakan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of permohonanList; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ item.tarikh }}</td>
+            <td>{{ item.jenis }}</td>
+            <td>{{ item.keutamaan }}</td>
+            <td>{{ item.status }}</td>
+            <td><button>{{ item.status === 'Semakan' ? 'SEMAK' : 'LIHAT' }}</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="pagination-container">
+        <div class="pagination-controls">
+          <button class="page-nav">&lt;&lt;</button>
+          <button class="page-nav">&lt;</button>
+          <button class="page-number active">1</button>
+          <button class="page-number">2</button>
+          <button class="page-nav">&gt;</button>
+          <button class="page-nav">&gt;&gt;</button>
+        </div>
+        <div class="page-info">
+          <span>Pergi ke</span>
+          <input type="text" value="1" size="2">
+          <span> </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <c-modal class="modal-notification3" [(visible)]="visible" [backdrop]="true" size="sm">
+  <c-modal-body>
+    <c-row class="modal-message-container">
+      <span class="icon-noti" [ngClass]="iconClass"></span>
+      <label class="modal-message">{{ message }}</label>
+    </c-row>
+    <div class="text-center mt-3">
+      <button class="btn btn-primary fixed-size-btn" (click)="close()">OK</button>
+    </div>
+  </c-modal-body>
+</c-modal> -->

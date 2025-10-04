@@ -1,0 +1,27 @@
+<div class="dashboard-wrapper">
+  <div class="dashboard-columns">
+    <div class="frame-column" *ngFor="let pair of pairedFrames">
+      
+      <!-- First row -->
+      <mat-card class="frame-card" *ngIf="pair.row1">
+        <mat-card-header>
+          <mat-card-title>{{ pair.row1.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <iframe [src]="pair.row1.url | safeUrl" frameborder="0"></iframe>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Second row -->
+      <mat-card class="frame-card" *ngIf="pair.row2">
+        <mat-card-header>
+          <mat-card-title>{{ pair.row2.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <iframe [src]="pair.row2.url | safeUrl" frameborder="0"></iframe>
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+  </div>
+</div>

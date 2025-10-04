@@ -1,0 +1,26 @@
+<c-row class="my-2">
+  <c-col>
+    <ng-container *ngFor="let section of mainSteps">
+      <button
+        type="button"
+        class="btn-custom-breadcrumbADM btn btn-light d-inline-flex gap-2 fw-semibold"
+        [ngClass]="{
+          'btn-custom-breadcrumbADM-active':
+            section.mainStep === currentMainStep
+        }"
+      >
+        <span
+          class="btn-custom-breadcrumbNoADM"
+          [ngClass]="{
+            'btn-custom-breadcrumbNoADM-active':
+              section.mainStep === currentMainStep
+          }"
+          >{{ section.mainStep }}</span
+        >
+        <span class="btn-custom-breadcrumbLabelADM">{{
+          section.mainLabel
+        }}</span>
+      </button>
+    </ng-container>
+  </c-col>
+</c-row>

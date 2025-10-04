@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="search-section">
+      <h5 class="section-title">Maklumat Kekunci Carian</h5>
+      <form>
+        <div class="mb-3">
+          <label for="docName" class="form-label required">Nama Dokumen</label>
+          <input type="text" id="docName" class="form-control" [(ngModel)]="searchDocumentName" name="docName" required />
+        </div>
+  
+        <div class="mb-3">
+          <label for="date" class="form-label required">Tarikh</label>
+          <input type="date" id="date" class="form-control" [(ngModel)]="searchDate" name="date" required />
+        </div>
+  
+        <button type="submit" class="btn btn-dark" (click)="search()">Carian</button>
+      </form>
+    </div>
+  
+    <div class="reference-section mt-4">
+      <h5 class="section-title">Nombor Rujukan</h5>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Bil</th>
+            <th scope="col">Nombor Rujukan</th>
+            <th scope="col">Nama Dokumen</th>
+            <th scope="col">Tarikh</th>
+            <th scope="col">Tindakan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>BIL 01 2025</td>
+            <td>Pelaksanaan Sistem E-Visa Tenaga Kerja Asing</td>
+            <td>01 Ogos 2025</td>
+            <td>
+              <button class="btn btn-primary btn-sm" (click)="update()">Kemaskini</button>
+              <button class="btn btn-secondary btn-sm" (click)="download()">Muat Turun</button>
+              <button class="btn btn-info btn-sm" (click)="view()">View</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

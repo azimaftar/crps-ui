@@ -1,0 +1,148 @@
+<div class="container-fluid">
+    <c-row>
+        <c-col>
+            <c-card class="mb-3 mt-3 ms-1">
+                <c-card-body>
+                    <form>
+                        <h3 class="mb-4">{{ pageTitle }}</h3>
+
+                        <!-- Horizontal Stepper -->
+                        <div class="horizontal-stepper">
+                            <ul class="stepper-list d-flex align-items-center justify-content-start flex-wrap">
+                            <li
+                                class="stepper-item"
+                                *ngFor="let step of steps"
+                                [class.active]="isStepActive(step.number)">
+                                <button 
+                                    type="button" 
+                                    class="step-btn"
+                                    (click)="navigateTo(step)">
+                                    <span class="step-number">{{ step.number }}</span>
+                                    <span class="step-title">{{ step.title }}</span>
+                                </button>
+                            </li>
+                            </ul>
+                        </div>
+                        
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                                <label class="form-label required">Kod NAP/NAS</label>
+                                <input type="text" class="form-control" disabled readonly [value]="napNasKod"/>
+                            </c-col>
+                            <c-col class="col-md-6">
+                                <label class="form-label">Nombor NAP/NAS</label>
+                                <input type="text" class="form-control" disabled readonly [value]="napNasNo"/>
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                            <label class="form-label required">Kod Tindakan</label>
+                            <input type="text" class="form-control" disabled readonly [value]="tindakanKod"/>
+                            </c-col>
+                            <c-col class="col-md-6">
+                            <label class="form-label">Tarikh NAP/NAS</label>
+                            <input type="text" class="form-control" disabled readonly [value]="tarikhNapNas | date:'dd/MM/yyyy'"/>
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                            <label class="form-label required">Tarikh Kuatkuasa</label>
+                            <input type="text" class="form-control" disabled readonly [value]="tarikhKuatKuasa | date:'dd/MM/yyyy'"/>
+                            </c-col>
+                            <c-col class="col-md-6">
+                            <label class="form-label">Tempat Kesalahan</label>
+                            <input type="text" class="form-control" disabled readonly [value]="tempatKesalahan"/>
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                            <label class="form-label required">Tempoh Permohonan</label>
+                            <input type="text" class="form-control" disabled readonly [value]="tempohPermohonan"/>
+                            </c-col>
+                            <c-col class="col-md-6">
+                            <label class="form-label">Tarikh Tamat Kes</label>
+                            <input type="text" class="form-control" disabled readonly [value]="tarikhTamatKes | date:'dd/MM/yyyy'"/>
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                            <label class="form-label">No Fail Imigresen</label>
+                            <input type="text" class="form-control" disabled readonly [value]="failImigresenNo"/>
+                            </c-col>
+                            <c-col class="col-md-6">
+                            <label class="form-label">No Fail Agensi</label>
+                            <input type="text" class="form-control" disabled readonly [value]="failAgensiNo"/>
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                            <label class="form-label">No Rujukan Agensi</label>
+                            <input type="text" class="form-control" disabled readonly [value]="rujukanAgensiNo"/>
+                            </c-col>
+                            <c-col class="col-md-6">
+                            <label class="form-label">Agensi Pelapor</label>
+                            <input type="text" class="form-control" disabled readonly [value]="agensiKod"/>
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-12">
+                            <label class="form-label">Arahan Khusus (jika ada)</label>
+                            <textarea class="form-control" rows="3" disabled readonly [value]="arahanKhusus"></textarea>
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                            <label class="form-label">Nama Pegawai Untuk Dihubungi</label>
+                            <input type="text" class="form-control" disabled readonly [value]="namaPegawai"/>
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                            <label class="form-label">No Telefon Pegawai Untuk Dihubungi</label>
+                            <input type="text" class="form-control" disabled readonly [value]="phoneNoPegawai"/>
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-12">
+                            <label class="form-label">Maklumat Agensi</label>
+                            <textarea class="form-control" rows="3" disabled readonly [value]="maklumatAgensi"></textarea>
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                            <label class="form-label">Emel Agensi</label>
+                            <input type="text" class="form-control" disabled readonly [value]="emailAgensi"/>
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-12">
+                            <label class="form-label">Keterangan Kes</label>
+                            <textarea class="form-control" rows="3" disabled readonly [value]="keteranganKes"></textarea>
+                            </c-col>
+                        </c-row>
+                    </form>
+
+                    <div class="border-top p-3 d-flex justify-content-end gap-2">
+                        <button type="button" cButton color="primary" (click)="prevPage()">
+                            <svg cIcon name="cilCaretLeft" size="sm"></svg>
+                        </button>
+                        <button type="button" cButton color="primary" (click)="nextPage()">
+                            <svg cIcon name="cilCaretRight" size="sm"></svg>
+                        </button>
+                    </div>
+                </c-card-body>
+            </c-card>
+        </c-col>
+    </c-row>
+</div>

@@ -1,0 +1,217 @@
+<!-- imbasan-dokumen-perjalanan.component.html - CoreUI Dark Mode Compatible -->
+<div class="container-fluid p-3">
+  <div class="card shadow-sm">
+    <!-- Header -->
+    <div class="card-header text-center">
+      <h6 class="mb-0 fw-bold text-uppercase">
+        SEMAKAN & TINDAKAN PENYELIA - IMBASAN DOKUMEN PERJALANAN [PASPORT]
+      </h6>
+    </div>
+    
+    <div class="card-body p-0">
+      <div class="row g-0">
+        <!-- Left Panel - Widget Thumbnails -->
+        <div class="col border-end" style="max-width: 120px;">
+          <div class="p-3" style="min-height: 600px;">
+            <div class="widget-thumbnails">
+              <div class="card mb-3 widget-thumb" 
+                   *ngFor="let widget of widgets; let i = index" 
+                   [class.border-primary]="selectedWidget === i"
+                   (click)="selectWidget(i)"
+                   style="width: 90px; height: 70px; cursor: pointer;">
+                <div class="card-body p-2 d-flex align-items-center justify-content-center">
+                  <span class="small text-body-secondary fw-bold">WIDGET</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Center Panel - Main Capture Areas -->
+        <div class="col p-4">
+          <!-- Document Capture Sections -->
+          <div class="capture-section mb-4" *ngFor="let section of captureSections; let sectionIndex = index">
+            <!-- Capture Tabs -->
+            <div class="capture-tabs mb-3">
+              <div class="btn-group btn-group-sm">
+                <button class="btn" 
+                        *ngFor="let tab of section.tabs" 
+                        [class]="tab.active ? 'btn-secondary' : 'btn-outline-secondary'"
+                        (click)="selectTab(section, tab)">
+                  {{ tab.label }}
+                </button>
+              </div>
+            </div>
+            
+            <!-- Document Frame -->
+            <div class="card document-frame" style="height: 120px;">
+            <div class="card-body p-2 h-100">
+              <div class="document-placeholder h-100 border border-2 border-dashed rounded d-flex align-items-center justify-content-center">
+                <span class="text-body-secondary fw-semibold">IMG | PASSPORT</span>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+        
+        <!-- Right Panel - Document Details and Preview -->
+        <div class="col border-start" style="max-width: 400px;">
+          <div class="p-3" style="min-height: 600px;">
+            <!-- Top Preview Areas -->
+            <div class="preview-section mb-4">
+              <div class="row g-2">
+                <div class="col-6" *ngFor="let preview of previewItems">
+                  <div class="card preview-frame" style="height: 100px;">
+                    <div class="card-body p-2 h-100">
+                      <div class="preview-placeholder h-100 border border-dashed rounded d-flex align-items-center justify-content-center">
+                        <span class="small text-body-secondary fw-semibold">IMG | PASSPORT</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Document Information Form -->
+            <div class="document-info mb-4">
+              <h6 class="mb-3 fw-bold">Maklumat Dokumen Perjalanan</h6>
+              
+              <div class="form-grid">
+                <div class="row g-2 mb-2">
+                  <div class="col-4">
+                    <label cLabel class="small fw-semibold">Jenis Dokumen</label>
+                    <select cSelect disabled="true"
+                            size="sm"
+                            [(ngModel)]="documentForm.jenisDocument">
+                      <option value="P - Passport">P - Passport</option>
+                      <option value="ID - Identity Card">ID - Identity Card</option>
+                    </select>
+                  </div>
+                  
+                  <div class="col-4">
+                    <label cLabel class="small fw-semibold">Jantina</label>
+                    <select cSelect disabled="true"
+                            size="sm"
+                            [(ngModel)]="documentForm.jantina">
+                      <option value="M - Male">M - Male</option>
+                      <option value="F - Female">F - Female</option>
+                    </select>
+                  </div>
+                  
+                  <div class="col-4">
+                    <label cLabel class="small fw-semibold">Umur</label>
+                    <input cFormControl disabled="true"
+                           type="number" 
+                           size="sm"
+                           [(ngModel)]="documentForm.umur" 
+                           placeholder="30">
+                  </div>
+                </div>
+                
+                <div class="row g-2 mb-2">
+                  <div class="col-6">
+                    <label cLabel class="small fw-semibold">No Dokumen</label>
+                    <input cFormControl disabled="true"
+                           type="text" 
+                           size="sm"
+                           [(ngModel)]="documentForm.noDokumen" 
+                           placeholder="A0000002">
+                  </div>
+                  
+                  <div class="col-6">
+                    <label cLabel class="small fw-semibold">No Pengenalan</label>
+                    <input cFormControl disabled="true"
+                           type="text" 
+                           size="sm"
+                           [(ngModel)]="documentForm.noPengenalan" 
+                           placeholder="990330042499">
+                  </div>
+                </div>
+                
+                <div class="row g-2 mb-2">
+                  <div class="col-12">
+                    <label cLabel class="small fw-semibold">Nama</label>
+                    <input cFormControl disabled="true"
+                           type="text" 
+                           size="sm"
+                           [(ngModel)]="documentForm.nama" 
+                           placeholder="Mohd Russaini Bin Idrus">
+                  </div>
+                </div>
+                
+                <div class="row g-2 mb-2">
+                  <div class="col-6">
+                    <label cLabel class="small fw-semibold">Tarikh Lahir</label>
+                    <input cFormControl disabled="true"
+                           type="date" 
+                           size="sm"
+                           [(ngModel)]="documentForm.tarikhLahir" 
+                           value="2025-01-30">
+                  </div>
+                  
+                  <div class="col-6">
+                    <label cLabel class="small fw-semibold">Warganegara</label>
+                    <select cSelect disabled="true"
+                            size="sm"
+                            [(ngModel)]="documentForm.warganegara">
+                      <option value="MYS">MYS</option>
+                      <option value="SGP">SGP</option>
+                      <option value="IDN">IDN</option>
+                      <option value="JPN">JPN</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="row g-2 mb-2">
+                  <div class="col-6">
+                    <label cLabel class="small fw-semibold">Tarikh Dikeluarkan</label>
+                    <input cFormControl disabled="true"
+                           type="date" 
+                           size="sm"
+                           [(ngModel)]="documentForm.tarikhDikeluarkan" 
+                           value="1992-01-30">
+                  </div>
+                  
+                  <div class="col-6">
+                    <label cLabel class="small fw-semibold">Negara Pengeluar</label>
+                    <select cSelect disabled="true"
+                            size="sm"
+                            [(ngModel)]="documentForm.negaraPengeluar">
+                      <option value="MYS - Malaysia">MYS - Malaysia</option>
+                      <option value="SGP - Singapore">SGP - Singapore</option>
+                      <option value="IDN - Indonesia">IDN - Indonesia</option>
+                      <option value="JPN - Jepun">JPN - Jepun</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Large Preview Area -->
+            <div class="large-preview">
+              <div class="card large-preview-frame" style="height: 130px;">
+                <div class="card-body p-3 h-100">
+                  <div class="large-preview-placeholder h-100 border border-2 border-dashed rounded d-flex align-items-center justify-content-center">
+                    <span class="text-body-secondary fw-bold">WIDGET</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer Buttons -->
+    <div class="card-footer text-end">
+      <button class="btn btn-dark me-2" 
+              (click)="resetForm()">
+        Disyaki Palsu
+      </button>
+      <button class="btn btn-dark" 
+              (click)="TutupForm()">
+        Tutup
+      </button>
+    </div>
+  </div>
+</div>

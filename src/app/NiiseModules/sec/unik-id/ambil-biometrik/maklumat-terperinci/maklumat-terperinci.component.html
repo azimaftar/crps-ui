@@ -1,0 +1,149 @@
+<div class="container-fluid">
+  <div class="form-section">
+    <div class="row">
+      <!-- Left Side: Officer Info -->
+      <div class="col-md-9 border-end pe-4">
+        <h5>Maklumat Terperinci</h5>
+
+        <form class="mt-3">
+
+                  <!-- row 1 -->
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label required"> Jenis Pas </label>
+                      <input type="text"  class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label required"> No Pas </label>
+                      <input type="text"  class="form-control" />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label required">Tarikh Tamat Pas</label>
+                      <input type="date" class="form-control" name="tarikhtamatpas" />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label required"> Status SL </label>
+                      <input type="text"  class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label required"> Kod Tindakan </label>
+                      <input type="text"  class="form-control" />
+                    </div>
+                  </div>
+                  
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label required"> Kod NAP </label>
+                      <input type="text"  class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label required"> No NAP </label>
+                      <input type="text"  class="form-control" />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label required">Tarikh NAP/NAS</label>
+                      <input type="date" class="form-control" name="tarikhnap/nas" />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label required">Tarikh Kuatkuasa</label>
+                      <input type="date" class="form-control" name="tarikhkauasanapnas" />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label required">Tarikh Masuk</label>
+                      <input type="date" class="form-control" name="tarikhmasuk" />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label required"> Masa Masuk </label>
+                      <input type="text"  class="form-control" />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label required">Lokasi Masuk</label>
+                      <input type="text" class="form-control" />
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label required">Tarikh Kuatkuasa</label>
+                      <input type="date" class="form-control" name="tarikhkuasamasuk" />
+                      </div>
+                  </div>
+
+                <div class="row mb-3 justify-content-end">
+                  <div class="col-auto">
+                    <button type="submit" class="btn btn-primary" style="width: 100px;" (click)="showHantarSubmit()" >
+                      Hantar
+                    </button>
+                  </div>
+                </div>
+        </form>
+      </div>
+
+      <!-- Right Side: Steps with vertical line -->
+      <div class="col-md-3 ps-4 border-start">
+        <div
+          class="step"
+          [class.active]="isStepActive(1)"
+          [class.completed]="isStepCompleted(1)"
+        >
+          <div class="circle">1</div>
+          <div class="label">Carian Profil</div>
+        </div>
+        <div
+          class="step"
+          [class.active]="isStepActive(2)"
+          [class.completed]="isStepCompleted(2)"
+        >
+          <div class="circle">2</div>
+          <div class="label">Profil Individu</div>
+        </div>
+        <div
+          class="step"
+          [class.active]="isStepActive(3)"
+          [class.completed]="isStepCompleted(3)"
+        >
+          <div class="circle">3</div>
+          <div class="label">Maklumat Terperinci</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="d-flex justify-content-end mt-4">
+      <button
+        class="btn btn-secondary me-2"
+        (click)="goToPreviousStep()"
+        [disabled]="currentStep === 1"
+      >
+        &lt;
+      </button>
+      <button
+        class="btn btn-dark"
+        (click)="goToMaklumatPengganti()"
+        [disabled]="currentStep === maxStep"
+      >
+        &gt;
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-popup
+  [Hantarsubmit]="HantarSubmitPopup"
+  (close)="closeModal()">
+</app-popup>

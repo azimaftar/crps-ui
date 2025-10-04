@@ -1,0 +1,194 @@
+<!-- imbasan-dokumen-perjalanan.component.html - CoreUI Dark Mode Compatible -->
+<div class="container-fluid p-3">
+  <div class="card shadow-sm">
+    <!-- Header -->
+    <div class="card-header text-center">
+<h3 class="card-header-title" style="text-align: left;"><b>Imbas Passport</b></h3>
+    </div>
+
+    <div class="card-body p-0">
+      <div class="row">
+  <!-- LEFT: Image Previews -->
+  <div class="col-md-4">
+    <!-- WHITE -->
+    <div class="mb-3">
+      <label class="small fw-semibold mb-1 d-block">WHITE (CAHAYA NORMAL)</label>
+      <div class="card document-frame" style="height: 370px;">
+        <div class="card-body p-3 h-100">
+          <div class="h-100 border border-2 border-dashed rounded overflow-hidden d-flex align-items-center justify-content-center">
+            <img src="assets/figma/passport-white.png" alt="Passport White" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IR -->
+    <div class="mb-3">
+      <label class="small fw-semibold mb-1 d-block">IR (INFRA RED)</label>
+      <div class="card document-frame" style="height: 370px;">
+        <div class="card-body p-3 h-100">
+          <div class="h-100 border border-2 border-dashed rounded overflow-hidden d-flex align-items-center justify-content-center">
+            <img src="assets/figma/passport-ir.png" alt="Passport IR" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UV -->
+    <div>
+      <label class="small fw-semibold mb-1 d-block">UV (ULTRAVIOLET)</label>
+      <div class="card document-frame" style="height: 370px;">
+        <div class="card-body p-3 h-100">
+          <div class="h-100 border border-2 border-dashed rounded overflow-hidden d-flex align-items-center justify-content-center">
+            <img src="assets/figma/passport-uv.png" alt="Passport UV" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+        
+
+        <!-- Right Panel - Document Details & Preview -->
+        <div class="col-md-8 border-start p-4">
+              <!-- NEW Static IMG | PASSPORT (top right) -->
+               <div class="card document-frame" style="height: 370px;; width: 80%; margin-left: auto; margin-right: auto; transform: translateX(+0%);">
+              <div class="card-body p-3 h-100">
+                <div class="h-100 border border-2 border-dashed rounded overflow-hidden d-flex align-items-center justify-content-center">
+                  <img src="assets/figma/passport-white.png" alt="Passport White" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                </div>
+              </div>
+            </div>
+
+          <!-- Document Information Form -->
+          <div class="document-info mb-4">
+            <h6 class="mb-3 fw-bold">Maklumat Dokumen Perjalanan</h6>
+            
+
+            <div class="form-grid">
+              <div class="row g-2 mb-2">
+                <div class="col-4">
+                  <label cLabel class="small fw-semibold">Jenis Dokumen</label>
+                  <select cSelect disabled size="sm" [(ngModel)]="documentForm.jenisDocument">
+                    <option value="P - Passport">P - Passport</option>
+                    <option value="ID - Identity Card">ID - Identity Card</option>
+                  </select>
+                </div>
+
+                <div class="col-4">
+                  <label cLabel class="small fw-semibold">Jantina</label>
+                  <select cSelect disabled size="sm" [(ngModel)]="documentForm.jantina">
+                    <option value="M - Male">M - Male</option>
+                    <option value="F - Female">F - Female</option>
+                  </select>
+                </div>
+
+                <div class="col-4">
+                  <label cLabel class="small fw-semibold">Umur</label>
+                  <input cFormControl disabled type="number" size="sm" [(ngModel)]="documentForm.umur" placeholder="30">
+                </div>
+              </div>
+
+              <div class="row g-2 mb-2">
+                <div class="col-6">
+                  <label cLabel class="small fw-semibold">No Dokumen</label>
+                  <input cFormControl disabled type="text" size="sm" [(ngModel)]="documentForm.noDokumen" placeholder="A0000002">
+                </div>
+
+                <div class="col-6">
+                  <label cLabel class="small fw-semibold">No Pengenalan</label>
+                  <input cFormControl disabled type="text" size="sm" [(ngModel)]="documentForm.noPengenalan" placeholder="990330042499">
+                </div>
+              </div>
+
+              <div class="row g-2 mb-2">
+                <div class="col-12">
+                  <label cLabel class="small fw-semibold">Nama</label>
+                  <input cFormControl disabled type="text" size="sm" [(ngModel)]="documentForm.nama" placeholder="Mohd Russaini Bin Idrus">
+                </div>
+              </div>
+
+              <div class="row g-2 mb-2">
+                <div class="col-6">
+                  <label cLabel class="small fw-semibold">Tarikh Lahir</label>
+                  <input cFormControl disabled type="date" size="sm" [(ngModel)]="documentForm.tarikhLahir" value="2025-01-30">
+                </div>
+
+                <div class="col-6">
+                  <label cLabel class="small fw-semibold">Warganegara</label>
+                  <select cSelect disabled size="sm" [(ngModel)]="documentForm.warganegara">
+                    <option value="MYS">MYS</option>
+                    <option value="SGP">SGP</option>
+                    <option value="IDN">IDN</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row g-2 mb-2">
+                <div class="col-6">
+                  <label cLabel class="small fw-semibold">Tarikh Dikeluarkan</label>
+                  <input cFormControl disabled type="date" size="sm" [(ngModel)]="documentForm.tarikhDikeluarkan" value="1992-01-30">
+                </div>
+
+                <div class="col-6">
+                  <label cLabel class="small fw-semibold">Negara Pengeluar</label>
+                  <select cSelect disabled size="sm" [(ngModel)]="documentForm.negaraPengeluar">
+                    <option value="MYS - Malaysia">MYS - Malaysia</option>
+                    <option value="SGP - Singapore">SGP - Singapore</option>
+                    <option value="IDN - Indonesia">IDN - Indonesia</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div> <!-- end right col -->
+      </div> <!-- end row -->
+    </div>
+
+   <!-- Footer Buttons -->
+    <div class="card-footer button-row">
+      <button class="disyaki-btn" (click)="openModal()">
+        <span class="icon-circle">✖</span>
+        Disyaki Palsu
+      </button>
+
+      <div class="semak-btn-wrapper">
+        <button class="semak-btn" (click)="OnTutup()">
+          <span class="icon-circle">✓</span>
+          <span>Semak</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Dev Testing Buttons -->
+  <div class="mt-4 p-3 border rounded" style="background-color: #f8f9fa;">
+    <h6>Testing Error Popups (Dev Only):</h6>
+    <div class="d-flex gap-2">
+      <button cButton color="warning" size="sm" (click)="testError('IBC-S019')">Test S019 (&lt; 6 Months)</button>
+      <button cButton color="danger" size="sm" (click)="testError('IBC-S018')">Test S018 (Expired)</button>
+    </div>
+
+
+<!-- Error Modal -->
+<c-modal #modalStandard [visible]="modalStandard?.visible" [backdrop]="'static'" [keyboard]="false" id="modalStandard">
+  <c-modal-body class="text-center p-4">
+    <div class="mb-3">
+      <div class="d-inline-flex align-items-center justify-content-center" style="width: 60px; height: 60px; border: 2px solid #000;">
+        <span style="font-size: 24px; font-weight: bold;">✕</span>
+      </div>
+    </div>
+    <h5 class="mb-4" [innerHTML]="modalMessage"></h5>
+  </c-modal-body>
+  <c-modal-footer class="text-center justify-content-center">
+    <button cButton color="dark" (click)="modalStandardClick()" style="background-color: #6c757d; color: white; padding: 8px 30px; border-radius: 4px;">
+      {{ modalButtonText }}
+    </button>
+  </c-modal-footer>
+</c-modal>
+
+<!-- Modal Rujuk Penyelia -->
+<app-modal-rujuk-penyelia></app-modal-rujuk-penyelia>

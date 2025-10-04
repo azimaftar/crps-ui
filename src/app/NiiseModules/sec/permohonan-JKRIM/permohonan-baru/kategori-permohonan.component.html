@@ -1,0 +1,333 @@
+<c-row class="page-layout d-flex align-items-start">
+  <!-- Main Content -->
+  <c-col md="9" class="main-content white-box p-4">
+
+    <!-- ✅ Horizontal Stepper (Atas sekali) -->
+    <div class="horizontal-stepper mt-3 mb-4">
+      <ul class="stepper-list d-flex align-items-center justify-content-start flex-wrap">
+
+        <!-- Step 1 -->
+        <li
+          class="stepper-item"
+          [class.active]="currentStep === 1"
+          [class.completed]="currentStep > 1">
+          <button type="button" class="step-btn" (click)="goToStep(1)">
+            <span class="step-number">
+              <ng-container *ngIf="currentStep > 1">✓</ng-container>
+              <ng-container *ngIf="currentStep <= 1">1</ng-container>
+            </span>
+            <span class="step-title">Maklumat Pemohon</span>
+          </button>
+        </li>
+
+        <!-- Step 2 -->
+        <li
+          class="stepper-item"
+          [class.active]="currentStep === 2"
+          [class.completed]="currentStep > 2">
+          <button type="button" class="step-btn" (click)="goToStep(2)">
+            <span class="step-number">
+              <ng-container *ngIf="currentStep > 2">✓</ng-container>
+              <ng-container *ngIf="currentStep <= 2">2</ng-container>
+            </span>
+            <span class="step-title">Dokumen Sokongan</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 🔹 Kategori Permohonan -->
+    <div class="form-group col-6">
+      <label for="kategoriPermohonan"><h5><b>Kategori Permohonan</b></h5></label>
+      <select [(ngModel)]="selectedKategori"
+              (ngModelChange)="onKategoriChange($event)">
+        <option value="" disabled selected hidden>-- Sila Pilih --</option>
+        <option *ngFor="let kategori of kategoriPermohonan" [ngValue]="kategori">
+          {{ kategori }}
+        </option>
+      </select>
+    </div>
+
+    <!-- 🔹 Step 1: Maklumat Pemohon (Kategori Individu) -->
+    <div *ngIf="currentStep === 1 && isKategoriIndividu(selectedKategori)" class="step-content mt-4">
+      <h6 class="mb-3"><b>Maklumat Pemohon</b></h6>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label>Nama</label>
+          <input type="text" class="form-control" [(ngModel)]="pemohon.nama">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>No. Kad Pengenalan</label>
+          <input type="text" class="form-control" [(ngModel)]="pemohon.kadPengenalan">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Warganegara</label>
+          <select class="form-select" [(ngModel)]="pemohon.warganegara">
+            <option value="Malaysia">Malaysia</option>
+            <option value="Lain">Lain</option>
+          </select>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Alamat</label>
+          <input type="text" class="form-control mb-2" placeholder="Alamat" [(ngModel)]="pemohon.alamat1">
+          <input type="text" class="form-control mb-2" placeholder="Alamat 1" [(ngModel)]="pemohon.alamat2">
+          <input type="text" class="form-control" placeholder="Alamat 2" [(ngModel)]="pemohon.alamat3">
+        </div>
+
+        <div class="form-group col-md-3">
+          <label>Poskod</label>
+          <input type="text" class="form-control" [(ngModel)]="pemohon.poskod">
+        </div>
+
+        <div class="form-group col-md-3">
+          <label>Bandar</label>
+          <select class="form-select" [(ngModel)]="pemohon.bandar">
+            <option value="Putrajaya">Putrajaya</option>
+            <option value="Kuala Lumpur">Kuala Lumpur</option>
+          </select>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label>Hubungan</label>
+          <select class="form-select" [(ngModel)]="pemohon.hubungan">
+            <option value="Suami">Suami</option>
+            <option value="Isteri">Isteri</option>
+            <option value="Anak">Anak</option>
+          </select>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label>Tujuan Rayuan</label>
+          <select class="form-select" [(ngModel)]="pemohon.tujuan">
+            <option value="Kemudahan masuk ke Malaysia">Kemudahan masuk ke Malaysia</option>
+            <option value="Lain">Lain</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Butang Tindakan -->
+      <div class="mt-4 d-flex justify-content-between">
+        <div>
+          <button class="btn btn-secondary me-2" (click)="resetForm()">Set Semula</button>
+          <button class="btn btn-secondary" disabled>Hantar</button>
+        </div>
+        <div class="mt-3 d-flex justify-content-between">
+          <button *ngIf="currentStep > 1" class="btn btn-secondary" (click)="goToPreviousStep()">&lt;</button>
+          <button *ngIf="currentStep < 2" class="btn btn-secondary" (click)="goToNextStep()">&gt;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🔹 Step 1: Maklumat Pemohon (Kategori PLKS / Dagang / MM2H / Pelajar) -->
+    <div *ngIf="currentStep === 1 && selectedKategori === 'Permohonan Rayuan (PLKS/ Pegawai Dagang/ MM2H/ Pelajar)'" class="step-content mt-4">
+      <h6 class="mb-3"><b>Maklumat Pemohon</b></h6>
+      <form [formGroup]="pemohonForm">
+        <div class="form-group">
+          <label>Nama</label>
+          <input type="text" class="form-control" formControlName="nama" />
+        </div>
+        <div class="form-group">
+          <label>No. Passport</label>
+          <input type="text" class="form-control" formControlName="noPassport" />
+        </div>
+        <div class="form-group">
+          <label>Warganegara</label>
+          <select class="form-select" formControlName="warganegara">
+            <option *ngFor="let negara of senaraiNegara" [value]="negara">{{ negara }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Nama Syarikat / Institusi</label>
+          <input type="text" class="form-control" formControlName="syarikat" />
+        </div>
+        <div class="form-group">
+          <label>Alamat Syarikat / Institusi</label>
+          <input type="text" class="form-control" formControlName="alamat" placeholder="No. / Jalan / Kawasan" />
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="taman" placeholder="Taman / Kawasan" />
+        </div>
+        <div class="form-group">
+          <label>Poskod</label>
+          <input type="text" class="form-control" formControlName="poskod" />
+        </div>
+        <div class="form-group">
+          <label>Bandar</label>
+          <input type="text" class="form-control" formControlName="bandar" />
+        </div>
+        <div class="form-group">
+          <label>Tujuan Rayuan</label>
+          <select class="form-select" formControlName="tujuan">
+            <option value="kemasukan">Kemasukan masuk ke Malaysia</option>
+            <option value="lanjutan">Lanjutan tempoh tinggal</option>
+            <option value="lain">Lain-lain</option>
+          </select>
+        </div>
+
+        <!-- Butang Tindakan -->
+        <div class="mt-4 d-flex justify-content-between">
+          <div>
+            <button type="button" class="btn btn-secondary me-2" (click)="resetForm()">Set Semula</button>
+            <button type="button" class="btn btn-secondary" disabled>Hantar</button>
+          </div>
+          <div class="mt-3 d-flex justify-content-between">
+            <button *ngIf="currentStep > 1" class="btn btn-secondary" (click)="goToPreviousStep()">&lt;</button>
+            <button *ngIf="currentStep < 2" class="btn btn-secondary" (click)="goToNextStep()">&gt;</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    
+    <!-- 🔹 Step 2: Dokumen Sokongan -->
+  <div *ngIf="currentStep === 2 
+        && (selectedKategori === 'Permohonan Rayuan (Individu)' 
+            || selectedKategori === 'Permohonan Rayuan Ditolak (Individu)' 
+            || selectedKategori === 'Permohonan Rayuan Lanjutan Kemudahan (Individu)'
+            || selectedKategori === 'Permohonan Rayuan (PLKS/ Pegawai Dagang/ MM2H/ Pelajar)')"
+   class="step-content">
+  <h5><b>Dokumen Sokongan</b></h5>
+
+  <!-- ✅ Jika kategori = Permohonan Rayuan (Individu) -->
+  <table *ngIf="selectedKategori === 'Permohonan Rayuan (Individu)'" class="table table-bordered mt-3">
+    <thead>
+    <tr>
+      <th style="width: 5%;">Bil.</th>
+      <th style="width: 50%;">Keterangan</th>
+      <th style="width: 20%;">Nama Dokumen</th>
+      <th style="width: 15%;">Format</th>
+      <th style="width: 10%;">Tindakan</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let dokumen of senaraiDokumen; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ dokumen.keterangan }}</td>
+      <td>{{ dokumen.nama }}</td>
+      <td>{{ dokumen.format }}</td>
+      <td>
+        <button class="btn btn-dark btn-sm" (click)="uploadDokumen(i)">+ Muat Naik</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- ✅ Jika kategori = Permohonan Rayuan Ditolak (Individu) -->
+  <table *ngIf="selectedKategori === 'Permohonan Rayuan Ditolak (Individu)'" class="table table-bordered mt-3">
+    <thead>
+    <tr>
+      <th style="width: 5%;">Bil.</th>
+      <th style="width: 50%;">Keterangan</th>
+      <th style="width: 20%;">Nama Dokumen</th>
+      <th style="width: 15%;">Format</th>
+      <th style="width: 10%;">Tindakan</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let dokumen of senaraiDokumenDitolak; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ dokumen.keterangan }}</td>
+      <td>{{ dokumen.nama }}</td>
+      <td>{{ dokumen.format }}</td>
+      <td>
+        <button class="btn btn-dark btn-sm" (click)="uploadDokumenDitolak(i)">+ Muat Naik</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- ✅ Jika kategori = Permohonan Rayuan Lanjutan Kemudahan (Individu) -->
+  <table *ngIf="selectedKategori === 'Permohonan Rayuan Lanjutan Kemudahan (Individu)'" class="table table-bordered mt-3">
+    <thead>
+    <tr>
+      <th style="width: 5%;">Bil.</th>
+      <th style="width: 50%;">Keterangan</th>
+      <th style="width: 20%;">Nama Dokumen</th>
+      <th style="width: 15%;">Format</th>
+      <th style="width: 10%;">Tindakan</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let dokumen of senaraiDokumenLanjutan; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ dokumen.keterangan }}</td>
+      <td>{{ dokumen.nama }}</td>
+      <td>{{ dokumen.format }}</td>
+      <td>
+        <button class="btn btn-dark btn-sm" (click)="uploadDokumenLanjutan(i)">+ Muat Naik</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- ✅ Jika kategori = Permohonan Rayuan (PLKS/ Pegawai Dagang/ MM2H/ Pelajar) -->
+  <table *ngIf="selectedKategori === 'Permohonan Rayuan (PLKS/ Pegawai Dagang/ MM2H/ Pelajar)'" class="table table-bordered mt-3">
+    <thead>
+    <tr>
+      <th style="width: 5%;">Bil.</th>
+      <th style="width: 50%;">Keterangan</th>
+      <th style="width: 20%;">Nama Dokumen</th>
+      <th style="width: 15%;">Format</th>
+      <th style="width: 10%;">Tindakan</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let dokumen of senaraiDokumenPLKS; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ dokumen.keterangan }}</td>
+      <td>{{ dokumen.nama }}</td>
+      <td>{{ dokumen.format }}</td>
+      <td>
+        <button class="btn btn-dark btn-sm" (click)="uploadDokumenPLKS(i)">+ Muat Naik</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <small class="text-muted">*Saiz fail maksimum: 10MB</small>
+
+  <div class="form-check mt-3">
+    <input type="checkbox" class="form-check-input" [(ngModel)]="pengesahan" id="pengesahan">
+    <label class="form-check-label" for="pengesahan">
+    Saya mengesahkan maklumat yang diberikan adalah sah dan benar.
+    </label>
+  </div>
+
+  <div class="mt-4 d-flex justify-content-between">
+    <button class="btn btn-light" (click)="goToPreviousStep()">&#60;</button>
+    <button class="btn btn-secondary" (click)="submitPermohonan()" [disabled]="!pengesahan">Hantar</button>
+  </div>
+  </div>
+
+  <!-- ✅ Confirmation Dialog -->
+<div *ngIf="showDialog" class="dialog-overlay">
+  <div class="dialog-box">
+    <div class="dialog-icon">
+      <!-- Boleh letak icon warning / info -->
+      <span style="font-size:40px;">⚠️</span>
+    </div>
+    <p class="dialog-text">Adakah anda pasti?</p>
+    <div class="dialog-actions">
+      <button class="btn btn-dark me-2" (click)="onConfirm()">Ya</button>
+      <button class="btn btn-dark" (click)="onCancel()">Tidak</button>
+    </div>
+  </div>
+  </div>
+
+  <!-- ✅ Success Dialog -->
+<div *ngIf="showSuccessDialog" class="dialog-overlay">
+  <div class="dialog-box text-center p-4">
+    <div class="dialog-icon mb-3">
+      <!-- Boleh ganti dengan icon ✓ atau success -->
+      <span style="font-size:40px;">✅</span>
+    </div>
+    <p class="dialog-text mb-3">Permohonan telah berjaya</p>
+    <button class="btn btn-dark" (click)="closeSuccessDialog()">Ok</button>
+  </div>
+</div>
+
+  </c-col>
+</c-row>

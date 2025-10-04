@@ -1,0 +1,117 @@
+<div class="m-4 ms-0 bg-white rounded-3 w-100 h-auto p-4">
+  <h3 class="fw-bold">Sahkan Laporan Pemulangan/ Perampasan Kad Kuasa</h3>
+
+  <div class="bg-color-offwhite rounded-3 my-3">
+    <div class="m-3">
+      <app-stepper [currentMainStep]="currentMainStep"></app-stepper>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <h6 class="mb-3 fw-bold">Maklumat Pengesahan</h6>
+    <c-row class="mb-3 px-5">
+      <c-col>
+        <label for="statusPengesahan" cLabel class="mb-2"
+          >Status Pengesahan</label
+        >
+        <c-row [sm]="1" [md]="2" class="ps-2">
+          <c-col>
+            <button
+              cButton
+              [ngStyle]="{
+                'background-color':
+                  statusPengesahan === 'Sah' ? '#1461BA' : '#6b7785'
+              }"
+              class="col-sm-5 col-12 px-4 me-3 mb-2 mb-sm-0"
+              [ngClass]="{ active: statusPengesahan === 'Sah' }"
+              (click)="toggleSah()"
+            >
+              Sah
+            </button>
+            <button
+              cButton
+              [ngStyle]="{
+                'background-color':
+                  statusPengesahan === 'Tidak Sah' ? '#1461BA' : '#6b7785'
+              }"
+              class="col-sm-5 col-12 px-4"
+              [ngClass]="{ active: statusPengesahan === 'Tidak Sah' }"
+              (click)="toggleTidakSah()"
+            >
+              Tidak Sah
+            </button>
+          </c-col>
+        </c-row>
+      </c-col>
+    </c-row>
+    <c-row class="mb-3 px-5">
+      <c-col>
+        <label for="catatanPengesahan" cLabel class="mb-2">Disahkan Oleh</label>
+        <input
+          type="text"
+          class="form-control"
+          id="disahkanOleh"
+          placeholder="Disahkan Oleh"
+          value="Faisal Bin Salleh"
+          readonly
+          disabled
+        />
+      </c-col>
+    </c-row>
+    <c-row class="mb-3 px-5">
+      <c-col>
+        <label for="catatanPengesahan" cLabel class="mb-2">Catatan</label>
+        <textarea
+          class="form-control"
+          id="catatanPengesahan"
+          placeholder="Catatan"
+          cols="30"
+          rows="5"
+        ></textarea>
+      </c-col>
+    </c-row>
+    <c-row class="mb-3 px-5" [md]="2" [xs]="1">
+      <c-col class="mb-3 mb-md-0">
+        <label for="tarikhPengesahan" cLabel class="mb-2"
+          >Tarikh Pengesahan</label
+        >
+        <input
+          type="date"
+          class="form-control"
+          id="tarikhPengesahan"
+          placeholder="Tarikh Pengesahan"
+        />
+      </c-col>
+      <c-col class="mb-3 mb-md-0">
+        <label for="masaPengesahan" cLabel class="mb-2">Masa Pengesahan</label>
+        <input type="time" class="form-control" id="masaPengesahan" />
+      </c-col>
+    </c-row>
+  </div>
+  <c-row>
+    <hr class="my-3" />
+    <div class="d-flex justify-content-end">
+      <button
+        color="primary"
+        class="primary-custom-btn w-auto px-4 me-4"
+        (click)="HantarRekod()"
+      >
+        Hantar
+      </button>
+      <button class="l-custom-btn" (click)="navigatePreviousPage()">
+        &lsaquo;
+      </button>
+      <button class="r-custom-btn" (click)="navigateNextPage()">
+        &rsaquo;
+      </button>
+    </div>
+  </c-row>
+</div>
+
+<app-modal-component
+  [visible]="hantarRekodModal"
+  icon="tick"
+  message="Rekod Telah Berjaya Dihantar"
+  mode="ok"
+  (close)="closeHantarRekodModal()"
+></app-modal-component>

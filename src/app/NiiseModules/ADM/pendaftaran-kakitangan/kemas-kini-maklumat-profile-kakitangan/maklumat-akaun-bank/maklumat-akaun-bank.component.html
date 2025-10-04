@@ -1,0 +1,105 @@
+<c-card>
+  <c-card-body>
+    <c-row class="my-2">
+      <h4 class="fw-bold">KEMAS KINI MAKLUMAT PROFIL KAT</h4>
+    </c-row>
+
+    <app-stepper
+      [currentMainStep]="currentMainStep"
+      [currentSubStep]="currentSubStep"
+    ></app-stepper>
+
+    <c-row class="my-5">
+      <c-row class="mb-3">
+        <c-col xs="12" md="6">
+          <h5>Maklumat Akaun Bank</h5>
+        </c-col>
+        <c-col xs="12" md="6" class="d-flex justify-content-end">
+          <button type="button" class="btn btn-primary">Kemas Kini</button>
+        </c-col>
+      </c-row>
+      <c-container class="overflow-x-auto">
+        <c-row class="align-items-end flex-md-nowrap">
+          <c-col xs="12" md="4">
+            <label>Nama Bank/ Institusi</label>
+            <input
+              class="form-control mb-3"
+              *ngFor="
+                let item of maklumatAkaunBank1.namaBankInstitusi;
+                let i = index
+              "
+              [(ngModel)]="maklumatAkaunBank1.namaBankInstitusi[i]"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+          <c-col xs="12" md="4">
+            <label>Jenis Akaun</label>
+            <input
+              class="form-control mb-3"
+              *ngFor="let item of maklumatAkaunBank1.jenisAkaun; let i = index"
+              [(ngModel)]="maklumatAkaunBank1.jenisAkaun[i]"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+          <c-col xs="12" md="4">
+            <label>Nombor Akaun</label>
+            <input
+              class="form-control mb-3"
+              *ngFor="let item of maklumatAkaunBank1.nomborAkaun; let i = index"
+              [(ngModel)]="maklumatAkaunBank1.nomborAkaun[i]"
+              [readonly]="readonlyField"
+              [ngClass]="{ 'bg-light text-muted': readonlyField }"
+            />
+          </c-col>
+        </c-row>
+      </c-container>
+      <c-row>
+        <c-col xs="12" md="4">
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="addMaklumatAkaunBank()"
+            [disabled]="readonlyField"
+          >
+            + Tambah Maklumat
+          </button>
+        </c-col>
+      </c-row>
+    </c-row>
+
+    <c-row>
+      <c-row style="border-top: 1px solid rgba(0, 0, 0, 0.1)">
+        <c-col class="d-flex gap-5 flex-shrink-0 justify-content-end py-3">
+          <div class="d-flex gap-2">
+            <button
+              type="button"
+              class="btn-custom-normalBlue fw-semibold btn btn-primary"
+              (click)="navigateClosePage()"
+            >
+              Tutup
+            </button>
+          </div>
+
+          <div class="d-flex">
+            <button
+              type="button"
+              class="btn-custom-normalWhite fw-semibold btn btn-light"
+              (click)="navigatePreviousPage()"
+            >
+              &lt;
+            </button>
+            <button
+              type="button"
+              class="btn-custom-normalWhite fw-semibold btn btn-light"
+              (click)="navigateNextPage()"
+            >
+              &gt;
+            </button>
+          </div>
+        </c-col>
+      </c-row>
+    </c-row>
+  </c-card-body>
+</c-card>

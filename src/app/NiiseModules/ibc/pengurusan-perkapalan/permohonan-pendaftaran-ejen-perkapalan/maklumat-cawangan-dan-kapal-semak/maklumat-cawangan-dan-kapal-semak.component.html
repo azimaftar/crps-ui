@@ -1,0 +1,193 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="px-4"> <!-- Consistent horizontal padding -->
+
+      <div class="mt-2 mb-2">
+        <h3 class="mb-2 mt-4"><b>PROFIL</b></h3>
+      </div>
+
+      <div class="mt-4">
+        <!-- Left Side: Step Info -->
+        <reusable-tab [currentStep]="currentStep" [steps]="steps"></reusable-tab>
+        <div class="col-md-6 mb-4">
+          <p class="mb-0">{{ currentStep }}. {{ steps[currentStep - 1] }}</p>
+          <small class="text-muted">Langkah {{ currentStep }} daripada {{ steps.length }}</small>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="row flex-column flex-lg-row">
+          <div class="col-md-2 mb-3 mb-md-0">
+            <div class="d-flex flex-column align-items-center">
+              <img src="assets/images/avatars/9.jpg" alt="Profile Image" class="img-fluid rounded-2"
+     style="width: 150px; height: 150px; object-fit: cover;">
+            </div>
+          </div>
+          <div class="col-10">
+            <!-- <h6 class="mb-3">Maklumat Cawangan</h6> -->
+
+            <!-- Nama Cawangan & No. Telefon Cawangan -->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Nama Cawangan</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.branchName" name="branchName">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">No. Telefon Cawangan</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.branchPhoneNo" name="branchPhoneNo">
+                </div>
+              </div>
+            </div>
+
+            <!-- Alamat Cawangan -->
+            <div class="row">
+              <div class="col-12">
+                <div class="mb-3">
+                  <label class="form-label">Alamat Cawangan</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.branchAddr" name="branchAddr">
+                </div>
+              </div>
+            </div>
+
+            <!-- Poskod & Negeri -->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Poskod</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.branchPostcode" name="branchPostcode">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Negeri</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.branchCity" name="branchCity">
+                </div>
+              </div>
+            </div>
+
+            <!-- E-mel Cawangan -->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">E-mel Cawangan</label>
+                  <input type="email" class="form-control" [(ngModel)]="formData.branchEmail" name="branchEmail">
+                </div>
+              </div>
+            </div>
+
+            <br><br>
+
+            <!-- Nama Pengurus & No. Telefon Pengurus -->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Nama Pengurus Cawangan</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.branchSpvName" name="branchSpvName">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">No. Telefon Pengurus</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.brnSpvPhoneNo" name="brnSpvPhoneNo">
+                </div>
+              </div>
+            </div>
+
+            <!-- E-mel Pengurus -->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">E-mel Pengurus Cawangan</label>
+                  <input type="email" class="form-control" [(ngModel)]="formData.brnSpvEmel" name="brnSpvEmel">
+                </div>
+              </div>
+            </div>
+
+            <!-- Semak Button -->
+            <div class="row">
+              <div class="col-12 d-flex justify-content-end">
+                <button class="btn btn-primary d-flex align-items-center gap-1" (click)="semakKapal()">
+                  <i class="bi bi-search"></i>
+                  Semak
+                </button>
+              </div>
+            </div>
+
+            <!-- Nama Kapal -->
+            <div class="row">
+              <div class="col-12">
+                <div class="mb-3">
+                  <label class="form-label">Nama Kapal</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.shipName" name="shipName" disabled>
+                </div>
+              </div>
+            </div>
+
+            <!-- Indikator & Jenis Kapal & Kategori -->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Indikator</label>
+                  <select class="form-select" [(ngModel)]="formData.indShip" name="indShip" disabled>
+                    <option value="Kapal Tempatan">Kapal Tempatan</option>
+                    <option value="Kapal Asing">Kapal Asing</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Jenis Kapal</label>
+                  <input type="text" class="form-control" [(ngModel)]="formData.shipType" name="shipType" disabled>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label">Kategori Kapal</label>
+                  <select class="form-select" [(ngModel)]="formData.shipCategory" name="shipCategory" disabled>
+                    <option value="Kapal Dagang">Kapal Dagang</option>
+                    <option value="Kapal Penumpang">Kapal Penumpang</option>
+                    <option value="Kedua-duanya">Kedua-duanya</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- Bottom Navigation -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="d-flex justify-content-end gap-2 mb-4">
+                    <!-- Reset Button -->
+                    <button class="btn btn-outline-secondary d-flex align-items-center gap-1" type="reset" (click)="resetForm()">
+                      <i class="bi bi-arrow-clockwise"></i>
+                      Set Semula
+                    </button>
+
+                    <!-- Save Button -->
+                    <button 
+                      class="btn btn-submit d-flex align-items-center gap-1" 
+                      [disabled]="!isFormValid" 
+                      (click)="saveForm()">
+                      <i class="bi bi-check-circle"></i>
+                      Simpan
+                    </button>
+                    <button class="btn btn-all" (click)="goToPrevious()">
+                        &lt;
+                    </button>
+                    <button class="btn btn-all" (click)="goToNext()">
+                        &gt;
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">

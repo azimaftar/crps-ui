@@ -1,0 +1,138 @@
+<div class="text-center mb-4">
+    <img src="assets/logo/niise_logo.png" alt="Logo">
+</div>
+
+<form cForm class="border p-3 rounded mb-4">
+    <fieldset>
+        <div class="text-center mb-4">
+            <img src="assets/logo/niise_logo.png" alt="Logo">
+        </div>
+
+        <h6>Maklumat Dokumen</h6>
+
+        <!-- Row 1 -->
+        <c-row class="g-3 my-3">
+            <c-col xs="12" md="3">
+                <label for="jPemeriksaan" class="form-label">Jenis Pemeriksaan</label>
+                <input id="jPemeriksaan" class="form-control" disabled>
+            </c-col>
+            <c-col xs="12" md="3">
+                <label for="jPerjalanan" class="form-label">Jenis Perjalanan</label>
+                <input id="jPerjalanan" class="form-control" disabled>
+            </c-col>
+            <c-col xs="12" md="3" class="d-none d-md-block">
+                <!-- spacer only on md+ -->
+            </c-col>
+            <c-col xs="12" md="3" class="d-none d-md-block">
+                
+            </c-col>
+        </c-row>
+
+        <!-- Row 2 -->
+        <c-row class="g-3 my-3">
+            <c-col xs="12" md="3">
+                <label for="noDokumen" class="form-label">Jenis Dokumen</label>
+                <input id="noDokumen" class="form-control" disabled>
+            </c-col>
+            <c-col xs="12" md="3">
+                <label for="jantina" class="form-label">Jantina</label>
+                <input id="jantina" class="form-control" disabled>
+            </c-col>
+            <c-col xs="12" md="3">
+                <label for="agama" class="form-label">Agama</label>
+                <input id="agama" class="form-control" disabled>
+            </c-col>
+            <c-col xs="12" md="3" class="d-none d-md-block">
+                <!-- spacer only on md+ -->
+            </c-col>
+        </c-row>
+
+        <!-- Row 3 -->
+        <c-row class="g-3 my-3">
+            <c-col xs="12" md="3">
+                <label for="noPengenalan" class="form-label">No Pengenalan</label>
+                <input id="noPengenalan" class="form-control" disabled>
+            </c-col>
+            <c-col xs="12" md="3">
+                <label for="umur" class="form-label">Umur</label>
+                <input id="umur" class="form-control" disabled>
+            </c-col>
+            <c-col xs="12" md="3">
+                <label for="warganegara" class="form-label">Warganegara</label>
+                <input id="warganegara" class="form-control" disabled>
+            </c-col>
+            <c-col xs="12" md="3">
+                <label for="bangsa" class="form-label">Bangsa</label>
+                <input id="bangsa" class="form-control" disabled>
+            </c-col>
+        </c-row>
+
+        <!-- Row 4: Nama full-width on mobile, 2/3 on md+ -->
+        <c-row class="g-3 my-3">
+            <c-col xs="12" md="6">
+                <label for="nama" class="form-label">Nama</label>
+                <input id="nama" class="form-control" disabled>
+            </c-col>
+            <c-col xs="12" md="6" class="d-none d-md-block">
+                <!-- spacer only on md+ -->
+            </c-col>
+        </c-row>
+
+        <!-- Row 5 -->
+        <c-row class="g-3 my-3">
+            <c-col xs="12" md="3">
+                <label for="jPergerakan" class="form-label">Jenis Pergerakan</label>
+                <input id="jPergerakan" class="form-control" disabled>
+            </c-col>
+            <c-col xs="12" md="3" class="d-none d-md-block">
+                <!-- spacer only on md+ -->
+            </c-col>
+            <c-col xs="12" md="3" class="d-none d-md-block">
+                <!-- spacer only on md+ -->
+            </c-col>
+            <c-col xs="12" md="3" class="d-none d-md-block">
+                <!-- spacer only on md+ -->
+            </c-col>
+        </c-row>
+
+        <!-- Row 6 -->
+        <c-row class="g-3 my-3">
+            <c-col xs="12" md="3">
+                <label for="pintu" class="form-label">Pintu Masuk</label>
+                <input id="pintu" class="form-control" disabled>
+            </c-col>
+            <c-col xs="12" md="3" class="d-none d-md-block">
+                <!-- spacer only on md+ -->
+            </c-col>
+            <c-col xs="12" md="3" class="d-none d-md-block">
+                <!-- spacer only on md+ -->
+            </c-col>
+            <c-col xs="12" md="3" class="d-none d-md-block">
+                <!-- spacer only on md+ -->
+            </c-col>
+        </c-row>
+
+        <!-- Row 6 -->
+        <c-row class="g-3 my-3">
+            <c-col xs="12" md="3">
+                <label for="tarikh" class="form-label">Tarikh Masuk</label>
+                <input id="tarikh" class="form-control" disabled>
+            </c-col>
+            <c-col xs="12" md="3">
+                <label for="masa" class="form-label">Masa Masuk</label>
+                <input id="masa" class="form-control" disabled>
+            </c-col>
+            <c-col xs="12" md="3" class="d-none d-md-block">
+                <!-- spacer only on md+ -->
+            </c-col>
+            <c-col xs="12" md="3" class="d-none d-md-block">
+                <!-- spacer only on md+ -->
+            </c-col>
+        </c-row>
+
+        <!-- Button -->
+        <div class="text-end mt-4">
+            <button type="button" cButton color="secondary" (click)="openProfilPengembara()">TUTUP</button>
+        </div>
+    </fieldset>
+</form>

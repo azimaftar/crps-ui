@@ -1,0 +1,104 @@
+<div class="custom-content-wrapper">
+    <div class="container-fluid">
+        <div class="card p-4">
+            <h3 class="mb-4"><b>Kad Pas Menaiki Kapal</b></h3>
+
+            <!-- Step Tabs -->
+            <reusable-tab [currentStep]="currentStep" [steps]="steps"></reusable-tab>
+
+            <div class="container-fluid">
+                <div class="card p-4"
+                    style="border-radius: 12px; max-width: 600px; margin: auto; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <!-- Header -->
+                    <div class="text-center mb-4">
+                        <h6 class="fw-bold">
+                            JABATAN IMIGRESEN MALAYSIA<br />JABATAN IMIGRESEN MALAYSIA HQ
+                        </h6>
+                        <h5 class="fw-bold mt-3">KAD PAS MENAIKI KAPAL</h5>
+                    </div>
+
+                    <!-- Profile Picture Placeholder -->
+                    <div class="text-center mb-4">
+                        <div
+                            style="width: 120px; height: 120px; border: 2px dashed #aaa; border-radius: 8px; margin: auto; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #777;">
+                            Picture
+                        </div>
+                    </div>
+
+                    <!-- Form Fields -->
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Kod Pejabat:</label>
+                            <span>{{ formData.officeCode }}</span>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-bold">No. Siri:</label>
+                            <span>{{ formData.noSiri }}</span>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Nama:</label>
+                            <span>{{ formData.name }}</span>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-bold">No. MyKad:</label>
+                            <span>{{ formData.kpNo }}</span>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Agensi:</label>
+                            <span>{{ formData.agency }}</span>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Sah Laku Kad Pas:</label>
+                            <span>{{ formData.validityDate }}</span>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Nama Pejabat Pelabuhan:</label>
+                            <span>{{ formData.officeName }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="text-center mt-5">
+                        <div class="row">
+                            <div class="col">
+                                <div class="border p-4 rounded">Pegawai Agensi</div>
+                            </div>
+                            <div class="col">
+                                <div class="border p-4 rounded">Cop Bulat Jabatan</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bahagian Hadapan text centered -->
+                <div class="text-center mt-3">
+                    <h5 class="fw-bold">Bahagian Hadapan</h5>
+                </div>
+
+                <!-- Section 5: Bottom Buttons -->
+                <div class="d-flex justify-content-end gap-2 mt-5">
+                    <button type="button" class="btn btn-outline-secondary d-flex align-items-center gap-1"
+                        (click)="printCard()">
+                        Cetak
+                    </button>
+
+                    <!-- Kembali ENABLED -->
+                    <button class="btn btn-submit d-flex align-items-center gap-1" (click)="goBack()">
+                        <i class="bi bi-arrow-left-circle"></i> Kembali
+                    </button>
+
+                    <!-- Previous (<) DISABLED -->
+                    <button class="btn btn-all" disabled>
+                        &lt;
+                    </button>
+
+                    <!-- Next (>) ENABLED -->
+                    <button class="btn btn-all" (click)="goToNext()">&gt;</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />

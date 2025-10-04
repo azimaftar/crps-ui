@@ -1,0 +1,29 @@
+<div style="background-color: black; max-height:100%">
+  <div style="background-color: red">
+    <!-- <app-dev-mode/> -->
+  </div>
+  <div class="bg-light dark:bg-transparent min-vh-100 d-flex flex-row align-items-center" style="
+      background-image: url('../../../assets/images/login_background.png');
+      /*width: 1440px;*/
+      /*height: 1024px;*/
+      /*background-color: black;*/
+      background-position: center;
+      /*background-repeat: no-repeat;*/
+    ">
+
+    <c-container breakpoint="md">
+      <c-row>
+        <c-col lg="16" xl="16" style="align-content: center; color:white;">
+          <h1>Welcome to NIISe System</h1>
+          <h5>
+            The Immigration Department of Malaysia is under the Ministry of Home Affairs, which provides
+            <a [routerLink]="['/login2']" style="color: #00d8ff; text-decoration: underline;">NIISE</a>
+            to Malaysian Citizens, Permanent Residents and Foreign Visitors.
+          </h5>
+          <br />
+        </c-col>
+      </c-row>
+    </c-container>
+
+  </div>
+</div>

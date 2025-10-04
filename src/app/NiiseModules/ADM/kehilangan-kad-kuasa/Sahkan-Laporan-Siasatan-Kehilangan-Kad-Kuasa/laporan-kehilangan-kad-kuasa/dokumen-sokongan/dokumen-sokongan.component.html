@@ -1,0 +1,102 @@
+<c-card>
+   <h4 class="fw-bold m-3 mt-5">
+        LAPORAN KEHILANGAN KAD KUASA
+    </h4>
+    <div class="m-3">
+        <app-stepper
+        [currentMainStep]="currentMainStep"
+        ></app-stepper>
+    </div>
+  <c-card-body>
+    <c-row class="my-5">
+      <c-row class="mb-3">
+        <h5>Dokumen Sokongan*</h5>
+        <label>Nota: Pengguna dikehendaki memuat naik dokumen Laporan Siasatan Kehilangan Kad Kuasa bersama Borang Siasatan Kehilangan Kad Kuasa sebelum klik butang [Hantar].</label>
+      </c-row>
+      <c-row class="mb-5 px-5 table-responsive">
+        <table class="table">
+          <thead>
+            <tr class="align-middle text-center">
+              <th class="py-4">Bil.</th>
+              <th class="py-4">Nama Dokumen</th>
+              <th class="py-4">Format</th>
+              <th class="py-4">Tindakan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let item of tableData; let i = index"
+              class="align-middle text-center"
+            >
+              <td class="py-4">{{ i + 1 }}</td>
+              <td class="py-4">{{ item.namaDokumen }}</td>
+              <td class="py-4">{{ item.format }}</td>
+              <td class="py-4 d-flex gap-2 justify-content-center">
+                <button type="button" class="btn btn-secondary">
+                  Muat Naik
+                </button>
+                <button type="button" class="btn btn-secondary">Padam</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <c-col class="d-flex">
+          <button type="button" class="btn btn-primary">
+            Tambah Dokumen
+          </button>
+        </c-col>
+      </c-row>
+      <c-row class="d-flex"> </c-row>
+    </c-row>
+
+   <c-row>
+      <c-row style="border-top: 1px solid rgba(0, 0, 0, 0.1)">
+        <c-col class="d-flex gap-5 flex-shrink-0 justify-content-end py-3">
+          <div class="d-flex gap-2">
+           <button
+            type="button"
+            class="btn-custom-normalBlue fw-semibold btn btn-primary"
+            (click)="openSimpanRekod()">Simpan</button>
+           <button type="button" class="btn-custom-normalBlue fw-semibold btn btn-primary" 
+            (click)="openHantarRekod()">Hantar</button>
+          </div>
+
+          <div class="d-flex">
+            <button
+              type="button"
+              class="btn-custom-normalWhite fw-semibold btn btn-light"
+              (click)="navigatePreviousPage()"
+            >
+              &lt;
+            </button>
+            <button
+              type="button"
+              class="btn-custom-normalWhite fw-semibold btn btn-light"
+              (click)="navigateNextPage()"
+            >
+              &gt;
+            </button>
+          </div>
+        </c-col>
+      </c-row>
+    </c-row>
+    <!-- Simpan Rekod Modal -->
+<app-modal-component
+  [visible]="simpanRekodModal"
+  message="Rekod Telah Berjaya Disimpan"
+  mode="ok"
+  icon="tick"
+  (close)="closeSimpanRekodModal()"
+></app-modal-component>
+
+<!-- Hantar Rekod Modal -->
+<app-modal-component
+  [visible]="hantarRekodModal"
+  message="Rekod Telah Berjaya Dihantar"
+  mode="ok"
+  icon="tick"
+  (close)="closeHantarRekodModal()"
+></app-modal-component>
+
+  </c-card-body>
+</c-card>

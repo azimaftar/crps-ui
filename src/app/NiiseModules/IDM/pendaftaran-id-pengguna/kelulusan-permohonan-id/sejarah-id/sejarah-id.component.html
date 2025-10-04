@@ -1,0 +1,141 @@
+<div class="container-fluid">
+    <!-- Main Content Area -->
+    <div class="card">
+      <div class="ms-4 me-4">
+        <div class="mt-2 mb-2">
+          <h3 class="mb-2 mt-4"><b>PERMOHONAN ID PENGGUNA - KELULUSAN PERMOHONAN</b></h3>
+        </div>
+        <div class="mt-4">
+          <reusable-tab [currentStep]="currentStep" [steps]="steps"></reusable-tab>
+          <div class="row align-items-center mb-3">
+            <!-- Left Side: Maklumat Peranan -->
+            <div class="col-md-6">
+              <p class="mb-0">5. Sejarah ID</p>
+              <small class="text-muted">Langkah 5 daripada 5 </small>
+            </div>
+          </div>
+  
+          <div class="table-pagination-wrapper">
+            <!-- Scrollable Table Container -->
+            <div class="table-responsive table-scroll-container">
+              <table class="table table-hover table-row">
+                <thead>
+                  <tr>
+                    <th>
+                      <div class="d-flex align-items-center gap-2 ps-0 pb-0 table-header">
+                        <input type="checkbox" class="form-check-input" />
+                        Bil
+                      </div>
+                    </th>
+                    <th class="table-header">Tarikh</th>
+                    <th class="table-header">Perkara</th>
+                    <th class="table-header">Tempat Bertugas/Cawangan</th>
+                    <th class="table-header">Dilaksanakan Oleh</th>
+                    <th class="table-header">Diluluskan Oleh</th>
+                    <th class="table-header">Status</th>
+                    <th class="table-header">Tindakan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let history of paginatedHistory; let i = index" [class.table-active]="history.selected">
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <input type="checkbox" class="form-check-input" [(ngModel)]="history.selected" />
+                        {{ (currentPage - 1) * itemsPerPage + i + 1 }}
+                      </div>
+                    </td>
+                    <td>{{ history.tarikh | date: 'dd/MM/yyyy' }}</td>
+                    <td class="text-truncate" style="max-width: 300px;" [title]="history.perkara">
+                      {{ history.perkara }}
+                    </td>
+                    <td class="text-truncate">{{ history.tempatBertugas }}</td>
+                    <td class="text-truncate">{{ history.dilaksanakanOleh }}</td>
+                    <td class="text-truncate">{{ history.diluluskanOleh }}</td>
+                    <td>
+                        {{ history.status }}
+                    </td>
+                    <td>
+                      <button class="btn btn-danger btn-sm" (click)="removeHistory(history.id)" title="Padam">
+                        <i class="cil-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr *ngIf="paginatedHistory.length === 0">
+                    <td colspan="8" class="text-center text-muted py-4">
+                      Tiada data sejarah ID dijumpai
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+  
+            <!-- Pagination and Controls -->
+            <div class="row mt-3 pagination-row">
+              <div class="col">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                  <!-- Left: Items per page -->
+                  <div class="d-flex align-items-center gap-3">
+                    <select class="form-select form-select-sm rounded-pill" [(ngModel)]="itemsPerPage"
+                      (change)="onItemsPerPageChange()">
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                    </select>
+                  </div>
+  
+                  <!-- Right: Pagination and Pergi ke -->
+                  <div class="d-flex align-items-center flex-wrap gap-2">
+                    <!-- Pagination -->
+                    <nav>
+                      <ul class="pagination pagination-sm mb-0">
+                        <li class="page-item" [class.disabled]="currentPage === 1">
+                          <button class="page-link" (click)="goToPage('first')">&laquo;</button>
+                        </li>
+                        <li class="page-item" [class.disabled]="currentPage === 1">
+                          <button class="page-link" (click)="goToPage('prev')">&lsaquo;</button>
+                        </li>
+                        <li class="page-item active">
+                          <span class="page-link">{{ currentPage }}</span>
+                        </li>
+                        <li class="page-item" [class.disabled]="currentPage === totalPages">
+                          <button class="page-link" (click)="goToPage('next')">&rsaquo;</button>
+                        </li>
+                        <li class="page-item" [class.disabled]="currentPage === totalPages">
+                          <button class="page-link" (click)="goToPage('last')">&raquo;</button>
+                        </li>
+                      </ul>
+                    </nav>
+  
+                    <div class="d-flex align-items-center">
+                      <small class="text-muted">Pergi ke</small>
+                      <input type="number" class="form-control form-control-sm" style="width: 60px;"
+                        [(ngModel)]="goToPageNumber" (keyup.enter)="goToSpecificPage()" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Bottom Navigation -->
+        <div class="pagination-wrapper row mt-4 pb-2 pt-2">
+          <div class="col-12">
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-all me-2" (click)="goToPrevious()">
+                Pemulangan Semula
+            </button>
+            <button class="btn btn-all me-2" (click)="showWujudID()">
+                Tidak Lulus
+            </button>
+            <button class="btn btn-all me-2" (click)="showWujudID()">
+                Lulus
+            </button>
+              <button class="btn btn-all" (click)="goToPrevious()">&lt;</button>
+              <button class="btn btn-all" (click)="goToNext()">&gt;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

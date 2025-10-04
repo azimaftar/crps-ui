@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <h2 class="mb-4">Reports Overview</h2>
+ 
+  <div class="row">
+    <div class="col-md-6 col-xl-3" *ngFor="let card of cards">
+      <c-card class="mb-4 shadow-sm border-0">
+        <c-card-body>
+          <div class="text-medium-emphasis text-uppercase fw-semibold mb-1">
+            {{ card.title }}
+          </div>
+          <div class="fs-4 fw-bold">{{ card.value }}</div>
+          <div class="small text-medium-emphasis">{{ card.description }}</div>
+        </c-card-body>
+      </c-card>
+    </div>
+  </div>
+ 
+  <c-card class="mb-4 shadow-sm">
+    <c-card-header>
+      <strong>Monthly Report</strong>
+      <div class="float-end">
+        <button class="btn btn-sm btn-primary">Export</button>
+      </div>
+    </c-card-header>
+    <c-card-body>
+      <p>This section will contain monthly summaries, statistics, or charts.</p>
+      <c-progress [value]="60" color="success" class="mb-2"></c-progress>
+      <small class="text-medium-emphasis">60% data processed</small>
+    </c-card-body>
+  </c-card>
+</div>

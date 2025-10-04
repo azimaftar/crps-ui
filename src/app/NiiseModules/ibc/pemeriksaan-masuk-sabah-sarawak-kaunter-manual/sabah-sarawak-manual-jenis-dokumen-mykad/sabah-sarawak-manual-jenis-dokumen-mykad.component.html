@@ -1,0 +1,111 @@
+<!-- CARD CONTENT -->
+<c-card class="mb-3 shadow-sm border rounded mx-auto" style="max-width: 1200px;">
+  
+  <!-- HEADER PROFIL -->
+  <c-card-header class="card-header">
+    <h3 class="card-header-title"><b>Maklumat MyKad/MyPR</b></h3>
+  </c-card-header>
+
+  <!-- Card Body -->
+  <div class="card-body">
+    <div class="row g-3">
+       <!-- NEW Static IMG | PASSPORT (top) -->
+        <div class="h-100 border-dashed rounded overflow-hidden d-flex align-items-center justify-content-center">
+            <img src="assets/figma/passport-white.png" alt="Passport White" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+        </div>
+    
+        <!-- Baris 5 -->
+      <div class="row gx-3 gy-2">
+        <div class="col-md-3">
+          <label cLabel>Jenis Dokumen</label>
+        <input type="text" class="form-control" [(ngModel)]="documentForm.jenisDocument" name="jenisDocument" disabled>
+        </div>
+      </div>
+
+      <!-- Baris 2 -->
+      <div class="row gx-3 gy-2">
+        <div class="col-md-3">
+        <label cLabel>Jantina</label>
+        <input type="text" class="form-control" [(ngModel)]="documentForm.jantina" name="jantina" disabled>
+        </div>
+        <div class="col-md-4">
+        <label cLabel>Agama</label>
+        <input type="text" class="form-control" [(ngModel)]="documentForm.agama" name="agama" disabled>
+        </div>
+      </div>
+      <!-- Baris 3 -->
+      <div class="col-md-3">
+        <label cLabel>No. Pengenalan</label>
+        <input type="text" class="form-control" [(ngModel)]="documentForm.noPengenalan" name="noPengenalan" disabled>
+      </div>
+      <div class="col-md-3">
+        <label cLabel>Warganegara</label>
+        <input type="text" class="form-control" [(ngModel)]="documentForm.warganegara" name="warganegara" disabled>
+      </div>
+      <div class="col-md-3">
+        <label cLabel>Bangsa</label>
+        <input type="text" class="form-control" [(ngModel)]="documentForm.bangsa" name="bangsa" disabled>
+      </div>
+
+      <!-- Nama penuh -->
+      <div class="col-12">
+        <label cLabel>Nama</label>
+<input type="text" 
+       class="form-control" [(ngModel)]="documentForm.nama" name="nama" style="width: 870px;" disabled>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Buttons -->
+  <div class="card-footer button-row single-button">
+    <button class="semak-btn" (click)="OnTutup()">
+      <span class="icon-circle">✓</span>
+      <span>Semak</span>
+    </button>
+  </div>
+
+</c-card>
+
+<!-- Testing Mykad/MyPR Error Popups (Dev Only) -->
+<div class="mt-4 p-3 border rounded" style="background-color: #f8f9fa;">
+  <h6>Testing Mykad/MyPR Error Popups (Dev Only):</h6>
+  <div class="d-flex gap-2 mb-2">
+    <button cButton color="warning" size="sm" (click)="testError('IBC-S020')">
+      Test S020 (Scan Failure)
+    </button>
+    <button cButton color="danger" size="sm" (click)="testError('IBC-S021')">
+      Test S021 (Expired)
+    </button>
+  </div>
+</div>
+
+<!-- Standard Error Modal -->
+<c-modal 
+  #modalStandard
+  [visible]="modalStandard?.visible"
+  [backdrop]="'static'"
+  [keyboard]="false"
+  id="modalStandard">
+  
+  <c-modal-body class="text-center p-4">
+    <div class="mb-3">
+      <div class="d-inline-flex align-items-center justify-content-center" 
+           style="width: 60px; height: 60px; border: 2px solid #000; position: relative;">
+        <span style="font-size: 24px; font-weight: bold; line-height: 1;">✕</span>
+      </div>
+    </div>
+    <h5 class="mb-4" [innerHTML]="modalMessage"></h5>
+  </c-modal-body>
+  
+  <c-modal-footer class="text-center justify-content-center">
+    <button cButton 
+            color="dark" 
+            (click)="modalStandardClick()"
+            style="background-color: #6c757d; color: white; border: none; padding: 8px 30px; border-radius: 4px;">
+      {{ modalButtonText }}
+    </button>
+  </c-modal-footer>
+</c-modal>
+
+<!-- Rujuk Penyelia Modal Component -->
+<app-modal-rujuk-penyelia></app-modal-rujuk-penyelia>

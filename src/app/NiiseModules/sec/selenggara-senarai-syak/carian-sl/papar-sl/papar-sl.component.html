@@ -1,0 +1,120 @@
+<div class="container-fluid">
+    <c-row>
+        <c-col>
+            <c-card class="mb-3">
+                <c-card-body>
+                    <form>
+                        <h3 class="mb-4">{{ pageTitle }}</h3>
+
+                        <!-- Horizontal Stepper -->
+                        <div class="horizontal-stepper">
+                            <ul class="stepper-list d-flex align-items-center justify-content-start flex-wrap">
+                            <li
+                                class="stepper-item"
+                                *ngFor="let step of steps"
+                                [class.active]="isStepActive(step.number)">
+                                <button 
+                                    type="button" 
+                                    class="step-btn"
+                                    (click)="navigateTo(step)">
+                                    <span class="step-number">{{ step.number }}</span>
+                                    <span class="step-title">{{ step.title }}</span>
+                                </button>
+                            </li>
+                            </ul>
+                        </div>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-12">
+                                <label class="form-label required">Nama</label>
+                                <input type="text" class="form-control" disabled readonly [value]="nama"/>
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                                <label class="form-label required">No. Kad Pengenalan / MyPR</label>
+                                <input type="text" class="form-control" disabled readonly [value]="kpno"/>
+                            </c-col>
+                            <c-col class="col-md-6">
+                                <label class="form-label">No. Dokumen</label>
+                                <input type="text" class="form-control" disabled readonly [value]="noDokumen"/>
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                                <label class="form-label">Tarikh Lahir</label>
+                                <input type="date" class="form-control" disabled readonly [value]="tarikhLahir"/>
+                            </c-col>
+                            <c-col class="col-md-6">
+                                <label class="form-label">Jantina</label>
+                                <input type="text" class="form-control" disabled [value]="jantina"/>
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                                <label class="form-label required">Warganegara*</label>
+                                <input type="text" class="form-control" disabled [value]="warganegara"/>
+                            </c-col>
+                            <c-col class="col-md-6">
+                                <label class="form-label">Status Perkahwinan</label>
+                                <input type="text" class="form-control" disabled [value]="statusPerkahwinan"/>
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                                <label class="form-label">Alamat</label>
+                                <input type="text" class="form-control mb-2" disabled [value]="alamat1"/>
+                                <input type="text" class="form-control mb-2" disabled [value]="alamat2"/>
+                                <input type="text" class="form-control" disabled [value]="alamat3"/>
+                                <div class="mt-3">
+                                    <label class="form-label">No Telefon Bimbit</label>
+                                    <input type="text" class="form-control" disabled readonly [value]="phoneno"/>
+                                </div>
+                            </c-col>
+                            <c-col class="col-md-6">
+                                <div class="mb-4">
+                                    <label class="form-label">Poskod</label>
+                                    <input type="text" class="form-control" disabled [value]="poskod"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Bandar</label>
+                                    <input type="text" class="form-control" disabled [value]="bandar"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Negeri</label>
+                                    <input type="text" class="form-control" disabled [value]="negeri"/>
+                                </div>
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                                <label class="form-label">E-Mel</label>
+                                <input type="text" class="form-control" disabled readonly [value]="email"/>
+                            </c-col>
+                        </c-row>
+
+                        <c-row class="mb-3 mt-3 ms-1">
+                            <c-col class="col-md-6">
+                                <label class="form-label">Status</label>
+                                <input type="text" class="form-control" disabled readonly [value]="statusPermohonan"/>
+                            </c-col>
+                        </c-row>
+                    </form>
+                    <div class="border-top p-3 d-flex justify-content-end gap-2">
+                        <button type="button" cButton color="primary" (click)="prevPage()">
+                            <svg cIcon name="cilCaretLeft" size="sm"></svg>
+                        </button>
+                        <button type="button" cButton color="primary" (click)="nextPage()">
+                            <svg cIcon name="cilCaretRight" size="sm"></svg>
+                        </button>
+                    </div>
+                </c-card-body>
+            </c-card>
+        </c-col>
+    </c-row>
+</div>

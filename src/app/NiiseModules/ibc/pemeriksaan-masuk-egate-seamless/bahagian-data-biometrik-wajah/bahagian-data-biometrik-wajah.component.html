@@ -1,0 +1,223 @@
+<!-- Modal -->
+
+  <button [cModalToggle]="modal6.id" cButton>IBC-N015</button>
+  <c-modal #modal6 alignment="center" id="IBC-N015">
+    <c-modal-header>
+      <button [cModalToggle]="modal6.id" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body class="text-center">
+      <c-row class="mb-3">
+        <c-col>
+          <img 
+                  src="/assets/images/egate.png" 
+                  alt="Back Side" 
+                >
+        </c-col>
+      </c-row>
+      Sila Lihat Ke Arah Kamera Untuk Imbasan Biometrik Wajah & Iris
+    </c-modal-body>
+    <c-modal-footer>
+    </c-modal-footer>
+  </c-modal>
+
+<c-card [style.border]="'1px solid #000'" [style.margin]="'0'">
+  <!-- Header Section -->
+  <c-card-header>
+    <h6 [style.margin]="'18px 0 10px 30px'">
+      PEMERIKSAAN MASUK (EGATE) - BAHAGIAN DATA BIOMETRIK [WAJAH & IRIS]
+    </h6>
+  </c-card-header>
+
+  <!-- Main Content Section -->
+  <c-card-body style="border-top: 1px solid #000; border-bottom: 1px solid #000; display: flex;padding: 0;">
+    
+    <!-- Left Partition - Face & Iris Recognition -->
+    <div style="flex: 3; padding: 1rem; border-right: 1px solid #000;" >
+      <!-- Face Recognition Section -->
+      <c-row style="width: 100%;gap: 1rem; display:flex; margin: 5rem 0 0 1rem;justify-content: center; align-items: center;" >
+            <c-col md="auto">
+                <c-card>
+                    <c-card-body style="text-align: center; padding: 60px 30px;" >
+                    <img src="" alt="WAJAH" cImg>
+                    </c-card-body>
+                </c-card>
+            </c-col>
+            <c-col md="auto">
+                <label cLabel for="faceRecognition">% Pengecaman Wajah</label>
+                <c-row></c-row>
+                <input 
+                    cFormControl 
+                    type="text" 
+                    id="faceRecognition" 
+                    style="width: 10rem;"
+                    placeholder="%"
+                    disabled>
+            </c-col>
+        </c-row>
+
+      <!-- Iris Recognition Section -->
+      <c-row style="width: 100%;gap: 1rem;text-align: center; display:flex; margin: 3rem 0 5rem 1rem;justify-content: center; align-items: center;" >
+        <c-col md="auto">
+          <c-card>
+            <c-card-body style="text-align: center; padding: 60px 30px;" >
+              <img src="" alt="IRIS" cImg>
+            </c-card-body>
+          </c-card>
+        </c-col>
+        <c-col md="auto">
+          <label cLabel for="irisRecognition">% Pengecaman Iris</label>
+          <c-row></c-row>
+          <input 
+            cFormControl 
+            type="text" 
+            id="irisRecognition" 
+            [style.width]="'10rem'"
+            placeholder="%"
+            disabled>
+        </c-col>
+      </c-row>
+    </div>
+
+    <!-- Right Partition - Scan Status -->
+    <div style="flex: 2;margin: 5rem 0 0 1rem; padding: 1rem; display: flex; align-items: center;">
+      <input 
+        cFormControl
+        type="text" 
+        [value]="'STATUS IMBASAN'"
+        [disabled]="true"
+        style="width: 70%;height: 100px;margin: 0 auto;text-align: center;font-size: larger;">
+    </div>
+  </c-card-body>
+</c-card>
+
+<!-- output modal -->
+<button [cModalToggle]="modal7.id" cButton>IBC-N009</button>
+  <c-modal #modal7 alignment="center" id="IBC-N009">
+    <c-modal-header>
+      <button [cModalToggle]="modal7.id" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body class="text-center">
+      <c-row class="mb-3">
+        <c-col>
+          <img 
+                  src="/assets/images/egate.png" 
+                  alt="Back Side" 
+                >
+        </c-col>
+      </c-row>
+      Pengesahan Berjaya!
+      <c-row></c-row>
+      Sila Keluar dari Laluan eGate.
+    </c-modal-body>
+    <c-modal-footer>
+    </c-modal-footer>
+  </c-modal>
+
+      <button [cModalToggle]="modal11.id" cButton>SM-IBC-02.1.7.-3</button>
+  <c-modal #modal11 alignment="center" id="SM-IBC-02.1.7.-3">
+    <c-modal-header>
+      <button [cModalToggle]="modal11.id" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body class="text-center">
+      <c-row class="mb-3">
+        <c-col>
+          <img 
+                  src="/assets/images/egate.png" 
+                  alt="Back Side" 
+                >
+        </c-col>
+      </c-row>
+      Pemeriksaan Masuk Berjaya!
+      <c-row class="mb-3" style="margin-left: 4rem;">
+        <c-col md="12">
+          <c-row class="align-items-center">
+            <!-- Label Column -->
+            <c-col md="5" class="text-centerpe-3">
+              <c-label cLabel>Jenis Pas</c-label>
+            </c-col>
+            
+            <!-- Input Column -->
+            <c-col md="6">  
+              <input 
+                type="text" 
+                cFormControl 
+                style="width: 100%; max-width: 250px;"  
+                placeholder="Visa Transmit" 
+                disabled>
+            </c-col>
+          </c-row>
+        </c-col>
+      </c-row>
+
+      <c-row class="mb-3" style="margin-left: 4rem;">
+        <c-col md="12">
+          <c-row class="align-items-center">
+            <!-- Label Column -->
+            <c-col md="5" >
+              <c-label cLabel>Tarikh Tamat Pas</c-label>
+            </c-col>
+            
+            <!-- Input Column -->
+            <c-col md="6">  
+              <input 
+                type="calendar" 
+                cFormControl 
+                style="width: 100%; max-width: 250px;"  
+                placeholder="21 Mac 2025" 
+                disabled>
+            </c-col>
+          </c-row>
+        </c-col>
+      </c-row>
+      Sila Keluar Dari Laluan eGate.
+      <c-col>
+      </c-col>
+      KodQR e-Digital Stamping akan dihantar ke e-mel anda.
+    </c-modal-body>
+    <c-modal-footer>
+    </c-modal-footer>
+  </c-modal>
+
+  <button [cModalToggle]="modal3.id" cButton>IBC-S035</button>
+  <c-modal #modal3 alignment="center" id="IBC-S035">
+    <c-modal-header>
+      <button [cModalToggle]="modal3.id" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body class="text-center">
+      <c-row class="mb-3">
+        <c-col>
+          <img 
+                  src="/assets/images/egate.png" 
+                  alt="Back Side" 
+                >
+        </c-col>
+      </c-row>
+      Wajah atau Iris Pengembara tidak sempurna
+      <c-row></c-row> 
+      atau gagal untuk ditangkap.
+    </c-modal-body>
+    <c-modal-footer>
+    </c-modal-footer>
+  </c-modal>
+
+    <button [cModalToggle]="modal8.id" cButton>IBC-S031</button>
+  <c-modal #modal8 alignment="center" id="IBC-S031">
+    <c-modal-header>
+      <button [cModalToggle]="modal8.id" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body class="text-center">
+      <c-row class="mb-3">
+        <c-col>
+          <img 
+                  src="/assets/images/egate.png" 
+                  alt="Back Side" 
+                >
+        </c-col>
+      </c-row>
+      Imbasan Wajah dan Iris Gagal!
+      <c-col></c-col>
+      Sila Letakkan Dua (2) Jari Telunjuk di Pengimbas Cap Jari. 
+    </c-modal-body>
+    <c-modal-footer>
+    </c-modal-footer>
+  </c-modal>

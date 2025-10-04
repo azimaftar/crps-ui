@@ -1,0 +1,442 @@
+<c-container fluid class="mt-4">
+    <!-- Widget and Carousel Section -->
+    <c-row class="mb-4">
+        <c-col>
+            <c-card>
+                <c-card-body class="p-4">
+                    <c-row class="g-4">
+                        <!-- Left Side: 2x2 Widget Grid -->
+                        <c-col lg="6">
+                            <c-row class="g-3">
+                                <!-- Top Row Widgets -->
+                                <c-col sm="6">
+                                    <c-widget-stat-a class="h-100" color="primary" [title]="'Total Users'">
+                                        <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+                                            1,234
+                                            <span class="fs-6 fw-normal">
+                                                (15.2% <svg [cIcon]="icons.cilArrowTop"></svg>)
+                                            </span>
+                                        </ng-template>
+                                        <ng-template cTemplateId="widgetActionTemplate">
+                                            <c-dropdown alignment="end" variant="btn-group">
+                                                <button [caret]="false" cButton cDropdownToggle class="p-0"
+                                                    color="transparent">
+                                                    <svg [cIcon]="icons.cilOptions"
+                                                        class="text-high-emphasis-inverse"></svg>
+                                                </button>
+                                                <div cDropdownMenu>
+                                                    <a [routerLink]="[]" cDropdownItem>View Details</a>
+                                                    <a [routerLink]="[]" cDropdownItem>Export</a>
+                                                    <a [routerLink]="[]" cDropdownItem>Settings</a>
+                                                </div>
+                                            </c-dropdown>
+                                        </ng-template>
+                                        <ng-template cTemplateId="widgetChartTemplate">
+                                            <c-chart [data]="widgetData1" [options]="widgetOptions" class="mt-3 mx-3"
+                                                height="70" type="line" />
+                                        </ng-template>
+                                    </c-widget-stat-a>
+                                </c-col>
+                                <c-col sm="6">
+                                    <c-widget-stat-a class="h-100" color="success" [title]="'Active Applications'">
+                                        <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+                                            567
+                                            <span class="fs-6 fw-normal">
+                                                (8.7% <svg [cIcon]="icons.cilArrowTop"></svg>)
+                                            </span>
+                                        </ng-template>
+                                        <ng-template cTemplateId="widgetActionTemplate">
+                                            <c-dropdown alignment="end" variant="btn-group">
+                                                <button [caret]="false" cButton cDropdownToggle class="p-0"
+                                                    color="transparent">
+                                                    <svg [cIcon]="icons.cilOptions"
+                                                        class="text-high-emphasis-inverse"></svg>
+                                                </button>
+                                                <div cDropdownMenu>
+                                                    <a [routerLink]="[]" cDropdownItem>View Details</a>
+                                                    <a [routerLink]="[]" cDropdownItem>Export</a>
+                                                    <a [routerLink]="[]" cDropdownItem>Settings</a>
+                                                </div>
+                                            </c-dropdown>
+                                        </ng-template>
+                                        <ng-template cTemplateId="widgetChartTemplate">
+                                            <c-chart [data]="widgetData2" [options]="widgetOptions" class="mt-3 mx-3"
+                                                height="70" type="line" />
+                                        </ng-template>
+                                    </c-widget-stat-a>
+                                </c-col>
+
+                                <!-- Bottom Row Widgets -->
+                                <c-col sm="6">
+                                    <c-widget-stat-a class="h-100" color="warning" [title]="'Pending Requests'">
+                                        <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+                                            89
+                                            <span class="fs-6 fw-normal">
+                                                (5.4% <svg [cIcon]="icons.cilArrowTop"></svg>)
+                                            </span>
+                                        </ng-template>
+                                        <ng-template cTemplateId="widgetActionTemplate">
+                                            <c-dropdown alignment="end" variant="btn-group">
+                                                <button [caret]="false" cButton cDropdownToggle class="p-0"
+                                                    color="transparent">
+                                                    <svg [cIcon]="icons.cilOptions"
+                                                        class="text-high-emphasis-inverse"></svg>
+                                                </button>
+                                                <div cDropdownMenu>
+                                                    <a [routerLink]="[]" cDropdownItem>View Details</a>
+                                                    <a [routerLink]="[]" cDropdownItem>Export</a>
+                                                    <a [routerLink]="[]" cDropdownItem>Settings</a>
+                                                </div>
+                                            </c-dropdown>
+                                        </ng-template>
+                                        <ng-template cTemplateId="widgetChartTemplate">
+                                            <c-chart [data]="widgetData3" [options]="widgetOptions" class="mt-3 mx-3"
+                                                height="70" type="line" />
+                                        </ng-template>
+                                    </c-widget-stat-a>
+                                </c-col>
+                                <c-col sm="6">
+                                    <c-widget-stat-a class="h-100" color="danger" [title]="'Rejected'">
+                                        <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+                                            23
+                                            <span class="fs-6 fw-normal">
+                                                (2.1% <svg [cIcon]="icons.cilArrowTop"></svg>)
+                                            </span>
+                                        </ng-template>
+                                        <ng-template cTemplateId="widgetActionTemplate">
+                                            <c-dropdown alignment="end" variant="btn-group">
+                                                <button [caret]="false" cButton cDropdownToggle class="p-0"
+                                                    color="transparent">
+                                                    <svg [cIcon]="icons.cilOptions"
+                                                        class="text-high-emphasis-inverse"></svg>
+                                                </button>
+                                                <div cDropdownMenu>
+                                                    <a [routerLink]="[]" cDropdownItem>View Details</a>
+                                                    <a [routerLink]="[]" cDropdownItem>Export</a>
+                                                    <a [routerLink]="[]" cDropdownItem>Settings</a>
+                                                </div>
+                                            </c-dropdown>
+                                        </ng-template>
+                                        <ng-template cTemplateId="widgetChartTemplate">
+                                            <c-chart [data]="widgetData4" [options]="widgetOptions" class="mt-3 mx-3"
+                                                height="70" type="line" />
+                                        </ng-template>
+                                    </c-widget-stat-a>
+                                </c-col>
+                            </c-row>
+                        </c-col>
+
+                        <!-- Right Side: Carousel -->
+                        <c-col lg="6">
+                            <div class="h-100 mt-3">
+                                <c-carousel class="h-100">
+                                    <c-carousel-indicators />
+                                    <c-carousel-inner>
+                                        @for (slide of slides; track slide.src) {
+                                        <c-carousel-item>
+                                            <img alt="{{slide.title}}" class="d-block w-100" loading="lazy"
+                                                src="{{slide.src}}" style="height: 300px; object-fit: cover;" />
+                                            <c-carousel-caption class="d-none d-md-block">
+                                                <h5>{{ slide.title }}</h5>
+                                                <p>{{ slide.subtitle }}</p>
+                                            </c-carousel-caption>
+                                        </c-carousel-item>
+                                        }
+                                    </c-carousel-inner>
+                                    <c-carousel-control [routerLink] caption="Previous" direction="prev" />
+                                    <c-carousel-control [routerLink] caption="Next" direction="next" />
+                                </c-carousel>
+                            </div>
+                        </c-col>
+                    </c-row>
+                </c-card-body>
+            </c-card>
+        </c-col>
+    </c-row>
+
+    <!-- Notifikasi -->
+    <c-row class="mb-4">
+        <c-col>
+            <c-card>
+                <c-card-body class="p-4">
+                    <!-- <div class="container mx-auto p-6 bg-white"> -->
+                        <!-- <h3 class="mb-2 pt-4 ms-4"><b>NOTIFIKASI</b></h3> -->
+
+                        <c-row class="g-3">
+                            <h3 class="mb-2 mt-4 ms-4"><b>NOTIFIKASI</b></h3>
+                        </c-row>
+
+                        <div class="p-4 search-row">
+                            <form [formGroup]="notificationForm" (ngSubmit)="onSubmit()">
+                            <c-row class="mb-4">
+                                <c-col sm="3">
+                                <label class="form-label">Carian</label>
+                                <input type="text" formControlName="carian" class="form-control" placeholder="Masukkan Kata Kunci" />
+                                </c-col>
+
+                                <c-col sm="2">
+                                <label class="form-label">Tarikh Mula</label>
+                                <input type="text" formControlName="tarikhMula" class="form-control" placeholder="7/5/2025" />
+                                </c-col>
+
+                                <c-col sm="2">
+                                <label class="form-label">Tarikh Akhir</label>
+                                <input type="text" formControlName="tarikhAkhir" class="form-control" placeholder="12/5/2025" />
+                                </c-col>
+
+                                <c-col sm="2" class="d-flex align-items-end">
+                                <button type="reset" class="btn btn-all btn-sm w-100">Set Semula </button>
+                                </c-col>
+
+                                <c-col sm="2" class="d-flex align-items-end">
+                                <button type="submit" class="btn btn-all btn-sm w-100">Cari </button>
+                                </c-col>
+                            </c-row>
+                            </form>
+                            <div class="table-pagination-wrapper">
+                            <!-- Scrollable Table Container -->
+                            <div class="table-responsive table-scroll-container">
+                                <table class="table table-hover table-row table-fixed w-100">
+                                <colgroup>
+                                    <col style="width: 10%;" />
+                                    <col style="width: 20%;" />
+                                    <col style="width: 60%;" />
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                    <th scope="col" class="table-header">Bil</th>
+                                    <th scope="col" class="table-header">Tarikh dan Masa</th>
+                                    <th scope="col" class="table-header">Mesej</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of paginatedNotifications; let i = index" (click)="viewDetails('900101138232')"
+                                    style="cursor: pointer;">
+                                    <th scope="row">{{ (currentPage - 1) * itemsPerPage + i + 1 }}</th>
+                                    <td>{{ item.tarikhMasa }}</td>
+                                    <td>{{ item.mesej }}</td>
+                                    </tr>
+                                    <tr *ngIf="paginatedNotifications.length === 0">
+                                    <td colspan="3" class="text-center text-muted py-4">
+                                        Tiada data notifikasi dijumpai
+                                    </td>
+                                    </tr>
+                                </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Pagination and Controls -->
+                            <c-row class="mt-3 pagination-row">
+                                <c-col>
+                                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+
+                                    <!-- Left: Items per page -->
+                                    <div class="d-flex align-items-center gap-2">
+                                    <select class="form-select form-select-sm" [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                    </select>
+                                    </div>
+
+                                    <!-- Right: Pagination and go-to -->
+                                    <div class="d-flex align-items-center flex-wrap gap-2">
+                                    <!-- Pagination -->
+                                    <nav>
+                                        <ul class="pagination pagination-sm mb-0">
+                                        <li class="page-item" [class.disabled]="currentPage === 1">
+                                            <button class="page-link" (click)="goToPage('first')">&laquo;</button>
+                                        </li>
+                                        <li class="page-item" [class.disabled]="currentPage === 1">
+                                            <button class="page-link" (click)="goToPage('prev')">&lsaquo;</button>
+                                        </li>
+                                        <li class="page-item active">
+                                            <span class="page-link">{{ currentPage }}</span>
+                                        </li>
+                                        <li class="page-item" [class.disabled]="currentPage === totalPages">
+                                            <button class="page-link" (click)="goToPage('next')">&rsaquo;</button>
+                                        </li>
+                                        <li class="page-item" [class.disabled]="currentPage === totalPages">
+                                            <button class="page-link" (click)="goToPage('last')">&raquo;</button>
+                                        </li>
+                                        </ul>
+                                    </nav>
+
+                                    <!-- Go To -->
+                                    <div class="d-flex align-items-center ms-2">
+                                        <small class="text-muted">Pergi ke</small>
+                                        <input type="number" class="form-control form-control-sm ms-2" style="width: 60px;"
+                                        [(ngModel)]="goToPageNumber" (keyup.enter)="goToSpecificPage()" />
+                                    </div>
+                                    </div>
+                                </div>
+                                </c-col>
+                            </c-row>
+                            </div>
+                        </div>
+                        <!-- </div> -->
+                </c-card-body>
+            </c-card>
+        </c-col>
+    </c-row>
+
+
+    <!-- Search Form -->
+    <c-row class="mb-4">
+        <c-col>
+            <c-card>
+                <c-card-body>
+                    <!-- Header and Filters Section -->
+                    <c-row class="g-3">
+                        <h3 class="mb-2 mt-4 ms-4"><b>TUGASAN SEMASA</b></h3>
+                    </c-row>
+                    <div class="table-pagination-wrapper ps-2 pe-2">
+                        <c-row class="g-3 justify-content-end mb-1 mt-2 search-row">
+                            <!-- First Column -->
+                            <c-col md="3">
+                                <label class="form-label">Pilih Modul</label>
+                                <select class="form-select" [(ngModel)]="searchFilters.modul">
+                                    <option value="">Semua</option>
+                                    <option value="permohonan_id">Permohonan ID Pengguna</option>
+                                    <option value="kemaskini_id">Kemaskini ID Pengguna</option>
+                                    <option value="reset_password">Reset Password</option>
+                                </select>
+                            </c-col>
+
+                            <!-- Second Column -->
+                            <c-col md="3">
+                                <label class="form-label">Pilih Lajur</label>
+                                <select class="form-select" [(ngModel)]="searchFilters.lajur">
+                                    <option value="">Semua</option>
+                                    <option value="permohonan_id">Permohonan ID Pengguna</option>
+                                    <option value="kemaskini_id">Kemaskini ID Pengguna</option>
+                                    <option value="reset_password">Reset Password</option>
+                                </select>
+                            </c-col>
+                        </c-row>
+
+                        <!-- Table Section -->
+                        <div class="table-responsive">
+                            <table class="table table-hover table-row">
+                                <thead class="table">
+                                    <tr>
+                                        <th style="width: 58px;">
+                                            <div class="d-flex align-items-center ps-0 table-header">
+                                                Bil.
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="d-flex align-items-center  table-header">
+                                                Keterangan
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="d-flex align-items-center  table-header">
+                                                Tarikh
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="d-flex align-items-center  table-header">
+                                                Masa
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="d-flex align-items-center  table-header">
+                                                Status
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="d-flex align-items-center  ps-0 table-header">
+                                                Modul
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let landing of paginatedLanding; let i = index">
+                                        <td>
+                                            <div class="d-flex align-items-center gap-2">
+                                                {{ (currentPage - 1) * itemsPerPage + i + 1 }}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-2">
+                                                {{ landing.keterangan }}
+                                            </div>
+                                        </td>
+                                        <td>{{ landing.tarikh | date: 'dd/MM/yyyy' }}</td>
+                                        <td>{{ landing.masa }}</td>
+                                        <td>
+                                            <c-badge [color]="getStatusColor(landing.status)">
+                                                {{ landing.status }}
+                                            </c-badge>
+                                        </td>
+                                        <td>{{ landing.modul }}</td>
+                                    </tr>
+                                    <tr *ngIf="paginatedLanding.length === 0">
+                                        <td colspan="6" class="text-center text-muted py-4">
+                                            Tiada data permohonan dijumpai
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Pagination -->
+                        <c-row class="mt-3 pagination-row">
+                            <c-col>
+                                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                                    <!-- Left: Items per page -->
+                                    <div class="d-flex align-items-center gap-2">
+                                        <select class="form-select form-select-sm rounded-pill" style=" width: auto;"
+                                            [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()">
+                                            <option value="10">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Right: Pagination and Go to page -->
+                                    <div class="d-flex align-items-center flex-wrap gap-3">
+                                        <!-- Pagination -->
+                                        <nav>
+                                            <ul class="pagination pagination-sm mb-0">
+                                                <li class="page-item" [class.disabled]="currentPage === 1">
+                                                    <button class="page-link"
+                                                        (click)="goToPage('first')">&laquo;</button>
+                                                </li>
+                                                <li class="page-item" [class.disabled]="currentPage === 1">
+                                                    <button class="page-link"
+                                                        (click)="goToPage('prev')">&lsaquo;</button>
+                                                </li>
+                                                <li class="page-item active">
+                                                    <span class="page-link">{{ currentPage }}</span>
+                                                </li>
+                                                <li class="page-item" [class.disabled]="currentPage === totalPages">
+                                                    <button class="page-link"
+                                                        (click)="goToPage('next')">&rsaquo;</button>
+                                                </li>
+                                                <li class="page-item" [class.disabled]="currentPage === totalPages">
+                                                    <button class="page-link"
+                                                        (click)="goToPage('last')">&raquo;</button>
+                                                </li>
+                                            </ul>
+                                        </nav>
+
+                                        <!-- Go to page -->
+                                        <div class="d-flex align-items-center gap-2">
+                                            <small class="text-muted">Pergi ke</small>
+                                            <input type="number" class="form-control form-control-sm"
+                                                style="width: 60px;" [(ngModel)]="goToPageNumber"
+                                                (keyup.enter)="goToSpecificPage()" min="1" [max]="totalPages">
+                                        </div>
+                                    </div>
+                                </div>
+                            </c-col>
+                        </c-row>
+                    </div>
+                </c-card-body>
+            </c-card>
+        </c-col>
+    </c-row>
+</c-container>

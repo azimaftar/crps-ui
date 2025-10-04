@@ -1,0 +1,151 @@
+<div class="container-fluid" style="height: auto;">  
+    <app-horizontal-stepper [currentStep]="currentStep" [isInvalid]="pegawaiForm.invalid"> </app-horizontal-stepper>
+    <div class="form-section">
+        <div class="row">
+            <!-- Left Side: Officer Info -->
+            <div class="pe-4"> <!-- <div class="col-md-8 border-end pe-4">  -->
+                <h5 class="section-title">Maklumat Pegawai Yang Mendaftar</h5>
+                <!-- Image Placeholder -->
+                <div
+                    style="
+                        width: 150px;
+                        height: 150px;
+                        border: 1px solid #ccc;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    "
+                >
+                    <span>Gambar Pegawai</span>
+                </div>
+                <form #pegawaiForm="ngForm" class="mt-3" novalidate>
+                    <div class="row">
+                        <!-- Column 1 -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label>Nama Pegawai</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    maxlength="100"
+                                    [(ngModel)]="pegawai.nama"
+                                    name="nama"
+                                    required
+                                    #nama="ngModel"
+                                    [ngClass]="{'is-invalid': nama.invalid && (nama.touched || submitted)}"
+                                />
+                                <div *ngIf="nama.invalid && (nama.touched || submitted)" class="invalid-feedback">
+                                    Sila isi nama pegawai
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label>Jawatan</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    maxlength="100"
+                                    [(ngModel)]="pegawai.gredJawatan"
+                                    name="gredJawatan"
+                                    required
+                                    #gredJawatan="ngModel"
+                                    [ngClass]="{'is-invalid': gredJawatan.invalid && (gredJawatan.touched || submitted)}"
+                                />
+                                <div *ngIf="gredJawatan.invalid && (gredJawatan.touched || submitted)" class="invalid-feedback">
+                                    Sila isi jawatan
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label>Unit</label>
+                                <select
+                                    class="form-select"
+                                    [(ngModel)]="pegawai.unit"
+                                    name="unit"
+                                    required
+                                    #unit="ngModel"
+                                    [ngClass]="{'is-invalid': unit.invalid && (unit.touched || submitted)}"
+                                >
+                                <option disabled value="">-Sila Pilih-</option>
+                                <option value="Depot Tahanan Imigresen">Depot Tahanan Imigresen</option>
+                                <option value="HR">Sumber Manusia</option>
+                                <option value="Finance">Kewangan</option>
+                                <option value="IT">Teknologi Maklumat</option>
+                                <option value="Admin">Pentadbiran</option>
+                                </select>
+                                <div *ngIf="unit.invalid && (unit.touched || submitted)" class="invalid-feedback">
+                                    Sila pilih unit
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Column 2 -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label>Nombor Perkhidmatan</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    maxlength="100"
+                                    [(ngModel)]="pegawai.noPerkhidmatan"
+                                    name="noPerkhidmatan"
+                                    required
+                                    #noPerkhidmatan="ngModel"
+                                    [ngClass]="{'is-invalid': noPerkhidmatan.invalid && (noPerkhidmatan.touched || submitted)}"
+                                />
+                                <div *ngIf="noPerkhidmatan.invalid && (noPerkhidmatan.touched || submitted)" class="invalid-feedback">
+                                    Sila isi nombor perkhidmatan
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label>E-mail</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    maxlength="100"
+                                    [(ngModel)]="pegawai.email"
+                                    name="email"
+                                    required
+                                    email
+                                    #email="ngModel"
+                                    [ngClass]="{'is-invalid': email.invalid && (email.touched || submitted)}"
+                                />
+                                <div *ngIf="email.invalid && (email.touched || submitted)" class="invalid-feedback">
+                                    Sila isi e-mel yang sah
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Right Side: Steps with vertical line -->
+            <!-- <div class="col-md-4 ps-4 border-start">
+                <app-step-indicator [currentStep]="currentStep"> </app-step-indicator>
+            </div> -->
+        </div>
+        <div class="bottom-navigation">
+            <!-- Navigation Buttons -->
+            <div class="nav-buttons">
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    (click)="goPrevStep()"
+                    [disabled]="currentStep === 1"
+                >
+                    &lt; <!--HTML entity that renders as the < character for button text-->
+                </button>
+                <button
+                    class="btn btn-primary"
+                    (click)="goNextStep(pegawaiForm)"
+                    [disabled]="currentStep === maxStep"
+                >
+                    &gt; <!--HTML entity that renders as the > character for button text-->
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #noData>
+    <p>No draf data received.</p>
+</ng-template>
+<div *ngIf="draf; else noData">
+    <pre>{{ draf | json }}</pre>
+</div>

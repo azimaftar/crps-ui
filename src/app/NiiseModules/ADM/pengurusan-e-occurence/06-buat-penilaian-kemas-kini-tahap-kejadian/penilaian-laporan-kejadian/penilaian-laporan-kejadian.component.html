@@ -1,0 +1,309 @@
+<c-card>
+    <h4 class="fw-bold m-3 mt-5">
+        PENILAIAN LAPORAN KEJADIAN
+    </h4>
+    <div class="m-3">
+        <app-stepper
+        [currentMainStep]="currentMainStep"
+        [currentSubStep]="currentSubStep"
+        ></app-stepper>
+    </div>
+    <c-card-body class="px-5">
+        <form [formGroup]="form">
+            <c-row>
+                <h6 class="fw-bold mb-3">Laporan Kejadian</h6>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12">
+                    <label for="namaPegawai" cLabel>Nama Pegawai</label>
+                </c-col>
+                <c-col md="3">
+                    <input type="text" class="form-control" id="namaPegawai" formControlName="namaPegawai">
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12">
+                    <label for="nokp" cLabel>Nombor Kad Pengenalan</label>
+                </c-col>
+                <c-col md="3">
+                    <input type="text" class="form-control" id="nokp" formControlName="nokp">
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12">
+                    <label for="noperkhidmatan" cLabel>Nombor Perkhidmatan</label>
+                </c-col>
+                <c-col md="6">
+                    <input type="text" class="form-control" id="noperkhidmatan" formControlName="noperkhidmatan">
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12">
+                    <label for="email" cLabel>Email</label>
+                </c-col>
+                <c-col md="6">
+                    <input type="text" class="form-control" id="email" formControlName="email">
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12">
+                    <label for="jawatan" cLabel>Jawatan</label>
+                </c-col>
+                <c-col md="6">
+                    <input type="text" class="form-control" id="jawatan" formControlName="jawatan">
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12">
+                    <label for="kategoriKejadian" cLabel>Kategori Kejadian</label>
+                </c-col>
+                <c-col class="col-md-6">
+                    <select class="form-select" id="kategoriKejadian" formControlName="kategoriKejadian">
+                        <option value="">-Sila Pilih-</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12">
+                    <label for="jenisKejadian" cLabel>Jenis Kejadian</label>
+                </c-col>
+                <c-col class="col-md-6">
+                    <select class="form-select" id="jenisKejadian" formControlName="jenisKejadian">
+                        <option value="">-Sila Pilih-</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12">
+                    <label for="tarikhKejadian" cLabel>Tarikh Kejadian</label>
+                </c-col>
+                <c-col md="3">
+                    <input type="text" class="form-control" id="tarikhKejadian" formControlName="tarikhKejadian">
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12">
+                    <label for="masaKejadian" cLabel>Masa Kejadian</label>
+                </c-col>
+                <c-col md="3">
+                    <input type="text" class="form-control" id="masaKejadian" formControlName="masaKejadian">
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12">
+                    <label for="tempatKejadian" cLabel>Tempoh Kejadian</label>
+                </c-col>
+                <c-col md="6">
+                    <input type="text" class="form-control" id="tempatKejadian" formControlName="tempatKejadian">
+                </c-col>
+            </c-row>
+            
+            <c-row>
+                <h6 class="fw-bold mb-3 mt-5">Laporan Polis</h6>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12">
+                    <label for="nomborLaporanPolis" cLabel>Nombor Laporan Polis</label>
+                </c-col>
+                <c-col md="3">
+                    <input type="text" class="form-control" id="nomborLaporanPolis" formControlName="nomborLaporanPolis">
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12">
+                    <label for="tarikhLaporanPolis" cLabel>Tarikh Laporan Polis</label>
+                </c-col>
+                <c-col md="3">
+                    <input type="text" class="form-control" id="tarikhLaporanPolis" formControlName="tarikhLaporanPolis">
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12">
+                    <label for="masaLaporanPolis" cLabel>Masa Laporan Polis</label>
+                </c-col>
+                <c-col md="3">
+                    <input type="text" class="form-control" id="masaLaporanPolis" formControlName="masaLaporanPolis">
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12">
+                    <label for="balaiLaporanPolis" cLabel>Balai</label>
+                </c-col>
+                <c-col md="3">
+                    <input type="text" class="form-control" id="balaiLaporanPolis" formControlName="balaiLaporanPolis">
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12">
+                    <label for="daerahLaporanPolis" cLabel>Daerah</label>
+                </c-col>
+                <c-col md="3">
+                    <input type="text" class="form-control" id="daerahLaporanPolis" formControlName="daerahLaporanPolis">
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12">
+                    <label for="kontinjenLaporanPolis" cLabel>Kontinjen</label>
+                </c-col>
+                <c-col md="3">
+                    <input type="text" class="form-control" id="kontinjenLaporanPolis" formControlName="kontinjenLaporanPolis">
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12">
+                    <label for="namaPegawaiYangTerlibat" cLabel>Nama Pegawai Yang Terlibat</label>
+                </c-col>
+                <c-col md="6">
+                    <input type="text" class="form-control" id="namaPegawaiYangTerlibat" formControlName="namaPegawaiYangTerlibat">
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12">
+                    <label for="namaTahananMangsa" cLabel>Nama Tahanan/ Mangsa</label>
+                </c-col>
+                <c-col md="6">
+                    <input type="text" class="form-control" id="namaTahananMangsa" formControlName="namaTahananMangsa">
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12">
+                    <label for="tempatKejadianLaporanPolis" cLabel>Tempat Kejadian</label>
+                </c-col>
+                <c-col md="9">
+                    <textarea class="form-control" id="tempatKejadianLaporanPolis" formControlName="tempatKejadianLaporanPolis" rows="3"></textarea>
+                </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12">
+                    <label for="tahapKejadian" cLabel>Tahap Kejadian</label>
+                </c-col>
+                <c-col class="col-md-6">
+                    <select class="form-select" id="tahapKejadian" formControlName="tahapKejadian">
+                        <option value="">Merah / Kuning / Hijau</option>
+                        <option value="merah">Merah</option>
+                        <option value="kuning">Kuning</option>
+                        <option value="hijau">Hijau</option>
+                    </select>
+                </c-col>
+            </c-row>
+            <c-row>
+                <h6 class="fw-bold mb-3 mt-5">Muat Naik</h6>
+            </c-row>
+            <c-row [md]="2">
+                <c-col md="3" xs="12" class="d-flex align-items-center">
+                    <label for="gambarKejadian" cLabel>Gambar Kejadian</label>
+                </c-col>
+                <c-col class="mb-3 d-flex flex-column flex-md-row align-items-center">
+                    <!-- <label for="file1" class="btn primary-custom-btn mb-2 mb-md-0">
+                        Muat Naik
+                    </label>
+                    <input
+                    type="file"
+                    id="file1"
+                    hidden
+                    (change)="onFileChange1($event)"
+                    formControlName="gambarKejadian"
+                    />
+                    <mat-icon class="ms-md-2 mb-2 mb-md-0">add</mat-icon> -->
+                    <span class="ms-md-2">{{ selectedFileName1 || 'Tiada fail dipilih' }}</span>
+                  </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12" class="d-flex align-items-center">
+                    <label for="videoKejadian" cLabel>Video Kejadian</label>
+                </c-col>
+                <c-col class="mb-3 d-flex flex-column flex-md-row align-items-center">
+                    <!-- <label for="file2" class="btn primary-custom-btn">
+                        Muat Naik
+                    </label>
+                    <input
+                    type="file"
+                    id="file2"
+                    hidden
+                    (change)="onFileChange2($event)"
+                    formControlName="videoKejadian"
+                    /> 
+                    <mat-icon class="ms-2">add</mat-icon> -->
+                    <span class="ms-2 mb-2">{{ selectedFileName2 || 'Tiada fail dipilih' }}</span>
+                  </c-col>
+            </c-row>
+            <c-row>
+                <c-col md="3" xs="12" class="d-flex align-items-center">
+                    <label for="dokumenSokongan" cLabel>Dokumen Sokongan</label>
+                </c-col>
+                <c-col class="mb-3 d-flex flex-column flex-md-row align-items-center">
+                    <!-- <label for="file3" class="btn primary-custom-btn">
+                        Muat Naik
+                    </label>
+                    <input
+                    type="file"
+                    id="file3"
+                    hidden
+                    (change)="onFileChange3($event)"
+                    formControlName="dokumenSokongan"
+                    /> 
+                    <mat-icon class="ms-2">add</mat-icon> -->
+                    <span class="ms-2 mb-2">{{ selectedFileName3 || 'Tiada fail dipilih' }}</span>
+                  </c-col>
+            </c-row>
+            <c-row class="mt-5"> 
+                <c-col md="3" xs="12">
+                    <label for="catatan" cLabel>Catatan</label>
+                </c-col>
+                <c-col md="9">
+                    <textarea class="form-control" id="catatan" formControlName="catatan" rows="3"></textarea>
+                </c-col>
+            </c-row>
+        </form>
+    </c-card-body>
+    <c-card-footer>
+        <c-row>
+            <div class="d-flex justify-content-end">
+                    <!-- <button class="l-custom-btn" (click)="navigatePreviousPage()">&lsaquo;</button> -->
+                <button class="r-custom-btn rounded-3" (click)="navigateNextPage()">&rsaquo;</button>
+            </div>
+        </c-row>
+    </c-card-footer>
+  </c-card>
+  
+  <app-modal-component
+    [visible]="simpanRekodModal"
+    title=""
+    message="Rekod Telah Berjaya Disimpan"
+    mode="ok"
+    icon="tick"
+    (close)="closeSimpanRekodModal()"
+  ></app-modal-component>
+  
+  <app-modal-component
+    [visible]="hantarRekodModal"
+    title=""
+    message="Rekod Telah Berjaya Dihantar"
+    mode="ok"
+    icon="tick"
+    (close)="closeHantarRekodModal()"
+  ></app-modal-component>
+  
+  <!-- Medan Mandatori Modal -->
+  <app-modal-component
+    [visible]="medanMandatoriVisible"
+    title=""
+    message="Medan Mandatori diperlukan"
+    mode="ok"
+    icon="danger"
+    (close)="medanMandatoriModalconfirm()"
+  ></app-modal-component>
+
+  <!-- Tidak Dapat Muat Naik Modal -->
+  <app-modal-component
+    [visible]="tidakDapatMuatNaikVisible"
+    title=""
+    message="Dokumen tidak dapat dimuat naik. Sila cuba lagi."
+    mode="ok"
+    icon="danger"
+    (close)="tidakDapatMuatNaikModalconfirm()"
+  ></app-modal-component>

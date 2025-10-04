@@ -1,0 +1,188 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<c-card>
+    <c-card-header class="bg-custom-gray ">
+        <h4 class="mb-0 fw-bold">SELENGGARA DATA MESEJ NOTIFIKASI</h4>
+    </c-card-header>
+    <c-card-body class="bg-custom-gray2 ">
+        <!-- Row with Labels side by side -->
+        <c-row class="align-items-start" style="gap: 20px;">
+            <c-col xs="12" sm="6" md="3">
+                <label class="style-1" for="idInput">Kod Mesej Notifikasi:</label>
+            </c-col>
+            <c-col xs="12" sm="6" md="3">
+                <label class="style-1" for="messageTypeSelect">Jenis Mesej:</label>
+            </c-col>
+        </c-row>
+
+        <!-- Row with Inputs aligned under labels -->
+        <c-row class="align-items-start" style="gap: 20px;">
+            <c-col xs="12" sm="4" md="3">
+                <input id="idInput" #idInput class="form-control" />
+            </c-col>
+
+            <c-col xs="12" sm="6" md="3">
+
+                <!-- <select id="messageTypeSelect" #messageTypeSelect class="form-select" style="min-width: 150px;">
+                    <option value="" disabled selected>-- Sila Pilih --</option>
+                    <option value="1">Amaran</option>
+                    <option value="2">Ralat</option>
+                    <option value="3">Status</option>
+                    <option value="4">Notifikasi</option>
+                </select> -->
+                <c-col xs="12" sm="6" md="3">
+                    <select id="messageTypeSelect" class="form-select" [(ngModel)]="selectedMessageType"
+                        style="min-width: 150px;">
+                        <option value="" disabled>-- Sila Pilih --</option>
+                        <option *ngFor="let type of messageTypes" [value]="type.codeMsgType">
+                            {{ type.descBITypeMsg }}
+                        </option>
+                    </select>
+                </c-col>
+
+            </c-col>
+            <c-col xs="12" sm="6" md="3">
+                <button class="btn-search" (click)="onSearch(idInput.value ,selectedMessageType)">
+                    <i class="fas fa-search"></i> Cari
+                </button>
+            </c-col>
+        </c-row>
+
+
+    </c-card-body>
+
+
+    <c-card-body>
+        <c-row>
+            <c-col class="text-end">
+                <div class="d-flex justify-content-end gap-2">
+                    <!-- Trigger Button -->
+                    <button class="btn-add">e-Library</button>
+
+                    <!-- Trigger Button -->
+                    <button class="btn-add" (click)="openModal()">+ Tambah</button>
+
+
+
+                </div>
+                <!-- Modal Component -->
+                <app-tambah-baru #tambahbaru [messageTypes]="messageTypes" [messageError]="messageError"
+                    (saved)="handleSave($event)"></app-tambah-baru>
+                <app-data-empty #dataempty></app-data-empty>
+                <app-pengaktifan #pengaktifan (saved)="handleAktif($event)"></app-pengaktifan>
+            </c-col>
+        </c-row>
+    </c-card-body>
+
+    <c-card-body>
+        <!-- <div style="max-height: 500px;  width: 1312px; "> -->
+        <ngx-datatable class="bootstrap" [rows]="pagedRows" [columns]="columns" [columnMode]="'force'"
+            [headerHeight]="50" [footerHeight]="50" [limit]="10" [rowHeight]="60" [count]="totalCount"
+            [offset]="pageNumber" (page)="onPage($event)">
+
+            <!-- Table body with no data -->
+            <ng-template ngx-datatable-empty-row>
+                <div class="text-center">
+                    <span>No data available</span>
+                </div>
+            </ng-template>
+            <!-- Numbering column template -->
+            <ng-template #numberTemplate let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                {{ rowIndex + 1 }}
+            </ng-template>
+
+            <!-- Message Type template: map numeric codes to display strings -->
+            <ng-template #messageTypeTemplate let-row="row" let-value="value" ngx-datatable-cell-template>
+                {{ messageTypeMap[value] || 'Unknown' }}
+            </ng-template>
+
+            <!-- Error Type template: map numeric codes to display strings -->
+            <ng-template #errorTypeTemplate let-row="row" let-value="value" ngx-datatable-cell-template>
+                {{ messageErrorMap[value] || 'Unknown' }}
+            </ng-template>
+
+            <ng-template #statusTemplate let-row="row" let-value="value" ngx-datatable-cell-template>
+                <span [ngClass]="{
+      'status-badge-active': statusMap[value] === 'Aktif',
+      'status-badge-inactive': statusMap[value] !== 'Aktif'
+    }" class="status-badge">
+
+                    <span [ngClass]="{
+        'status-dot-active': statusMap[value] === 'Aktif',
+        'status-dot-inactive': statusMap[value] !== 'Aktif'
+      }" class="status-dot"></span>
+
+                    {{ statusMap[value] || 'Unknown' }}
+                </span>
+            </ng-template>
+
+            <ng-template #descriptionTextareaTemplate let-row="row" let-value="value" ngx-datatable-cell-template>
+                <textarea readonly rows="2"
+                    style="width: 100%; resize: vertical; border: none; background-color: transparent;">{{ value }}</textarea>
+            </ng-template>
+
+            <!-- Action buttons template -->
+            <!-- <ng-template #actionTemplate let-row="row" ngx-datatable-cell-template>
+                <button class="btn btn-sm btn-primary me-2" (click)="onUpdate(row)">Kemaskini</button>
+
+                <button class="btn btn-sm" [ngClass]="{
+      'btn-danger': statusMap[row.status] === 'Aktif',
+      'btn-success': statusMap[row.status] !== 'Aktif'
+    }" (click)="onDeactivate(row)">
+                    {{ statusMap[row.status] === 'Aktif' ? 'Nyahaktif' : 'Aktif' }}
+                </button>
+            </ng-template> -->
+
+            <ng-template #actionTemplate let-row="row" ngx-datatable-cell-template>
+                <!-- Update Icon Button -->
+                <button class="btn btn-sm btn-outline-primary me-2" (click)="onUpdate(row)" title="Kemaskini">
+                    <i class="fas fa-edit"></i>
+                </button>
+
+                <!-- Activate/Deactivate Icon Button -->
+                <button class="btn btn-sm"
+                    [ngClass]="statusMap[row.status] === 'Aktif' ? 'btn-outline-danger' : 'btn-outline-success'"
+                    (click)="onDeactivate(row)" [title]="statusMap[row.status] === 'Aktif' ? 'Nyahaktif' : 'Aktif'">
+                    <i [ngClass]="statusMap[row.status] === 'Aktif' ? 'fas fa-user-slash' : 'fas fa-user-check'"></i>
+                </button>
+            </ng-template>
+
+
+
+        </ngx-datatable>
+
+
+        <!-- </div> -->
+    </c-card-body>
+    <c-card-footer class="custom-footer">
+        <!-- Pagination Controls -->
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <!-- Page size selector -->
+            <div>
+                <label for="pageSizeSelect" class="form-label me-2">Sedang Memaparkan </label>
+                <select id="pageSizeSelect" class="form-select d-inline-block w-auto" [value]="pageSize"
+                    (change)="onPageSizeChange($event)">
+                    <option [value]="10">10</option>
+                    <option [value]="25">25</option>
+                    <option [value]="50">50</option>
+                    <option [value]="100">100</option>
+                </select>
+                <label class="form-label m-0"> daripada jumlah {{ totalCount }} rekod</label>
+            </div>
+
+            <!-- Page navigation -->
+            <div class="d-flex align-items-center">
+                <button class="btn btn-outline-secondary me-2" [disabled]="pageNumber === 0"
+                    (click)="goToPreviousPage()">
+                    &laquo; Sebelumnya
+                </button>
+
+                <span>Halaman {{ pageNumber + 1 }} dari {{ totalPages }}</span>
+
+                <button class="btn btn-outline-secondary ms-2" [disabled]="(pageNumber + 1) >= totalPages"
+                    (click)="goToNextPage()">
+                    Seterusnya &raquo;
+                </button>
+            </div>
+        </div>
+    </c-card-footer>
+</c-card>

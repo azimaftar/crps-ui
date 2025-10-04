@@ -1,0 +1,244 @@
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<c-container fluid>
+ <div class="form search-input-group">
+  <div class="form-section h-100">
+    <h2 class="section-title">Maklumat Carian</h2>
+
+    <form #searchForm="ngForm" (ngSubmit)="onSearch()" class="form-group5"> 
+      <div class="container">
+
+        <!-- Nama Vaksin -->
+        <div class="row align-items-center mb-3">
+          <div class="col-2 text-start">
+            <label for="vaccName" class="col-form-label">Nama Vaksin</label>
+          </div>
+          <div class="col-6 d-flex">
+            <input type="text" class="form-control" id="vaccName" name="vaccName"
+              [(ngModel)]="filters.vaccName">
+          </div>
+        </div>
+
+        <!-- Tahun -->
+        <div class="row align-items-center mb-3">
+          <div class="col-2 text-start">
+            <label for="vaccYear" class="col-form-label">Tahun</label>
+          </div>
+          <div class="col-6 d-flex">
+            <input type="text" class="form-control" id="vaccYear" name="vaccYear"
+              [(ngModel)]="filters.vaccYear">
+          </div>
+
+         <!-- Button Carian -->
+          <div class="col-auto">
+            <button type="submit" class="blue-btn"><i class="fa fa-search"></i>Cari</button>
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+  <!-- Hasil Carian -->
+  <div class="results-section" *ngIf="hasSearched && searchResults.length > 0">
+    <h3 class="results-title">Maklumat Vaksin</h3>
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Bil</th>
+            <th>Tahun</th>
+            <th>Nama Vaksin</th>
+            <th>Publish</th>
+            <th>Tarikh Publish</th>
+            <th></th> <!-- Button Simpan n Kemaskini -->
+            
+          </tr>
+        </thead>
+       <tbody>
+          <tr *ngFor="let row of searchResults; let i = index"(click)="selectedRow = row" [class.selected]="selectedRow === row">
+            <td>{{ i + 1 }}</td>
+            <td>{{ row.vaccYear }}</td>
+            <td>{{ row.vaccName }}</td>
+
+            <!-- Radio -->
+            <td>
+              <label>
+                <input type="radio" [name]="'publish' + i" value="YA" [(ngModel)]="row.publishChoice"> YA
+              </label>
+              <label class="ms-2">
+                <input type="radio" [name]="'publish' + i" value="TIDAK" [(ngModel)]="row.publishChoice"> TIDAK
+              </label>
+            </td>
+
+            <!-- Tarikh Publish -->
+            <td>
+              <ng-container *ngIf="row.publishChoice === 'YA'; else notPublished">
+                <input type="date" [(ngModel)]="row.pubDate" class="form-control" />
+              </ng-container>
+              <ng-template #notPublished>
+                <span>-</span>
+              </ng-template>
+            </td>
+
+            <!-- Buttons -->
+            <td>
+              <div class="d-flex justify-content-end w-100">
+                <button *ngIf="row.publishChoice === 'YA' " 
+                        class="blue-btn btn-sm me-2 flex-fill" 
+                        (click)="onSimpan(row)" [disabled]="row.pubSTS !== null"><i class="fa fa-save"></i>Simpan</button>
+
+                <button *ngIf="row.publishChoice === 'YA' && row.pubSTS === 'Y'" 
+                        class="blue-btn btn-sm flex-fill" 
+                        (click)="onKemaskini(row)" ><i class="fa fa-update"></i>Kemaskini</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+     <!-- Button Hantar -->
+      <div class="d-flex justify-content-end">
+        <!-- Button Disable bila form tidak diisi -->
+        <button class="blue-btn" (click)="onHantar(selectedRow)" [disabled]="!selectedRow"><i class="fa fa-send"></i>Hantar</button>
+      </div>
+      
+  </div>
+
+  <!-- Modal for No Data Found -->
+  <c-modal 
+    [visible]="isModalVisible" 
+    (visibleChange)="isModalVisible = $event"
+    id="noDataModal"
+    size="lg"
+    centered="true"
+    [backdrop]="true">
+    
+    <c-modal-header class="modal-header-custom">
+        <div class="error-icon">
+            <i class="fa fa-exclamation"></i>
+        </div>
+    </c-modal-header>
+    
+    <c-modal-body class="modal-body-custom">
+        <p class="modal-message">
+            Maklumat carian tidak wujud. Sila masukkan kunci<br>
+            carian lain.
+        </p>
+    </c-modal-body>
+    
+    <c-modal-footer class="modal-footer-custom">
+        <div class="modal-button-container">
+            <!-- <button 
+                type="button" 
+                class="modal-ok-button"
+                (click)="onModalOk()">
+                OK
+            </button> -->
+            <!-- OK Button -->
+            <button type="button" class="modal-ok-button" (click)="onSuccessModalOk()">
+                  OK
+            </button>
+        </div>
+    </c-modal-footer>
+  </c-modal>
+
+  <!-- MODAL SIMPAN -->
+  <c-modal
+    [visible]="isSuccessModalVisible"
+    (visibleChange)="onVisibleChange($event)"
+    id="successModal"
+    size="sm"
+    alignment="center"
+    [backdrop]="true"
+  >
+  <!-- Modal Body  -->
+  <c-modal-body class="text-center p-4">
+  
+      <!-- Success Icon -->
+  <div class="success-icon mb-3">
+  <i class="fa fa-check"></i>
+  </div>
+  
+    <!-- Success Message  -->
+  <p class="modal-message">
+        Rekod telah berjaya disimpan.
+  </p>
+  
+      <!-- OK Button  -->
+  <button type="button" class="modal-ok-button" (click)="onSuccessModalOk()">
+        OK
+  </button>
+  </c-modal-body>
+  </c-modal>
+
+
+  <!-- MODAL HANTAR -->
+  <c-modal
+    [visible]="isHantarModalVisible"
+    (visibleChange)="onVisibleChange($event)"
+    id="hantarModal"
+    size="sm"
+    alignment="center"
+    [backdrop]="true"
+  >
+  <!-- Modal Body  -->
+  <c-modal-body class="text-center p-4">
+  
+      <!-- Success Icon -->
+  <div class="success-icon mb-3">
+  <i class="fa fa-check"></i>
+  </div>
+  
+    <!-- Success Message  -->
+  <p class="modal-message">
+        Rekod telah berjaya dihantar.
+  </p>
+  
+      <!-- OK Button  -->
+  <button type="button" class="modal-ok-button" (click)="onHantarModalOk()">
+        OK
+  </button>
+  </c-modal-body>
+  </c-modal>
+
+
+  <!-- MODAL KEMASKINI -->
+  <c-modal
+    [visible]="isKemaskiniModalVisible"
+    (visibleChange)="onVisibleChange($event)"
+    id="kemaskiniModal"
+    size="sm"
+    alignment="center"
+    [backdrop]="true"
+  >
+  <!-- Modal Body  -->
+  <c-modal-body class="text-center p-4">
+  
+      <!-- Success Icon -->
+  <div class="success-icon mb-3">
+  <i class="fa fa-check"></i>
+  </div>
+  
+    <!-- Success Message  -->
+  <p class="modal-message">
+        Rekod telah berjaya dikemaskini.
+  </p>
+  
+      <!-- OK Button  -->
+  <button type="button" class="modal-ok-button" (click)="onKemaskiniModalOk()">
+        OK
+  </button>
+  </c-modal-body>
+  </c-modal>
+
+
+    <!-- <app-modal-simpan [isSuccessModalVisible]="showModalSimpan" (modalClosed)="onModalSimpanClosed()"></app-modal-simpan> -->
+    <!-- <app-modal-hantar [isSuccessModalVisible]="showModalHantar" (modalClosed)="onModalHantarClosed()"></app-modal-hantar> -->
+    <!-- <app-modal-kemaskini [isUpdateModalVisible]="showModalKemaskini" (modalClosed)="onModalKemaskiniClosed()"></app-modal-kemaskini> -->
+ </div> 
+</c-container>

@@ -1,0 +1,99 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<div class="content-wrapper">
+  <!-- Stepper -->
+  <div class="horizontal-stepper">
+    <ul class="stepper-list">
+      <li *ngFor="let step of steps"
+          [class.active]="isStepActive(step.number)"
+          (click)="goToStep(step)">
+        <button type="button" class="step-btn">
+          <span class="step-number">{{ step.number }}</span>
+          <span class="step-title">{{ step.title }}</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Card -->
+  <section class="card">
+    <h2 class="card-title">Senarai Individu</h2>
+
+    <!-- Table Senarai Individu -->
+    <div *ngIf="individuList.length > 0; else tiadaRekod" class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr>
+            <th style="width: 60px">No.</th>
+            <th>Nama</th>
+            <th>No. Kad Pengenalan</th>
+            <th style="width: 100px">Tindakan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ind of individuList; index as i; trackBy: trackByIndex">
+            <td>{{ i + 1 }}.</td>
+            <td>{{ ind.nama }}</td>
+            <td>{{ ind.nokp }}</td>
+            <td class="actions-cell">
+              <!-- Edit -->
+              <button class="icon-btn" type="button" title="Edit" (click)="editIndividu(i)">
+                <i class="fas fa-edit"></i>
+              </button>
+              <!-- Hapus -->
+              <button class="icon-btn danger" type="button" title="Hapus" (click)="hapusIndividu(i)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Empty state -->
+    <ng-template #tiadaRekod>
+      <div class="empty">
+        Tiada individu ditambah.
+      </div>
+    </ng-template>
+
+    <!-- Butang Tambah (pindah ke bawah table) -->
+    <div class="actions-bottom">
+      <button class="btn btn-search" type="button" (click)="tambahIndividu()">
+        <i class="fas fa-plus"></i> Tambah Individu
+      </button>
+    </div>
+
+    <!-- Checkbox Pengesahan -->
+    <div class="confirmation">
+      <label>
+        <input type="checkbox" [(ngModel)]="disahkan" />
+        Saya mengesahkan semua maklumat individu adalah benar.
+      </label>
+    </div>
+  </section>
+
+  <!-- Footer Actions -->
+  <footer class="footer-actions">
+    <button type="submit" class="btn btn-search" [disabled]="!disahkan">
+      Hantar
+    </button>
+    <div class="btn-group">
+      <button type="button" class="btn-nav prev" (click)="prevStep()" *ngIf="currentStep > 1">
+        <
+      </button>
+      <button type="button" class="btn-nav next" (click)="nextStep()" *ngIf="currentStep < totalSteps">
+        >
+      </button>
+    </div>
+  </footer>
+
+  <!-- Popup Error -->
+  <div class="popup" *ngIf="showPopup && popupType === 'error'">
+    <div class="popup-content">
+      <div class="popup-icon error">!</div>
+      <p>{{ popupMessage }}</p>
+      <button type="button" (click)="closePopup()">OK</button>
+    </div>
+  </div>
+</div>

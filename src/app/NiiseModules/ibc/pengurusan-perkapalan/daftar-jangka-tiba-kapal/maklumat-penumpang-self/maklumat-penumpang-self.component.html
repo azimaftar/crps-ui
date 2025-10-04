@@ -1,0 +1,295 @@
+<!-- <p>maklumat-profil-ibc works!</p> -->
+ <c-card class="mb-3">  
+    <!-- HEADER PROFIL -->
+    <c-card-header class="card-header">
+      <h4 class="card-header-title">Penumpang</h4>
+    </c-card-header>
+
+    <!-- CONTENT CARD BODY -->
+    <c-card-body>
+        <c-row>
+            <!-- FORMS -->
+            <c-col md="8">
+                    <!-- FORMS START -->
+                    <form [formGroup]="profilForm" class="form" (ngSubmit)="onSubmit()">
+                        <!-- Form Title -->
+                        <!-- Replace your current h5 heading with this: -->
+            <h5 class="mb-4">
+            Maklumat Penumpang
+            <span style="font-style: italic; font-weight: 400;">(IMO FAL Form 6)</span>
+            </h5>
+                        
+                        <!-- Photo Placeholder -->
+                        <div class="photo-placeholder mb-4">
+                          <img [src]="photoUrl || 'assets/placeholder-image.png'" alt="Gambar Kapal" />
+                        </div>
+  
+                        <c-row class="g-3 mb-3">
+                          <c-col>
+                            <label cLabel for="negaraAsalkapal" class="mb-2">Negara Asal Kapal</label>
+                            <input
+                              cFormControl
+                              id="negaraAsalkapal"
+                              type="text"
+                              formControlName="negaraAsalkapal"
+                              class="form-control"
+                            />
+                          </c-col>                   
+                        </c-row>
+
+                        <!-- Jenis Dokumen dan No Dokumen -->
+                        <c-row class="g-3 mb-3">
+                          <!-- Jenis Dokumen -->
+                          <c-col md="6">
+                            <label cLabel for="docType" class="mb-2">Pelabuhan Ketibaan</label>
+                            <input
+                              cFormControl
+                              id="docType"
+                              type="text"
+                              formControlName="docType"
+                              class="form-control"
+                            />
+                          </c-col>
+                          <c-col md="6">
+                            <label cLabel for="docType" class="mb-2">Pelabuhan Pelepasan</label>
+                            <input
+                              cFormControl
+                              id="docType"
+                              type="text"
+                              formControlName="docType"
+                              class="form-control"
+                            />
+                          </c-col>
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+                        <c-col>
+                        <label cLabel for="pasport" class="mb-2">Nama Penumpang</label>
+                        <input
+                            cFormControl
+                            id="pasport"
+                            type="text"
+                            formControlName="pasport"
+                            class="form-control"
+                        />
+                        </c-col>
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+                        <c-col>
+                        <label cLabel for="pasport" class="mb-2">Nama Keluarga</label>
+                        <input
+                            cFormControl
+                            id="pasport"
+                            type="text"
+                            formControlName="pasport"
+                            class="form-control"
+                        />
+                        </c-col>
+                        </c-row>         
+
+                        <c-row class="g-3 mb-3">
+                        <c-col md="6">
+                        <label cLabel for="warganegara" class="mb-2">Warganegara</label>
+                        <input
+                            cFormControl  
+                            id="warganegara"
+                            type="text"
+                            formControlName="warganegara"
+                            class="form-control"
+                        />
+                        </c-col>
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+                          <c-col>
+                            <label cLabel for="entryDate" class="mb-2">Tarikh Lahir</label>
+                            <input
+                            cFormControl
+                            id="entryDate"
+                            type="datetime-local"
+                            formControlName="entryDate"
+                            class="form-control"
+                            />
+                            </c-col>
+
+                          <c-col>
+                            <label cLabel for="entryTime" class="mb-2">Tempat Lahir</label>
+                            <input
+                              cFormControl
+                              id="entryTime"
+                              type="text"
+                              formControlName="entryTime"
+                              class="form-control"
+                            />
+                          </c-col>
+                        </c-row>                    
+
+                        <c-row class="g-3 mb-3">
+                          <c-col md="6">
+                            <label cLabel for="namaAnakKapal" class="mb-2">Jantina</label>
+                            <input
+                              cFormControl
+                              id="namaAnakKapal"
+                              type="text"
+                              formControlName="namaAnakKapal"
+                              class="form-control"
+                            />
+                          </c-col>                          
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+                          <c-col md="6">
+                            <label cLabel for="hubunganAnakKapal" class="mb-2">Jenis Dokumen Perjalanan</label>
+                            <input
+                              cFormControl
+                              id="hubunganAnakKapal"
+                              type="text"
+                              formControlName="hubunganAnakKapal"
+                              class="form-control"
+                            />
+                          </c-col>
+                          <c-col md="6">
+                        <label cLabel for="pasport" class="mb-2">No. Dokumen Perjalanan</label>
+                        <input
+                            cFormControl
+                            id="pasport"
+                            type="text"
+                            formControlName="pasport"
+                            class="form-control"
+                        />
+                        </c-col>                        
+                        </c-row>    
+                        
+                        <c-row class="g-3 mb-3">
+                          <c-col md="6">
+                            <label cLabel for="hubunganAnakKapal" class="mb-2">Negara Pengeluar Dokumen Perjalanan</label>
+                            <input
+                              cFormControl
+                              id="hubunganAnakKapal"
+                              type="text"
+                              formControlName="hubunganAnakKapal"
+                              class="form-control"
+                            />
+                          </c-col>
+                          <c-col md="6">
+                        <label cLabel for="pasport" class="mb-2">Tarikh Tamat Dokumen Perjalanan</label>
+                        <input
+                            cFormControl
+                            id="pasport"
+                            type="date"
+                            formControlName="pasport"
+                            class="form-control"
+                        />
+                        </c-col>                        
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+                          <c-col md="6">
+                            <label cLabel for="hubunganAnakKapal" class="mb-2">Pelabuhan Embarkation</label>
+                            <input
+                              cFormControl
+                              id="hubunganAnakKapal"
+                              type="text"
+                              formControlName="hubunganAnakKapal"
+                              class="form-control"
+                            />
+                          </c-col>
+                          <c-col md="6">
+                        <label cLabel for="pasport" class="mb-2">No. Visa</label>
+                        <input
+                            cFormControl
+                            id="pasport"
+                            type="text"
+                            formControlName="pasport"
+                            class="form-control"
+                        />
+                        </c-col>                        
+                        </c-row>                       
+
+                        <c-row class="g-3 mb-3">
+
+                          <c-col md="6">
+                          <label cLabel for="kpNo" class="mb-2">Jenis Penumpang</label>
+                          <select
+                            cFormControl
+                            id="statusSupernumerary"
+                            formControlName="statusSupernumerary"
+                            class="form-select"
+                          >
+                            <option value="" disabled selected>-Sila Pilih-</option>
+                            <option value="Transit">Transit</option>
+                            <option value="Singgahan">Singgahan</option>
+                            <!-- Add more options as needed -->
+                          </select>
+                        </c-col>
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+
+                          <c-col md="6">
+                          <label cLabel for="kpNo" class="mb-2">Status Penumpang</label>
+                          <select
+                            cFormControl
+                            id="statusSupernumerary"
+                            formControlName="statusSupernumerary"
+                            class="form-select"
+                          >
+                            <option value="" disabled selected>-Sila Pilih-</option>
+                            <option value="Belum">Aktif</option>
+                            <option value="Semak">Sakit</option>
+                            <option value="NTL">Mati</option>
+                            <!-- Add more options as needed -->
+                          </select>
+                        </c-col>
+                        </c-row>
+
+                        <c-row class="g-3 mb-3">
+
+                          <c-col md="6">
+                          <label cLabel for="kpNo" class="mb-2">Status Pemeriksaan</label>
+                          <select
+                            cFormControl
+                            id="statusSupernumerary"
+                            formControlName="statusSupernumerary"
+                            class="form-select"
+                          >
+                            <option value="" disabled selected>-Sila Pilih-</option>
+                            <option value="Aktif">Aktif</option>
+                            <option value="Sakit">Sakit</option>
+                            <option value="Mati">Mati</option>
+                            <!-- Add more options as needed -->
+                          </select>
+                        </c-col>
+                        </c-row>
+            </form>
+            </c-col>       
+        </c-row>
+        <!-- END OF CONTENT -->
+
+        <!-- FOOTER CONTENT FOR BUTTONS -->
+        <c-row class="mt-4 mb-3 footer-row">
+            <c-col class="d-flex justify-content-end align-items-center gap-2">
+            <!-- Action Buttons -->
+            <c-row class="g-3 mb-3 mt-3 justify-content-end">
+    <c-col class="d-flex justify-content-end gap-2">
+        <button
+            cButton 
+            color="primary"
+            class="biometric-btn">
+            Kembali
+        </button>
+        <button 
+            cButton 
+            color="primary"
+            class="biometric-btn">
+            Simpan
+        </button>
+    </c-col>
+</c-row>
+
+            
+            </c-col>
+        </c-row>
+    </c-card-body>
+</c-card>

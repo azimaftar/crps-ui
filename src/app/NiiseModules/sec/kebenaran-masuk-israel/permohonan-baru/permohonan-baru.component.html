@@ -1,0 +1,101 @@
+<c-card class="mb-3">
+    <c-card-body>
+        <c-row>
+            <h5 class="mb-4 custom-header">
+                Senarai Permohonan Surat Kebenaran Masuk
+            </h5>
+        </c-row>
+        <c-row>
+            <!-- Horizontal Stepper -->
+            <div class="horizontal-stepper">
+                <ul class="stepper-list d-flex align-items-center justify-content-start flex-wrap">
+                    <li class="stepper-item" *ngFor="let step of steps" [class.active]="isStepActive(step.number)">
+                        <button type="button" class="step-btn" (click)="navigateTo(step)">
+                            <span class="step-number">{{ step.number }}</span>
+                            <span class="step-title">{{ step.title }}</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </c-row>
+        <c-col class="md-12">
+            <c-row class="mb-3 mt-3">
+                <c-col class="col-md-4">
+                    <label class="form-label custom-form-label">No. Pendaftaran Agensi</label>
+                    <input type="text" class="form-control">
+                </c-col>
+                <c-col class="col-md-6">
+                    <label class="form-label custom-form-label">Nama Agensi</label>
+                    <input type="text" class="form-control">
+                </c-col>
+            </c-row>
+            <c-row class="mb-3">
+                <c-col class="col-md-10">
+                    <label class="form-label custom-form-label">No. Rujukan Permohonan</label>
+                    <input type="text" class="form-control">
+                </c-col>
+            </c-row>
+            <c-row class="mb-3">
+                <c-col class="col-md-3">
+                    <label class="form-label custom-form-label">Permohonan Dari</label>
+                    <input type="date" class="form-control">
+                </c-col>
+                <c-col class="col-md-3">
+                    <label class="form-label custom-form-label">Sehingga</label>
+                    <input type="date" class="form-control">
+                </c-col>
+            </c-row>
+            <c-row class="mb-4">
+                <c-col class="col-md-3">
+                    <label class="form-label custom-form-label">No. Pengenalan</label>
+                    <input type="text" class="form-control">
+                </c-col>
+
+                <c-col class="col-md-4">
+                    <label class="form-label custom-form-label">Nama</label>
+                    <input type="text" class="form-control">
+                </c-col>
+
+                <c-col class="col-md-2 d-flex align-items-end">
+                    <button cButton class="custom-btn w-100">
+                        Cari
+                    </button>
+                </c-col>
+
+                <c-col class="col-md-3 d-flex align-items-end">
+                    <button cButton class="custom-btn w-100" (click)="goToKodPage()">
+                        Permohonan Baru
+                    </button>
+                </c-col>
+            </c-row>
+            <c-row class="mb-3">
+                <p class="custom-section-label mb-0">Senarai Permohonan</p>
+            </c-row>
+
+            <!-- Table -->
+            <div class="table-responsive custom-table-container" style="margin-top: 20px;">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 5%;">Bil.</th>
+                            <th style="width: 20%;">Agensi</th>
+                            <th style="width: 20%; white-space: normal; word-wrap: break-word;">No. Rujukan Permohonan</th>
+                            <th style="width: 20%;">No. Pengenalan</th>
+                            <th style="width: 20%;">Nama</th>
+                            <th style="width: 15%;">Status</th>
+                            <th style="width: 20%;">Tindakan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- If no data -->
+                        <tr>
+                            <td colspan="7" class="text-center text-muted">
+                                Tiada rekod untuk dipaparkan
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </c-col>
+    </c-card-body>
+</c-card>

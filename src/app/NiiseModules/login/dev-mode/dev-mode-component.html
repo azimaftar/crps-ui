@@ -1,0 +1,52 @@
+<c-container>
+  <c-row style="background-color: red">
+    <c-col xl="9" xs="9">
+      <input cFormCheckInput type="radio" value="UAT"
+             name="flexRadioDefault" id="uat" (change)="onCheckboxChange($event)" [checked]="uat"/>
+      <label cFormCheckLabel for="uat">UAT</label>&nbsp;
+      <input cFormCheckInput type="radio" value="dev"
+             name="flexRadioDefault" id="dev" (change)="onCheckboxChange($event)" [checked]="dev"/>
+      <label cFormCheckLabel for="dev">Dev</label>&nbsp;
+      <input cFormCheckInput id="navCmn" type="checkbox"
+             (change)="onCheckboxChange($event)"
+             [checked]="navCmn" [disabled]="readonlyMode" />
+      <label cFormCheckLabel for="navCmn">CMN</label>&nbsp;
+
+      <input cFormCheckInput id="navIdm" type="checkbox"
+             (change)="onCheckboxChange($event)"
+             [checked]="navIdm" [disabled]="readonlyMode" />
+      <label cFormCheckLabel for="navIdm">IDM</label>&nbsp;
+
+      <input cFormCheckInput id="navSec" type="checkbox"
+             (change)="onCheckboxChange($event)"
+             [checked]="navSec" [disabled]="readonlyMode" />
+      <label cFormCheckLabel for="navSec">SEC</label>&nbsp;
+
+      <input cFormCheckInput id="navBkp" type="checkbox"
+             (change)="onCheckboxChange($event)"
+             [checked]="navBkp" [disabled]="readonlyMode" />
+      <label cFormCheckLabel for="navBkp">BKP</label>&nbsp;
+
+      <input cFormCheckInput id="navIbc" type="checkbox"
+             (change)="onCheckboxChange($event)"
+             [checked]="navIbc" [disabled]="readonlyMode" />
+      <label cFormCheckLabel for="navIbc">IBC</label>&nbsp;
+
+      <input cFormCheckInput id="navAdm" type="checkbox"
+             (change)="onCheckboxChange($event)"
+             [checked]="navAdm" [disabled]="readonlyMode" />
+      <label cFormCheckLabel for="navAdm">ADM</label>&nbsp;
+
+      <input cFormCheckInput id="navOthers" type="checkbox"
+             (change)="onCheckboxChange($event)"
+             [checked]="navOthers" [disabled]="readonlyMode" />
+      <label cFormCheckLabel for="navOthers">Others</label>&nbsp;
+
+      <input cFormCheckInput id="navCoreui" type="checkbox"
+             (change)="onCheckboxChange($event)"
+             [checked]="navCoreui" [disabled]="readonlyMode" />
+      <label cFormCheckLabel for="navCoreui">Coreui</label>&nbsp;
+
+    </c-col>
+  </c-row>
+</c-container>

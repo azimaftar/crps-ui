@@ -1,0 +1,51 @@
+<c-card>
+  <c-card-header class="bg-primary text-white">
+    LAPORAN SIASATAN
+  </c-card-header>
+
+  <c-card-body>
+    <c-row>
+      <c-col xs="12" md="9" class="order-2 order-md-1">
+        <c-row>
+          <c-col xs="12" md="6" class="mb-3">
+            <h6>Maklumat Laporan Siasatan</h6>
+          </c-col>
+        </c-row>
+        <c-row class="mb-2 mx-5"> <label>Laporan Siasatan</label></c-row>
+        <c-row class="mb-3 border mx-5" style="height: 300px"> </c-row>
+      </c-col>
+
+      <c-col xs="12" md="3" class="order-1 order-md-2">
+        <!-- Loop through breadcrumb sections -->
+        <ng-container *ngFor="let section of breadcrumbSections">
+          <!-- Main Step (1, 2, 3, etc.) -->
+          <div class="d-flex align-items-center mb-3">
+            <div
+              class="step-circle me-3"
+              [ngClass]="{
+                'active-step': section.mainStep === currentMainStep
+              }"
+            >
+              {{ section.mainStep }}
+            </div>
+            <span>
+              {{ section.mainLabel }}
+            </span>
+          </div>
+        </ng-container>
+      </c-col>
+
+      <c-col
+        xs="12"
+        class="d-flex flex-wrap justify-content-end align-items-center gap-5 my-3 order-3 order-md-3"
+      >
+        <c-row>
+          <c-col class="d-flex gap-3">
+            <button type="button" class="btn btn-secondary">&lt;</button>
+            <button type="button" class="btn btn-secondary">&gt;</button>
+          </c-col>
+        </c-row>
+      </c-col>
+    </c-row>
+  </c-card-body>
+</c-card>

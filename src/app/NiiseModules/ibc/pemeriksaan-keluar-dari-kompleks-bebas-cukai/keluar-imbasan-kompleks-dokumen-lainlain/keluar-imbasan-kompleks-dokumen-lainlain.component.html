@@ -1,0 +1,159 @@
+<!-- CARD CONTENT -->
+<c-card class="mb-3">  
+  <!-- HEADER PROFIL -->
+  <c-card-header class="card-header">
+    <h3 class="card-header-title"><b>Rekod Pengembara</b></h3>
+  </c-card-header>
+
+  <!-- STEPPER -->
+  <div class="px-4 py-3 mb-4 stepper-container">
+    <ul class="stepper-list d-flex justify-content-start">
+      <ng-container *ngFor="let step of steps">
+        <li 
+          class="stepper-item text-center"
+          *ngIf="step.title">
+
+
+          <div 
+            class="stepper-content"
+            [class.active-box]="currentStep === step.number">
+            
+            <span 
+              class="step-number"
+              [class.active]="currentStep === step.number">
+              {{ step.number }}
+            </span>
+
+            <span 
+              class="step-title"
+              [class.active]="currentStep === step.number">
+              {{ step.title }}
+            </span>
+
+          </div>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+
+  <!-- CARD BODY -->
+  <c-card-body>
+    <c-row class="align-items-start">
+      <!-- KIRI: GAMBAR -->
+      <c-col md="4">
+        <div class="photo-placeholder mb-4" style="width: 260px; height: 260px; margin-left: 82px;">
+          <img src="assets/figma/userimg.png" alt="image user" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+        </div>
+      </c-col>
+
+      <!-- KANAN: FORM -->
+      <c-col md="8">
+        <form [formGroup]="profilForm" class="form" (ngSubmit)="semakMaklumatPengembara()">
+          <!-- Jenis Pelawat & No Dokumen -->
+          <c-row class="g-3 mb-3">
+            <c-col>
+              <label cLabel class="mb-2">Jenis Pelawat*</label>
+              <input cFormControl type="text" formControlName="visitorType" class="form-control" />
+            </c-col>
+            <c-col>
+              <label cLabel class="mb-2">No Dokumen*</label>
+              <input cFormControl type="text" formControlName="docNo" class="form-control" />
+            </c-col>
+          </c-row>
+
+          <!-- Warganegara & Tarikh Tamat Sah Laku -->
+          <c-row class="g-3 mb-3">
+            <c-col>
+              <label cLabel class="mb-2">Warganegara*</label>
+              <select cFormSelect formControlName="nationality" class="form-select">
+                <option value="">-- Sila Pilih --</option>
+                <option value="Malaysia">Malaysia</option>
+                <option value="Bukan Malaysia">Bukan Malaysia</option>
+              </select>
+            </c-col>
+            <c-col>
+              <label cLabel class="mb-2">Tarikh Tamat Sah Laku*</label>
+              <input type="date" class="form-control" formControlName="expiryDate" />
+            </c-col>
+          </c-row>
+
+          <!-- SEMAK BUTTON -->
+          <div class="button-row single-button" style="display: flex; justify-content: flex-end;">
+            <button class="semak-btn" (click)="semakMaklumatPengembara()">
+              <span class="icon-circle">✓</span>
+              <span>Semak</span>
+            </button>
+          </div>
+        </form>
+      </c-col>
+    </c-row>
+    </c-card-body>
+
+    <!-- FORM LENGKAP SELEPAS GAMBAR & MAKLUMAT AWAL -->
+    <form [formGroup]="profilForm">
+      <!-- Jenis Dokumen & Jantina -->
+      <c-row class="g-3 mb-3">
+        <c-col>
+          <label cLabel class="mb-2">Jenis Dokumen</label>
+          <input cFormControl type="text" formControlName="docType" class="form-control" />
+        </c-col>
+        <c-col>
+          <label cLabel class="mb-2">Jantina</label>
+          <input cFormControl type="text" formControlName="gender" class="form-control" />
+        </c-col>
+      </c-row>
+
+      <!-- No Dokumen & No KP -->
+      <c-row class="g-3 mb-3">
+        <c-col>
+          <label cLabel class="mb-2">No. Dokumen</label>
+          <input cFormControl type="text" formControlName="docNo2" class="form-control" />
+        </c-col>
+        <c-col>
+          <label cLabel class="mb-2">No. Pengenalan</label>
+          <input cFormControl type="text" formControlName="kpNo" class="form-control" />
+        </c-col>
+      </c-row>
+
+      <!-- Nama -->
+      <c-row class="g-3 mb-3">
+        <c-col md="12">
+          <label cLabel class="mb-2">Nama</label>
+          <input cFormControl type="text" formControlName="name" class="form-control" />
+        </c-col>
+      </c-row>
+
+      <!-- Tarikh Dikeluarkan & Warganegara -->
+      <c-row class="g-3 mb-3">
+        <c-col>
+          <label cLabel class="mb-2">Tarikh Dikeluarkan</label>
+          <input cFormControl type="text" formControlName="issueDatePassport" class="form-control" />
+        </c-col>
+        <c-col>
+          <label cLabel class="mb-2">Warganegara</label>
+          <input cFormControl type="text" formControlName="nationality2" class="form-control" />
+        </c-col>
+      </c-row>
+
+      <!-- Umur & Negara Pengeluar -->
+      <c-row class="g-3 mb-3">
+        <c-col>
+          <label cLabel class="mb-2">Umur</label>
+          <input cFormControl type="text" formControlName="age" class="form-control" />
+        </c-col>
+        <c-col>
+          <label cLabel class="mb-2">Negara Pengeluar</label>
+          <input cFormControl type="text" formControlName="countryIssue" class="form-control" />
+        </c-col>
+      </c-row>
+
+      <!-- Tarikh Tamat Pas -->
+      <c-row class="g-3 mb-3">
+        <c-col>
+          <label cLabel class="mb-2">Tarikh Tamat</label>
+          <input cFormControl type="text" formControlName="expiryDate2" class="form-control" />
+        </c-col>
+        <c-col></c-col>
+      </c-row>
+    </form>
+</c-card>

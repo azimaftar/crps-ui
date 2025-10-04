@@ -1,0 +1,50 @@
+<c-card>
+    <c-card-header class="bg-primary text-white">
+        PENDAFTARAN ID BAHARU PENGGUNA
+    </c-card-header>
+
+    <c-card-body>
+        <p><strong>Maklumat Pemohon</strong></p>
+
+        <c-row>
+            <c-col md="4">
+                <div class="mb-3">
+                    <label for="kategori" class="form-label">Kategori Pegawai*</label>
+                    <select class="form-select" id="kategori">
+                        <option selected>Pegawai JIM</option>
+                        <option value="1">Pegawai KDN</option>
+                        <option value="2">Lain-lain</option>
+                    </select>
+                </div>
+            </c-col>
+        </c-row>
+
+        <c-row class="align-items-end">
+            <c-col md="4">
+                <div class="mb-3">
+                    <label for="dokumen" class="form-label">Jenis Dokumen*</label>
+                    <select class="form-select" id="dokumen">
+                        <option selected>-Sila Pilih-</option>
+                        <option value="passport">Pasport</option>
+                        <option value="mykad">MyKad</option>
+                    </select>
+                </div>
+            </c-col>
+
+            <c-col md="4">
+                <div class="mb-3">
+                    <label for="noId" class="form-label">No. Dokumen/ID*</label>
+                    <input type="text" class="form-control" id="noId" placeholder="Text Here">
+                </div>
+            </c-col>
+
+            <c-col md="4">
+                <div class="mb-3 d-flex justify-content-center">
+                    <button class="btn btn-dark">Semak</button>
+                </div>
+            </c-col>
+        </c-row>
+
+        <div class="mb-5" style="height: 100px;"></div>
+    </c-card-body>
+</c-card>

@@ -1,0 +1,176 @@
+<div class="custom-content-wrapper">
+  <c-card>
+    <c-card-body>
+      <!-- PAGE TITLE -->
+      <c-row>
+        <h3>Rekod Pengembara</h3>
+      </c-row>
+
+      <!-- STEPPER -->
+      <c-row>
+        <reusable-tab [currentStep]="currentStep" [steps]="steps"></reusable-tab>
+      </c-row>
+
+      <!-- FORM -->
+      <c-row>
+        <form [formGroup]="visaForm">
+          <c-row>
+            <!-- LEFT -->
+            <c-col xs="12" md="3" class="d-flex flex-column align-items-center">
+              <!-- PHOTO -->
+              <img src="assets/images/avatars/9.jpg" alt="Profile Image" class="img-fluid mb-3"
+                style="width: 200px; height: 200px; object-fit: cover; border-radius: 10px;" />
+
+              <!-- <p>isMaklumatLengkap: {{ isMaklumatLengkap }}</p> -->
+
+              <!-- ACTION BUTTONS -->
+              <div style="width: 200px;">
+                <button cButton type="button" class="action-button mb-2 w-100" (click)="captureFaceAndIris()"
+                  [disabled]="isMaklumatLengkap">
+                  <i class="bi bi-check-circle" [class.d-none]="!isMaklumatLengkap"></i> Ambil Wajah &
+                  Iris
+                </button>
+
+                <button cButton type="button" class="action-button mb-2  w-100" (click)="captureFingerprint()"
+                  [disabled]="isMaklumatLengkap">
+                  <i class="bi bi-check-circle" [class.d-none]="!isMaklumatLengkap"></i> Ambil Cap
+                  Jari
+                </button>
+              </div>
+            </c-col>
+
+            <!-- RIGHT -->
+            <c-col xs="12" md="9">
+
+              <!-- No Visa dan No Rujukan QR VDS -->
+              <c-row class="g-3 mb-3">
+                <!-- No Visa -->
+                <c-col xs="12" md="6">
+                  <label cLabel for="visaNo" class="mb-2">No Visa</label>
+                  <input cFormControl id="visaNo" type="text" formControlName="visaNo" class="form-control" />
+                </c-col>
+                <!-- No Rujukan QR VDS -->
+                <c-col xs="12" md="6">
+                  <label cLabel for="visaQrVds" class="mb-2">No Rujukan QR VDS</label>
+                  <input cFormControl id="visaQrVds" type="text" formControlName="visaQrVds" class="form-control" />
+                </c-col>
+              </c-row>
+
+              <!-- Jenis Visa -->
+              <c-row class="g-3 mb-3">
+                <c-col xs="12" md="6">
+                  <label cLabel for="visaType" class="mb-2">Jenis Visa</label>
+                  <input cFormControl id="visaType" type="text" formControlName="visaType" class="form-control" />
+                </c-col>
+                <c-col>
+                  <!-- Empty right column -->
+                </c-col>
+              </c-row>
+
+              <!-- Tarikh Dikeluarkan dan Tarikh Tamat Visa -->
+              <c-row class="g-3 mb-3">
+                <!-- Tarikh Dikeluarkan -->
+                <c-col xs="12" md="6">
+                  <label cLabel for="visaIssueDate" class="mb-2">Tarikh Dikeluarkan</label>
+                  <input cFormControl id="visaIssueDate" type="text" formControlName="visaIssueDate"
+                    class="form-control" />
+                </c-col>
+                <!-- Tarikh Tamat Visa -->
+                <c-col xs="12" md="6">
+                  <label cLabel for="visaExpiryDate" class="mb-2">Tarikh Tamat Visa</label>
+                  <input cFormControl id="visaExpiryDate" type="text" formControlName="visaExpiryDate"
+                    class="form-control" />
+                </c-col>
+              </c-row>
+
+              <!-- Nama -->
+              <c-row class="g-3 mb-3">
+                <!-- Nama -->
+                <c-col xs="12">
+                  <label cLabel for="visaName" class="mb-2">Nama</label>
+                  <input cFormControl id="visaName" type="text" formControlName="visaName" class="form-control" />
+                </c-col>
+
+              </c-row>
+
+              <!-- Tarikh Lahir dan Jantina -->
+              <c-row class="g-3 mb-3">
+                <!-- Tarikh Lahir -->
+                <c-col xs="12" md="6">
+                  <label cLabel for="visaDob" class="mb-2">Tarikh Lahir</label>
+                  <input cFormControl id="visaDob" type="text" formControlName="visaDob" class="form-control" />
+                </c-col>
+                <!-- Jantina -->
+                <c-col xs="12" md="6">
+                  <label cLabel for="visaGender" class="mb-2">Jantina</label>
+                  <input cFormControl id="visaGender" type="text" formControlName="visaGender" class="form-control" />
+                </c-col>
+              </c-row>
+
+              <!-- Warganegara -->
+              <c-row class="g-3 mb-3">
+                <c-col xs="12" md="6">
+                  <label cLabel for="visaNationality" class="mb-2">Warganegara</label>
+                  <input cFormControl id="visaNationality" type="text" formControlName="visaNationality"
+                    class="form-control" />
+                </c-col>
+                <c-col>
+                  <!-- Empty right column -->
+                </c-col>
+              </c-row>
+
+              <!-- No Dokumen -->
+              <c-row class="g-3 mb-3">
+                <c-col xs="12" md="6">
+                  <label cLabel for="docNo" class="mb-2">No Dokumen</label>
+                  <input cFormControl id="docNo" type="text" formControlName="docNo" class="form-control" />
+                </c-col>
+
+                <c-col>
+                  <!-- Empty right column -->
+                </c-col>
+              </c-row>
+            </c-col>
+          </c-row>
+
+          <c-row>
+            <!-- Bottom Navigation -->
+            <div class="row mt-4">
+              <div class="col-12">
+                <div class="d-flex justify-content-end gap-2 mb-4">
+                  <!-- Reset Button -->
+                  <button class="btn btn-outline-secondary d-flex align-items-center gap-1" type="reset"
+                    (click)="resetForm()">
+                    <i class="bi bi-arrow-clockwise"></i>
+                    Set Semula
+                  </button>
+
+                  <!-- Save Button -->
+                  <button class="btn btn-submit d-flex align-items-center gap-1 me-4" (click)="saveForm()"
+                    [disabled]="!canSave">
+                    <i class="bi bi-check-circle"></i>
+                    Simpan
+                  </button>
+
+                  <!-- Navigation Button -->
+                  <c-button-group aria-label="navigation buttons" role="group">
+                    <button cButton variant="outline" color="secondary" (click)="goToPrevious()">
+                      &lt;
+                    </button>
+                    <button cButton variant="outline" color="secondary" (click)="goToNext()">
+                      &gt;
+                    </button>
+                  </c-button-group>
+                </div>
+              </div>
+            </div>
+          </c-row>
+        </form>
+
+      </c-row>
+
+    </c-card-body>
+  </c-card>
+</div>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">

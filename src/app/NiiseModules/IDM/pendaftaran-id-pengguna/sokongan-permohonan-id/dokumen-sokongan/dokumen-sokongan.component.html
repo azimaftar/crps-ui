@@ -1,0 +1,178 @@
+<c-container>
+  <c-row>
+    <!-- Main Content -->
+    <c-col md="8">
+      <c-card>
+        <c-card-header class="bg-light mt-2 mb-2">
+          <h6 class="mb-2 mt-2">PERMOHONAN ID BAHARU PENGGUNA - SOKONGAN PERMOHONAN</h6>
+        </c-card-header>
+        <c-card-body>
+          <c-row class="align-items-center mb-3">
+            <!-- Step Info -->
+            <c-col md="6">
+              <p class="mb-0">4. Dokumen Sokongan</p>
+              <small class="text-muted">Langkah 4 daripada 5</small>
+            </c-col>
+
+            <!-- Upload Button -->
+            <c-col md="6" class="text-end">
+              <button class="btn btn-outline-primary btn-sm" (click)="fileInput.click()">Muat Naik</button>
+              <input type="file" #fileInput hidden (change)="onFileSelected($event)"
+                accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" />
+            </c-col>
+          </c-row>
+
+          <!-- Scrollable Table Container -->
+          <div class="table-responsive table-scroll-container">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>
+                    <div class="d-flex align-items-center gap-2 ps-0 pb-0">
+                      Bil
+                    </div>
+                  </th>
+                  <th>Nama Dokumen</th>
+                  <th>Format</th>
+                  <th>Tindakan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let doc of paginatedDocuments; let i = index" >
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      {{ (currentPage - 1) * itemsPerPage + i + 1 }} 
+                    </div>
+                  </td>
+                  <td class="text-truncate" style="max-width: 300px;" [title]="doc.namadokumen">
+                    {{ doc.namadokumen }}
+                  </td>
+                  <td>
+                    <c-badge color="secondary">{{ doc.format }}</c-badge>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger btn-sm" (click)="removeDocument(doc.id)" title="Padam">
+                      <i class="cil-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr *ngIf="paginatedDocuments.length === 0">
+                  <td colspan="4" class="text-center text-muted py-4">
+                    Tiada dokumen dimuat naik
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination and Controls -->
+          <c-row class="mt-3">
+            <c-col>
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <!-- Left: Items per page -->
+                <div class="d-flex align-items-center gap-3">
+                  <select class="form-select form-select-sm" [(ngModel)]="itemsPerPage"
+                    (change)="onItemsPerPageChange()">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                  </select>
+                </div>
+
+                <!-- Right: Pagination and Pergi ke -->
+                <div class="d-flex align-items-center flex-wrap gap-2">
+                  <nav>
+                    <ul class="pagination pagination-sm mb-0">
+                      <li class="page-item" [class.disabled]="currentPage === 1">
+                        <button class="page-link" (click)="goToPage('first')">&laquo;</button>
+                      </li>
+                      <li class="page-item" [class.disabled]="currentPage === 1">
+                        <button class="page-link" (click)="goToPage('prev')">&lsaquo;</button>
+                      </li>
+                      <li class="page-item active">
+                        <span class="page-link">{{ currentPage }}</span>
+                      </li>
+                      <li class="page-item" [class.disabled]="currentPage === totalPages">
+                        <button class="page-link" (click)="goToPage('next')">&rsaquo;</button>
+                      </li>
+                      <li class="page-item" [class.disabled]="currentPage === totalPages">
+                        <button class="page-link" (click)="goToPage('last')">&raquo;</button>
+                      </li>
+                    </ul>
+                  </nav>
+
+                  <div class="d-flex align-items-center ms-2">
+                    <small class="text-muted">Pergi ke</small>
+                    <input type="number" class="form-control form-control-sm ms-2" style="width: 60px;"
+                      [(ngModel)]="goToPageNumber" (keyup.enter)="goToSpecificPage()" />
+                  </div>
+                </div>
+              </div>
+            </c-col>
+          </c-row>
+
+          <!-- Catatan -->
+          <div class="mt-4">
+            <label for="catatan" class="form-label"><strong>Catatan</strong></label>
+            <textarea id="catatan" class="form-control" rows="3" [(ngModel)]="catatan"
+              placeholder="Masukkan catatan di sini..."></textarea>
+          </div>
+
+          <!-- Agreement Checkbox -->
+          <div class="form-check mt-3">
+            <input class="form-check-input" type="checkbox" id="agreement" [(ngModel)]="isAgreementChecked" />
+            <label class="form-check-label" for="agreement">
+              Saya memperakui segala maklumat yang diberikan di atas adalah benar
+            </label>
+          </div>
+        </c-card-body>
+      </c-card>
+    </c-col>
+
+    <!-- Sidebar Stepper -->
+    <c-col md="4">
+      <c-card>
+        <c-card-body>
+          <div class="steps-container">
+            <ng-container *ngFor="let step of [1, 2, 3, 4, 5]">
+              <div class="step-item" [ngClass]="{
+                completed: step < 4,
+                active: step === 4
+              }">
+                <div class="step-circle">
+                  <span class="step-number">{{ step }}</span>
+                </div>
+                <div class="step-content">
+                  <div class="step-title">Langkah {{ step }}</div>
+                  <div class="step-description">
+                    {{
+                    [
+                    'Maklumat Profil Pegawai',
+                    'Maklumat Penetapan Peranan',
+                    'Maklumat PTJ',
+                    'Dokumen Sokongan',
+                    'Sejarah ID'
+                    ][step - 1]
+                    }}
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>
+
+  <!-- Bottom Navigation -->
+  <c-row class="mt-4">
+    <c-col col="12">
+      <div class="d-flex justify-content-end gap-2">
+        <button class="btn btn-dark" (click)="goToPrevious()">Tolak</button>
+        <button class="btn btn-secondary" (click)="showWujudID()">Wujud ID</button>
+        <button class="btn btn-dark" (click)="goToPrevious()">&lt;</button>
+        <button class="btn btn-dark" (click)="goToNext()">&gt;</button>
+      </div>
+    </c-col>
+  </c-row>
+</c-container>

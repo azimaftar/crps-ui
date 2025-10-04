@@ -1,0 +1,217 @@
+<!-- senarai-semakan-dan-tindakan-penyelia.component.html -->
+<c-container fluid class="p-3">
+  <c-card class="shadow-sm">
+    <!-- Header Section -->
+    <c-card-header class="bg-primary text-white text-center py-3">
+      <h5 class="mb-0 fw-bold">
+        <i class="bi bi-search me-2"></i>
+        SEMAKAN & TINDAKAN PENYELIA
+      </h5>
+    </c-card-header>
+
+    <!-- Search Form Section -->
+    <c-card-body class="bg-light border-bottom">
+      <c-row class="g-3 align-items-end">
+        <c-col md="3">
+          <label class="form-label fw-semibold">Jenis Dokumen</label>
+          <select class="form-select" 
+                  [(ngModel)]="selectedDocumentType">
+            <option *ngFor="let docType of documentTypes" [value]="docType.value">
+              {{ docType.label }}
+            </option>
+          </select>
+        </c-col>
+        
+        <c-col md="4">
+          <label class="form-label fw-semibold">Carian Dokumen</label>
+          <input type="text"
+                 class="form-control" 
+                 [(ngModel)]="searchQuery" 
+                 placeholder="Masukkan carian...">
+        </c-col>
+        
+        <c-col md="2">
+          <button cButton 
+                  variant="outline" 
+                  color="dark" 
+                  class="w-100" 
+                  (click)="onSearch()">
+            <i class="bi bi-search me-1"></i>
+            Cari
+          </button>
+        </c-col>
+        
+        <c-col md="3">
+            <button type="button"
+                    class="btn btn-dark w-100"
+                    (click)="onCetakPas()">
+                <i class="bi bi-printer me-1"></i>
+                Cetak Pas
+            </button>
+            </c-col>
+      </c-row>
+      
+      <c-row class="mt-2">
+        <c-col md="3">
+          <button cButton 
+                  variant="outline" 
+                  color="dark" 
+                  class="w-100" 
+                  (click)="onImbasDokumen()">
+            <i class="bi bi-upc-scan me-1"></i>
+            Imbas Dokumen
+          </button>
+        </c-col>
+      </c-row>
+    </c-card-body>
+
+    <!-- Results Section -->
+    <c-card-body>
+      <!-- Search Stats -->
+      <c-alert color="info" class="d-flex justify-content-between align-items-center border-start border-4 border-info">
+        <small class="mb-0">
+          <strong>Hasil Carian:</strong> 
+          Menunjukkan {{ startRecord }}-{{ endRecord }} daripada {{ totalRecords }} rekod
+        </small>
+        <c-badge color="success" shape="rounded-pill">
+          {{ totalRecords }} Rekod Aktif
+        </c-badge>
+      </c-alert>
+
+      <div class="text-center mb-4">
+        <h6 class="text-uppercase fw-bold text-muted mb-0">Tindakan Penyelia</h6>
+      </div>
+      
+      <!-- Data Table -->
+      <div class="border rounded overflow-hidden">
+  <div class="table-responsive">
+    <table cTable class="table table-hover table-striped mb-0">
+      <thead class="table-light">
+        <tr>         
+          <th class="text-center fw-bold text-uppercase" style="width: 5%; font-size: 0.8rem;">Bil.</th>
+          <th class="text-center fw-bold text-uppercase" style="width: 5%; font-size: 0.8rem;"></th>
+          <th class="fw-bold text-uppercase" style="width: 20%; font-size: 0.8rem;">Nama Pegawai</th>
+          <th class="text-center fw-bold text-uppercase" style="width: 10%; font-size: 0.8rem;">Tarikh</th>
+          <th class="text-center fw-bold text-uppercase" style="width: 8%; font-size: 0.8rem;">Masa</th>
+          <th class="text-center fw-bold text-uppercase" style="width: 15%; font-size: 0.8rem;">No.Dokumen</th>
+          <th class="fw-bold text-uppercase" style="width: 20%; font-size: 0.8rem;">Nama Pelanggan</th>
+          <th class="text-center fw-bold text-uppercase" style="width: 12%; font-size: 0.8rem;">Tarikh Lahir</th>
+          <th class="text-center fw-bold text-uppercase" style="width: 5%; font-size: 0.8rem;">Jantina</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of currentPageData; let i = index" class="align-middle">
+                  
+          <!-- ID Number Column -->
+          <td class="text-center">
+            <strong>{{ record.id }}.</strong>
+          </td>
+
+          <!-- Radio Button Column -->
+          <td class="text-center">
+            <input type="radio" 
+                   name="selection" 
+                   class="form-check-input" 
+                   [id]="'row' + record.id"
+                   [value]="record.id"
+                   [checked]="isRecordSelected(record.id)"
+                   (change)="onRecordSelect(record.id)">
+          </td>
+          
+          <!-- Employee Name Column -->
+          <td>
+            <span class="fw-bold text-primary">{{ record.employee }}</span>
+          </td>
+          
+          <!-- Date Column -->
+          <td class="text-center">
+            <small class="fw-medium">{{ record.date }}</small>
+          </td>
+          
+          <!-- Time Column -->
+          <td class="text-center">
+            <small class="text-muted">{{ record.time }}</small>
+          </td>
+          
+          <!-- Document Number Column -->
+          <td class="text-center">
+            <c-badge color="secondary" shape="rounded-pill" class="font-monospace">
+              {{ record.docNumber }}
+            </c-badge>
+          </td>
+          
+          <!-- Client Name Column -->
+          <td>
+            <span class="fw-bold">{{ record.clientName }}</span>
+          </td>
+          
+          <!-- Birth Date Column -->
+          <td class="text-center">
+            <small>{{ record.birthDate }}</small>
+          </td>
+          
+          <!-- Gender Column -->
+          <td class="text-center">
+            <c-badge 
+              [color]="record.gender === 'LELAKI' ? 'info' : 'warning'"
+              shape="rounded-pill">
+              {{ getGenderDisplayText(record.gender) }}
+            </c-badge>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+    </c-card-body>
+
+    <!-- Pagination Section -->
+    <c-card-footer class="bg-light">
+      <c-row class="align-items-center">
+        <c-col class="text-start">
+          <small class="text-muted">
+            Halaman {{ currentPage }} daripada {{ totalPages }}
+          </small>
+        </c-col>
+        
+        <c-col class="text-center">
+          <c-pagination size="sm" class="mb-0 justify-content-center">
+            
+            <c-page-item [disabled]="isPreviousDisabled">
+              <a cPageLink 
+                 href="javascript:void(0)" 
+                 (click)="goToPreviousPage()" 
+                 [class.disabled]="isPreviousDisabled">
+                ‹
+              </a>
+            </c-page-item>
+            
+            <c-page-item 
+              *ngFor="let pageNum of pageNumbers"
+              [active]="isPageActive(pageNum)">
+              <a cPageLink 
+                 href="javascript:void(0)" 
+                 (click)="goToPage(pageNum)">
+                {{ pageNum }}
+              </a>
+            </c-page-item>
+            
+            <c-page-item [disabled]="isNextDisabled">
+              <a cPageLink 
+                 href="javascript:void(0)" 
+                 (click)="goToNextPage()" 
+                 [class.disabled]="isNextDisabled">
+                ›
+              </a>
+            </c-page-item>
+            
+          </c-pagination>
+        </c-col>
+        
+        <c-col class="text-end">
+          <small class="text-muted">Jumlah: {{ totalRecords }} rekod</small>
+        </c-col>
+      </c-row>
+    </c-card-footer>
+  </c-card>
+</c-container>
