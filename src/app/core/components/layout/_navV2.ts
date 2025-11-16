@@ -18,7 +18,6 @@ import {navModulesToBeCombined} from "./navigations/navModulesToBeCombined";
 import {othersNav} from "./navigations/othersNav";
 import {coreuiNav} from "./navigations/coreuiNav";
 import { takwimNav } from "./navigations/takwimNav";
-import { testNav2Routes } from "../../../NiiseModules/CMN/routes";
 export function navV2Modules(): INavData[] {
   return [
 

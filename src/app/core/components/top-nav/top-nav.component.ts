@@ -70,7 +70,7 @@ export class TopNavComponent extends CoreUiHeaderComponent {
 
     sessionStorage.clear();
 
-    window.location.href = `http://localhost:8080/logout?idToken=${encodeURIComponent(idToken)}`;
+    window.location.href = `http://localhost:4200/login`;
 
   }
 }
